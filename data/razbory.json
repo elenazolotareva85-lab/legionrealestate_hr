@@ -1,0 +1,734 @@
+{
+  "period": {
+    "start": "01.08.2026",
+    "end": "31.08.2026"
+  },
+  "summary": {
+    "norm_target": 2,
+    "submitted_total": 21,
+    "materials_total": 24,
+    "razbory_total": 15,
+    "awaiting_total": 8,
+    "open_tasks_total": 16,
+    "norm_met_pct": 24
+  },
+  "brokers": [
+    {
+      "name": "Андрей Бойко",
+      "team": "Рома",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Елена Бобкова",
+      "team": "Рома",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Виктория Багазий",
+      "team": "Рома",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Александр Мужейко",
+      "team": "Рома",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Кристина Коновалова",
+      "team": "Рома",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Александр Подопригора",
+      "team": "Рома",
+      "records_submitted": 2,
+      "norm_met": true,
+      "razbory_count": 2,
+      "last_razbor_date": "13.08.2026",
+      "open_tasks_count": 6,
+      "errors": {
+        "E1": 2,
+        "E2": 1,
+        "E3": 1,
+        "E4": 0,
+        "E5": 2,
+        "E6": 1,
+        "E7": 0
+      },
+      "top_error": "E1",
+      "awaiting_review": 1,
+      "last_agreement": {
+        "entries_count": 1,
+        "last_id": "(no-id)",
+        "last_date": "05.08.2026",
+        "last_reviewer": "Роман",
+        "last_type": "Zoom",
+        "last_result_analysis": "2-й созвон с клиентом; команду брокера уточнить",
+        "last_tasks": "15 ошибок; критическая — «Предмет» назван 1-й линией океана; ревьюера уточнить",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "05.08.2026",
+            "reviewer": "Роман",
+            "type": "Zoom",
+            "result": "2-й созвон с клиентом; команду брокера уточнить",
+            "tasks": "15 ошибок; критическая — «Предмет» назван 1-й линией океана; ревьюера уточнить"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Григорий Решетов",
+      "team": "Рома",
+      "records_submitted": 3,
+      "norm_met": true,
+      "razbory_count": 3,
+      "last_razbor_date": "05.08.2026",
+      "open_tasks_count": 3,
+      "errors": {
+        "E1": 2,
+        "E2": 2,
+        "E3": 2,
+        "E4": 2,
+        "E5": 0,
+        "E6": 1,
+        "E7": 0
+      },
+      "top_error": "E1",
+      "awaiting_review": 0,
+      "last_agreement": {
+        "entries_count": 3,
+        "last_id": "(no-id)",
+        "last_date": "05.08.2026",
+        "last_reviewer": "Роман",
+        "last_type": "Zoom",
+        "last_result_analysis": "Зум 3 из серии 3",
+        "last_tasks": "Финал без фиксации решения; 2 часа на 3 зума без выбора объекта",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "05.08.2026",
+            "reviewer": "Роман",
+            "type": "Zoom",
+            "result": "Зум 3 из серии 3",
+            "tasks": "Финал без фиксации решения; 2 часа на 3 зума без выбора объекта"
+          },
+          {
+            "id": "K-002",
+            "date": "05.08.2026",
+            "reviewer": "Роман",
+            "type": "Zoom",
+            "result": "Зум 2 из серии 3; связь с клиентом прервалась",
+            "tasks": "Говорил 95% времени; ≤10 реплик клиента"
+          },
+          {
+            "id": "K-001",
+            "date": "05.08.2026",
+            "reviewer": "Роман",
+            "type": "Zoom",
+            "result": "Зум 1 из серии 3",
+            "tasks": "Лектор, а не продавец; нет квалификации по бюджету"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ирина Лисниченко",
+      "team": "Рома",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 1,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 1,
+      "last_agreement": null
+    },
+    {
+      "name": "Татьяна Бондаренко",
+      "team": "Макс",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Андрей Гедикьянц",
+      "team": "Макс",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Халад Хуалфи",
+      "team": "Макс",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Марина Циганок",
+      "team": "Макс",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 1,
+      "last_razbor_date": "05.08.2026",
+      "open_tasks_count": 2,
+      "errors": {
+        "E1": 1,
+        "E2": 1,
+        "E3": 0,
+        "E4": 0,
+        "E5": 1,
+        "E6": 1,
+        "E7": 1
+      },
+      "top_error": "E1",
+      "awaiting_review": 0,
+      "last_agreement": {
+        "entries_count": 1,
+        "last_id": "(no-id)",
+        "last_date": "05.08.2026",
+        "last_reviewer": "Макс Рувинский",
+        "last_type": "Zoom",
+        "last_result_analysis": "Презентация на английском",
+        "last_tasks": "Плюс работа над англ. речью («what else», «ну», акцент); EcoWood с контактами застройщика",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "05.08.2026",
+            "reviewer": "Макс Рувинский",
+            "type": "Zoom",
+            "result": "Презентация на английском",
+            "tasks": "Плюс работа над англ. речью («what else», «ну», акцент); EcoWood с контактами застройщика"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Мария Заяц",
+      "team": "Макс",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Анастасия Сорокина",
+      "team": "Макс",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 2,
+      "last_agreement": {
+        "entries_count": 1,
+        "last_id": "(no-id)",
+        "last_date": "12.08.2026",
+        "last_reviewer": "Макс Рувинский",
+        "last_type": "Zoom",
+        "last_result_analysis": "Клиентка никогда не была на Бали, на этапе раздумий (друзья инвестируют в Азии). Самооценка брокера: «зум был не очень — стала впаривать целевой проект». Отправлены расчёты и рассрочка; клиентка запросила вариант с ипотекой (mortgage). План: показать вариант в Умаласе у Kaluna, рассрочка 4 года, до $150k.",
+        "last_tasks": "",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "12.08.2026",
+            "reviewer": "Макс Рувинский",
+            "type": "Zoom",
+            "result": "Клиентка никогда не была на Бали, на этапе раздумий (друзья инвестируют в Азии). Самооценка брокера: «зум был не очень — стала впаривать целевой проект». Отправлены расчёты и рассрочка; клиентка запросила вариант с ипотекой (mortgage). План: показать вариант в Умаласе у Kaluna, рассрочка 4 года, до $150k.",
+            "tasks": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "Игорь Шаталин",
+      "team": "Макс",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Роман Шапиро",
+      "team": "Макс",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Анастасия Присяжнюк",
+      "team": "Влад",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Карина Ахметова",
+      "team": "Влад",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 1,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 1,
+      "last_agreement": null
+    },
+    {
+      "name": "Валентина Бондаренко",
+      "team": "Влад",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 1,
+      "last_agreement": null
+    },
+    {
+      "name": "Андрей Лиштва",
+      "team": "Влад",
+      "records_submitted": 3,
+      "norm_met": true,
+      "razbory_count": 2,
+      "last_razbor_date": "05.08.2026",
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": {
+        "entries_count": 1,
+        "last_id": "K-010",
+        "last_date": "05.08.2026",
+        "last_reviewer": "Влад",
+        "last_type": "Zoom",
+        "last_result_analysis": "Начало не записалось (переход Zoom→Google Meet)",
+        "last_tasks": "",
+        "all": [
+          {
+            "id": "K-010",
+            "date": "05.08.2026",
+            "reviewer": "Влад",
+            "type": "Zoom",
+            "result": "Начало не записалось (переход Zoom→Google Meet)",
+            "tasks": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "Рената Бадюл",
+      "team": "Влад",
+      "records_submitted": 4,
+      "norm_met": true,
+      "razbory_count": 4,
+      "last_razbor_date": "13.08.2026",
+      "open_tasks_count": 1,
+      "errors": {
+        "E1": 1,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": "E1",
+      "awaiting_review": 1,
+      "last_agreement": {
+        "entries_count": 3,
+        "last_id": "(no-id)",
+        "last_date": "13.08.2026",
+        "last_reviewer": "Влад",
+        "last_type": "Zoom",
+        "last_result_analysis": "Повторный созвон. Обсуждение вопросов по оферу. Очень живой диалог. Хороший вайб + при этом даешь ценность клиенту. Создание ожиотажа вшито органично в презентацию потому не розжражает. Клиент открылся и говорил про опасеняи и риски неплатежеспособности, про рассрочку. Отработка риска хорошая. Получился именно диалог и хороший контакт и поиск решения совместно на основе уточненных потребностей по рассрочке. Получаешь подтверждение, берешь обязательства.",
+        "last_tasks": "",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "13.08.2026",
+            "reviewer": "Влад",
+            "type": "Zoom",
+            "result": "Повторный созвон. Обсуждение вопросов по оферу. Очень живой диалог. Хороший вайб + при этом даешь ценность клиенту. Создание ожиотажа вшито органично в презентацию потому не розжражает. Клиент открылся и говорил про опасеняи и риски неплатежеспособности, про рассрочку. Отработка риска хорошая. Получился именно диалог и хороший контакт и поиск решения совместно на основе уточненных потребностей по рассрочке. Получаешь подтверждение, берешь обязательства.",
+            "tasks": ""
+          },
+          {
+            "id": "K-020",
+            "date": "13.08.2026",
+            "reviewer": "Влад",
+            "type": "Zoom",
+            "result": "Хороший смолтолк и установление (повторное) контакта. Клиент сразу открываетя и говорит про риски, про то что изучает разные рынки и т.д. Вовремя и мягко расставлены акценты в сравнении с Дубай. Отлично находиш общности и темы чтоб раскрыть еще клиента (люди из великобритании узжают...). Активное слушение. открытые вопросы гуд. Ограничный ожиотаж и повыщегие цены гуд. Хорошо раскрыта ценность и суть работы УК. Хорошо преимущества производства девелопера и экономию. В конце хорошая рефлексия клиента благодаря открытому вопросу. Это дает больше информации для закрытия. Обязательства есть в конце. Хорошая встреча.",
+            "tasks": ""
+          },
+          {
+            "id": "K-018",
+            "date": "11.08.2026",
+            "reviewer": "Влад",
+            "type": "Zoom",
+            "result": "По итогам встречи вижу, что ты хорошо подготовилась и уверенно провела презентацию. Презентация районов мне понравилась. Ты показывала и плюсы, и минусы, учитывая потребности и мнение клиента. Использовала видео и визуальные материалы. Презентация проектов тоже была сильной: уверенная подача, хорошее знание информации и правильные акценты на важных для клиента моментах — инфраструктуре, семейной жизни и т.д. Главная зона для улучшения — больше вовлекать клиента в диалог. Делать паузы, давать ему возможность высказаться и задавать открытые вопросы: «Как тебе этот вариант?», «Что думаешь об этом проекте?». Это поможет получить дополнительную информацию, которая может пригодиться при дальнейшем закрытии. С этим клиентом всё прошло хорошо — понятно, что ему нравится и какие следующие шаги. Но такой подход лучше довести до автоматизма: заранее выявлять возможные вопросы и возражения всегда лучше, чем столкнуться с ними уже на этапе закрытия. В целом — презентация районов и проектов мне понравилась. Лайк\\! ð",
+            "tasks": "Прислать пример где есть больше вопросов клиенту и больше диалога"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ольга Марценюк",
+      "team": "Влад",
+      "records_submitted": 2,
+      "norm_met": true,
+      "razbory_count": 1,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": {
+        "entries_count": 2,
+        "last_id": "(no-id)",
+        "last_date": "25.08.2026",
+        "last_reviewer": "Влад",
+        "last_type": "Zoom",
+        "last_result_analysis": "Хороший прогресс. Ольга посмотрела ВСЕ зумы на диске и это дало буст. Зоны ростра - больше давать раскрываться клиенту. открытые вопросы, фидбэк, история и мотивы.",
+        "last_tasks": "Прислать пример ЗУМа где клиент говорит больше чем она) Инструкция",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "25.08.2026",
+            "reviewer": "Влад",
+            "type": "Zoom",
+            "result": "Хороший прогресс. Ольга посмотрела ВСЕ зумы на диске и это дало буст. Зоны ростра - больше давать раскрываться клиенту. открытые вопросы, фидбэк, история и мотивы.",
+            "tasks": "Прислать пример ЗУМа где клиент говорит больше чем она) Инструкция"
+          },
+          {
+            "id": "K-024",
+            "date": "14.08.2026",
+            "reviewer": "Влад",
+            "type": "запись звонка",
+            "result": "",
+            "tasks": "Найти норм кейсы по Бали на которые будет опираться. Придерживаться последовательности шагов в продаже."
+          }
+        ]
+      }
+    },
+    {
+      "name": "Клим Боридко",
+      "team": "Влад",
+      "records_submitted": 1,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 1,
+      "last_agreement": null
+    },
+    {
+      "name": "Юлия Гудзенко",
+      "team": "Влад",
+      "records_submitted": 0,
+      "norm_met": false,
+      "razbory_count": 0,
+      "last_razbor_date": null,
+      "open_tasks_count": 0,
+      "errors": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0,
+        "E4": 0,
+        "E5": 0,
+        "E6": 0,
+        "E7": 0
+      },
+      "top_error": null,
+      "awaiting_review": 0,
+      "last_agreement": null
+    },
+    {
+      "name": "Макс Рувинский",
+      "team": "Макс",
+      "records_submitted": 2,
+      "norm_met": true,
+      "razbory_count": 2,
+      "last_razbor_date": "05.08.2026",
+      "open_tasks_count": 2,
+      "errors": {
+        "E1": 2,
+        "E2": 2,
+        "E3": 1,
+        "E4": 0,
+        "E5": 1,
+        "E6": 1,
+        "E7": 1
+      },
+      "top_error": "E1",
+      "awaiting_review": 0,
+      "last_agreement": {
+        "entries_count": 2,
+        "last_id": "(no-id)",
+        "last_date": "05.08.2026",
+        "last_reviewer": "Александр Гуляев",
+        "last_type": "Zoom",
+        "last_result_analysis": "Встреча не записана — разбор по заметкам Гуляева",
+        "last_tasks": "Кейс Поляк; клиенту нужен юрист — предлагать встречу с корпоративным юристом",
+        "all": [
+          {
+            "id": "(no-id)",
+            "date": "05.08.2026",
+            "reviewer": "Александр Гуляев",
+            "type": "Zoom",
+            "result": "Встреча не записана — разбор по заметкам Гуляева",
+            "tasks": "Кейс Поляк; клиенту нужен юрист — предлагать встречу с корпоративным юристом"
+          },
+          {
+            "id": "K-006",
+            "date": "05.08.2026",
+            "reviewer": "Александр Гуляев",
+            "type": "Zoom",
+            "result": "Встреча не записана — разбор по заметкам Гуляева",
+            "tasks": "Кейс Unati Desai; искажены цифры компании (800 млн вместо 120+)"
+          }
+        ]
+      }
+    }
+  ]
+}
