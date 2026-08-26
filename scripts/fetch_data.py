@@ -113,7 +113,7 @@ def parse_stat(rng):
 
 combined = parse_stat(range(4, 38))
 block2 = parse_stat(range(51, 80))
-(DATA / 'stat.json').write_text(json.dumps({'combined': combined, 'block2': block2}, ensure_ascii=False, indent=2))
+(DATA / 'stat.json').write_text(json.dumps({'combined': combined, 'block2': block2}, ensure_ascii=False, indent=2, sort_keys=True))
 
 # Declined
 declined = []
@@ -128,7 +128,7 @@ for n, c in combined.items():
     drop = y25 - y26
     if drop >= 10:
         declined.append({'name': n, 'y25': round(y25, 1), 'y26': round(y26, 1), 'drop': round(drop, 1)})
-declined.sort(key=lambda x: -x['drop'])
+declined.sort(key=lambda x: (-x['drop'], x['name']))
 (DATA / 'declined.json').write_text(json.dumps(declined, ensure_ascii=False, indent=2))
 
 # Greens (green zone 2026)
@@ -145,7 +145,7 @@ for i in range(51, 80):
         # Only include active brokers
         if norm(n) in {norm(x['name']) for x in active_brokers}:
             greens.append({'name': n, 'yield': round(y26, 1), 'deals': int(deals), 'revenue': round(rev)})
-greens.sort(key=lambda x: -x['yield'])
+greens.sort(key=lambda x: (-x['yield'], x['name']))
 (DATA / 'greens.json').write_text(json.dumps(greens, ensure_ascii=False, indent=2))
 print(f'   declined: {len(declined)}, greens: {len(greens)}')
 
