@@ -1,0 +1,55 @@
+name: Rebuild dashboard
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # каждый день 06:00 UTC = 09:00 Europe/Sofia
+  workflow_dispatch:      # ручной запуск через Actions → Run workflow
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Write service account keys
+        run: |
+          mkdir -p /tmp/keys
+          printf '%s' "${SHEETS_KEY}" > /tmp/keys/sheets.json
+          printf '%s' "${BQ_KEY}"     > /tmp/keys/bq.json
+        env:
+          SHEETS_KEY: ${{ secrets.SHEETS_KEY }}
+          BQ_KEY:     ${{ secrets.BQ_KEY }}
+
+      - name: Fetch data
+        env:
+          SHEETS_KEY_PATH: /tmp/keys/sheets.json
+          BQ_KEY_PATH:     /tmp/keys/bq.json
+        run: python scripts/fetch_data.py
+
+      - name: Build dashboards
+        run: python scripts/build.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "dashboard-bot"
+          git config user.email "dashboard-bot@users.noreply.github.com"
+          git add index.html leads.html data/*.json || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Rebuild $(date -u +%Y-%m-%d)"
+            git push
+          fi
