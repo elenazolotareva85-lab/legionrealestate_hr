@@ -428,14 +428,16 @@ JOIN `disco-bedrock-428721-f8.deals_bali.deals_bali` d ON SAFE_CAST(d.orderId AS
 WHERE d.pipeline IN ('Сделки Бали','Europe Deals','Сделки Таиланд','Thailand Deals','Долевое участие Бали')
   AND LOWER(d.status) LIKE '%успешно%'
 """
-new_won = defaultdict(pd_)
+def _zr(): return {'n': 0, 'budget': 0}
+def _new_pd(): return defaultdict(lambda: defaultdict(_zr))
+new_won = defaultdict(_new_pd)
 for r in bq.query(q_won).result():
     if r.yr is None or r.mo is None: continue
     reg = PIPELINE_REGION.get(r.pipeline, 'Другое')
     for p in periods_for(int(r.yr), int(r.mo)):
         new_won[r.manager][p][reg]['n'] += 1
         new_won[r.manager][p][reg]['budget'] += (r.budget or 0)
-nwbn = defaultdict(pd_)
+nwbn = defaultdict(_new_pd)
 for m, p in new_won.items():
     for pk, s in p.items():
         for sk, v in s.items():
