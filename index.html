@@ -437,36 +437,55 @@ tr.row-main:focus { outline: none; }
   <section class="kpi-grid" aria-label="Ключевые показатели" id="kpiGrid"></section>
 
   <div class="signal-section-label">Управленческие сигналы — где принимать решения</div>
-  <div class="signal-bar">
+  <style>
+.signal-item-extra { display: none; }
+.signal.expanded .signal-item-extra { display: grid; }
+.signal-more {
+  align-self: flex-start; background: none; border: none; padding: 6px 0 0; margin: 0;
+  cursor: pointer; font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: left;
+}
+.signal-more:hover { color: var(--ink); text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('.signal-more');
+  if (!btn) return;
+  var card = btn.closest('.signal');
+  var open = card.classList.toggle('expanded');
+  btn.textContent = open ? 'Свернуть ↑' : 'Показать всех ' + btn.dataset.total + ' →';
+});
+</script>
+<div class="signal-bar">
     <div class="signal critical">
       <span class="signal-tag">🚨 Жгут бюджет</span>
-      <div class="signal-hero">$15 тыс<span class="signal-hero-unit">$</span></div>
-      <p class="signal-headline">4 брокеров получили 400 лидов и не закрыли ни одной сделки</p>
-      <p class="signal-detail">Средняя стоимость нерезультативного лида — $36.</p>
-      <div class="signal-names">Марина Циганок · Андрей Гедикьянц · Khalad Khoualfi · Елена Радченко</div>
+      <div class="signal-hero">$13 тыс<span class="signal-hero-unit">$</span></div>
+      <p class="signal-headline">3 брокера получили 346 лидов и не закрыли ни одной сделки</p>
+      <p class="signal-detail">Средняя стоимость нерезультативного лида — $39. Считаем действующих, у кого от 20 лидов.</p>
+      <div class="signal-names">Марина Циганок · Андрей Гедикьянц · Khalad Khoualfi</div>
       <div class="signal-action">Аудит потока лидов + лимит новых лидов до выхода в конверсию.</div>
     </div>
     <div class="signal warn">
       <span class="signal-tag">📉 Просели</span>
       <div class="signal-hero">11<span class="signal-hero-unit">брокеров</span></div>
       <p class="signal-headline">Доходность 2026 упала на ≥10 п.п. к 2025</p>
-      <div class="signal-item"><span class="name">Кристина Коновалова</span><span class="delta">▼ 105.3 п.п.</span><span class="detail">73% → -32%</span></div><div class="signal-item"><span class="name">Виктория Багазий</span><span class="delta">▼ 54.1 п.п.</span><span class="detail">66% → 12%</span></div><div class="signal-item"><span class="name">Александр Подопригора</span><span class="delta">▼ 51.1 п.п.</span><span class="detail">69% → 18%</span></div>
+      <div class="signal-item"><span class="name">Кристина Коновалова</span><span class="delta">▼ 105.3 п.п.</span><span class="detail">73% → -32%</span></div><div class="signal-item"><span class="name">Виктория Багазий</span><span class="delta">▼ 54.1 п.п.</span><span class="detail">66% → 12%</span></div><div class="signal-item"><span class="name">Александр Подопригора</span><span class="delta">▼ 51.1 п.п.</span><span class="detail">69% → 18%</span></div><div class="signal-item signal-item-extra"><span class="name">Елена Бобкова</span><span class="delta">▼ 34.7 п.п.</span><span class="detail">70% → 35%</span></div><div class="signal-item signal-item-extra"><span class="name">Григорий Решетов</span><span class="delta">▼ 31.6 п.п.</span><span class="detail">72% → 41%</span></div><div class="signal-item signal-item-extra"><span class="name">Андрей Бойко</span><span class="delta">▼ 30.0 п.п.</span><span class="detail">71% → 41%</span></div><div class="signal-item signal-item-extra"><span class="name">Карина Ахметова</span><span class="delta">▼ 25.5 п.п.</span><span class="detail">72% → 47%</span></div><div class="signal-item signal-item-extra"><span class="name">Анастасия Присяжнюк</span><span class="delta">▼ 25.0 п.п.</span><span class="detail">66% → 41%</span></div><div class="signal-item signal-item-extra"><span class="name">Максим Микитишин</span><span class="delta">▼ 16.3 п.п.</span><span class="detail">69% → 53%</span></div><div class="signal-item signal-item-extra"><span class="name">Рената Бадюл</span><span class="delta">▼ 15.9 п.п.</span><span class="detail">62% → 46%</span></div><div class="signal-item signal-item-extra"><span class="name">Валентина Бондаренко</span><span class="delta">▼ 13.1 п.п.</span><span class="detail">66% → 53%</span></div><button type="button" class="signal-more" data-total="11">Показать всех 11 →</button>
       <div class="signal-action">Разбор с РОПом причин + KPI-план с недельным контролем.</div>
     </div>
     <div class="signal good">
-      <span class="signal-tag">⭐ Растут</span>
-      <div class="signal-hero">2<span class="signal-hero-unit">новичка</span></div>
-      <p class="signal-headline">Пришли в 2025+, доходность выше медианы команды (45%)</p>
-      <div class="signal-item"><span class="name">Григорий Решетов</span><span class="delta rise">▲ 49%</span><span class="detail">5 сд · $49 тыс</span></div><div class="signal-item"><span class="name">Карина Ахметова</span><span class="delta rise">▲ 49%</span><span class="detail">12 сд · $146 тыс</span></div>
+      <span class="signal-tag">⭐ Зелёная зона</span>
+      <div class="signal-hero">5<span class="signal-hero-unit">брокеров</span></div>
+      <p class="signal-headline">Окупаемость 2026 — 45% и выше</p>
+      <div class="signal-item"><span class="name">Анастасия Сорокина</span><span class="delta rise">▲ 55%</span><span class="detail">3 сд · $36 тыс</span></div><div class="signal-item"><span class="name">Максим Микитишин</span><span class="delta rise">▲ 53%</span><span class="detail">3 сд · $53 тыс</span></div><div class="signal-item"><span class="name">Валентина Бондаренко</span><span class="delta rise">▲ 53%</span><span class="detail">8 сд · $120 тыс</span></div><div class="signal-item signal-item-extra"><span class="name">Карина Ахметова</span><span class="delta rise">▲ 47%</span><span class="detail">6 сд · $72 тыс</span></div><div class="signal-item signal-item-extra"><span class="name">Рената Бадюл</span><span class="delta rise">▲ 46%</span><span class="detail">3 сд · $48 тыс</span></div><button type="button" class="signal-more" data-total="5">Показать всех 5 →</button>
       <div class="signal-action">Расширить поток лидов + кандидаты на наставничество.</div>
     </div>
   </div>
   <div class="signal-bar wide">
     <div class="signal warn">
       <span class="signal-tag">⏳ Актуальные без сделок</span>
-      <p class="signal-headline">6 действующих сотрудников без единой сделки за 2025-2026</p>
+      <p class="signal-headline">5 действующих сотрудников без единой сделки за 2025-2026</p>
       <p class="signal-detail">Причины: новички, недавно на позиции, или не в продажах напрямую (QC, клиент-сервис, стажировка).</p>
-      <div class="signal-names">Владислав Семчук · Марина Циганок · Ольга Марценюк · Khalad Khoualfi <span style="opacity:.6">и ещё 2</span></div>
+      <div class="signal-names">Марина Циганок · Ольга Марценюк · Khalad Khoualfi · Александр Мужейко <span style="opacity:.6">и ещё 1</span></div>
     </div>
   </div>
 
@@ -587,7 +606,8 @@ function razborFor(r) {
 }
 function bandFor(r) {
   const s = statFor(r);
-  const deals = s.deals || 0;
+  const deals = Math.max(s.deals || 0, ledgerDealsFor(r).deals || 0);
+  if (deals > 0 && !(s.deals || 0) && !(s.final_yield || s.yield_pct)) return 'neutral';
   const y = s.final_yield || s.yield_pct || 0;
   if (deals === 0) return 'critical';
   if (y >= GREEN_YIELD) return 'good';
@@ -597,7 +617,10 @@ function bandFor(r) {
 }
 function statusLabel(r) {
   const s = statFor(r);
-  if ((s.deals||0) === 0) return 'Нет сделок';
+  const _d = Math.max(s.deals||0, ledgerDealsFor(r).deals||0);
+  if (_d === 0) return 'Нет сделок';
+  // Сделки есть только в ledger, доходность по ним не считалась — не выдаём 0% за «ниже нормы».
+  if (!(s.deals || 0) && !(s.final_yield || s.yield_pct)) return 'Нет данных';
   const y = s.final_yield || s.yield_pct || 0;
   if (y >= GREEN_YIELD) return 'Зелёная зона';
   if (y >= 25) return 'Стабильный';

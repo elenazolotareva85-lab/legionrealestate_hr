@@ -39,6 +39,7 @@ declined = load('declined.json', [])
 greens = load('greens.json', [])
 leads_by_source = load('leads_by_source.json', [])
 stat = load('stat.json', {'combined': {}, 'block2': {}})
+active_brokers = load('active_brokers.json', [])
 
 # ── 1. Base HTML ─────────────────────────────────────
 base = (TEMPLATES / 'komissia_base.html').read_text()
@@ -308,14 +309,200 @@ new_extract = '''const clone = nameCell.cloneNode(true);
       const name = clone.textContent.trim();'''
 src = src.replace(old_extract, new_extract)
 
-# ── 5. Rewrite signal-bar with fresh data ────────────
-# The base komissia has hardcoded signal-bar values — replace the whole signal block via regex
-# Find the signal-bar section (between .signal-section-label and </div> before .planfact-section)
-# Simpler: replace individual pieces
+# ── 4b. Status/band must count ledger deals too ──────
+# The table already prints max(stat.deals, ledger.deals), but bandFor/statusLabel
+# looked only at stat.deals — so a broker with ledger-only deals (РОП с партнёрских
+# сделок) showed «Нет сделок» рядом с оборотом и доходностью.
+_old_band = """function bandFor(r) {
+  const s = statFor(r);
+  const deals = s.deals || 0;"""
+_new_band = """function bandFor(r) {
+  const s = statFor(r);
+  const deals = Math.max(s.deals || 0, ledgerDealsFor(r).deals || 0);
+  if (deals > 0 && !(s.deals || 0) && !(s.final_yield || s.yield_pct)) return 'neutral';"""
 
-if len(declined) >= 3:
-    # Update "Просели" count and top items
-    ...  # We'll do this via post-render JS injection instead — simpler
+_old_status = """function statusLabel(r) {
+  const s = statFor(r);
+  if ((s.deals||0) === 0) return 'Нет сделок';"""
+_new_status = """function statusLabel(r) {
+  const s = statFor(r);
+  const _d = Math.max(s.deals||0, ledgerDealsFor(r).deals||0);
+  if (_d === 0) return 'Нет сделок';
+  // Сделки есть только в ledger, доходность по ним не считалась — не выдаём 0% за «ниже нормы».
+  if (!(s.deals || 0) && !(s.final_yield || s.yield_pct)) return 'Нет данных';"""
+
+for _o, _n, _what in ((_old_band, _new_band, 'bandFor'), (_old_status, _new_status, 'statusLabel')):
+    if _o in src:
+        src = src.replace(_o, _n)
+    else:
+        print(f'   WARNING: {_what} not patched — статус может расходиться с колонкой «Сделки»')
+
+# ── 5. Rewrite signal-bar with fresh data ────────────
+# The base komissia ships a hardcoded signal-bar (a snapshot). Rebuild all four
+# cards from data/stat.json + staff files and swap the whole block.
+
+BURN_MIN_LEADS = 20   # below this a zero-deal broker is noise, not a signal
+GREEN_ZONE = 45       # % final yield — same threshold as greens.json
+
+
+def _norm(n):
+    """Same normalisation as fetch_data.norm — ru/ua spelling of the same name."""
+    n = (n or '').strip().lower().replace('і', 'и').replace('ї', 'и').replace('є', 'е').replace('ы', 'и')
+    return ' '.join(sorted(n.split()))
+
+
+def _esc(s):
+    return str(s).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
+def _int(n):
+    return f'{round(n or 0):,}'.replace(',', ' ')
+
+
+def _money(n):
+    n = round(n or 0)
+    return f'${round(n / 1000)} тыс' if n >= 1000 else f'${n}'
+
+
+def _plural(n, forms):
+    n = abs(int(n)) % 100
+    if 11 <= n <= 14:
+        return forms[2]
+    n %= 10
+    if n == 1:
+        return forms[0]
+    if 2 <= n <= 4:
+        return forms[1]
+    return forms[2]
+
+
+def _names(names, limit=4):
+    shown = ' · '.join(_esc(n) for n in names[:limit])
+    rest = len(names) - limit
+    if rest > 0:
+        shown += f' <span style="opacity:.6">и ещё {rest}</span>'
+    return shown
+
+
+def compute_signals():
+    combined = stat.get('combined') or {}
+    active = {_norm(b['name']) for b in active_brokers if b.get('name')}
+
+    # Уволенных не считаем: по ним уже нечего решать, а деньги искажают сигнал.
+    burn = sorted(
+        (dict(v, name=n) for n, v in combined.items()
+         if v.get('deals', 0) == 0 and v.get('leads', 0) >= BURN_MIN_LEADS
+         and _norm(n) in active),
+        key=lambda b: -b.get('mkt_spend', 0))
+
+
+    # partner_rev > 0 — брокер участвовал в сделках как партнёр, «без сделок» про него неверно.
+    nodeals = [n for n, v in combined.items()
+               if v.get('deals', 0) == 0 and v.get('partner_rev', 0) <= 0
+               and _norm(n) in active]
+
+    return burn, list(greens), nodeals
+
+
+SIGNAL_VISIBLE = 3   # остальные строки — по клику
+
+
+def _item_list(rows, render, shown=SIGNAL_VISIBLE):
+    """Первые `shown` строк видны сразу, остальные разворачиваются кнопкой."""
+    if not rows:
+        return ''
+    out = [render(r, ' signal-item-extra' if i >= shown else '') for i, r in enumerate(rows)]
+    if len(rows) > shown:
+        out.append(f'<button type="button" class="signal-more" data-total="{len(rows)}">'
+                   f'Показать всех {len(rows)} →</button>')
+    return ''.join(out)
+
+
+SIGNAL_ASSETS = """<style>
+.signal-item-extra { display: none; }
+.signal.expanded .signal-item-extra { display: grid; }
+.signal-more {
+  align-self: flex-start; background: none; border: none; padding: 6px 0 0; margin: 0;
+  cursor: pointer; font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: left;
+}
+.signal-more:hover { color: var(--ink); text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('.signal-more');
+  if (!btn) return;
+  var card = btn.closest('.signal');
+  var open = card.classList.toggle('expanded');
+  btn.textContent = open ? 'Свернуть \u2191' : 'Показать всех ' + btn.dataset.total + ' \u2192';
+});
+</script>
+"""
+
+
+def render_signals():
+    burn, green_zone, nodeals = compute_signals()
+
+    burn_leads = sum(b.get('leads', 0) for b in burn)
+    burn_spend = sum(b.get('mkt_spend', 0) for b in burn)
+    per_lead = round(burn_spend / burn_leads) if burn_leads else 0
+
+    declined_items = _item_list(declined, lambda d, ex:
+        f'<div class="signal-item{ex}"><span class="name">{_esc(d["name"])}</span>'
+        f'<span class="delta">▼ {d["drop"]:.1f} п.п.</span>'
+        f'<span class="detail">{d["y25"]:.0f}% → {d["y26"]:.0f}%</span></div>')
+
+    green_items = _item_list(green_zone, lambda g, ex:
+        f'<div class="signal-item{ex}"><span class="name">{_esc(g["name"])}</span>'
+        f'<span class="delta rise">▲ {g["yield"]:.0f}%</span>'
+        f'<span class="detail">{g["deals"]:.0f} сд · {_money(g["revenue"])}</span></div>')
+
+    return SIGNAL_ASSETS + f'''<div class="signal-bar">
+    <div class="signal critical">
+      <span class="signal-tag">🚨 Жгут бюджет</span>
+      <div class="signal-hero">{_money(burn_spend)}<span class="signal-hero-unit">$</span></div>
+      <p class="signal-headline">{len(burn)} {_plural(len(burn), ("брокер", "брокера", "брокеров"))} получили {_int(burn_leads)} {_plural(burn_leads, ("лид", "лида", "лидов"))} и не закрыли ни одной сделки</p>
+      <p class="signal-detail">Средняя стоимость нерезультативного лида — ${per_lead}. Считаем действующих, у кого от {BURN_MIN_LEADS} лидов.</p>
+      <div class="signal-names">{_names([b["name"] for b in burn])}</div>
+      <div class="signal-action">Аудит потока лидов + лимит новых лидов до выхода в конверсию.</div>
+    </div>
+    <div class="signal warn">
+      <span class="signal-tag">📉 Просели</span>
+      <div class="signal-hero">{len(declined)}<span class="signal-hero-unit">{_plural(len(declined), ("брокер", "брокера", "брокеров"))}</span></div>
+      <p class="signal-headline">Доходность 2026 упала на ≥10 п.п. к 2025</p>
+      {declined_items}
+      <div class="signal-action">Разбор с РОПом причин + KPI-план с недельным контролем.</div>
+    </div>
+    <div class="signal good">
+      <span class="signal-tag">⭐ Зелёная зона</span>
+      <div class="signal-hero">{len(green_zone)}<span class="signal-hero-unit">{_plural(len(green_zone), ("брокер", "брокера", "брокеров"))}</span></div>
+      <p class="signal-headline">Окупаемость 2026 — {GREEN_ZONE}% и выше</p>
+      {green_items}
+      <div class="signal-action">Расширить поток лидов + кандидаты на наставничество.</div>
+    </div>
+  </div>
+  <div class="signal-bar wide">
+    <div class="signal warn">
+      <span class="signal-tag">⏳ Актуальные без сделок</span>
+      <p class="signal-headline">{len(nodeals)} {_plural(len(nodeals), ("действующий сотрудник", "действующих сотрудника", "действующих сотрудников"))} без единой сделки за 2025-2026</p>
+      <p class="signal-detail">Причины: новички, недавно на позиции, или не в продажах напрямую (QC, клиент-сервис, стажировка).</p>
+      <div class="signal-names">{_names(nodeals)}</div>
+    </div>
+  </div>'''
+
+
+# Only swap when the stats actually loaded — a failed fetch must not blank the cards.
+if stat.get('combined'):
+    _m = re.search(r'<div class="signal-bar">.*?(?=<div class="planfact-section">)', src, re.S)
+    if _m:
+        src = src[:_m.start()] + render_signals() + '\n\n  ' + src[_m.end():]
+        _burn, _green, _nodeals = compute_signals()
+        print(f'   signals: burn={len(_burn)}, declined={len(declined)}, '
+              f'green-zone={len(_green)}, no-deals={len(_nodeals)}')
+    else:
+        print('   WARNING: signal-bar block not found in template — cards left as snapshot')
+else:
+    print('   WARNING: stat.json empty — signal cards left as snapshot')
 
 # ── 6. Post-render JS overlays ───────────────────────
 overlay_data = {
