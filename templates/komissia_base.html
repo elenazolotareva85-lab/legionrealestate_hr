@@ -383,6 +383,7 @@ tr.row-main:focus { outline: none; }
         <button data-period="combined" class="active">2025 + 2026</button>
         <button data-period="2025">2025</button>
         <button data-period="2026">2026</button>
+        <button data-period="all">Всё время</button>
       </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Тема">◐</button>
     </div>
@@ -525,11 +526,19 @@ function fmtPct(n) { return (n||0).toFixed(1).replace('.', ',') + '%'; }
 function fmtPct2(n) { return (n||0).toFixed(2).replace('.', ',') + '%'; }
 
 function statFor(r) {
-  if (period === 'combined') return r.combined;
+  if (period === 'combined' || period === 'all') return r.combined;
   if (period === '2025') return r.y2025_stat;
   return r.y2026_stat;
 }
 function ledgerDealsFor(r) {
+  if (period === 'all') {
+    // Вся история сделок: ledger знает 2023-2026, «Статистика по брокерам» — только 2025+.
+    return Object.values(r.year_deals).reduce((a, d) => ({
+      deals: a.deals + (d.deals || 0),
+      turnover: a.turnover + (d.turnover || 0),
+      commission: a.commission + (d.commission || 0),
+    }), {deals: 0, turnover: 0, commission: 0});
+  }
   if (period === 'combined') {
     // Sum 2025+2026 deals from ledger
     const d25 = r.year_deals['2025'] || {deals:0,turnover:0,commission:0};
@@ -538,8 +547,12 @@ function ledgerDealsFor(r) {
   }
   return r.year_deals[period] || {deals:0,turnover:0,commission:0};
 }
+function turnoverFor(r) {
+  const s = statFor(r), l = ledgerDealsFor(r);
+  return period === 'all' ? (l.turnover || s.turnover) : (s.turnover || l.turnover);
+}
 function razborFor(r) {
-  if (period === 'combined') return r.razbor_combined;
+  if (period === 'combined' || period === 'all') return r.razbor_combined;
   if (period === '2025') return r.razbor_2025;
   return r.razbor_2026;
 }
@@ -583,6 +596,9 @@ function updateKPI() {
   const ledgerComm = list.reduce((s, r) => s + (ledgerDealsFor(r).commission || 0), 0);
   const dealsShow = Math.max(dealsStat, ledgerDeals);
   const conv = leads ? (100 * dealsShow / leads) : 0;
+  // За всю историю сделки охватывают 2023-2026, а лиды и реклама — только с 2025:
+  // делить одно на другое нельзя, поэтому вместо конверсии показываем оборот.
+  const hist = period === 'all';
   const yieldWeighted = revenue ? (100 * margin / revenue) : 0;
   const activeCount = list.length;
   const filterLabel = filterMode === 'staff' ? 'актуальных' : filterMode === 'all' ? 'всех брокеров' : filterMode;
@@ -590,22 +606,22 @@ function updateKPI() {
     <div class="kpi">
       <span class="kpi-label">Квал. лиды</span>
       <span class="kpi-value">${fmtInt(leads)}</span>
-      <span class="kpi-sub">${leads ? '$' + Math.round(mkt/leads) + ' / лид · всего $' + fmtInt(mkt) : '—'}</span>
+      <span class="kpi-sub">${leads ? '$' + Math.round(mkt/leads) + ' / лид · всего $' + fmtInt(mkt) + (hist ? ' · с 2025' : '') : '—'}</span>
     </div>
     <div class="kpi">
       <span class="kpi-label">Сделки</span>
       <span class="kpi-value">${fmtInt(dealsShow)}</span>
-      <span class="kpi-sub">${leads ? 'конверсия ' + fmtPct(conv) : 'оборот $' + fmtMoney(ledgerTurnover)}</span>
+      <span class="kpi-sub">${(leads && !hist) ? 'конверсия ' + fmtPct(conv) : 'оборот $' + fmtMoney(ledgerTurnover)}</span>
     </div>
     <div class="kpi">
       <span class="kpi-label">Выручка</span>
-      <span class="kpi-value">${revenue ? fmtMoney(revenue) : fmtMoney(ledgerComm)}<span class="kpi-unit">$</span></span>
-      <span class="kpi-sub">${margin ? 'маржа+кешбек $' + fmtMoney(margin) : 'комиссия из ledger'}</span>
+      <span class="kpi-value">${(revenue && !hist) ? fmtMoney(revenue) : fmtMoney(ledgerComm)}<span class="kpi-unit">$</span></span>
+      <span class="kpi-sub">${hist ? 'комиссия из ledger 2023-2026' : (margin ? 'маржа+кешбек $' + fmtMoney(margin) : 'комиссия из ledger')}</span>
     </div>
     <div class="kpi">
       <span class="kpi-label">Доходность (взвеш.)</span>
       <span class="kpi-value">${fmtPct(yieldWeighted)}</span>
-      <span class="kpi-sub">по ${activeCount} ${filterLabel} · порог 45%</span>
+      <span class="kpi-sub">по ${activeCount} ${filterLabel} · ${hist ? 'данные 2025-2026' : 'порог 45%'}</span>
     </div>
   `;
 }
@@ -615,6 +631,7 @@ function updateLede() {
     'combined': 'Живая сводка из <em>трёх Google Sheets</em>: метрики из «Турнирная таблица_Брокеры_Бали», сделки — из «Сделки Бали», актуальный состав — из «Staff_Legion». По умолчанию — только действующие сотрудники (переключается фильтром).',
     '2025': '<em>2025 год</em>: закрыт полностью. По умолчанию показаны только действующие сотрудники — сравнить с уволенными можно фильтром «Все».',
     '2026': '<em>2026 год, январь-сентябрь</em>: сделки из ОП1 и ОП2 (общий ledger 2026 ещё не подтянут). Показаны <em>только действующие сотрудники</em> — уволенные скрыты автоматически.',
+    'all': '<em>Вся история, 2023-2026</em>: сделки, оборот и комиссия — из ledger «Сделки Бали» за четыре года. Лиды, реклама и доходность считаются только с 2025 года — раньше маркетинг не оцифровывали, поэтому конверсия за всю историю не выводится.',
   };
   document.getElementById('lede').innerHTML = map[period];
 }
@@ -774,7 +791,7 @@ function renderTable() {
     const ledgerDeals = ledgerDealsFor(r);
     // Show max of stat deals and ledger deals
     const dealsShow = Math.max(s.deals||0, ledgerDeals.deals||0);
-    const turnoverShow = s.turnover || ledgerDeals.turnover;
+    const turnoverShow = turnoverFor(r);
     return `
       <tr class="row-main" data-id="${r.id}" tabindex="0" role="button">
         <td class="name-cell">
@@ -901,6 +918,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     filterMode = btn.dataset.filter;
+    updateKPI();   // шапка подписана «по N актуальных» — она обязана следовать за фильтром
     renderTable();
     renderCharts();
   });
@@ -917,17 +935,13 @@ document.querySelectorAll('.period-tabs button').forEach(btn => {
 
 function renderCharts() {
   const list = filteredRecords().filter(r => (statFor(r).deals||0) > 0 || (ledgerDealsFor(r).deals||0) > 0);
-  const byT = [...list].sort((a,b) => {
-    const ta = statFor(a).turnover || ledgerDealsFor(a).turnover || 0;
-    const tb = statFor(b).turnover || ledgerDealsFor(b).turnover || 0;
-    return tb - ta;
-  });
-  const maxT = Math.max(...byT.map(r => statFor(r).turnover || ledgerDealsFor(r).turnover || 0), 1);
+  const byT = [...list].sort((a,b) => turnoverFor(b) - turnoverFor(a));
+  const maxT = Math.max(...byT.map(r => turnoverFor(r) || 0), 1);
   document.getElementById('turnoverBars').innerHTML = byT.map(r => {
-    const t = statFor(r).turnover || ledgerDealsFor(r).turnover || 0;
+    const t = turnoverFor(r) || 0;
     return `<div class="bar-row"><span class="bar-name">${r.name}</span><div class="bar-track"><div class="bar-fill" style="width:${(t/maxT)*100}%"></div></div><span class="bar-value">$${fmtMoney(t)}</span></div>`;
   }).join('');
-  document.getElementById('turnoverSub').textContent = 'за ' + (period === 'combined' ? '2025 + 2026' : period);
+  document.getElementById('turnoverSub').textContent = 'за ' + (period === 'combined' ? '2025 + 2026' : period === 'all' ? 'всю историю' : period);
 
   const byY = [...list].sort((a,b) => (statFor(b).final_yield||statFor(b).yield_pct||0) - (statFor(a).final_yield||statFor(a).yield_pct||0));
   const maxY = Math.max(...byY.map(r => statFor(r).final_yield || statFor(r).yield_pct || 0), 60);

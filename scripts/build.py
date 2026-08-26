@@ -142,6 +142,10 @@ def build_funnels_html(funnels_data):
 </div>
 
 <script>
+// IIFE: скрипт воронок объявлял глобальный fmtMoney и перетирал форматтер
+// «Комиссии» — после любого клика деньги на странице показывались как «1.8M»
+// вместо «1,80 млн». Изолируем, чтобы имена не пересекались.
+(function () {
 const FUNNELS_DATA = ''' + json.dumps(funnels, ensure_ascii=False) + ''';
 const STAGES = ['NEW', 'QUALIFIED', 'PRESENTATION', 'OFFER', 'WON'];
 const STAGE_LABELS = {NEW:'NEW', QUALIFIED:'QUAL', PRESENTATION:'PRES', OFFER:'OFFER', WON:'WON'};
@@ -232,6 +236,7 @@ document.querySelectorAll('.fn-filters .fn-btn-group').forEach(group => {
 });
 
 render();
+})();
 </script>
 '''
 
