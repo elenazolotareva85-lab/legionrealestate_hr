@@ -1,0 +1,345 @@
+<meta charset="utf-8">
+<title>Лиды по источникам</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ground: #F3F0E8; --surface: #FBF9F3; --surface-2: #EAE6DC;
+  --ink: #1B1A17; --ink-2: #45423C; --muted: #706B62;
+  --rule: #D9D4C7; --rule-strong: #B0AA9C;
+  --accent: #4A5D3E; --accent-2: #B08343;
+  --good: #567B44; --warn: #B58028; --critical: #9E4438;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #14130F; --surface: #1D1B17; --surface-2: #26231D;
+    --ink: #EFEBE0; --ink-2: #C2BCAB; --muted: #8E887C; --rule: #322E27; --rule-strong: #4A4539;
+    --accent: #9BB884; --accent-2: #D9AA6B;
+    --good: #94C579; --warn: #DEAD57; --critical: #D0776B;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background: var(--ground); color: var(--ink); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.page { max-width: 1200px; margin: 0 auto; padding: 40px 32px 80px; }
+
+.masthead { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 18px 0 16px; margin-bottom: 20px; }
+.masthead h1 { font-family: var(--font-display); font-weight: 500; font-size: 36px; letter-spacing: -0.02em; margin: 0; font-variation-settings: "opsz" 144; }
+.masthead p { color: var(--muted); font-size: 13px; margin: 6px 0 0; font-family: var(--font-display); font-style: italic; }
+
+.controls { display: flex; gap: 16px; margin: 20px 0 24px; align-items: center; flex-wrap: wrap; }
+.control-group { display: flex; flex-direction: column; gap: 4px; }
+.control-group .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+.control-group select {
+  background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 2px;
+  padding: 6px 10px; font-family: var(--font-sans); font-size: 13px; color: var(--ink);
+  min-width: 240px; cursor: pointer;
+}
+.control-group select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+@media (max-width: 700px) { .summary-row { grid-template-columns: 1fr; } }
+.sum-card { padding: 14px 18px; background: var(--surface); border: 1px solid var(--rule); }
+.sum-card .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+.sum-card .val {
+  font-family: var(--font-display); font-weight: 500; font-size: 32px; line-height: 1;
+  color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; margin-top: 4px;
+  font-variation-settings: "opsz" 144;
+}
+.sum-card .sub { font-size: 11.5px; color: var(--muted); font-family: var(--font-mono); margin-top: 6px; font-variant-numeric: tabular-nums; }
+
+.section-h { font-family: var(--font-sans); font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 24px 0 12px; }
+
+/* Source bars */
+.bar-list { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--rule); padding: 20px; }
+.bar-row { display: grid; grid-template-columns: 130px 1fr 210px; gap: 12px; align-items: center; font-size: 13px; }
+.bar-name { color: var(--ink); font-family: var(--font-sans); }
+.bar-track { height: 22px; background: var(--surface-2); border-radius: 2px; overflow: hidden; border: 1px solid var(--rule); position: relative; }
+.bar-fill { height: 100%; background: var(--accent); transition: width 500ms cubic-bezier(0.2, 0.8, 0.2, 1); position: absolute; top: 0; left: 0; }
+.bar-fill.won { background: var(--good); }
+.bar-value { font-family: var(--font-mono); font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; display: flex; gap: 8px; justify-content: flex-end; align-items: baseline; }
+.bar-value .num { min-width: 40px; text-align: right; }
+.bar-value .pct { color: var(--muted); min-width: 45px; text-align: right; }
+.bar-value .won { color: var(--good); font-weight: 500; min-width: 30px; text-align: right; }
+.bar-value .conv { color: var(--accent); min-width: 40px; text-align: right; }
+
+/* Broker leaderboard */
+.brokers-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--rule); }
+.brokers-table th, .brokers-table td { padding: 10px 14px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--rule); }
+.brokers-table th { background: var(--surface-2); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.brokers-table th.num, .brokers-table td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 12px; }
+.brokers-table tbody tr:hover td { background: var(--surface-2); }
+
+.empty { color: var(--muted); font-style: italic; text-align: center; padding: 40px; font-family: var(--font-display); }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 11px; }
+.footer .mark { font-family: var(--font-display); font-style: italic; }
+</style>
+
+<div class="page">
+  <div class="masthead">
+    <h1>Лиды по источникам</h1>
+    <p>Данные из CRM (BigQuery). Выбери брокера и период — увидишь разбивку.</p>
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <span class="lbl">Брокер</span>
+      <select id="brokerSelect">
+        <option value="__all__">— Все брокеры (топ по объёму) —</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <span class="lbl">Период</span>
+      <select id="periodSelect">
+        <option value="all">Всё время</option>
+        <option value="y2024">2024</option>
+        <option value="y2025">2025</option>
+        <option value="y2026" selected>2026 (полностью)</option>
+        <option value="__month__">— По месяцам —</option>
+      </select>
+    </div>
+    <div class="control-group" id="monthGroup" style="display:none">
+      <span class="lbl">Месяц</span>
+      <select id="monthSelect"></select>
+    </div>
+    <div class="control-group">
+      <span class="lbl">Источник</span>
+      <select id="sourceSelect">
+        <option value="__all__" selected>— Все источники —</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="summary-row" id="summaryRow"></div>
+
+  <div class="section-h" id="viewTitle">Источники лидов</div>
+  <div id="content"></div>
+
+  <div class="footer">
+    <span class="mark">Лиды по источникам —</span> BigQuery <code style="font-family:var(--font-mono);font-size:10px">deals_bali.deals_bali</code> · utmSource нормализован в группы каналов.
+  </div>
+</div>
+
+<script>
+const BROKERS = LEADS_DATA_PLACEHOLDER;
+const state = { broker: '__all__', period: 'y2026', month: '', source: '__all__' };
+
+// Populate broker dropdown
+const brokerSelect = document.getElementById('brokerSelect');
+BROKERS.forEach(b => {
+  const opt = document.createElement('option');
+  opt.value = b.name;
+  opt.textContent = `${b.name} (всего: ${b.total_leads_all})`;
+  brokerSelect.appendChild(opt);
+});
+
+// Collect all months present in data
+function allMonths() {
+  const set = new Set();
+  BROKERS.forEach(b => {
+    for (const k of Object.keys(b.periods)) {
+      if (/^\d{4}-\d{2}$/.test(k)) set.add(k);
+    }
+  });
+  return [...set].sort().reverse();
+}
+const monthSelect = document.getElementById('monthSelect');
+allMonths().forEach(m => {
+  const opt = document.createElement('option');
+  opt.value = m;
+  const [y, mo] = m.split('-');
+  const names = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+  opt.textContent = `${names[parseInt(mo)-1]} ${y}`;
+  monthSelect.appendChild(opt);
+});
+if (monthSelect.options.length > 0) state.month = monthSelect.options[0].value;
+
+// Populate source dropdown
+const sourceSelect = document.getElementById('sourceSelect');
+const allSources = new Set();
+BROKERS.forEach(b => {
+  for (const p of Object.values(b.periods)) {
+    for (const s of Object.keys(p)) allSources.add(s);
+  }
+});
+[...allSources].sort().forEach(s => {
+  const opt = document.createElement('option');
+  opt.value = s;
+  opt.textContent = s;
+  sourceSelect.appendChild(opt);
+});
+
+function fmtInt(n) { return Math.round(n).toLocaleString('ru-RU').replace(/,/g, ' '); }
+function fmtPct(n) { return (n||0).toFixed(1).replace('.', ',') + '%'; }
+
+function currentPeriod() {
+  if (state.period === '__month__') return state.month;
+  return state.period;
+}
+function periodLabel(p) {
+  if (p === 'all') return 'Всё время';
+  if (p === 'y2024') return '2024';
+  if (p === 'y2025') return '2025';
+  if (p === 'y2026') return '2026';
+  if (/^\d{4}-\d{2}$/.test(p)) {
+    const [y, mo] = p.split('-');
+    const names = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    return `${names[parseInt(mo)-1]} ${y}`;
+  }
+  return p;
+}
+
+function aggregate() {
+  const p = currentPeriod();
+  const filterSrc = state.source !== '__all__' ? state.source : null;
+  const bySource = {}, byWon = {};
+  let total = 0, totalWon = 0, totalBudget = 0;
+  const brokersToUse = state.broker !== '__all__'
+    ? BROKERS.filter(b => b.name === state.broker)
+    : BROKERS;
+  for (const b of brokersToUse) {
+    const p_data = b.periods[p] || {};
+    const w_data = (b.wons || {})[p] || {};
+    for (const [src, n] of Object.entries(p_data)) {
+      if (filterSrc && src !== filterSrc) continue;
+      bySource[src] = (bySource[src] || 0) + n;
+      total += n;
+    }
+    for (const [src, v] of Object.entries(w_data)) {
+      if (filterSrc && src !== filterSrc) continue;
+      byWon[src] = (byWon[src] || {n:0, budget:0});
+      byWon[src].n += v.n;
+      byWon[src].budget += (v.budget || 0);
+      totalWon += v.n;
+      totalBudget += (v.budget || 0);
+    }
+  }
+  return { total, totalWon, totalBudget, bySource, byWon };
+}
+function sumObj(o) { return Object.values(o).reduce((a, b) => a + b, 0); }
+
+function renderSummary() {
+  const p = currentPeriod();
+  const { total, totalWon, totalBudget, bySource } = aggregate();
+  const label = periodLabel(p);
+  const brokerLabel = state.broker === '__all__' ? `${BROKERS.length} брокеров` : state.broker;
+  const conv = total ? 100 * totalWon / total : 0;
+  document.getElementById('summaryRow').innerHTML = `
+    <div class="sum-card">
+      <div class="lbl">Лиды</div>
+      <div class="val">${fmtInt(total)}</div>
+      <div class="sub">${brokerLabel} · ${label}</div>
+    </div>
+    <div class="sum-card">
+      <div class="lbl">Сделки (WON)</div>
+      <div class="val" style="color: var(--good)">${fmtInt(totalWon)}</div>
+      <div class="sub">${totalBudget ? '$' + fmtInt(totalBudget/1000) + ' тыс оборота' : 'нет закрытых'}</div>
+    </div>
+    <div class="sum-card">
+      <div class="lbl">Конверсия лид → WON</div>
+      <div class="val">${fmtPct(conv)}</div>
+      <div class="sub">${fmtInt(totalWon)} сделок из ${fmtInt(total)} лидов</div>
+    </div>
+  `;
+}
+
+function renderContent() {
+  const p = currentPeriod();
+  const { total, bySource, byWon } = aggregate();
+  const content = document.getElementById('content');
+  if (total === 0) {
+    content.innerHTML = '<div class="empty">За выбранный период / брокера лидов нет.</div>';
+    document.getElementById('viewTitle').textContent = '';
+    return;
+  }
+  const sorted = Object.entries(bySource).sort((a, b) => b[1] - a[1]);
+  const max = sorted[0][1];
+
+  const barRow = (src, n) => {
+    const won = (byWon[src] || {n:0}).n;
+    const wonPct = won ? (won / n) * 100 : 0;
+    const conv = n ? 100 * won / n : 0;
+    return `
+      <div class="bar-row">
+        <span class="bar-name">${src}</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${100*n/max}%"></div>
+          <div class="bar-fill won" style="width:${100*won/max}%"></div>
+        </div>
+        <span class="bar-value">
+          <span class="num">${fmtInt(n)}</span>
+          <span class="pct">${fmtPct(100*n/total)}</span>
+          <span class="won">↳ ${fmtInt(won)}</span>
+          <span class="conv">${fmtPct(conv)}</span>
+        </span>
+      </div>
+    `;
+  };
+  const bars = sorted.map(([src, n]) => barRow(src, n)).join('');
+  const header = `
+    <div class="bar-row" style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:4px">
+      <span class="bar-name">Источник</span>
+      <span></span>
+      <span class="bar-value"><span class="num">Лиды</span><span class="pct">%</span><span class="won">WON</span><span class="conv">Конв.</span></span>
+    </div>`;
+
+  if (state.broker === '__all__') {
+    document.getElementById('viewTitle').textContent = `Источники за период (${periodLabel(p)}) — все брокеры`;
+    const filterSrc = state.source !== '__all__' ? state.source : null;
+    const leaderboard = BROKERS
+      .map(b => {
+        const p_data = b.periods[p] || {};
+        const w_data = (b.wons || {})[p] || {};
+        const n = filterSrc ? (p_data[filterSrc] || 0) : sumObj(p_data);
+        const w = filterSrc ? (w_data[filterSrc]?.n || 0) : sumObj(Object.fromEntries(Object.entries(w_data).map(([k,v]) => [k, v.n])));
+        return { name: b.name, n, w, sources: p_data };
+      })
+      .filter(b => b.n > 0)
+      .sort((a, b) => b.n - a.n);
+    const rows = leaderboard.map(b => {
+      const conv = b.n ? 100*b.w/b.n : 0;
+      return `
+        <tr>
+          <td>${b.name}</td>
+          <td class="num">${fmtInt(b.n)}</td>
+          <td class="num" style="color:var(--good);font-weight:500">${fmtInt(b.w)}</td>
+          <td class="num" style="color:${conv >= 3 ? 'var(--good)' : conv >= 1 ? 'var(--warn)' : 'var(--critical)'}">${fmtPct(conv)}</td>
+        </tr>
+      `;
+    }).join('');
+    const barsBlock = filterSrc ? '' : `<div class="bar-list">${header}${bars}</div>`;
+    const heading = filterSrc
+      ? `Брокеры, кому пришли лиды из «${filterSrc}» за ${periodLabel(p)}`
+      : `Топ брокеров по эффективности за период`;
+    content.innerHTML = `
+      ${barsBlock}
+      <div class="section-h">${heading}</div>
+      <table class="brokers-table">
+        <thead><tr><th>Брокер</th><th class="num">Лиды</th><th class="num">WON</th><th class="num">Конв.</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  } else {
+    document.getElementById('viewTitle').textContent = `Источники за период (${periodLabel(p)}) — ${state.broker}`;
+    content.innerHTML = `<div class="bar-list">${header}${bars}</div>`;
+  }
+}
+
+function render() {
+  document.getElementById('monthGroup').style.display = state.period === '__month__' ? '' : 'none';
+  renderSummary();
+  renderContent();
+}
+
+document.getElementById('brokerSelect').addEventListener('change', e => { state.broker = e.target.value; render(); });
+document.getElementById('periodSelect').addEventListener('change', e => { state.period = e.target.value; render(); });
+document.getElementById('monthSelect').addEventListener('change', e => { state.month = e.target.value; render(); });
+document.getElementById('sourceSelect').addEventListener('change', e => { state.source = e.target.value; render(); });
+
+render();
+</script>
