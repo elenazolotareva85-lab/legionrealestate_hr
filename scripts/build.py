@@ -46,21 +46,191 @@ base = (TEMPLATES / 'komissia_base.html').read_text()
 # ── 2-3. Merge with a Funnels tab structure ─────────
 # Simple: wrap komissia inside a view container with nav tabs
 def build_funnels_html(funnels_data):
-    """Standalone-ish funnels page body (mount inside .view-funnels)."""
+    """Full funnels view: filter bar + grid of broker funnel cards."""
     return '''
-<div class="page">
-  <div class="masthead"><h1 class="masthead-title">Воронки</h1></div>
-  <p class="lede">CRM funnel per active broker. Period / region / role filters.</p>
-  <div id="funnels-view"></div>
+<style>
+.fn-page { max-width: 1280px; margin: 0 auto; padding: 32px; font-family: var(--font-sans, 'IBM Plex Sans', sans-serif); color: var(--ink, #1B1A17); }
+.fn-masthead { display: flex; align-items: baseline; gap: 20px; margin-bottom: 6px; flex-wrap: wrap; }
+.fn-title { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 500; font-size: 42px; letter-spacing: -0.02em; margin: 0; }
+.fn-count { font-family: var(--font-mono, 'IBM Plex Mono', monospace); font-size: 11px; color: var(--muted, #706B62); text-transform: uppercase; letter-spacing: 0.08em; }
+.fn-lede { color: var(--muted, #706B62); font-size: 13px; font-family: var(--font-display, 'Fraunces', Georgia, serif); font-style: italic; margin: 0 0 24px; }
+.fn-filters { display: flex; gap: 24px; align-items: flex-end; margin-bottom: 24px; padding: 16px 0; border-top: 1px solid var(--rule, #D9D3C4); border-bottom: 1px solid var(--rule, #D9D3C4); flex-wrap: wrap; }
+.fn-filter-group { display: flex; flex-direction: column; gap: 6px; }
+.fn-filter-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted, #706B62); font-weight: 600; }
+.fn-btn-group { display: flex; gap: 2px; }
+.fn-btn-group button {
+  background: transparent; border: 1px solid var(--rule-strong, #B0AA9C); border-right: none;
+  padding: 6px 14px; font-family: 'IBM Plex Sans', sans-serif; font-size: 11px;
+  color: var(--muted, #706B62); cursor: pointer;
+  letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;
+}
+.fn-btn-group button:first-child { border-radius: 2px 0 0 2px; }
+.fn-btn-group button:last-child { border-right: 1px solid var(--rule-strong, #B0AA9C); border-radius: 0 2px 2px 0; }
+.fn-btn-group button.active { background: var(--ink, #1B1A17); color: var(--ground, #F3F0E8); border-color: var(--ink, #1B1A17); }
+
+.fn-sort-info { margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted, #706B62); font-family: 'IBM Plex Mono', monospace; }
+
+.fn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+
+.fn-card { border: 1px solid var(--rule, #D9D3C4); background: rgba(255,255,255,0.35); padding: 18px 20px; }
+.fn-card-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+.fn-card-name { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 500; font-size: 18px; letter-spacing: -0.01em; }
+.fn-card-role { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted, #706B62); font-weight: 600; padding: 2px 7px; border: 1px solid var(--rule, #D9D3C4); border-radius: 2px; }
+.fn-card-role.qualifier { background: rgba(176,131,67,0.12); border-color: var(--accent-2, #B08343); color: var(--accent-2, #B08343); }
+.fn-card-total { margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted, #706B62); }
+.fn-card-position { font-size: 11px; color: var(--muted, #706B62); font-family: 'IBM Plex Mono', monospace; margin-bottom: 14px; }
+
+.fn-stages { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.fn-stage { display: grid; grid-template-columns: 90px 1fr 65px; gap: 10px; align-items: center; font-size: 11px; }
+.fn-stage-name { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted, #706B62); font-weight: 600; }
+.fn-stage-bar-wrap { background: rgba(0,0,0,0.04); height: 18px; position: relative; }
+.fn-stage-bar { background: var(--accent, #4A5D3E); height: 100%; transition: width 0.2s; }
+.fn-stage-bar.won { background: var(--accent, #4A5D3E); }
+.fn-stage-bar.pipe { background: rgba(74,93,62,0.5); }
+.fn-stage-bar.zero { background: transparent; border-left: 2px solid var(--rule, #D9D3C4); }
+.fn-stage-count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; text-align: right; font-weight: 500; color: var(--ink, #1B1A17); }
+.fn-stage-count.zero { color: var(--rule-strong, #B0AA9C); }
+
+.fn-card-foot { display: flex; gap: 20px; padding-top: 10px; border-top: 1px dashed var(--rule, #D9D3C4); font-size: 10px; color: var(--muted, #706B62); }
+.fn-metric { display: flex; flex-direction: column; gap: 2px; }
+.fn-metric-label { text-transform: uppercase; letter-spacing: 0.1em; font-size: 8px; font-weight: 600; }
+.fn-metric-val { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink, #1B1A17); font-weight: 500; }
+.fn-metric-val.won { color: var(--accent, #4A5D3E); }
+
+.fn-empty { text-align: center; padding: 60px 20px; color: var(--muted, #706B62); font-family: var(--font-display, 'Fraunces', Georgia, serif); font-style: italic; grid-column: 1 / -1; }
+</style>
+
+<div class="fn-page">
+  <div class="fn-masthead">
+    <h1 class="fn-title">Воронки</h1>
+    <span class="fn-count" id="fn-count">— брокеров</span>
+  </div>
+  <p class="lede fn-lede">CRM-воронка по активным брокерам. Стадии: NEW → QUAL → PRES → OFFER → WON. LOST/DEFERRED — в подвале карточки.</p>
+
+  <div class="fn-filters">
+    <div class="fn-filter-group">
+      <span class="fn-filter-label">Период</span>
+      <div class="fn-btn-group" data-filter="period">
+        <button data-val="y2026" class="active">2026</button>
+        <button data-val="y2025">2025</button>
+        <button data-val="l3m">L3M</button>
+        <button data-val="all">Всё время</button>
+      </div>
+    </div>
+    <div class="fn-filter-group">
+      <span class="fn-filter-label">Регион</span>
+      <div class="fn-btn-group" data-filter="region">
+        <button data-val="ALL" class="active">Все</button>
+        <button data-val="Bali">Bali</button>
+        <button data-val="Thailand">Thailand</button>
+        <button data-val="Europe">Europe</button>
+      </div>
+    </div>
+    <div class="fn-filter-group">
+      <span class="fn-filter-label">Роль</span>
+      <div class="fn-btn-group" data-filter="role">
+        <button data-val="all" class="active">Все</button>
+        <button data-val="broker">Брокеры</button>
+        <button data-val="qualifier">Квалификаторы</button>
+      </div>
+    </div>
+    <span class="fn-sort-info">Сортировка: WON ↓</span>
+  </div>
+
+  <div class="fn-grid" id="fn-grid"></div>
 </div>
+
 <script>
 const FUNNELS_DATA = ''' + json.dumps(funnels, ensure_ascii=False) + ''';
-// TODO: full funnels renderer here if desired. For now the CRM funnel is available
-// per-broker in the Комиссия razbor panel (see inject below).
-document.getElementById('funnels-view').innerHTML =
-  '<p style="color:var(--muted);font-style:italic;padding:40px;text-align:center;font-family:var(--font-display)">'
-  + FUNNELS_DATA.length + ' активных брокеров. Кликни строку в «Комиссия» → откроется воронка внутри разбора.'
-  + '</p>';
+const STAGES = ['NEW', 'QUALIFIED', 'PRESENTATION', 'OFFER', 'WON'];
+const STAGE_LABELS = {NEW:'NEW', QUALIFIED:'QUAL', PRESENTATION:'PRES', OFFER:'OFFER', WON:'WON'};
+
+const state = { period: 'y2026', region: 'ALL', role: 'all' };
+
+function fmtMoney(n) {
+  if (!n) return '—';
+  if (n >= 1e6) return (n/1e6).toFixed(1).replace('.0','') + 'M';
+  if (n >= 1e3) return Math.round(n/1e3) + 'k';
+  return String(Math.round(n));
+}
+
+function getBrokerData(broker, period, region) {
+  const p = broker.periods?.[period];
+  if (!p) return null;
+  if (region === 'ALL') return p['ALL'] || null;
+  return p[region] || null;
+}
+
+function renderCard(broker, data) {
+  const stageData = STAGES.map(s => ({name: s, n: data?.[s]?.n || 0, budget: data?.[s]?.budget || 0}));
+  const maxN = Math.max(1, ...stageData.map(s => s.n));
+  const won = stageData.find(s => s.name === 'WON') || {n:0, budget:0};
+  const newS = stageData.find(s => s.name === 'NEW') || {n:0, budget:0};
+  const totalActive = stageData.reduce((sum,s) => sum + s.n, 0);
+  const lost = data?.LOST?.n || 0;
+  const deferred = data?.DEFERRED?.n || 0;
+  const wonBudget = won.budget || 0;
+  const conv = newS.n ? ((won.n / newS.n) * 100).toFixed(1) + '%' : '—';
+
+  const stagesHtml = stageData.map(s => {
+    const pct = (s.n / maxN) * 100;
+    const isWon = s.name === 'WON';
+    const zero = s.n === 0;
+    const barCls = zero ? 'zero' : (isWon ? 'won' : 'pipe');
+    return `<div class="fn-stage">
+      <span class="fn-stage-name">${STAGE_LABELS[s.name]}</span>
+      <div class="fn-stage-bar-wrap"><div class="fn-stage-bar ${barCls}" style="width:${pct}%"></div></div>
+      <span class="fn-stage-count ${zero?'zero':''}">${s.n}${s.budget?' · $'+fmtMoney(s.budget):''}</span>
+    </div>`;
+  }).join('');
+
+  return `<article class="fn-card">
+    <div class="fn-card-head">
+      <span class="fn-card-name">${broker.name}</span>
+      <span class="fn-card-role ${broker.role}">${broker.role === 'qualifier' ? 'QUAL' : 'BROKER'}</span>
+      <span class="fn-card-total">Σ ${totalActive} акт.</span>
+    </div>
+    <div class="fn-card-position">${broker.position || ''}</div>
+    <div class="fn-stages">${stagesHtml}</div>
+    <div class="fn-card-foot">
+      <div class="fn-metric"><span class="fn-metric-label">WON</span><span class="fn-metric-val won">${won.n} · $${fmtMoney(wonBudget)}</span></div>
+      <div class="fn-metric"><span class="fn-metric-label">LOST</span><span class="fn-metric-val">${lost}</span></div>
+      <div class="fn-metric"><span class="fn-metric-label">DEFERRED</span><span class="fn-metric-val">${deferred}</span></div>
+      <div class="fn-metric"><span class="fn-metric-label">NEW→WON</span><span class="fn-metric-val">${conv}</span></div>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const grid = document.getElementById('fn-grid');
+  const filtered = FUNNELS_DATA
+    .filter(b => state.role === 'all' || b.role === state.role)
+    .map(b => ({ broker: b, data: getBrokerData(b, state.period, state.region) }))
+    .filter(x => x.data && Object.keys(x.data).length > 0)
+    .sort((a,b) => (b.data?.WON?.n || 0) - (a.data?.WON?.n || 0));
+
+  document.getElementById('fn-count').textContent = filtered.length + ' брокеров · ' + state.period + ' · ' + state.region;
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="fn-empty">Нет данных под текущий фильтр</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(x => renderCard(x.broker, x.data)).join('');
+}
+
+document.querySelectorAll('.fn-filters .fn-btn-group').forEach(group => {
+  group.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const filter = group.dataset.filter;
+    const val = e.target.dataset.val;
+    state[filter] = val;
+    group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    render();
+  });
+});
+
+render();
 </script>
 '''
 
