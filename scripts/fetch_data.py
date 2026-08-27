@@ -567,30 +567,38 @@ for r in sh_staff.worksheet('staff Tailand').get_all_values()[1:]:
     if not name: continue
     dismissed = bool(r[13].strip() or r[15].strip())   # «ис» или дата увольнения
     pos = r[5].strip().lower()
+    if r[0].strip():                                   # даты нужны и по уволенным — их сделки в таблице
+        ph_dates[name] = {'start': r[0].strip(), 'position': pos, 'left': r[15].strip()}
     if dismissed: continue
     ph_staff.append({'name': name, 'pos': pos, 'dept': r[11].strip()})
-    if r[0].strip():
-        ph_dates[name] = {'start': r[0].strip(), 'position': pos}
 ph_norm = {norm(x['name']): x for x in ph_staff}
 
 # 6.2 сделки
-ph_deals, ph_by_broker, ph_sources = defaultdict(lambda: {'deals': 0, 'turnover': 0.0, 'commission': 0.0}), {}, {}
-ph_months = defaultdict(lambda: defaultdict(lambda: {'deals': 0, 'turnover': 0.0, 'commission': 0.0}))
+def _zero_deal():
+    return {'deals': 0, 'turnover': 0.0, 'commission': 0.0, 'margin': 0.0, 'margin_known': 0}
+
+
+ph_deals, ph_by_broker, ph_sources = defaultdict(_zero_deal), {}, {}
+ph_months = defaultdict(lambda: defaultdict(_zero_deal))
+ph_ad_margin = defaultdict(lambda: defaultdict(float))   # маржа с рекламных сделок, по годам
 for r in gc.open_by_key(PHUKET_DEALS_ID).worksheet('ОП').get_all_values()[1:]:
     r = r + [''] * 62
     year = r[1].strip()
     if not re.fullmatch(r'20\d\d', year): continue          # отсекаем строки-итоги «маркет»/«прочее»
     mgr, price = r[3].strip(), money(r[11])
     if not mgr or price <= 0: continue
-    comm, cls = money(r[15]), source_class(r[5])
+    comm, cls, margin = money(r[15]), source_class(r[5]), money(r[32])
     month = (r[0].strip().split('.')[0] or '0')
     for bucket in (ph_deals[year],
-                   ph_by_broker.setdefault(year, {}).setdefault(mgr, {'deals': 0, 'turnover': 0.0, 'commission': 0.0, 'sources': {}}),
-                   ph_sources.setdefault(year, {}).setdefault(cls, {'deals': 0, 'turnover': 0.0, 'commission': 0.0}),
+                   ph_by_broker.setdefault(year, {}).setdefault(mgr, dict(_zero_deal(), sources={})),
+                   ph_sources.setdefault(year, {}).setdefault(cls, _zero_deal()),
                    ph_months[year][month]):
         bucket['deals'] += 1; bucket['turnover'] += price; bucket['commission'] += comm
+        bucket['margin'] += margin
+        if margin: bucket['margin_known'] += 1
     br = ph_by_broker[year][mgr]['sources']
     br[cls] = br.get(cls, 0) + 1
+    if cls == 'ads': ph_ad_margin[year][mgr] += margin
 
 # 6.3 реклама из BigQuery — регион зашит в название кампании
 ph_ads, ph_campaigns = {}, defaultdict(lambda: {'spend': 0.0, 'leads': 0})
@@ -606,6 +614,29 @@ for r in bq.query(q_ads).result():
     a['spend'] += float(r.spend or 0); a['leads'] += int(r.leads or 0)
     c = ph_campaigns[(y, r.campaign_name)]
     c['spend'] += float(r.spend or 0); c['leads'] += int(r.leads or 0)
+
+# 6.3b реклама в разрезе брокера: цена лида по его объявлениям × его лиды.
+# Точного «расхода на брокера» нигде нет, поэтому это атрибуция, а не факт.
+ph_broker_spend = defaultdict(lambda: defaultdict(float))
+q_attr = """
+WITH lead_ads AS (
+  SELECT manager, CAST(ad_id AS STRING) aid, EXTRACT(YEAR FROM createdAt) y, COUNT(*) n
+  FROM `disco-bedrock-428721-f8.deals_bali.deals_bali`
+  WHERE manager IS NOT NULL AND ad_id IS NOT NULL AND createdAt IS NOT NULL
+    AND (LOWER(pipeline) LIKE '%таиланд%' OR LOWER(pipeline) LIKE '%thailand%')
+  GROUP BY manager, aid, y
+), ad_cost AS (
+  SELECT CAST(ad_id AS STRING) aid, SUM(spend) spend, SUM(lead) leads
+  FROM `disco-bedrock-428721-f8.main.main`
+  WHERE ad_id IS NOT NULL GROUP BY aid
+)
+SELECT l.manager, l.y, SUM(l.n * SAFE_DIVIDE(a.spend, NULLIF(a.leads, 0))) spend
+FROM lead_ads l JOIN ad_cost a USING (aid)
+GROUP BY l.manager, l.y
+"""
+for r in bq.query(q_attr).result():
+    if r.spend:
+        ph_broker_spend[str(r.y)][norm(r.manager)] += float(r.spend)
 
 # 6.4 окупаемость — только по сделкам с рекламных лидов
 ph_roi = {}
@@ -652,6 +683,18 @@ for b in ph_funnels:                                    # тот же перес
                 v = override.get(rn, {'n': 0, 'budget': 0})
                 stages['WON'] = {'n': v['n'], 'budget': v['budget']}
 
+# 6.4b доходность брокера — та же формула, что в «Статистике по брокерам» Бали:
+# (маржа − реклама) / выручка. Выручка на Пхукете — это комиссия компании.
+for year, brokers in ph_by_broker.items():
+    for name, d in brokers.items():
+        spend = ph_broker_spend.get(year, {}).get(norm(name), 0.0)
+        d['ad_spend'] = round(spend, 2)
+        d['yield_pct'] = round(100 * (d['margin'] - spend) / d['commission'], 1) if d['commission'] else None
+        ad_m = ph_ad_margin.get(year, {}).get(name, 0.0)
+        d['ad_margin'] = round(ad_m, 2)
+        d['romi'] = round(ad_m / spend, 2) if spend else None
+        d['margin'] = round(d['margin'], 2)
+
 top_campaigns = sorted(({'year': y, 'name': n, **v} for (y, n), v in ph_campaigns.items()),
                        key=lambda c: -c['spend'])[:25]
 (DATA / 'phuket.json').write_text(json.dumps({
@@ -660,6 +703,7 @@ top_campaigns = sorted(({'year': y, 'name': n, **v} for (y, n), v in ph_campaign
     'by_broker': ph_by_broker, 'sources': ph_sources, 'source_labels': SOURCE_LABELS,
     'months': {y: dict(m) for y, m in ph_months.items()},
     'ads': ph_ads, 'roi': ph_roi, 'campaigns': top_campaigns, 'funnels': ph_funnels,
+    'broker_spend': {y: dict(v) for y, v in ph_broker_spend.items()},
 }, ensure_ascii=False, indent=2))
 print(f'   phuket: {len(ph_staff)} в штате, {sum(d["deals"] for d in ph_deals.values())} сделок, '
       f'{len(ph_funnels)} воронок, реклама по {len(ph_campaigns)} кампаниям')

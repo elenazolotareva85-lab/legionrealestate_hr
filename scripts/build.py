@@ -365,6 +365,12 @@ PH_ASSETS = """<style>
   font-variant-numeric: tabular-nums; }
 .ph-name { font-weight: 500; }
 .ph-srccell { font-family: var(--font-mono, monospace); font-size: 10.5px; color: var(--muted, #706B62); }
+.ph-start { font-family: var(--font-mono, monospace); font-size: 10.5px; color: var(--muted, #706B62); white-space: nowrap; }
+.ph-y-good { color: var(--good, #2F6B4F); font-weight: 600; }
+.ph-y-warn { color: var(--warn, #9A6B1F); }
+.ph-y-bad { color: var(--critical, #A33A2A); }
+.ph-y-none { color: var(--muted, #706B62); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.06em; border-bottom: 1px dotted var(--rule-strong, #B0AA9C); cursor: help; }
 .ph-chip { font-size: 10px; padding: 2px 8px; border-radius: 2px; text-transform: uppercase;
   letter-spacing: 0.08em; font-weight: 600; white-space: nowrap; }
 .ph-chip-ok { background: var(--good-soft, #E3EDE6); color: var(--good, #2F6B4F); }
@@ -476,7 +482,7 @@ def build_phuket_html(ph):
         for n, st in staff_by_norm.items():                      # действующие без сделок тоже в таблице
             if n not in seen and 'квалификатор' not in st.get('pos', ''):
                 rows.append({'name': st['name'], 'active': True, 'deals': 0, 'turnover': 0.0,
-                             'commission': 0.0, 'sources': {}})
+                             'commission': 0.0, 'margin': 0.0, 'margin_known': 0, 'sources': {}})
         rows.sort(key=lambda r: -r['commission'])
         out = []
         for r in rows:
@@ -486,18 +492,35 @@ def build_phuket_html(ph):
                              sorted(r['sources'].items(), key=lambda kv: -kv[1])) or '—'
             status = ('<span class="ph-chip ph-chip-ok">В штате</span>' if r['active']
                       else '<span class="ph-chip ph-chip-off">Не в штате</span>')
+            start = (ph.get('dates', {}).get(r['name']) or {}).get('start', '')
+            # Доходность честна только когда маржа проставлена по всем сделкам брокера.
+            full_margin = r['deals'] and r.get('margin_known', 0) == r['deals']
+            yp = r.get('yield_pct')
+            if full_margin and yp is not None:
+                ycls = 'ph-y-good' if yp >= GREEN_ZONE else ('ph-y-warn' if yp >= 25 else 'ph-y-bad')
+                ycell = f'<span class="{ycls}">{yp:.1f}%'.replace('.', ',') + '</span>'
+            elif r['deals']:
+                ycell = '<span class="ph-y-none" title="в таблице сделок не проставлена маржа">нет маржи</span>'
+            else:
+                ycell = '—'
             out.append(
                 f'<tr><td class="ph-name">{_esc(r["name"])}</td>'
+                f'<td class="ph-start">{_esc(start) if start else "—"}</td>'
                 f'<td class="num">{r["deals"] or "—"}</td>'
                 f'<td class="num">{_money(r["turnover"]) if r["turnover"] else "—"}</td>'
                 f'<td class="num">{_money(r["commission"]) if r["commission"] else "—"}</td>'
                 f'<td class="num">{_money(avg) if avg else "—"}</td>'
                 f'<td class="num">{_int(leads) if leads else "—"}</td>'
+                f'<td class="num">{ycell}</td>'
                 f'<td class="ph-srccell">{_esc(src)}</td><td>{status}</td></tr>')
         return ('<h3 class="ph-h3">Брокеры</h3>'
-                '<table class="ph-table"><thead><tr><th>Брокер</th><th class="num">Сделки</th>'
+                '<p class="ph-sub">Доходность считается как на Бали: маржа за вычетом рекламы, делённая '
+                'на комиссию. Зелёная зона — от 45%. Реклама на брокера атрибутирована по его лидам '
+                'из CRM, это оценка, а не строка расхода.</p>'
+                '<table class="ph-table"><thead><tr><th>Брокер</th><th>С</th><th class="num">Сделки</th>'
                 '<th class="num">Оборот</th><th class="num">Комиссия</th><th class="num">Ср. чек</th>'
-                '<th class="num">Лиды CRM</th><th>Источники</th><th>Статус</th></tr></thead>'
+                '<th class="num">Лиды CRM</th><th class="num">Доходность</th><th>Источники</th>'
+                '<th>Статус</th></tr></thead>'
                 f'<tbody>{"".join(out)}</tbody></table>')
 
     def campaigns_block(year):
@@ -547,7 +570,7 @@ def build_phuket_html(ph):
     for i, y in enumerate(years):
         panels.append(f'<div class="ph-year{" active" if i == 0 else ""}" data-year="{y}">'
                       + kpi_block(y) + sources_block(y) + brokers_block(y)
-                      + campaigns_block(y) + funnels_block(y) + '</div>')
+                      + funnels_block(y) + '</div>')
     def _tab(i, y):
         cls = ' class="active"' if i == 0 else ''
         return '<button data-y="' + y + '"' + cls + '>' + y + '</button>'
