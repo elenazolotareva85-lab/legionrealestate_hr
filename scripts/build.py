@@ -40,6 +40,73 @@ greens = load('greens.json', [])
 leads_by_source = load('leads_by_source.json', [])
 stat = load('stat.json', {'combined': {}, 'block2': {}})
 active_brokers = load('active_brokers.json', [])
+phuket = load('phuket.json', {})
+
+# ── Общие хелперы форматирования ─────────────────────
+BURN_MIN_LEADS = 20   # below this a zero-deal broker is noise, not a signal
+GREEN_ZONE = 45       # % final yield — same threshold as greens.json
+
+
+def _norm(n):
+    """Same normalisation as fetch_data.norm — ru/ua spelling of the same name."""
+    n = (n or '').strip().lower().replace('і', 'и').replace('ї', 'и').replace('є', 'е').replace('ы', 'и')
+    return ' '.join(sorted(n.split()))
+
+
+def _esc(s):
+    return str(s).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
+def _int(n):
+    return f'{round(n or 0):,}'.replace(',', ' ')
+
+
+def _money(n):
+    n = round(n or 0)
+    if abs(n) >= 1_000_000:
+        return '$' + f'{n / 1_000_000:.2f}'.replace('.', ',') + ' млн'
+    return f'${round(n / 1000)} тыс' if abs(n) >= 1000 else f'${n}'
+
+
+def _plural(n, forms):
+    n = abs(int(n)) % 100
+    if 11 <= n <= 14:
+        return forms[2]
+    n %= 10
+    if n == 1:
+        return forms[0]
+    if 2 <= n <= 4:
+        return forms[1]
+    return forms[2]
+
+
+def _names(names, limit=4):
+    shown = ' · '.join(_esc(n) for n in names[:limit])
+    rest = len(names) - limit
+    if rest > 0:
+        shown += f' <span style="opacity:.6">и ещё {rest}</span>'
+    return shown
+
+
+def compute_signals():
+    combined = stat.get('combined') or {}
+    active = {_norm(b['name']) for b in active_brokers if b.get('name')}
+
+    # Уволенных не считаем: по ним уже нечего решать, а деньги искажают сигнал.
+    burn = sorted(
+        (dict(v, name=n) for n, v in combined.items()
+         if v.get('deals', 0) == 0 and v.get('leads', 0) >= BURN_MIN_LEADS
+         and _norm(n) in active),
+        key=lambda b: -b.get('mkt_spend', 0))
+
+
+    # partner_rev > 0 — брокер участвовал в сделках как партнёр, «без сделок» про него неверно.
+    nodeals = [n for n, v in combined.items()
+               if v.get('deals', 0) == 0 and v.get('partner_rev', 0) <= 0
+               and _norm(n) in active]
+
+    return burn, list(greens), nodeals
+
 
 # ── 1. Base HTML ─────────────────────────────────────
 base = (TEMPLATES / 'komissia_base.html').read_text()
@@ -241,7 +308,265 @@ render();
 '''
 
 
+PH_ASSETS = """<style>
+.ph-page { max-width: 1280px; margin: 0 auto; padding: 32px;
+  font-family: var(--font-sans, 'IBM Plex Sans', sans-serif); color: var(--ink, #1B1A17); }
+.ph-masthead { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 8px; }
+.ph-title { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 500;
+  font-size: 42px; letter-spacing: -0.02em; margin: 0; }
+.ph-years { display: flex; gap: 2px; margin-left: auto; }
+.ph-years button { background: transparent; border: 1px solid var(--rule-strong, #B0AA9C);
+  padding: 6px 14px; font-family: var(--font-mono, 'IBM Plex Mono', monospace); font-size: 11px;
+  color: var(--muted, #706B62); cursor: pointer; letter-spacing: 0.06em; }
+.ph-years button.active { background: var(--ink, #1B1A17); color: var(--ground, #F3F0E8);
+  border-color: var(--ink, #1B1A17); }
+.ph-lede { color: var(--muted, #706B62); font-size: 13px; line-height: 1.6; margin: 0 0 26px; max-width: 860px; }
+.ph-lede em { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-style: italic; }
+.ph-year { display: none; }
+.ph-year.active { display: block; }
+.ph-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--rule, #D9D3C4); border: 1px solid var(--rule, #D9D3C4); margin-bottom: 34px; }
+@media (max-width: 900px) { .ph-kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.ph-kpi { background: var(--surface, #FBFAF6); padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+.ph-kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--muted, #706B62); font-weight: 600; }
+.ph-kpi-value { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 500;
+  font-size: 30px; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.ph-kpi-sub { font-size: 11px; color: var(--muted, #706B62); font-family: var(--font-mono, monospace); }
+.ph-kpi-good .ph-kpi-value { color: var(--good, #2F6B4F); }
+.ph-kpi-bad .ph-kpi-value { color: var(--critical, #A33A2A); }
+.ph-h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--muted, #706B62); font-weight: 600; margin: 34px 0 4px; }
+.ph-sub { font-family: var(--font-display, 'Fraunces', Georgia, serif); font-style: italic;
+  font-size: 13px; color: var(--muted, #706B62); margin: 0 0 14px; }
+.ph-src { border: 1px solid var(--rule, #D9D3C4); background: var(--surface, #FBFAF6); padding: 6px 16px; }
+.ph-src-row { display: grid; grid-template-columns: 190px 60px 1fr 92px 64px; gap: 12px;
+  align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--rule, #D9D3C4); font-size: 12px; }
+.ph-src-row:last-child { border-bottom: none; }
+.ph-src-name { font-weight: 500; }
+.ph-camp-name { font-family: var(--font-mono, monospace); font-size: 10.5px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ph-src-deals, .ph-src-pct { font-family: var(--font-mono, monospace); font-size: 10.5px;
+  color: var(--muted, #706B62); font-variant-numeric: tabular-nums; }
+.ph-src-val { font-family: var(--font-mono, monospace); font-size: 11.5px; text-align: right;
+  font-variant-numeric: tabular-nums; }
+.ph-src-track { height: 8px; background: var(--rule, #D9D3C4); }
+.ph-src-fill { height: 100%; background: var(--muted, #706B62); }
+.ph-src-ads .ph-src-fill { background: var(--good, #2F6B4F); }
+.ph-src-ads .ph-src-name { color: var(--good, #2F6B4F); }
+.ph-table { width: 100%; border-collapse: collapse; font-size: 12.5px;
+  border: 1px solid var(--rule, #D9D3C4); background: var(--surface, #FBFAF6); }
+.ph-table th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted, #706B62); font-weight: 600; padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-strong, #B0AA9C); }
+.ph-table td { padding: 10px 12px; border-bottom: 1px solid var(--rule, #D9D3C4); }
+.ph-table tr:last-child td { border-bottom: none; }
+.ph-table .num { text-align: right; font-family: var(--font-mono, monospace);
+  font-variant-numeric: tabular-nums; }
+.ph-name { font-weight: 500; }
+.ph-srccell { font-family: var(--font-mono, monospace); font-size: 10.5px; color: var(--muted, #706B62); }
+.ph-chip { font-size: 10px; padding: 2px 8px; border-radius: 2px; text-transform: uppercase;
+  letter-spacing: 0.08em; font-weight: 600; white-space: nowrap; }
+.ph-chip-ok { background: var(--good-soft, #E3EDE6); color: var(--good, #2F6B4F); }
+.ph-chip-off { background: var(--rule, #D9D3C4); color: var(--muted, #706B62); }
+.ph-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.ph-card { border: 1px solid var(--rule, #D9D3C4); background: var(--surface, #FBFAF6); padding: 14px 16px; }
+.ph-card-head { display: flex; justify-content: space-between; align-items: baseline;
+  font-weight: 500; font-size: 13px; margin-bottom: 10px; }
+.ph-card-total { font-family: var(--font-mono, monospace); font-size: 10.5px; color: var(--muted, #706B62); }
+.ph-stage { display: grid; grid-template-columns: 46px 1fr 34px; gap: 8px; align-items: center; margin: 3px 0; }
+.ph-stage-label { font-family: var(--font-mono, monospace); font-size: 9.5px;
+  color: var(--muted, #706B62); letter-spacing: 0.06em; }
+.ph-stage-track { height: 9px; background: var(--rule, #D9D3C4); }
+.ph-stage-fill { height: 100%; background: var(--accent, #3C6E8F); }
+.ph-stage-n { font-family: var(--font-mono, monospace); font-size: 10.5px; text-align: right;
+  font-variant-numeric: tabular-nums; }
+.ph-card-foot { margin-top: 8px; padding-top: 6px; border-top: 1px dashed var(--rule, #D9D3C4);
+  font-family: var(--font-mono, monospace); font-size: 10px; color: var(--muted, #706B62); }
+</style>
+<script>
+(function () {
+  // Делегирование на document: этот скрипт выполняется раньше, чем появится разметка вкладки.
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('#phYears button');
+    if (!btn) return;
+    var y = btn.dataset.y;
+    document.querySelectorAll('#phYears button').forEach(function (b) {
+      b.classList.toggle('active', b === btn);
+    });
+    document.querySelectorAll('#view-phuket .ph-year').forEach(function (p) {
+      p.classList.toggle('active', p.dataset.year === y);
+    });
+  });
+})();
+</script>
+"""
+
+
+# ── Вкладка «Пхукет» ─────────────────────────────────
+PH_STAGES = [('NEW', 'NEW'), ('QUALIFIED', 'QUAL'), ('PRESENTATION', 'PRES'), ('OFFER', 'OFFER'), ('WON', 'WON')]
+
+
+def build_phuket_html(ph):
+    if not ph:
+        return '<div class="ph-page"><p class="ph-lede">Данных по Пхукету нет — проверьте прогон fetch_data.py.</p></div>'
+
+    years = sorted(set(ph.get('totals', {})) | set(ph.get('roi', {})), reverse=True)
+    staff_by_norm = {_norm(s['name']): s for s in ph.get('staff', [])}
+    labels = ph.get('source_labels', {})
+
+    def leads_for(name, year):
+        key = 'y' + year
+        for f in ph.get('funnels', []):
+            if _norm(f['name']) != _norm(name):
+                continue
+            regs = (f.get('periods', {}).get(key) or {}).get('ALL') or {}
+            return sum(v.get('n', 0) for v in regs.values())
+        return 0
+
+    def kpi_block(year):
+        t = ph.get('totals', {}).get(year, {'deals': 0, 'turnover': 0, 'commission': 0})
+        r = ph.get('roi', {}).get(year, {})
+        roi = r.get('roi_pct', 0)
+        roi_cls = 'good' if roi >= 0 else 'bad'
+        avg = t['turnover'] / t['deals'] if t.get('deals') else 0
+        cells = [
+            ('Сделки', _int(t['deals']), f"средний чек {_money(avg)}"),
+            ('Оборот', _money(t['turnover']), f"комиссия {_money(t['commission'])}"),
+            ('Реклама', _money(r.get('spend', 0)),
+             f"{_int(r.get('leads', 0))} {_plural(r.get('leads', 0), ('лид', 'лида', 'лидов'))}"
+             f" · ${r.get('cpl', 0)} за лид"),
+            ('Окупаемость рекламы', f'{roi:+.0f}%'.replace('+-', '-'),
+             f"{r.get('ad_deals', 0)} {_plural(r.get('ad_deals', 0), ('сделка', 'сделки', 'сделок'))}"
+             f" с рекламы на {_money(r.get('ad_commission', 0))}"),
+        ]
+        out = []
+        for i, (label, value, sub) in enumerate(cells):
+            cls = f' ph-kpi-{roi_cls}' if i == 3 else ''
+            out.append(f'<div class="ph-kpi{cls}"><span class="ph-kpi-label">{label}</span>'
+                       f'<span class="ph-kpi-value">{value}</span><span class="ph-kpi-sub">{sub}</span></div>')
+        return f'<div class="ph-kpi-grid">{"".join(out)}</div>'
+
+    def sources_block(year):
+        src = ph.get('sources', {}).get(year, {})
+        if not src:
+            return ''
+        total = sum(v['commission'] for v in src.values()) or 1
+        rows = []
+        for k, v in sorted(src.items(), key=lambda kv: -kv[1]['commission']):
+            share = 100 * v['commission'] / total
+            mark = ' ph-src-ads' if k == 'ads' else ''
+            rows.append(
+                f'<div class="ph-src-row{mark}"><span class="ph-src-name">{_esc(labels.get(k, k))}</span>'
+                f'<span class="ph-src-deals">{v["deals"]} сд</span>'
+                f'<div class="ph-src-track"><div class="ph-src-fill" style="width:{share:.1f}%"></div></div>'
+                f'<span class="ph-src-val">{_money(v["commission"])}</span>'
+                f'<span class="ph-src-pct">{share:.0f}%</span></div>')
+        return ('<h3 class="ph-h3">Откуда сделки</h3>'
+                '<p class="ph-sub">Доля в комиссии. В окупаемость рекламы попадает только верхняя категория.</p>'
+                f'<div class="ph-src">{"".join(rows)}</div>')
+
+    def brokers_block(year):
+        by = ph.get('by_broker', {}).get(year, {})
+        seen, rows = set(), []
+        for name, v in by.items():
+            seen.add(_norm(name))
+            st = staff_by_norm.get(_norm(name))
+            rows.append({'name': st['name'] if st else name, 'active': bool(st), **v})
+        for n, st in staff_by_norm.items():                      # действующие без сделок тоже в таблице
+            if n not in seen and 'квалификатор' not in st.get('pos', ''):
+                rows.append({'name': st['name'], 'active': True, 'deals': 0, 'turnover': 0.0,
+                             'commission': 0.0, 'sources': {}})
+        rows.sort(key=lambda r: -r['commission'])
+        out = []
+        for r in rows:
+            avg = r['turnover'] / r['deals'] if r['deals'] else 0
+            leads = leads_for(r['name'], year)
+            src = ' · '.join(f'{labels.get(k, k)} {n}' for k, n in
+                             sorted(r['sources'].items(), key=lambda kv: -kv[1])) or '—'
+            status = ('<span class="ph-chip ph-chip-ok">В штате</span>' if r['active']
+                      else '<span class="ph-chip ph-chip-off">Не в штате</span>')
+            out.append(
+                f'<tr><td class="ph-name">{_esc(r["name"])}</td>'
+                f'<td class="num">{r["deals"] or "—"}</td>'
+                f'<td class="num">{_money(r["turnover"]) if r["turnover"] else "—"}</td>'
+                f'<td class="num">{_money(r["commission"]) if r["commission"] else "—"}</td>'
+                f'<td class="num">{_money(avg) if avg else "—"}</td>'
+                f'<td class="num">{_int(leads) if leads else "—"}</td>'
+                f'<td class="ph-srccell">{_esc(src)}</td><td>{status}</td></tr>')
+        return ('<h3 class="ph-h3">Брокеры</h3>'
+                '<table class="ph-table"><thead><tr><th>Брокер</th><th class="num">Сделки</th>'
+                '<th class="num">Оборот</th><th class="num">Комиссия</th><th class="num">Ср. чек</th>'
+                '<th class="num">Лиды CRM</th><th>Источники</th><th>Статус</th></tr></thead>'
+                f'<tbody>{"".join(out)}</tbody></table>')
+
+    def campaigns_block(year):
+        cs = [c for c in ph.get('campaigns', []) if c['year'] == year][:10]
+        if not cs:
+            return ''
+        mx = max(c['spend'] for c in cs) or 1
+        rows = []
+        for c in cs:
+            cpl = c['spend'] / c['leads'] if c['leads'] else 0
+            rows.append(f'<div class="ph-src-row"><span class="ph-camp-name">{_esc(c["name"])}</span>'
+                        f'<span class="ph-src-deals">{_int(c["leads"])} лид.</span>'
+                        f'<div class="ph-src-track"><div class="ph-src-fill" style="width:{100*c["spend"]/mx:.1f}%"></div></div>'
+                        f'<span class="ph-src-val">{_money(c["spend"])}</span>'
+                        f'<span class="ph-src-pct">${cpl:.0f}/лид</span></div>')
+        return ('<h3 class="ph-h3">Рекламные кампании</h3>'
+                '<p class="ph-sub">Топ по расходу. Регион определяется по названию кампании.</p>'
+                f'<div class="ph-src">{"".join(rows)}</div>')
+
+    def funnels_block(year):
+        key = 'y' + year
+        cards = []
+        for f in sorted(ph.get('funnels', []), key=lambda x: -sum(
+                v.get('n', 0) for v in ((x.get('periods', {}).get(key) or {}).get('ALL') or {}).values())):
+            regs = (f.get('periods', {}).get(key) or {}).get('ALL') or {}
+            total = sum(v.get('n', 0) for v in regs.values())
+            if not total:
+                continue
+            mx = max((regs.get(s, {}).get('n', 0) for s, _ in PH_STAGES), default=0) or 1
+            bars = ''.join(
+                f'<div class="ph-stage"><span class="ph-stage-label">{lab}</span>'
+                f'<div class="ph-stage-track"><div class="ph-stage-fill" style="width:{100*regs.get(s,{}).get("n",0)/mx:.1f}%"></div></div>'
+                f'<span class="ph-stage-n">{regs.get(s, {}).get("n", 0)}</span></div>'
+                for s, lab in PH_STAGES)
+            lost = regs.get('LOST', {}).get('n', 0)
+            defer = regs.get('DEFERRED', {}).get('n', 0)
+            cards.append(f'<div class="ph-card"><div class="ph-card-head">{_esc(f["name"])}'
+                         f'<span class="ph-card-total">{_int(total)} лидов</span></div>{bars}'
+                         f'<div class="ph-card-foot">LOST {lost} · DEFERRED {defer}</div></div>')
+        if not cards:
+            return ''
+        return ('<h3 class="ph-h3">Воронки CRM</h3>'
+                '<p class="ph-sub">Тайские пайплайны, стадии NEW → QUAL → PRES → OFFER → WON.</p>'
+                f'<div class="ph-cards">{"".join(cards)}</div>')
+
+    panels = []
+    for i, y in enumerate(years):
+        panels.append(f'<div class="ph-year{" active" if i == 0 else ""}" data-year="{y}">'
+                      + kpi_block(y) + sources_block(y) + brokers_block(y)
+                      + campaigns_block(y) + funnels_block(y) + '</div>')
+    def _tab(i, y):
+        cls = ' class="active"' if i == 0 else ''
+        return '<button data-y="' + y + '"' + cls + '>' + y + '</button>'
+    tabs = ''.join(_tab(i, y) for i, y in enumerate(years))
+    return PH_ASSETS + f'''<div class="ph-page">
+  <header class="ph-masthead">
+    <h1 class="ph-title">Пхукет</h1>
+    <div class="ph-years" id="phYears">{tabs}</div>
+  </header>
+  <p class="ph-lede">Сделки — из таблицы «Сделки Пхукет», лиды и воронки — из CRM, состав — из вкладки
+  <em>staff Tailand</em>. Окупаемость считается честно: расход на рекламу против комиссии только с тех сделок,
+  где лид пришёл с рекламы. Партнёрские, свои и переданные из Бали сделки в неё не входят —
+  иначе цифра завышается в разы.</p>
+  {''.join(panels)}
+</div>'''
+
+
 funnels_body = build_funnels_html(funnels)
+phuket_body = build_phuket_html(phuket)
 
 # Wrap: put base inside .view-komissia, add .view-funnels tab
 merged = f'''<meta charset="utf-8">
@@ -282,6 +607,7 @@ html, body {{ margin: 0; padding: 0; }}
   <div class="view-nav-tabs" id="viewTabs">
     <button data-view="komissia" class="active">Комиссия</button>
     <button data-view="funnels">Воронки</button>
+    <button data-view="phuket">Пхукет</button>
   </div>
 </nav>
 
@@ -291,6 +617,10 @@ html, body {{ margin: 0; padding: 0; }}
 
 <div class="view view-funnels" id="view-funnels">
 {funnels_body}
+</div>
+
+<div class="view view-phuket" id="view-phuket">
+{phuket_body}
 </div>
 
 <script>
@@ -345,69 +675,6 @@ for _o, _n, _what in ((_old_band, _new_band, 'bandFor'), (_old_status, _new_stat
 # ── 5. Rewrite signal-bar with fresh data ────────────
 # The base komissia ships a hardcoded signal-bar (a snapshot). Rebuild all four
 # cards from data/stat.json + staff files and swap the whole block.
-
-BURN_MIN_LEADS = 20   # below this a zero-deal broker is noise, not a signal
-GREEN_ZONE = 45       # % final yield — same threshold as greens.json
-
-
-def _norm(n):
-    """Same normalisation as fetch_data.norm — ru/ua spelling of the same name."""
-    n = (n or '').strip().lower().replace('і', 'и').replace('ї', 'и').replace('є', 'е').replace('ы', 'и')
-    return ' '.join(sorted(n.split()))
-
-
-def _esc(s):
-    return str(s).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-
-
-def _int(n):
-    return f'{round(n or 0):,}'.replace(',', ' ')
-
-
-def _money(n):
-    n = round(n or 0)
-    return f'${round(n / 1000)} тыс' if n >= 1000 else f'${n}'
-
-
-def _plural(n, forms):
-    n = abs(int(n)) % 100
-    if 11 <= n <= 14:
-        return forms[2]
-    n %= 10
-    if n == 1:
-        return forms[0]
-    if 2 <= n <= 4:
-        return forms[1]
-    return forms[2]
-
-
-def _names(names, limit=4):
-    shown = ' · '.join(_esc(n) for n in names[:limit])
-    rest = len(names) - limit
-    if rest > 0:
-        shown += f' <span style="opacity:.6">и ещё {rest}</span>'
-    return shown
-
-
-def compute_signals():
-    combined = stat.get('combined') or {}
-    active = {_norm(b['name']) for b in active_brokers if b.get('name')}
-
-    # Уволенных не считаем: по ним уже нечего решать, а деньги искажают сигнал.
-    burn = sorted(
-        (dict(v, name=n) for n, v in combined.items()
-         if v.get('deals', 0) == 0 and v.get('leads', 0) >= BURN_MIN_LEADS
-         and _norm(n) in active),
-        key=lambda b: -b.get('mkt_spend', 0))
-
-
-    # partner_rev > 0 — брокер участвовал в сделках как партнёр, «без сделок» про него неверно.
-    nodeals = [n for n, v in combined.items()
-               if v.get('deals', 0) == 0 and v.get('partner_rev', 0) <= 0
-               and _norm(n) in active]
-
-    return burn, list(greens), nodeals
-
 
 SIGNAL_VISIBLE = 3   # остальные строки — по клику
 

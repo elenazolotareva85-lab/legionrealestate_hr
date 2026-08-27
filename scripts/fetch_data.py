@@ -36,6 +36,7 @@ STAFF_ID = '1TLoMnXpgYWZwh0_0PupxWOCbibe37lwsMmibhBgbxs8'
 PRIMARY_ID = '12TNumdNXr-dy-Gx5z0H9p-zsH0GmV6yrkZ_aGhdb3HU'
 SDELKI_ID = '12_D7HbtiuZDoHQRiVrSG6Q-4_wbCBN5xiRo2iYScCPk'
 RAZBORY_ID = '1EaMMe22qY2OtCLSls1MOdjw3rDgqV3Tq'
+PHUKET_DEALS_ID = '1BlsjXe5ni0yO_AbeASg9l9Intflhl2WQP66mQnkk_9A'
 
 NON_BROKERS = {'Роман Безносюк', 'Владислав Семчук'}
 
@@ -522,5 +523,145 @@ for mgr, periods in brokers.items():
 out.sort(key=lambda x: -x['total_leads_all'])
 (DATA / 'leads_by_source.json').write_text(json.dumps(out, ensure_ascii=False, indent=2))
 print(f'   leads_by_source: {len(out)} brokers')
+
+# ── 6. Пхукет: штат, сделки, реклама, воронки ────────────
+print('6. Fetch Phuket...')
+
+PHUKET_ADS_RE = r'phuket'
+
+
+def money(x):
+    """Числа в пхукетском листе идут в двух форматах: 141 964,91 и 188114.0421."""
+    x = (x or '').replace('\xa0', '').replace(' ', '').replace('$', '')
+    if re.search(r',\d{1,2}$', x):
+        x = x.replace('.', '').replace(',', '.')
+    else:
+        x = x.replace(',', '')
+    x = re.sub(r'[^0-9.\-]', '', x)
+    try:
+        return float(x)
+    except ValueError:
+        return 0.0
+
+
+def source_class(s):
+    """Откуда пришёл лид. Для окупаемости считаем только 'ads' —
+    остальное рекламных денег не стоило."""
+    s = (s or '').lower()
+    if 'прямой трафик' in s or 'таргет' in s: return 'ads'
+    if 'самолет' in s or 'партнер' in s or 'партнёр' in s or 'b2b' in s: return 'partner'
+    if 'свой клиент' in s or 'рекоменд' in s or 'повтор' in s: return 'own'
+    if 'бали' in s: return 'bali'
+    if 'база' in s or 'органик' in s or 'ютуб' in s or 'телеграм' in s: return 'base'
+    return 'other'
+
+
+SOURCE_LABELS = {'ads': 'Реклама', 'partner': 'Партнёры', 'own': 'Свои клиенты',
+                 'bali': 'Передано из Бали', 'base': 'База и органика', 'other': 'Прочее'}
+
+# 6.1 штат — у вкладки Пхукета своя раскладка колонок, не как у Бали
+ph_staff, ph_dates = [], {}
+for r in sh_staff.worksheet('staff Tailand').get_all_values()[1:]:
+    r = r + [''] * 20
+    name = r[2].strip()
+    if not name: continue
+    dismissed = bool(r[13].strip() or r[15].strip())   # «ис» или дата увольнения
+    pos = r[5].strip().lower()
+    if dismissed: continue
+    ph_staff.append({'name': name, 'pos': pos, 'dept': r[11].strip()})
+    if r[0].strip():
+        ph_dates[name] = {'start': r[0].strip(), 'position': pos}
+ph_norm = {norm(x['name']): x for x in ph_staff}
+
+# 6.2 сделки
+ph_deals, ph_by_broker, ph_sources = defaultdict(lambda: {'deals': 0, 'turnover': 0.0, 'commission': 0.0}), {}, {}
+ph_months = defaultdict(lambda: defaultdict(lambda: {'deals': 0, 'turnover': 0.0, 'commission': 0.0}))
+for r in gc.open_by_key(PHUKET_DEALS_ID).worksheet('ОП').get_all_values()[1:]:
+    r = r + [''] * 62
+    year = r[1].strip()
+    if not re.fullmatch(r'20\d\d', year): continue          # отсекаем строки-итоги «маркет»/«прочее»
+    mgr, price = r[3].strip(), money(r[11])
+    if not mgr or price <= 0: continue
+    comm, cls = money(r[15]), source_class(r[5])
+    month = (r[0].strip().split('.')[0] or '0')
+    for bucket in (ph_deals[year],
+                   ph_by_broker.setdefault(year, {}).setdefault(mgr, {'deals': 0, 'turnover': 0.0, 'commission': 0.0, 'sources': {}}),
+                   ph_sources.setdefault(year, {}).setdefault(cls, {'deals': 0, 'turnover': 0.0, 'commission': 0.0}),
+                   ph_months[year][month]):
+        bucket['deals'] += 1; bucket['turnover'] += price; bucket['commission'] += comm
+    br = ph_by_broker[year][mgr]['sources']
+    br[cls] = br.get(cls, 0) + 1
+
+# 6.3 реклама из BigQuery — регион зашит в название кампании
+ph_ads, ph_campaigns = {}, defaultdict(lambda: {'spend': 0.0, 'leads': 0})
+q_ads = f"""
+SELECT EXTRACT(YEAR FROM date) y, campaign_name, SUM(spend) spend, SUM(lead) leads
+FROM `disco-bedrock-428721-f8.main.main`
+WHERE REGEXP_CONTAINS(LOWER(campaign_name), r'{PHUKET_ADS_RE}')
+GROUP BY y, campaign_name
+"""
+for r in bq.query(q_ads).result():
+    y = str(r.y)
+    a = ph_ads.setdefault(y, {'spend': 0.0, 'leads': 0})
+    a['spend'] += float(r.spend or 0); a['leads'] += int(r.leads or 0)
+    c = ph_campaigns[(y, r.campaign_name)]
+    c['spend'] += float(r.spend or 0); c['leads'] += int(r.leads or 0)
+
+# 6.4 окупаемость — только по сделкам с рекламных лидов
+ph_roi = {}
+for y, ads in ph_ads.items():
+    ad_deals = (ph_sources.get(y) or {}).get('ads', {'deals': 0, 'commission': 0.0, 'turnover': 0.0})
+    spend = ads['spend']
+    ph_roi[y] = {
+        'spend': round(spend), 'leads': ads['leads'],
+        'cpl': round(spend / ads['leads'], 1) if ads['leads'] else 0,
+        'ad_deals': ad_deals['deals'], 'ad_commission': round(ad_deals['commission']),
+        'ad_turnover': round(ad_deals['turnover']),
+        'roi_pct': round(100 * (ad_deals['commission'] - spend) / spend, 1) if spend else 0,
+        'total_commission': round((ph_deals.get(y) or {}).get('commission', 0)),
+    }
+
+# 6.5 воронки — те же данные BQ, но матчим по пхукетской штатке
+ph_funnels = []
+for mgr, periods in per_broker.items():
+    match = ph_norm.get(norm(mgr))
+    if not match: continue
+    total_all = sum(sum(v['n'] for v in stgs.values()) for stgs in periods.get('all', {}).values())
+    if total_all < 20: continue
+    pos = match.get('pos', '')
+    per_out = {}
+    for pname, regions in periods.items():
+        regs, tot_n, tot_b = {}, defaultdict(int), defaultdict(float)
+        for region, stages in regions.items():
+            regs[region] = {stg: {'n': v['n'], 'budget': v['budget']} for stg, v in stages.items()}
+            for stg, v in stages.items():
+                tot_n[stg] += v['n']; tot_b[stg] += v['budget']
+        regs['ALL'] = {stg: {'n': tot_n[stg], 'budget': tot_b[stg]} for stg in tot_n}
+        per_out[pname] = regs
+    fl = first_last.get(mgr, ('', ''))
+    ph_funnels.append({'name': match['name'], 'role': 'qualifier' if 'квалификатор' in pos else 'broker',
+                       'position': pos, 'first_lead': fl[0], 'last_lead': fl[1], 'periods': per_out})
+for b in ph_funnels:                                    # тот же пересчёт WON по дате закрытия
+    src = nwbn.get(norm(b['name']), {})
+    for period, regs in b.get('periods', {}).items():
+        override = src.get(period, {})
+        all_n = sum(v['n'] for v in override.values()); all_b = sum(v['budget'] for v in override.values())
+        for rn, stages in regs.items():
+            if rn == 'ALL': stages['WON'] = {'n': all_n, 'budget': all_b}
+            else:
+                v = override.get(rn, {'n': 0, 'budget': 0})
+                stages['WON'] = {'n': v['n'], 'budget': v['budget']}
+
+top_campaigns = sorted(({'year': y, 'name': n, **v} for (y, n), v in ph_campaigns.items()),
+                       key=lambda c: -c['spend'])[:25]
+(DATA / 'phuket.json').write_text(json.dumps({
+    'staff': ph_staff, 'dates': ph_dates,
+    'totals': {y: {k: (round(v, 2) if isinstance(v, float) else v) for k, v in d.items()} for y, d in ph_deals.items()},
+    'by_broker': ph_by_broker, 'sources': ph_sources, 'source_labels': SOURCE_LABELS,
+    'months': {y: dict(m) for y, m in ph_months.items()},
+    'ads': ph_ads, 'roi': ph_roi, 'campaigns': top_campaigns, 'funnels': ph_funnels,
+}, ensure_ascii=False, indent=2))
+print(f'   phuket: {len(ph_staff)} в штате, {sum(d["deals"] for d in ph_deals.values())} сделок, '
+      f'{len(ph_funnels)} воронок, реклама по {len(ph_campaigns)} кампаниям')
 
 print('\nAll data fetched to data/*.json')
