@@ -75,6 +75,30 @@ body { font-family: var(--font-sans); background: var(--ground); color: var(--in
 .brokers-table th.num, .brokers-table td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 12px; }
 .brokers-table tbody tr:hover td { background: var(--surface-2); }
 
+/* Матрица брокер × месяц */
+.matrix-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+.matrix { border-collapse: collapse; width: 100%; font-size: 13px; }
+.matrix th, .matrix td { padding: 7px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.matrix thead th {
+  background: var(--surface-2); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; text-align: right; position: sticky; top: 0;
+}
+.matrix thead th.name-col { text-align: left; }
+.matrix td.name-col { text-align: left; font-family: var(--font-sans); }
+.matrix .name-col { position: sticky; left: 0; background: var(--surface); z-index: 1; min-width: 190px; }
+.matrix thead .name-col { background: var(--surface-2); z-index: 2; }
+.matrix td.mnum {
+  text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 12px;
+  color: var(--ink-2);
+}
+.matrix td.mnum.zero { color: var(--rule-strong); }
+.matrix td.total { font-weight: 600; color: var(--ink); border-left: 1px solid var(--rule-strong); }
+.matrix td.won { color: var(--good); font-weight: 500; }
+.matrix tr.sum-row td { background: var(--surface-2); font-weight: 600; color: var(--ink); border-top: 1px solid var(--rule-strong); }
+.matrix tr.sum-row td.name-col { background: var(--surface-2); }
+.matrix tr.picked td { outline: 1px solid var(--accent); outline-offset: -1px; }
+.matrix tbody tr:hover td { filter: brightness(0.97); }
+.matrix-note { color: var(--muted); font-size: 11px; margin-top: 8px; font-family: var(--font-mono); }
 .empty { color: var(--muted); font-style: italic; text-align: center; padding: 40px; font-family: var(--font-display); }
 .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 11px; }
 .footer .mark { font-family: var(--font-display); font-style: italic; }
@@ -119,6 +143,10 @@ body { font-family: var(--font-sans); background: var(--ground); color: var(--in
 
   <div class="section-h" id="viewTitle">Источники лидов</div>
   <div id="content"></div>
+
+  <div class="section-h" id="matrixTitle">Брокеры по месяцам</div>
+  <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+  <div class="matrix-note" id="matrixNote"></div>
 
   <div class="footer">
     <span class="mark">Лиды по источникам —</span> BigQuery <code style="font-family:var(--font-mono);font-size:10px">deals_bali.deals_bali</code> · utmSource нормализован в группы каналов.
@@ -330,10 +358,100 @@ function renderContent() {
   }
 }
 
+const MON_SHORT = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+
+// Год, по которому строится матрица: следует за выбранным периодом, иначе 2026
+function matrixYear() {
+  const p = currentPeriod();
+  const m = /^y(\d{4})$/.exec(p);
+  if (m) return m[1];
+  if (/^\d{4}-\d{2}$/.test(p)) return p.slice(0, 4);
+  return '2026';
+}
+
+function plural(n, one, few, many) {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+  return many;
+}
+
+function renderMatrix() {
+  const year = matrixYear();
+  const filterSrc = state.source !== '__all__' ? state.source : null;
+  const prefix = year + '-';
+  const pick = (obj) => filterSrc ? (obj[filterSrc] || 0) : sumObj(obj);
+  const pickWon = (obj) => filterSrc
+    ? ((obj[filterSrc] || {}).n || 0)
+    : Object.values(obj).reduce((a, v) => a + v.n, 0);
+
+  // Месяцы, в которых у кого-либо есть лиды
+  const months = new Set();
+  BROKERS.forEach(b => Object.keys(b.periods).forEach(k => {
+    if (k.startsWith(prefix) && pick(b.periods[k]) > 0) months.add(k);
+  }));
+  const cols = [...months].sort();
+
+  const rows = BROKERS.map(b => {
+    const cells = cols.map(k => pick(b.periods[k] || {}));
+    const total = cells.reduce((a, n) => a + n, 0);
+    const won = pickWon((b.wons || {})['y' + year] || {});
+    return { name: b.name, cells, total, won };
+  }).filter(r => r.total > 0).sort((a, b) => b.total - a.total);
+
+  const table = document.getElementById('matrix');
+  const note = document.getElementById('matrixNote');
+  document.getElementById('matrixTitle').textContent =
+    `Брокеры по месяцам — ${year}${filterSrc ? ` · источник «${filterSrc}»` : ''}`;
+
+  if (!rows.length) {
+    table.innerHTML = '';
+    note.innerHTML = '<span class="empty">За ' + year + ' лидов нет.</span>';
+    return;
+  }
+
+  const maxCell = Math.max(...rows.flatMap(r => r.cells));
+  const shade = (n) => n > 0
+    ? ` style="background: color-mix(in srgb, var(--accent) ${Math.round(6 + 34 * n / maxCell)}%, transparent)"`
+    : '';
+
+  const head = `<thead><tr>
+      <th class="name-col">Брокер</th>
+      ${cols.map(k => `<th>${MON_SHORT[parseInt(k.slice(5), 10) - 1]}</th>`).join('')}
+      <th>Всего</th><th>WON</th><th>Конв.</th>
+    </tr></thead>`;
+
+  const body = rows.map(r => {
+    const conv = r.total ? 100 * r.won / r.total : 0;
+    return `<tr${r.name === state.broker ? ' class="picked"' : ''}>
+      <td class="name-col">${r.name}</td>
+      ${r.cells.map(n => `<td class="mnum${n ? '' : ' zero'}"${shade(n)}>${n ? fmtInt(n) : '·'}</td>`).join('')}
+      <td class="mnum total">${fmtInt(r.total)}</td>
+      <td class="mnum won">${r.won ? fmtInt(r.won) : '·'}</td>
+      <td class="mnum" style="color:${conv >= 3 ? 'var(--good)' : conv >= 1 ? 'var(--warn)' : 'var(--critical)'}">${fmtPct(conv)}</td>
+    </tr>`;
+  }).join('');
+
+  const colSums = cols.map((_, i) => rows.reduce((a, r) => a + r.cells[i], 0));
+  const grand = colSums.reduce((a, n) => a + n, 0);
+  const wonSum = rows.reduce((a, r) => a + r.won, 0);
+  const foot = `<tr class="sum-row">
+      <td class="name-col">Итого · ${rows.length} ${plural(rows.length, 'брокер', 'брокера', 'брокеров')}</td>
+      ${colSums.map(n => `<td class="mnum">${fmtInt(n)}</td>`).join('')}
+      <td class="mnum total">${fmtInt(grand)}</td>
+      <td class="mnum won">${fmtInt(wonSum)}</td>
+      <td class="mnum">${fmtPct(grand ? 100 * wonSum / grand : 0)}</td>
+    </tr>`;
+
+  table.innerHTML = head + '<tbody>' + body + foot + '</tbody>';
+  note.textContent = `Заливка ячейки — доля от максимума (${fmtInt(maxCell)} лидов). WON и конверсия — за весь ${year} год, не по месяцам.`;
+}
+
 function render() {
   document.getElementById('monthGroup').style.display = state.period === '__month__' ? '' : 'none';
   renderSummary();
   renderContent();
+  renderMatrix();
 }
 
 document.getElementById('brokerSelect').addEventListener('change', e => { state.broker = e.target.value; render(); });
