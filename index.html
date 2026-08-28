@@ -180,6 +180,7 @@ body { font-family: var(--font-sans); background: var(--ground); color: var(--in
 .planfact-svg .pct-label.good { fill: var(--good); }
 .planfact-svg .pct-label.warn { fill: var(--warn); }
 .planfact-svg .pct-label.critical { fill: var(--critical); }
+.planfact-svg .pct-in { font-family: var(--font-mono); font-size: 10px; fill: var(--ground); font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* Signal bar */
 .signal-section-label {
@@ -517,7 +518,7 @@ document.addEventListener('click', function (e) {
       <button class="filter-btn pf-range" data-range="all">Всё</button>
     </div>
     <p class="planfact-sub" id="planfactSub"></p>
-    <svg class="planfact-svg" id="planfactSvg" viewBox="0 0 1160 330"></svg>
+    <svg class="planfact-svg" id="planfactSvg" viewBox="0 0 1160 340"></svg>
   </div>
 
   <div class="monthly-chart" id="monthlyChart">
@@ -1039,70 +1040,73 @@ function renderCharts() {
 
 function renderPlanFact() {
   const svg = document.getElementById('planfactSvg');
-  const periods = Object.keys(PLANFACT).sort()
-    .filter(p => pfRange === 'all' || (pfRange === '2026' ? p.startsWith('2026') : !p.startsWith('2026')));
-  const monthNames = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
-  const W = 1160, H = 330, PL = 74, PR = 20, PT = 34, PB = 78;
-  const CW = W - PL - PR, CH = H - PT - PB;
   const planKey = pfMetric === 'oborot' ? 'oborot_plan' : 'vyruchka_plan';
   const factKey = pfMetric === 'oborot' ? 'oborot_fact' : 'vyruchka_fact';
+  const monthNames = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+  const periods = Object.keys(PLANFACT).sort()
+    .filter(p => pfRange === 'all' || (pfRange === '2026' ? p.startsWith('2026') : !p.startsWith('2026')))
+    // Показываем только закрытые месяцы: где есть факт по любому из двух показателей.
+    .filter(p => (PLANFACT[p].oborot_fact || 0) > 0 || (PLANFACT[p].vyruchka_fact || 0) > 0);
   document.getElementById('planfactTitle').textContent = pfMetric === 'oborot' ? 'оборот команды' : 'выручка команды';
   document.getElementById('planfactSub').innerHTML = pfMetric === 'oborot'
-    ? 'Оборот по данным ОП1-ОП4 «Сделки Бали», план — из листа «План год». Цвет факт-бара: зелёный ≥100% плана, синий 70-100%, жёлтый 40-70%, красный &lt;40%.'
-    : 'Выручка — наша комиссия по тем же сделкам. План по выручке в «План год» заполнен только по май 2026, дальше сравнивать не с чем — показан один факт.';
+    ? 'Оборот по данным ОП1-ОП4 «Сделки Бали», план — из листа «План год». Левый бар — план, правый — факт. Цвет факта: зелёный ≥100% плана, синий 70-100%, жёлтый 40-70%, красный &lt;40%.'
+    : 'Выручка — наша комиссия по тем же сделкам. Левый бар — план, правый — факт. План по выручке в «План год» заполнен только по май 2026 — дальше сравнивать не с чем, показан один факт.';
+  const W = 1160, H = 340, PL = 74, PR = 20, PT = 40, PB = 52;
+  const CW = W - PL - PR, CH = H - PT - PB;
   const data = periods.map(p => {
     const v = PLANFACT[p];
     const [y, m] = p.split('-').map(Number);
     return { y, m, plan: v[planKey] || 0, fact: v[factKey] || 0 };
   });
-  if (!data.length) { svg.innerHTML = '<text x="580" y="165" text-anchor="middle" font-family="serif" font-size="14" fill="var(--muted)">Нет данных по плану/факту</text>'; return; }
+  if (!data.length) { svg.innerHTML = '<text x="580" y="170" text-anchor="middle" font-family="serif" font-size="14" fill="var(--muted)">Нет данных по плану/факту</text>'; return; }
   const maxV = Math.max(...data.map(d => Math.max(d.plan, d.fact)), 1);
   const magnitude = Math.pow(10, Math.floor(Math.log10(maxV)));
   const niceMax = Math.ceil(maxV / magnitude) * magnitude;
   const groupW = CW / data.length;
   const barW = groupW * 0.34;
-  const gap = Math.min(5, groupW * 0.06);
+  const gap = Math.max(3, groupW * 0.08);
+  // Цифры стоят над своими барами. Если пары подписей не помещаются рядом,
+  // оставляем только факт — план остаётся в подсказке.
+  const maxChars = Math.max(...data.flatMap(d => [d.plan ? fmtMoney(d.plan).length : 1, d.fact ? fmtMoney(d.fact).length : 1])) + 1;
+  const charW = 0.68; // ширина знака моноширинного шрифта относительно кегля
+  const fitBoth = Math.min(barW + gap - 4, groupW - barW - gap - 4) / (charW * maxChars);
+  const showBoth = fitBoth >= 7;
+  const valFs = (showBoth ? Math.min(10.5, fitBoth) : Math.min(10.5, (groupW - 6) / (charW * maxChars))).toFixed(1);
+  const axisY = PT + CH, rowMonth = H - PB + 22;
   let html = '';
-  // Сетка
   for (let i = 0; i <= 4; i++) {
     const y = PT + (CH/4)*i;
     const val = niceMax * (1 - i/4);
     html += `<line class="grid" x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}"/>`;
-    html += `<text class="grid-label" x="${PL-6}" y="${y+3}" text-anchor="end">${val ? fmtMoney(val) : '0'}</text>`;
+    html += `<text class="grid-label" x="${PL-6}" y="${y+3}" text-anchor="end">${val ? '$' + fmtMoney(val) : '0'}</text>`;
   }
-  // Подписи строк под осью
-  const rowMonth = H - PB + 16, rowPlan = H - PB + 32, rowFact = H - PB + 47;
-  html += `<text class="row-key" x="${PL-6}" y="${rowPlan}" text-anchor="end">План, $</text>`;
-  html += `<text class="row-key" x="${PL-6}" y="${rowFact}" text-anchor="end">Факт, $</text>`;
-  // Цифры под осью ужимаются, когда столбцов много
-  const valFs = Math.max(7, Math.min(9.5, groupW * 0.165)).toFixed(1);
-  // Столбцы
   data.forEach((d, i) => {
     const cx = PL + i * groupW + groupW/2;
-    const gx = cx - barW - gap/2;
-    const planH = (d.plan / niceMax) * CH;
-    const factH = (d.fact / niceMax) * CH;
-    const planY = PT + CH - planH;
-    const factY = PT + CH - factH;
+    const planX = cx - barW - gap/2, factX = cx + gap/2;
+    const planH = (d.plan / niceMax) * CH, factH = (d.fact / niceMax) * CH;
+    const planY = axisY - planH, factY = axisY - factH;
     const pct = d.plan ? (d.fact/d.plan)*100 : 0;
     // Без плана столбец не красим в «провал» — сравнивать не с чем.
     const factCls = !d.plan ? 'neutral' : pct >= 100 ? 'good' : pct >= 70 ? 'neutral' : pct >= 40 ? 'warn' : 'critical';
     const tag = `${monthNames[d.m-1]} ${d.y}`;
     if (d.plan > 0) {
-      html += `<rect class="plan-bar" x="${gx}" y="${planY}" width="${barW}" height="${planH}"><title>План ${tag}: $${fmtMoney(d.plan)}</title></rect>`;
+      html += `<rect class="plan-bar" x="${planX}" y="${planY}" width="${barW}" height="${planH}"><title>План ${tag}: $${fmtMoney(d.plan)}</title></rect>`;
+      if (showBoth) html += `<text class="val-plan" x="${planX + barW/2}" y="${planY - 5}" text-anchor="middle" style="font-size:${valFs}px">$${fmtMoney(d.plan)}</text>`;
     }
     if (d.fact > 0) {
-      html += `<rect class="fact-bar ${factCls}" x="${gx + barW + gap}" y="${factY}" width="${barW}" height="${factH}"><title>Факт ${tag}: $${fmtMoney(d.fact)}${d.plan ? ` (${pct.toFixed(0)}% плана)` : ' (плана нет)'}</title></rect>`;
+      html += `<rect class="fact-bar ${factCls}" x="${factX}" y="${factY}" width="${barW}" height="${factH}"><title>Факт ${tag}: $${fmtMoney(d.fact)}${d.plan ? ` (${pct.toFixed(0)}% плана)` : ' (плана нет)'}</title></rect>`;
+      const labelX = showBoth ? factX + barW/2 : cx;
+      html += `<text class="val-fact" x="${labelX}" y="${factY - 5}" text-anchor="middle" style="font-size:${valFs}px">$${fmtMoney(d.fact)}</text>`;
     }
-    // Процент выполнения над столбцом
+    // Процент выполнения — внутри факт-бара, а если бар низкий, то под осью.
     if (d.fact > 0 && d.plan > 0) {
-      const topY = Math.min(planY, factY);
-      html += `<text class="pct-label ${factCls}" x="${cx}" y="${Math.max(topY - 6, 12)}" text-anchor="middle">${pct.toFixed(0)}%</text>`;
+      if (factH >= 26) {
+        html += `<text class="pct-in" x="${factX + barW/2}" y="${axisY - 8}" text-anchor="middle">${pct.toFixed(0)}%</text>`;
+      } else {
+        html += `<text class="pct-label ${factCls}" x="${factX + barW/2}" y="${axisY + 11}" text-anchor="middle">${pct.toFixed(0)}%</text>`;
+      }
     }
-    // Месяц и цифры план/факт под осью
     html += `<text class="m-label" x="${cx}" y="${rowMonth}" text-anchor="middle">${monthNames[d.m-1]} ${String(d.y).slice(2)}</text>`;
-    html += `<text class="val-plan" x="${cx}" y="${rowPlan}" text-anchor="middle" font-size="${valFs}">${d.plan ? fmtMoney(d.plan) : '—'}</text>`;
-    html += `<text class="val-fact" x="${cx}" y="${rowFact}" text-anchor="middle" font-size="${valFs}">${d.fact ? fmtMoney(d.fact) : '—'}</text>`;
   });
   svg.innerHTML = html;
 }
