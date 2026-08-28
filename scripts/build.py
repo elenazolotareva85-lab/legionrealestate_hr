@@ -41,6 +41,7 @@ leads_by_source = load('leads_by_source.json', [])
 stat = load('stat.json', {'combined': {}, 'block2': {}})
 active_brokers = load('active_brokers.json', [])
 phuket = load('phuket.json', {})
+rating = load('rating.json', {})
 
 # ── Общие хелперы форматирования ─────────────────────
 BURN_MIN_LEADS = 20   # below this a zero-deal broker is noise, not a signal
@@ -409,6 +410,192 @@ PH_ASSETS = """<style>
 """
 
 
+# ── Вкладка «Рейтинг» ────────────────────────────────
+NON_BROKERS = ['Роман Безносюк', 'Владислав Семчук']   # РОПы — есть личные сделки, но не в рейтинге брокеров
+
+
+def build_rating_html(rating):
+    if not rating:
+        return '<div class="rt-page"><p class="rt-lede">Данных нет — проверьте прогон fetch_data.py.</p></div>'
+
+    hidden = {_norm(n) for n in NON_BROKERS}
+    brokers = [b for b in rating.get('brokers', []) if _norm(b['name']) not in hidden]
+    cur_y, cur_m = rating.get('cur_year'), rating.get('cur_month')
+    month_names = ['', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+                   'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+    cur_label = f'{month_names[cur_m]} {cur_y}' if cur_m else ''
+
+    def totals_for(b, pred):
+        deals = turnover = comm = 0
+        for mk, (n, t, c) in b.get('months', {}).items():
+            y, m = (int(x) for x in mk.split('-'))
+            if pred(y, m):
+                deals += n; turnover += t; comm += c
+        return deals, turnover, comm
+
+    def render_table(pred, empty_note):
+        rows = []
+        for b in brokers:
+            deals, turnover, comm = totals_for(b, pred)
+            rows.append((b, deals, turnover, comm))
+        rows.sort(key=lambda r: -r[3])
+        body = []
+        rank = 0
+        any_deals = False
+        for b, deals, turnover, comm in rows:
+            avg = turnover / deals if deals else 0
+            rank += 1
+            if deals:
+                any_deals = True
+            row_cls = ' rt-zero' if deals == 0 else ''
+            body.append(
+                '<tr class="' + row_cls.strip() + '">'
+                '<td class="rt-rank">' + str(rank) + '</td>'
+                '<td class="rt-name">' + _esc(b['name']) + '<span class="rt-pos">' + _esc(b['pos']) + '</span></td>'
+                '<td class="num">' + _int(deals) + '</td>'
+                '<td class="num">' + _money(turnover) + '</td>'
+                '<td class="num rt-comm">' + _money(comm) + '</td>'
+                '<td class="num">' + (_money(avg) if deals else '—') + '</td>'
+                '</tr>'
+            )
+        if not any_deals:
+            body.append('<tr><td colspan="6" class="rt-empty">' + empty_note + '</td></tr>')
+        return '\n'.join(body)
+
+    tables = [
+        ('all', 'Весь период', 'за всё время в реестре сделок', lambda y, m: True, 'Сделок за весь период не найдено.'),
+        ('y2026', '2026 год', 'с января по текущий месяц 2026', lambda y, m: y == 2026, 'Сделок в 2026 году пока нет.'),
+        ('month', (cur_label.capitalize() if cur_label else 'Текущий месяц'), 'текущий месяц',
+         lambda y, m: y == cur_y and m == cur_m, 'В ' + cur_label + ' сделок пока нет.'),
+    ]
+
+    tabs_html = ''.join(
+        '<button class="rt-tab' + (' active' if i == 0 else '') + '" data-rt="' + key + '">' + label + '</button>'
+        for i, (key, label, _sub, _pred, _note) in enumerate(tables)
+    )
+    panels_html = ''.join(
+        '\n    <div class="rt-panel' + (' active' if i == 0 else '') + '" id="rt-' + key + '">'
+        '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров</p>'
+        '\n      <div class="rt-table-wrap">'
+        '\n        <table class="rt-table">'
+        '\n          <thead><tr>'
+        '\n            <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>'
+        '\n            <th class="num">Комиссия</th><th class="num">Средний чек</th>'
+        '\n          </tr></thead>'
+        '\n          <tbody>' + render_table(pred, note) + '</tbody>'
+        '\n        </table>'
+        '\n      </div>'
+        '\n    </div>'
+        for i, (key, label, sub, pred, note) in enumerate(tables)
+    )
+
+    style = '''
+<style>
+.rt-page { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
+.rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
+.rt-tabs { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden; margin-bottom: 18px; }
+.rt-tabs button {
+  background: transparent; border: none; border-right: 1px solid var(--rule);
+  padding: 9px 20px; font-family: var(--font-sans); font-size: 12px; color: var(--muted);
+  cursor: pointer; letter-spacing: 0.04em; font-weight: 500;
+}
+.rt-tabs button:last-child { border-right: none; }
+.rt-tabs button.active { background: var(--ink); color: var(--ground); }
+.rt-panel { display: none; }
+.rt-panel.active { display: block; }
+.rt-sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+.rt-table-wrap { overflow-x: auto; border: 1px solid var(--rule); }
+.rt-table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 13.5px; }
+.rt-table thead th {
+  text-align: left; padding: 10px 14px; background: var(--surface-2); color: var(--muted);
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+  border-bottom: 1px solid var(--rule-strong); position: sticky; top: 0;
+}
+.rt-table th.num, .rt-table td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.rt-table tbody tr { border-bottom: 1px solid var(--rule); }
+.rt-table tbody tr:hover { background: var(--surface); }
+.rt-table tbody tr.rt-zero { opacity: 0.5; }
+.rt-table td { padding: 9px 14px; }
+.rt-rank { color: var(--muted); font-family: var(--font-mono); width: 28px; }
+.rt-name { font-weight: 500; }
+.rt-pos { display: block; font-size: 11px; color: var(--muted); font-weight: 400; font-family: var(--font-sans); margin-top: 1px; }
+.rt-comm { font-weight: 600; color: var(--accent); }
+.rt-empty { text-align: center; color: var(--muted); padding: 24px; }
+</style>'''
+
+    script = '''
+<script>
+document.getElementById('rtTabs')?.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+  const key = e.target.dataset.rt;
+  document.querySelectorAll('#rtTabs button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('.rt-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('rt-' + key)?.classList.add('active');
+});
+</script>'''
+
+    footer = (
+        '\n<footer class="footer" style="margin-top:24px">'
+        '\n  <span>Источники: <a href="https://docs.google.com/spreadsheets/d/12_D7HbtiuZDoHQRiVrSG6Q-4_wbCBN5xiRo2iYScCPk/edit" target="_blank" rel="noopener">Сделки Бали</a> '
+        '(ОП1–ОП4) · <a href="https://docs.google.com/spreadsheets/d/1TLoMnXpgYWZwh0_0PupxWOCbibe37lwsMmibhBgbxs8/edit" target="_blank" rel="noopener">Staff_Legion</a> '
+        '(действующие сотрудники)</span>'
+        '\n</footer>'
+    )
+
+    return ('<div class="rt-page">' + style +
+            '\n<div class="rt-tabs" id="rtTabs">' + tabs_html + '</div>' +
+            panels_html + footer + script + '\n</div>')
+
+
+def build_rating_page(rating):
+    """Самостоятельная страница rating.html — тот же рейтинг, но без вкладок «Комиссии»."""
+    body = build_rating_html(rating)
+    return f'''<meta charset="utf-8">
+<title>Рейтинг брокеров · Legion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {{
+  --ground: #F3F0E8; --surface: #FBF9F3; --surface-2: #EAE6DC;
+  --ink: #1B1A17; --ink-2: #45423C; --muted: #706B62;
+  --rule: #D9D4C7; --rule-strong: #B0AA9C;
+  --accent: #4A5D3E; --accent-2: #B08343;
+  --good: #567B44; --warn: #B58028; --critical: #9E4438;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}}
+@media (prefers-color-scheme: dark) {{
+  :root:not([data-theme="light"]) {{
+    --ground: #14130F; --surface: #1D1B17; --surface-2: #26231D;
+    --ink: #EFEBE0; --ink-2: #C2BCAB; --muted: #8E887C; --rule: #322E27; --rule-strong: #4A4539;
+    --accent: #9BB884; --accent-2: #D9AA6B;
+    --good: #94C579; --warn: #DEAD57; --critical: #D0776B;
+  }}
+}}
+* {{ box-sizing: border-box; }}
+html, body {{ margin: 0; padding: 0; }}
+body {{ font-family: var(--font-sans); background: var(--ground); color: var(--ink); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }}
+.masthead {{
+  max-width: 1280px; margin: 0 auto; padding: 24px 32px 16px;
+  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin-bottom: 4px;
+}}
+.masthead h1 {{ font-family: var(--font-display); font-weight: 500; font-size: 36px; letter-spacing: -0.02em; margin: 0; font-variation-settings: "opsz" 144; }}
+.masthead p {{ color: var(--muted); font-size: 13px; margin: 6px 0 0; font-family: var(--font-display); font-style: italic; }}
+.rt-page {{ padding-top: 8px; }}
+</style>
+
+<div class="masthead">
+  <h1>Рейтинг брокеров</h1>
+  <p>Legion Real Estate · Бали — только действующие сотрудники, по данным реестра сделок</p>
+</div>
+{body}
+'''
+
+
 # ── Вкладка «Пхукет» ─────────────────────────────────
 PH_STAGES = [('NEW', 'NEW'), ('QUALIFIED', 'QUAL'), ('PRESENTATION', 'PRES'), ('OFFER', 'OFFER'), ('WON', 'WON')]
 
@@ -590,6 +777,7 @@ def build_phuket_html(ph):
 
 funnels_body = build_funnels_html(funnels)
 phuket_body = build_phuket_html(phuket)
+rating_body = build_rating_html(rating)
 
 # Wrap: put base inside .view-komissia, add .view-funnels tab
 merged = f'''<meta charset="utf-8">
@@ -631,6 +819,7 @@ html, body {{ margin: 0; padding: 0; }}
     <button data-view="komissia" class="active">Комиссия</button>
     <button data-view="funnels">Воронки</button>
     <button data-view="phuket">Пхукет</button>
+    <button data-view="rating">Рейтинг</button>
   </div>
 </nav>
 
@@ -644,6 +833,10 @@ html, body {{ margin: 0; padding: 0; }}
 
 <div class="view view-phuket" id="view-phuket">
 {phuket_body}
+</div>
+
+<div class="view view-rating" id="view-rating">
+{rating_body}
 </div>
 
 <script>
@@ -988,3 +1181,8 @@ if leads_html_template:
     print(f'leads.html written ({len(leads_html):,} bytes)')
 else:
     print('leads.html: no template found, skipping')
+
+# ── 8. Build rating.html (standalone) ────────────────
+rating_page = build_rating_page(rating)
+(REPO / 'rating.html').write_text(rating_page)
+print(f'rating.html written ({len(rating_page):,} bytes)')

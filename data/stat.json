@@ -29,18 +29,18 @@
       "yield_pct": 0
     },
     "Александр Мужейко": {
-      "avg_check": 0,
+      "avg_check": 250000.0,
       "avg_lead_price": 93.0,
       "conv": 0,
-      "deals": 0,
-      "final_yield": -100.0,
+      "deals": 1.0,
+      "final_yield": 60.76,
       "leads": 2.0,
-      "margin_cb": 0,
+      "margin_cb": 9300.0,
       "mkt_spend": 186.0,
       "partner_rev": 0,
-      "revenue": 0,
-      "turnover": 0,
-      "yield_pct": -100.0
+      "revenue": 15000.0,
+      "turnover": 250000.0,
+      "yield_pct": 60.76
     },
     "Александр Подопригора": {
       "avg_check": 241721.0,
@@ -309,18 +309,18 @@
       "yield_pct": 52.48
     },
     "Максим Рувинский": {
-      "avg_check": 197500.0,
+      "avg_check": 196667.0,
       "avg_lead_price": 42.0,
-      "conv": 1.09,
-      "deals": 2.0,
-      "final_yield": 38.91,
+      "conv": 1.64,
+      "deals": 3.0,
+      "final_yield": 45.27,
       "leads": 183.0,
-      "margin_cb": 19912.0,
+      "margin_cb": 26776.0,
       "mkt_spend": 7617.0,
       "partner_rev": 0,
-      "revenue": 31600.0,
-      "turnover": 395000.0,
-      "yield_pct": 38.91
+      "revenue": 42325.0,
+      "turnover": 590000.0,
+      "yield_pct": 45.27
     },
     "Марина Циганок": {
       "avg_check": 0,
@@ -369,14 +369,14 @@
       "avg_lead_price": 40.0,
       "conv": 2.14,
       "deals": 3.0,
-      "final_yield": 46.11,
+      "final_yield": 12.59,
       "leads": 140.0,
-      "margin_cb": 27608.0,
+      "margin_cb": 0,
       "mkt_spend": 5565.0,
       "partner_rev": 20000.0,
-      "revenue": 47806.0,
+      "revenue": 0,
       "turnover": 634500.0,
-      "yield_pct": 46.11
+      "yield_pct": -100.0
     },
     "Роман Безносюк": {
       "avg_check": 0,
@@ -437,18 +437,18 @@
       "yield_pct": 13.59
     },
     "Александр Мужейко": {
-      "avg_check": 0,
+      "avg_check": 250000.0,
       "avg_lead_price": 93.0,
-      "conv": 0,
-      "deals": 0,
-      "final_yield": -100.0,
+      "conv": 50.0,
+      "deals": 1.0,
+      "final_yield": 60.76,
       "leads": 2.0,
-      "margin_cb": 0,
+      "margin_cb": 9300.0,
       "mkt_spend": 186.0,
       "partner_rev": 0,
-      "revenue": 0,
-      "turnover": 0,
-      "yield_pct": -100.0
+      "revenue": 15000.0,
+      "turnover": 250000.0,
+      "yield_pct": 60.76
     },
     "Александр Подопригора": {
       "avg_check": 147237.0,
@@ -759,18 +759,18 @@
       "yield_pct": 58.67
     },
     "Максим Рувинский": {
-      "avg_check": 197500.0,
+      "avg_check": 196667.0,
       "avg_lead_price": 42.0,
-      "conv": 1.09,
-      "deals": 2.0,
-      "final_yield": 38.91,
+      "conv": 1.64,
+      "deals": 3.0,
+      "final_yield": 45.27,
       "leads": 183.0,
-      "margin_cb": 19912.0,
+      "margin_cb": 26776.0,
       "mkt_spend": 7617.0,
       "partner_rev": 0,
-      "revenue": 31600.0,
-      "turnover": 395000.0,
-      "yield_pct": 38.91
+      "revenue": 42325.0,
+      "turnover": 590000.0,
+      "yield_pct": 45.27
     },
     "Марина Циганок": {
       "avg_check": 0,
@@ -819,14 +819,14 @@
       "avg_lead_price": 44.0,
       "conv": 2.71,
       "deals": 12.0,
-      "final_yield": 46.28,
+      "final_yield": 41.27,
       "leads": 442.0,
-      "margin_cb": 81504.0,
+      "margin_cb": 53896.0,
       "mkt_spend": 19379.0,
       "partner_rev": 22598.0,
-      "revenue": 134715.0,
+      "revenue": 86909.0,
       "turnover": 1956700.0,
-      "yield_pct": 46.12
+      "yield_pct": 39.72
     },
     "Роман Безносюк": {
       "avg_check": 308000.0,

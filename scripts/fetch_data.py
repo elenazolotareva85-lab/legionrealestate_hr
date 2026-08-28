@@ -9,6 +9,7 @@ import json
 import os
 import re
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
 
 import gspread
@@ -707,5 +708,90 @@ top_campaigns = sorted(({'year': y, 'name': n, **v} for (y, n), v in ph_campaign
 }, ensure_ascii=False, indent=2))
 print(f'   phuket: {len(ph_staff)} в штате, {sum(d["deals"] for d in ph_deals.values())} сделок, '
       f'{len(ph_funnels)} воронок, реклама по {len(ph_campaigns)} кампаниям')
+
+# ── 7. Рейтинг брокеров: сделки Бали × актуальная штатка ─
+print('7. Fetch broker rating...')
+
+# 7.1 актуальная штатка: верхний блок листа «staff Bali» до строки «Подрядчики»
+#     (ниже неё идут подрядчики и блок уволенных), плюс пустая дата увольнения.
+RATING_SHEETS_OP = ['ОП1', 'ОП2', 'ОП3', 'ОП4', 'Другие']       # отделы: полный реестр
+RATING_SHEETS_ALL = ['ВСЕ сделки весь период', ' ВСЕ сделки 2025',
+                     'ВСЕ сделки сентябрь-май']                  # сводные: почти целиком дубли ОП
+LEAD_POS = ('руководитель отдела продаж', 'head of product')
+DEAL_ALIASES = {'семчук': 'Владислав Семчук'}                    # как записано в реестре сделок
+
+rt_staff, rt_rows = [], gc.open_by_key(STAFF_ID).worksheet('staff Bali').get_all_values()
+for r in rt_rows[1:]:
+    r = r + [''] * 20
+    name = r[2].strip()
+    if name == 'Подрядчики': break                               # конец блока действующих
+    if not name: continue
+    if re.search(r'\d{4}', r[16]): continue                      # дата увольнения (не почта из съехавшей строки)
+    pos = r[6].strip()
+    low = pos.lower()
+    role = ('broker' if 'менеджер по продажам' in low
+            else 'lead' if any(k in low for k in LEAD_POS) else None)
+    if not role: continue                                        # квалификаторы, ассистенты, бэк-офис
+    rt_staff.append({'name': name, 'pos': pos, 'role': role, 'dept': r[12].strip(),
+                     'head': r[5].strip(), 'start': r[0].strip()})
+rt_by_norm = {norm(s['name']): s for s in rt_staff}
+
+# 7.2 сделки: строка = сделка, если есть менеджер и цена объекта > 0, а год похож на год
+#     (так отсекаются строки-итоги «маркет»/«прочее»). Всё после «НАРАБОТКИ» — воронка, не сделки.
+sh_sd = gc.open_by_key(SDELKI_ID)
+
+
+def rt_deals(title):
+    out = []
+    for i, r in enumerate(sh_sd.worksheet(title).get_all_values()):
+        if i == 0: continue
+        r = r + [''] * 70
+        if any('НАРАБОТКИ' in c for c in r[:5]): break
+        year, month, mgr, price = r[1].strip(), r[0].strip(), r[3].strip(), num(r[9])
+        if not re.fullmatch(r'20\d\d', year) or not mgr or not price or price <= 0: continue
+        out.append({'y': int(year), 'm': int(num(month) or 0), 'mgr': DEAL_ALIASES.get(mgr.lower(), mgr),
+                    'price': price, 'comm': num(r[13]) or 0.0,
+                    'key': (int(year), int(num(month) or 0), round(price),
+                            re.sub(r'\s+', ' ', r[8].strip().lower()),
+                            re.sub(r'\W+', '', r[7].lower()))})
+    return out
+
+
+rt_seen, rt_deal_rows = set(), []
+for title in RATING_SHEETS_OP + RATING_SHEETS_ALL:      # ОП идут первыми: они и есть источник правды
+    for d in rt_deals(title):
+        if d['key'] in rt_seen: continue                # тот же клиент, объект, месяц и сумма — одна сделка
+        rt_seen.add(d['key'])
+        rt_deal_rows.append(d)
+
+CUR_Y, CUR_M = date.today().year, date.today().month
+rt_future = sum(1 for d in rt_deal_rows if (d['y'], d['m']) > (CUR_Y, CUR_M))
+rt_deal_rows = [d for d in rt_deal_rows if (d['y'], d['m']) <= (CUR_Y, CUR_M)]
+
+
+def rt_bucket():
+    return defaultdict(lambda: [0, 0.0, 0.0])           # 'YYYY-MM' → [сделок, оборот, комиссия]
+
+
+rt_months, rt_company, rt_outside = defaultdict(rt_bucket), rt_bucket(), defaultdict(lambda: [0, 0.0, 0.0])
+for d in rt_deal_rows:
+    mk = f"{d['y']}-{d['m']:02d}"
+    who = rt_by_norm.get(norm(d['mgr']))
+    for b in ([rt_company[mk]] + ([rt_months[who['name']][mk]] if who else [rt_outside[mk]])):
+        b[0] += 1; b[1] += d['price']; b[2] += d['comm']
+
+for s in rt_staff:
+    s['months'] = {k: [v[0], round(v[1], 2), round(v[2], 2)]
+                   for k, v in sorted(rt_months.get(s['name'], {}).items())}
+
+(DATA / 'rating.json').write_text(json.dumps({
+    'cur_year': CUR_Y, 'cur_month': CUR_M,
+    'brokers': rt_staff,
+    'company': {k: [v[0], round(v[1], 2), round(v[2], 2)] for k, v in sorted(rt_company.items())},
+    'outside': {k: [v[0], round(v[1], 2), round(v[2], 2)] for k, v in sorted(rt_outside.items())},
+}, ensure_ascii=False, indent=2))
+print(f'   rating: {len(rt_staff)} действующих ({sum(1 for s in rt_staff if s["role"] == "broker")} брокеров), '
+      f'{len(rt_deal_rows)} сделок в реестре, {rt_future} отброшено как будущие месяцы')
+
 
 print('\nAll data fetched to data/*.json')
