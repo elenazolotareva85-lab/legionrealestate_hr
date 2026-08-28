@@ -22,3 +22,6 @@ Thumbs.db
 
 # Local cache
 data/razbory_raw.txt.bak
+
+# Internal brand assets (raw PDF stays local — repo/Pages is public)
+brand/

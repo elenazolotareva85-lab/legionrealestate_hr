@@ -414,7 +414,7 @@ PH_ASSETS = """<style>
 NON_BROKERS = ['Роман Безносюк', 'Владислав Семчук']   # РОПы — есть личные сделки, но не в рейтинге брокеров
 
 
-def build_rating_html(rating):
+def build_rating_html(rating, standalone=False):
     if not rating:
         return '<div class="rt-page"><p class="rt-lede">Данных нет — проверьте прогон fetch_data.py.</p></div>'
 
@@ -433,12 +433,39 @@ def build_rating_html(rating):
                 deals += n; turnover += t; comm += c
         return deals, turnover, comm
 
-    def render_table(pred, empty_note):
+    MEDALS = ['🥇', '🥈', '🥉']
+
+    def rows_for(pred):
         rows = []
         for b in brokers:
             deals, turnover, comm = totals_for(b, pred)
             rows.append((b, deals, turnover, comm))
-        rows.sort(key=lambda r: -r[3])
+        return rows
+
+    def render_top3(rows):
+        by_turnover = sorted((r for r in rows if r[1] > 0), key=lambda r: -r[2])[:3]
+        by_comm = sorted((r for r in rows if r[1] > 0), key=lambda r: -r[3])[:3]
+        if not by_turnover:
+            return ''
+
+        def render_col(title, items, pick, val_cls):
+            cards = ''.join(
+                '<div class="rt-medal">'
+                '<span class="rt-medal-rank">' + MEDALS[i] + '</span>'
+                '<span class="rt-medal-name">' + _esc(b['name']) + '</span>'
+                '<span class="rt-medal-val ' + val_cls + '">' + _money(pick(turnover, comm)) + '</span>'
+                '</div>'
+                for i, (b, deals, turnover, comm) in enumerate(items)
+            )
+            return '<div class="rt-top3-col"><h4>' + title + '</h4>' + cards + '</div>'
+
+        return ('<div class="rt-top3">' +
+                render_col('Топ-3 · по обороту', by_turnover, lambda t, c: t, 'rt-medal-val-turnover') +
+                render_col('Топ-3 · по выручке', by_comm, lambda t, c: c, 'rt-medal-val-comm') +
+                '</div>')
+
+    def render_table(rows, empty_note):
+        rows = sorted(rows, key=lambda r: -r[3])
         body = []
         rank = 0
         any_deals = False
@@ -476,13 +503,14 @@ def build_rating_html(rating):
     panels_html = ''.join(
         '\n    <div class="rt-panel' + (' active' if i == 0 else '') + '" id="rt-' + key + '">'
         '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров</p>'
+        + render_top3(rows_for(pred)) +
         '\n      <div class="rt-table-wrap">'
         '\n        <table class="rt-table">'
         '\n          <thead><tr>'
         '\n            <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>'
         '\n            <th class="num">Комиссия</th><th class="num">Средний чек</th>'
         '\n          </tr></thead>'
-        '\n          <tbody>' + render_table(pred, note) + '</tbody>'
+        '\n          <tbody>' + render_table(rows_for(pred), note) + '</tbody>'
         '\n        </table>'
         '\n      </div>'
         '\n    </div>'
@@ -491,7 +519,35 @@ def build_rating_html(rating):
 
     style = '''
 <style>
-.rt-page { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
+.rt-page {
+  --ground: #FFFFFF; --surface: #F7F4EE; --surface-2: #EFEADF;
+  --ink: #1E1E1E; --ink-2: #4A4740; --muted: #78736A;
+  --rule: #E4DFD2; --rule-strong: #CFC7B2;
+  --accent: #1E4632; --accent-2: #9B7D50; --accent-2-light: #BE9669;
+  --font-display: 'PT Serif', Georgia, serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  background: var(--ground); color: var(--ink);
+  max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px;
+}
+@media (prefers-color-scheme: dark) {
+  .rt-page:not([data-theme="light"]) {
+    --ground: #1E1E1E; --surface: #262521; --surface-2: #302E28;
+    --ink: #F2EFE6; --ink-2: #CFC9BA; --muted: #948E80;
+    --rule: #3B382F; --rule-strong: #4E4A3C;
+    --accent: #6FA487; --accent-2: #C9A06C; --accent-2-light: #D9B685;
+  }
+}
+.rt-page[data-theme="dark"] {
+  --ground: #1E1E1E; --surface: #262521; --surface-2: #302E28;
+  --ink: #F2EFE6; --ink-2: #CFC9BA; --muted: #948E80;
+  --rule: #3B382F; --rule-strong: #4E4A3C;
+  --accent: #6FA487; --accent-2: #C9A06C; --accent-2-light: #D9B685;
+}
+.rt-masthead { display: flex; align-items: center; gap: 14px; padding: 4px 0 22px; border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
+.rt-masthead img { width: 40px; height: auto; display: block; }
+.rt-masthead h1 { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: -0.01em; margin: 0; color: var(--ink); }
+.rt-masthead p { color: var(--muted); font-size: 12.5px; margin: 3px 0 0; font-family: var(--font-sans); }
 .rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
 .rt-tabs { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden; margin-bottom: 18px; }
 .rt-tabs button {
@@ -521,6 +577,28 @@ def build_rating_html(rating):
 .rt-pos { display: block; font-size: 11px; color: var(--muted); font-weight: 400; font-family: var(--font-sans); margin-top: 1px; }
 .rt-comm { font-weight: 600; color: var(--accent); }
 .rt-empty { text-align: center; color: var(--muted); padding: 24px; }
+.rt-top3 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+@media (max-width: 640px) { .rt-top3 { grid-template-columns: 1fr; } }
+.rt-top3-col {
+  background: var(--surface); border: 1px solid var(--rule); padding: 14px 16px 8px;
+}
+.rt-top3-col h4 {
+  margin: 0 0 10px; font-family: var(--font-sans); font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted);
+}
+.rt-medal {
+  display: flex; align-items: baseline; gap: 10px; padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.rt-medal:last-child { border-bottom: none; }
+.rt-medal-rank { font-size: 16px; line-height: 1; }
+.rt-medal-name { font-family: var(--font-sans); font-size: 13.5px; font-weight: 500; flex: 1; }
+.rt-medal-val {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.rt-medal-val-turnover { color: var(--accent-2); }
+.rt-medal-val-comm { color: var(--accent); }
 </style>'''
 
     script = '''
@@ -543,55 +621,34 @@ document.getElementById('rtTabs')?.addEventListener('click', (e) => {
         '\n</footer>'
     )
 
-    return ('<div class="rt-page">' + style +
+    masthead = (
+        '\n<div class="rt-masthead">'
+        '\n  <img src="assets/legion-mark-gold.png" alt="Legion Real Estate" />'
+        '\n  <div><h1>Рейтинг брокеров</h1>'
+        '\n  <p>Legion Real Estate · Бали — только действующие сотрудники, по данным реестра сделок</p></div>'
+        '\n</div>'
+    ) if standalone else ''
+
+    return ('<div class="rt-page">' + style + masthead +
             '\n<div class="rt-tabs" id="rtTabs">' + tabs_html + '</div>' +
             panels_html + footer + script + '\n</div>')
 
 
 def build_rating_page(rating):
     """Самостоятельная страница rating.html — тот же рейтинг, но без вкладок «Комиссии»."""
-    body = build_rating_html(rating)
+    body = build_rating_html(rating, standalone=True)
     return f'''<meta charset="utf-8">
 <title>Рейтинг брокеров · Legion</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {{
-  --ground: #F3F0E8; --surface: #FBF9F3; --surface-2: #EAE6DC;
-  --ink: #1B1A17; --ink-2: #45423C; --muted: #706B62;
-  --rule: #D9D4C7; --rule-strong: #B0AA9C;
-  --accent: #4A5D3E; --accent-2: #B08343;
-  --good: #567B44; --warn: #B58028; --critical: #9E4438;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-}}
-@media (prefers-color-scheme: dark) {{
-  :root:not([data-theme="light"]) {{
-    --ground: #14130F; --surface: #1D1B17; --surface-2: #26231D;
-    --ink: #EFEBE0; --ink-2: #C2BCAB; --muted: #8E887C; --rule: #322E27; --rule-strong: #4A4539;
-    --accent: #9BB884; --accent-2: #D9AA6B;
-    --good: #94C579; --warn: #DEAD57; --critical: #D0776B;
-  }}
-}}
 * {{ box-sizing: border-box; }}
 html, body {{ margin: 0; padding: 0; }}
-body {{ font-family: var(--font-sans); background: var(--ground); color: var(--ink); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }}
-.masthead {{
-  max-width: 1280px; margin: 0 auto; padding: 24px 32px 16px;
-  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin-bottom: 4px;
-}}
-.masthead h1 {{ font-family: var(--font-display); font-weight: 500; font-size: 36px; letter-spacing: -0.02em; margin: 0; font-variation-settings: "opsz" 144; }}
-.masthead p {{ color: var(--muted); font-size: 13px; margin: 6px 0 0; font-family: var(--font-display); font-style: italic; }}
-.rt-page {{ padding-top: 8px; }}
+body {{ font-family: 'Montserrat', system-ui, sans-serif; background: #FFFFFF; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }}
+@media (prefers-color-scheme: dark) {{ body:not([data-theme="light"]) {{ background: #1E1E1E; }} }}
 </style>
-
-<div class="masthead">
-  <h1>Рейтинг брокеров</h1>
-  <p>Legion Real Estate · Бали — только действующие сотрудники, по данным реестра сделок</p>
-</div>
 {body}
 '''
 
@@ -785,7 +842,7 @@ merged = f'''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {{ box-sizing: border-box; }}
 html, body {{ margin: 0; padding: 0; }}

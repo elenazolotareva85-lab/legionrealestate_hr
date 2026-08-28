@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -1465,7 +1465,35 @@ render();
 <div class="view view-rating" id="view-rating">
 <div class="rt-page">
 <style>
-.rt-page { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
+.rt-page {
+  --ground: #FFFFFF; --surface: #F7F4EE; --surface-2: #EFEADF;
+  --ink: #1E1E1E; --ink-2: #4A4740; --muted: #78736A;
+  --rule: #E4DFD2; --rule-strong: #CFC7B2;
+  --accent: #1E4632; --accent-2: #9B7D50; --accent-2-light: #BE9669;
+  --font-display: 'PT Serif', Georgia, serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  background: var(--ground); color: var(--ink);
+  max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px;
+}
+@media (prefers-color-scheme: dark) {
+  .rt-page:not([data-theme="light"]) {
+    --ground: #1E1E1E; --surface: #262521; --surface-2: #302E28;
+    --ink: #F2EFE6; --ink-2: #CFC9BA; --muted: #948E80;
+    --rule: #3B382F; --rule-strong: #4E4A3C;
+    --accent: #6FA487; --accent-2: #C9A06C; --accent-2-light: #D9B685;
+  }
+}
+.rt-page[data-theme="dark"] {
+  --ground: #1E1E1E; --surface: #262521; --surface-2: #302E28;
+  --ink: #F2EFE6; --ink-2: #CFC9BA; --muted: #948E80;
+  --rule: #3B382F; --rule-strong: #4E4A3C;
+  --accent: #6FA487; --accent-2: #C9A06C; --accent-2-light: #D9B685;
+}
+.rt-masthead { display: flex; align-items: center; gap: 14px; padding: 4px 0 22px; border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
+.rt-masthead img { width: 40px; height: auto; display: block; }
+.rt-masthead h1 { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: -0.01em; margin: 0; color: var(--ink); }
+.rt-masthead p { color: var(--muted); font-size: 12.5px; margin: 3px 0 0; font-family: var(--font-sans); }
 .rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
 .rt-tabs { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden; margin-bottom: 18px; }
 .rt-tabs button {
@@ -1495,10 +1523,32 @@ render();
 .rt-pos { display: block; font-size: 11px; color: var(--muted); font-weight: 400; font-family: var(--font-sans); margin-top: 1px; }
 .rt-comm { font-weight: 600; color: var(--accent); }
 .rt-empty { text-align: center; color: var(--muted); padding: 24px; }
+.rt-top3 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+@media (max-width: 640px) { .rt-top3 { grid-template-columns: 1fr; } }
+.rt-top3-col {
+  background: var(--surface); border: 1px solid var(--rule); padding: 14px 16px 8px;
+}
+.rt-top3-col h4 {
+  margin: 0 0 10px; font-family: var(--font-sans); font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted);
+}
+.rt-medal {
+  display: flex; align-items: baseline; gap: 10px; padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.rt-medal:last-child { border-bottom: none; }
+.rt-medal-rank { font-size: 16px; line-height: 1; }
+.rt-medal-name { font-family: var(--font-sans); font-size: 13.5px; font-weight: 500; flex: 1; }
+.rt-medal-val {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.rt-medal-val-turnover { color: var(--accent-2); }
+.rt-medal-val-comm { color: var(--accent); }
 </style>
 <div class="rt-tabs" id="rtTabs"><button class="rt-tab active" data-rt="all">Весь период</button><button class="rt-tab" data-rt="y2026">2026 год</button><button class="rt-tab" data-rt="month">Август 2026</button></div>
     <div class="rt-panel active" id="rt-all">
-      <p class="rt-sub">за всё время в реестре сделок · 20 действующих брокеров</p>
+      <p class="rt-sub">за всё время в реестре сделок · 20 действующих брокеров</p><div class="rt-top3"><div class="rt-top3-col"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-turnover">$9,54 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-turnover">$7,36 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Кристина Коновалова</span><span class="rt-medal-val rt-medal-val-turnover">$6,67 млн</span></div></div><div class="rt-top3-col"><h4>Топ-3 · по выручке</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-comm">$515 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-comm">$463 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Максим Микитишин</span><span class="rt-medal-val rt-medal-val-comm">$359 тыс</span></div></div></div>
       <div class="rt-table-wrap">
         <table class="rt-table">
           <thead><tr>
@@ -1529,7 +1579,7 @@ render();
       </div>
     </div>
     <div class="rt-panel" id="rt-y2026">
-      <p class="rt-sub">с января по текущий месяц 2026 · 20 действующих брокеров</p>
+      <p class="rt-sub">с января по текущий месяц 2026 · 20 действующих брокеров</p><div class="rt-top3"><div class="rt-top3-col"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-turnover">$3,58 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-turnover">$1,66 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Карина Ахметова</span><span class="rt-medal-val rt-medal-val-turnover">$991 тыс</span></div></div><div class="rt-top3-col"><h4>Топ-3 · по выручке</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-comm">$200 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-comm">$115 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Карина Ахметова</span><span class="rt-medal-val rt-medal-val-comm">$63 тыс</span></div></div></div>
       <div class="rt-table-wrap">
         <table class="rt-table">
           <thead><tr>
@@ -1560,7 +1610,7 @@ render();
       </div>
     </div>
     <div class="rt-panel" id="rt-month">
-      <p class="rt-sub">текущий месяц · 20 действующих брокеров</p>
+      <p class="rt-sub">текущий месяц · 20 действующих брокеров</p><div class="rt-top3"><div class="rt-top3-col"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-turnover">$419 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Александр Мужейко</span><span class="rt-medal-val rt-medal-val-turnover">$250 тыс</span></div></div><div class="rt-top3-col"><h4>Топ-3 · по выручке</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-comm">$25 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Александр Мужейко</span><span class="rt-medal-val rt-medal-val-comm">$15 тыс</span></div></div></div>
       <div class="rt-table-wrap">
         <table class="rt-table">
           <thead><tr>
