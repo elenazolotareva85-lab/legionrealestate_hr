@@ -807,9 +807,7 @@ def build_rating_html(rating, standalone=False):
 
     footer = (
         '\n<footer class="footer" style="margin-top:24px">'
-        '\n  <span>Источники: <a href="https://docs.google.com/spreadsheets/d/12_D7HbtiuZDoHQRiVrSG6Q-4_wbCBN5xiRo2iYScCPk/edit" target="_blank" rel="noopener">Сделки Бали</a> '
-        '(ОП1–ОП4) · <a href="https://docs.google.com/spreadsheets/d/1TLoMnXpgYWZwh0_0PupxWOCbibe37lwsMmibhBgbxs8/edit" target="_blank" rel="noopener">Staff_Legion</a> '
-        '(действующие сотрудники)</span>'
+        '\n  <span>Источники: Сделки Бали (ОП1–ОП4) · Staff_Legion (действующие сотрудники)</span>'
         '\n</footer>'
     )
 
