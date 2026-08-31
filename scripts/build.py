@@ -114,7 +114,8 @@ def _speedo_svg(value, plan, size=220, markers=None):
     W, H = size * 1.3, size * 0.72
     cx, cy, r = W / 2, size * 0.46, size * 0.36
     marker_vals = [m[0] for m in (markers or [])]
-    scale_max = max(plan * 1.3, value * 1.1, *(marker_vals or [0]), *([v * 1.12 for v in marker_vals]), 1)
+    scale_max_raw = max(plan * 1.3, value * 1.1, *(marker_vals or [0]), *([v * 1.12 for v in marker_vals]), 1)
+    scale_max = math.ceil(scale_max_raw / 500_000) * 500_000  # круглое число на шкале, не "3,36 млн"
 
     def pt(frac, radius):
         angle = math.radians(180 - frac * 180)
@@ -132,7 +133,7 @@ def _speedo_svg(value, plan, size=220, markers=None):
                 f'fill="none" stroke="{color}" stroke-width="{sw:.1f}"/>')
 
     red_end = min(0.70 * plan / scale_max, 1) if plan else 1
-    yellow_end = min(0.95 * plan / scale_max, 1) if plan else 1
+    yellow_end = min(0.90 * plan / scale_max, 1) if plan else 1
     zones = (
         zone(0, red_end, 'var(--critical, #9E4438)') +
         (zone(red_end, yellow_end, 'var(--warn, #B58028)') if yellow_end > red_end else '') +
@@ -184,7 +185,7 @@ def build_month_plan_html(mp):
     total_fact = mp.get('total_fact') or sum(s.get('fact') or 0 for s in segs)
 
     def status(pct):
-        if pct >= 95: return 'good'
+        if pct >= 90: return 'good'
         if pct >= 70: return 'warn'
         return 'critical'
 
