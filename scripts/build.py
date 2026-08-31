@@ -113,9 +113,12 @@ def _speedo_svg(value, plan, size=220, markers=None):
     равно вылезали за край при size=220 (проверено вручную на скриншоте)."""
     W, H = size * 1.3, size * 0.72
     cx, cy, r = W / 2, size * 0.46, size * 0.36
-    marker_vals = [m[0] for m in (markers or [])]
-    scale_max_raw = max(plan * 1.3, value * 1.1, *(marker_vals or [0]), *([v * 1.12 for v in marker_vals]), 1)
-    scale_max = math.ceil(scale_max_raw / 500_000) * 500_000  # круглое число на шкале, не "3,36 млн"
+    # Шкала — от плана (план тут уже сумма СНГ+международное для общего спидометра),
+    # с небольшим запасом (10%) под перевыполнение, округлённым до $0,5 млн. Раньше
+    # запас считался ещё и от порогов бонуса (×1.12) — из-за этого шкала «отрывалась»
+    # от плана и показывала некруглые $3,36 млн вместо суммы сегментов.
+    scale_max_raw = max(plan * 1.1, value * 1.1, 1)
+    scale_max = math.ceil(scale_max_raw / 500_000) * 500_000
 
     def pt(frac, radius):
         angle = math.radians(180 - frac * 180)
@@ -226,22 +229,25 @@ def build_month_plan_html(mp):
 @media (max-width: 700px) { .mp-speedo-layout { grid-template-columns: 1fr; } }
 .mp-speedo-right { display: flex; flex-direction: column; gap: 14px; }
 .mp-speedo-right .mp-speedo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 16px 16px 14px; text-align: center; }
+.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 18px 18px 16px; text-align: center; }
+.mp-speedo-big { display: flex; flex-direction: column; align-items: center; max-width: 480px; margin: 0 auto; }
 .mp-speedo-label {
-  font-family: var(--font-sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--muted); font-weight: 600; margin-bottom: 4px;
+  font-family: var(--font-sans); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 6px;
 }
-.mp-speedo-svg { width: 100%; max-width: 260px; height: auto; }
-.mp-speedo-big .mp-speedo-svg { max-width: 340px; }
-.mp-speedo-tick { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
-.mp-speedo-marker { font-family: var(--font-sans); font-size: 8.5px; font-weight: 600; fill: var(--ink); }
-.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; margin-top: -6px; }
-.mp-speedo-big .mp-speedo-value { font-size: 38px; }
-.mp-speedo-sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.mp-speedo-big .mp-speedo-label { font-size: 14px; }
+.mp-speedo-svg { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; }
+.mp-speedo-big .mp-speedo-svg { max-width: 460px; }
+.mp-speedo-tick { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
+.mp-speedo-marker { font-family: var(--font-sans); font-size: 10px; font-weight: 700; fill: var(--ink); }
+.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 32px; letter-spacing: -0.02em; margin-top: -4px; }
+.mp-speedo-big .mp-speedo-value { font-size: 46px; }
+.mp-speedo-sub { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.mp-speedo-big .mp-speedo-sub { font-size: 15px; margin-top: 6px; }
 .mp-speedo-sub .good { color: var(--good); font-weight: 700; }
 .mp-speedo-sub .warn { color: var(--warn); font-weight: 700; }
 .mp-speedo-sub .critical { color: var(--critical); font-weight: 700; }
-.mp-speedo-bonus { font-family: var(--font-sans); font-size: 11px; color: var(--ink-2); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule); }
+.mp-speedo-bonus { font-family: var(--font-sans); font-size: 12.5px; color: var(--ink-2); margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule); }
 .mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 10px 0 22px; }
 </style>
 <section class="mp-section">
