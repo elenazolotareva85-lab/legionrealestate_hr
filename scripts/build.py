@@ -13,6 +13,7 @@ Pipeline:
   9. Build leads.html from data/leads_by_source.json
 """
 import json
+import math
 import re
 from datetime import date
 from pathlib import Path
@@ -107,28 +108,75 @@ def build_month_plan_html(mp):
     """План/факт по обороту (СНГ / Международное) — план из персональных колонок
     брокеров в листе «Запрос на лиды», факт — их реальный оборот за тот же месяц
     из «Сделки Бали» (см. секцию 8 fetch_data.py). Сегмент брокера определяется
-    языком в том же листе: ru/ru-ukr → СНГ, всё остальное → международное."""
+    языком в том же листе: ru/ru-ukr → СНГ, всё остальное → международное.
+    Вёрстка — KPI + круговой gauge + донат долей + бары по сегментам, по мотивам
+    референса https://www.cossa.ru/cubeline/229458/ (Power BI, «для магазина мебели»)."""
     if not mp or not mp.get('segments'):
         return ''
 
     segs = mp['segments']
     total_plan = mp.get('total_plan') or sum(s.get('plan') or 0 for s in segs)
     total_fact = mp.get('total_fact') or sum(s.get('fact') or 0 for s in segs)
+    total_pct = (total_fact / total_plan * 100) if total_plan else 0
 
     def status(pct):
         if pct >= 95: return 'good'
         if pct >= 70: return 'warn'
         return 'critical'
 
+    seg_colors = {'sng': 'var(--accent, #4A5D3E)', 'intl': 'var(--accent-2, #B08343)'}
+
+    # ── круговой gauge: факт/план по компании ──
+    g_r, g_sw = 42, 10
+    g_circ = 2 * math.pi * g_r
+    g_off = g_circ * (1 - min(total_pct, 100) / 100)
+    gauge_svg = (
+        '<svg viewBox="0 0 100 100" class="mp-gauge-svg">'
+        '<circle cx="50" cy="50" r="' + str(g_r) + '" fill="none" stroke="var(--surface-2, #EAE6DC)" '
+        'stroke-width="' + str(g_sw) + '"/>'
+        '<circle cx="50" cy="50" r="' + str(g_r) + '" fill="none" stroke="var(--' + status(total_pct) + ', #2F6B4F)" '
+        'stroke-width="' + str(g_sw) + '" stroke-linecap="round" '
+        'stroke-dasharray="' + f'{g_circ:.2f}' + '" stroke-dashoffset="' + f'{g_off:.2f}' + '" '
+        'transform="rotate(-90 50 50)"/>'
+        '<text x="50" y="47" text-anchor="middle" class="mp-gauge-pct">' + f'{total_pct:.0f}%' + '</text>'
+        '<text x="50" y="63" text-anchor="middle" class="mp-gauge-sub">факт / план</text>'
+        '</svg>'
+    )
+
+    # ── донат: доли плана по сегментам ──
+    d_r, d_sw = 34, 13
+    d_circ = 2 * math.pi * d_r
+    arcs, offset_acc = [], 0.0
+    for s in segs:
+        share = (s.get('plan') or 0) / total_plan if total_plan else 0
+        arc_len = d_circ * share
+        arcs.append(
+            '<circle cx="42" cy="42" r="' + str(d_r) + '" fill="none" stroke="' + seg_colors.get(s['key'], 'var(--accent)') + '" '
+            'stroke-width="' + str(d_sw) + '" stroke-dasharray="' + f'{arc_len:.2f} {d_circ:.2f}' + '" '
+            'stroke-dashoffset="' + f'{-offset_acc:.2f}' + '" transform="rotate(-90 42 42)"/>'
+        )
+        offset_acc += arc_len
+    donut_svg = '<svg viewBox="0 0 84 84" class="mp-donut-svg">' + ''.join(arcs) + '</svg>'
+    donut_legend = ''.join(
+        '<div class="mp-donut-row">'
+        '<span class="mp-donut-dot" style="background:' + seg_colors.get(s['key'], 'var(--accent)') + '"></span>'
+        '<span class="mp-donut-name">' + _esc(s['label']) + '</span>'
+        '<span class="mp-donut-share">' + (f"{(s.get('plan') or 0) / total_plan * 100:.0f}%" if total_plan else '—') + '</span>'
+        '</div>'
+        for s in segs
+    )
+
     def card(s):
         plan, fact = s.get('plan') or 0, s.get('fact') or 0
         pct = (fact / plan * 100) if plan else 0
         cls = status(pct)
+        color = seg_colors.get(s['key'], 'var(--accent)')
         return (
-            '<div class="mp-card">'
+            '<div class="mp-card" style="border-left-color:' + color + '">'
             '<div class="mp-card-label">' + _esc(s['label']) + '</div>'
             '<div class="mp-card-bar"><div class="mp-card-fill ' + cls + '" style="width:' +
-            str(round(min(pct, 100), 1)) + '%"></div></div>'
+            str(round(min(pct, 100), 1)) + '%"></div>'
+            '<div class="mp-card-target"></div></div>'
             '<div class="mp-card-row">'
             '<span class="mp-card-pct ' + cls + '">' + f'{pct:.0f}%' + '</span>'
             '<span class="mp-card-vals">' + _money(fact) + ' <span class="mp-of">из</span> ' + _money(plan) + '</span>'
@@ -144,24 +192,44 @@ def build_month_plan_html(mp):
     return ('''
 <style>
 .mp-section { max-width: 1280px; margin: 0 auto; padding: 20px 32px 0; }
-.mp-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.mp-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 .mp-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0; letter-spacing: -0.01em; }
 .mp-badge {
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
+.mp-top {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 24px; align-items: center;
+  background: var(--surface, #FBF9F3); border: 1px solid var(--rule, #D9D4C7); padding: 18px 24px; margin-bottom: 14px;
+}
+@media (max-width: 640px) { .mp-top { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+.mp-kpi-label { font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.mp-kpi-value { font-family: var(--font-display); font-weight: 500; font-size: 40px; letter-spacing: -0.02em; line-height: 1; }
+.mp-kpi-sub { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 6px; }
+.mp-gauge { width: 108px; }
+.mp-gauge-svg { width: 108px; height: 108px; }
+.mp-gauge-pct { font-family: var(--font-mono); font-size: 17px; font-weight: 700; fill: var(--ink); }
+.mp-gauge-sub { font-family: var(--font-sans); font-size: 6.5px; text-transform: uppercase; letter-spacing: 0.06em; fill: var(--muted); }
+.mp-donut { display: flex; align-items: center; gap: 12px; }
+.mp-donut-svg { width: 72px; height: 72px; flex: none; }
+.mp-donut-legend { display: flex; flex-direction: column; gap: 5px; }
+.mp-donut-row { display: flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 11px; }
+.mp-donut-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.mp-donut-name { color: var(--ink-2); }
+.mp-donut-share { font-family: var(--font-mono); color: var(--ink); font-weight: 600; margin-left: 2px; }
 .mp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
 @media (max-width: 700px) { .mp-grid { grid-template-columns: 1fr; } }
-.mp-card { background: var(--surface); border: 1px solid var(--rule); padding: 14px 16px; }
+.mp-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid; padding: 14px 16px; }
 .mp-card-label {
   font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--muted); font-weight: 600; margin-bottom: 10px;
 }
-.mp-card-bar { height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+.mp-card-bar { position: relative; height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
 .mp-card-fill { height: 100%; border-radius: 2px 0 0 2px; }
 .mp-card-fill.good { background: var(--good); }
 .mp-card-fill.warn { background: var(--warn); }
 .mp-card-fill.critical { background: var(--critical); }
+.mp-card-target { position: absolute; top: -1px; bottom: -1px; right: 0; width: 2px; background: var(--ink); opacity: 0.5; }
 .mp-card-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .mp-card-pct { font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
 .mp-card-pct.good { color: var(--good); }
@@ -169,8 +237,6 @@ def build_month_plan_html(mp):
 .mp-card-pct.critical { color: var(--critical); }
 .mp-card-vals { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
 .mp-of { color: var(--muted); }
-.mp-total { font-family: var(--font-sans); font-size: 12px; color: var(--ink-2); margin: 0 0 8px; }
-.mp-total strong { color: var(--ink); font-family: var(--font-mono); font-size: 13px; }
 .mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 0 0 22px; }
 </style>
 <section class="mp-section">
@@ -178,8 +244,19 @@ def build_month_plan_html(mp):
     <h2>План / факт · оборот · ''' + _esc(mp.get('month_label', '')) + '''</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
+  <div class="mp-top">
+    <div>
+      <div class="mp-kpi-label">Факт</div>
+      <div class="mp-kpi-value">''' + _money(total_fact) + '''</div>
+      <div class="mp-kpi-sub">из ''' + _money(total_plan) + ''' плана</div>
+    </div>
+    <div class="mp-gauge">''' + gauge_svg + '''</div>
+    <div class="mp-donut">
+      ''' + donut_svg + '''
+      <div class="mp-donut-legend">''' + donut_legend + '''</div>
+    </div>
+  </div>
   <div class="mp-grid">''' + ''.join(card(s) for s in segs) + '''</div>
-  <p class="mp-total">Итого: <strong>''' + _money(total_fact) + '''</strong> из <strong>''' + _money(total_plan) + '''</strong></p>
   ''' + caveat + '''
 </section>
 ''')
@@ -620,6 +697,7 @@ def build_rating_html(rating, standalone=False):
   --ink: #1E1E1E; --ink-2: #4A4740; --muted: #78736A;
   --rule: #E4DFD2; --rule-strong: #CFC7B2;
   --accent: #1E4632; --accent-2: #9B7D50; --accent-2-light: #BE9669;
+  --good: #3E7A52; --warn: #B58028; --critical: #9E4438;
   --font-display: 'PT Serif', Georgia, serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -632,6 +710,7 @@ def build_rating_html(rating, standalone=False):
     --ink: #F2EFE6; --ink-2: #CFC9BA; --muted: #948E80;
     --rule: #3B382F; --rule-strong: #4E4A3C;
     --accent: #6FA487; --accent-2: #C9A06C; --accent-2-light: #D9B685;
+    --good: #7EBB94; --warn: #DEAD57; --critical: #D0776B;
   }
 }
 .rt-page[data-theme="dark"] {
@@ -639,6 +718,7 @@ def build_rating_html(rating, standalone=False):
   --ink: #F2EFE6; --ink-2: #CFC9BA; --muted: #948E80;
   --rule: #3B382F; --rule-strong: #4E4A3C;
   --accent: #6FA487; --accent-2: #C9A06C; --accent-2-light: #D9B685;
+  --good: #7EBB94; --warn: #DEAD57; --critical: #D0776B;
 }
 .rt-masthead { display: flex; align-items: center; gap: 10px; padding: 2px 0 12px; border-bottom: 1px solid var(--rule); margin-bottom: 12px; }
 .rt-masthead img { width: 28px; height: auto; display: block; }
@@ -708,12 +788,14 @@ def build_rating_html(rating, standalone=False):
         '\n</div>'
     ) if standalone else ''
 
-    return ('<div class="rt-page">' + style + masthead +
+    plan_html = build_month_plan_html(month_plan) if standalone else ''
+
+    return ('<div class="rt-page">' + style + masthead + plan_html +
             sections_html + footer + '\n</div>')
 
 
 def build_rating_page(rating):
-    """Самостоятельная страница rating.html — тот же рейтинг, но без вкладок «Комиссии»."""
+    """Самостоятельная страница rating.html — тот же рейтинг плюс план/факт по обороту, без вкладок «Комиссии»."""
     body = build_rating_html(rating, standalone=True)
     return f'''<meta charset="utf-8">
 <title>Рейтинг брокеров · Legion</title>
