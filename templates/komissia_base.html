@@ -346,6 +346,18 @@ tr.row-main.open .expand-arrow { transform: rotate(90deg); color: var(--accent);
 .mini-total { display: flex; flex-direction: column; gap: 2px; }
 .mini-total-label { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .mini-total-value { font-family: var(--font-mono); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 500; }
+.month-table-wrap { margin-top: 12px; overflow-x: auto; }
+.month-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.month-table th { text-align: left; font-family: var(--font-mono); font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 500;
+  padding: 5px 8px; border-bottom: 1px solid var(--rule); }
+.month-table td { padding: 5px 8px; border-bottom: 1px dashed var(--rule); }
+.month-table td.num, .month-table th.num { text-align: right; font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums; }
+.month-table tfoot td { border-bottom: none; border-top: 1px solid var(--rule-strong);
+  font-weight: 600; font-family: var(--font-mono); }
+.month-table tfoot td:first-child { font-family: var(--font-sans); }
+.mt-note { font-size: 10.5px; color: var(--muted); margin: 8px 0 0; line-height: 1.45; }
 .mini-svg { width: 100%; height: 100px; display: block; margin-top: 8px; }
 .mini-svg .bar { fill: var(--accent); }
 .mini-svg .m-label { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
@@ -865,11 +877,7 @@ function renderTable() {
                 <div style="margin-top:18px">
                   <h4 class="razbor-h">Сделки по месяцам 2026</h4>
                   <svg class="mini-svg" viewBox="0 0 300 100" preserveAspectRatio="none">${renderMiniMonths(r.month_2026)}</svg>
-                  <div class="mini-totals">
-                    <div class="mini-total"><span class="mini-total-label">Оборот</span><span class="mini-total-value">$${fmtMoney(s.turnover || Object.values(r.month_2026).reduce((a,v)=>a+(v.turnover||0),0))}</span></div>
-                    <div class="mini-total"><span class="mini-total-label">Выручка</span><span class="mini-total-value">$${fmtMoney(s.revenue || Object.values(r.month_2026).reduce((a,v)=>a+(v.commission||0),0))}</span></div>
-                    <div class="mini-total"><span class="mini-total-label">Сделок</span><span class="mini-total-value">${Math.max(s.deals||0, Object.values(r.month_2026).reduce((a,v)=>a+(v.deals||0),0))}</span></div>
-                  </div>
+                  ${renderMonthTable(r, s)}
                 </div>
               ` : '' }
             </div>
@@ -921,6 +929,32 @@ function renderTable() {
   });
 }
 
+function renderMonthTable(r, s) {
+  const names = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+  const mo = r.month_2026 || {};
+  let rows = '', td = 0, to = 0, tc = 0;
+  for (let m = 1; m <= 12; m++) {
+    const d = mo[String(m)];
+    if (!d || (!d.deals && !d.turnover)) continue;
+    td += d.deals || 0; to += d.turnover || 0; tc += d.commission || 0;
+    rows += `<tr><td>${names[m-1]}</td><td class="num">${d.deals || 0}</td>` +
+            `<td class="num">$${fmtMoney(d.turnover || 0)}</td>` +
+            `<td class="num">$${fmtMoney(d.commission || 0)}</td></tr>`;
+  }
+  if (!rows) return '';
+  const led = (r.year_deals && r.year_deals['2026']) ? (r.year_deals['2026'].deals || 0) : 0;
+  const parts = [];
+  if (s.revenue && Math.abs(s.revenue - tc) > 1)
+    parts.push(`выручка по статистике — $${fmtMoney(s.revenue)}, в неё входит кешбек`);
+  if (led && led !== td)
+    parts.push(`в реестре сделок за год — ${led}, помесячная разбивка заполнена не до конца`);
+  const note = parts.length ? `<p class="mt-note">Расхождения: ${parts.join('; ')}.</p>` : '';
+  return `<div class="month-table-wrap"><table class="month-table">
+    <thead><tr><th>Месяц</th><th class="num">Сделок</th><th class="num">Оборот</th><th class="num">Комиссия</th></tr></thead>
+    <tbody>${rows}</tbody>
+    <tfoot><tr><td>Итого</td><td class="num">${td}</td><td class="num">$${fmtMoney(to)}</td><td class="num">$${fmtMoney(tc)}</td></tr></tfoot>
+  </table></div>${note}`;
+}
 function renderMiniMonths(monthObj) {
   const monthNames = ['Я','Ф','М','А','М','И','И','А','С','О','Н','Д'];
   const W = 300, H = 100, PL = 4, PR = 4, PT = 6, PB = 20;
