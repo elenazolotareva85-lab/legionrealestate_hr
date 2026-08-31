@@ -104,85 +104,108 @@ def _names(names, limit=4):
     return shown
 
 
+def _speedo_svg(value, plan, size=220, markers=None):
+    """Полукруглый спидометр со стрелкой и красно-жёлто-зелёными зонами (0-70%
+    план — красная, 70-95% — жёлтая, 95%+ — зелёная), по мотивам референса
+    «Точка безубыточности» https://www.cossa.ru/cubeline/229458/.
+    markers — доп. метки на шкале (пороги командного бонуса): [(value, short_label)].
+    ViewBox шире габарита самой дуги — короткие подписи маркеров у края всё
+    равно вылезали за край при size=220 (проверено вручную на скриншоте)."""
+    W, H = size * 1.3, size * 0.72
+    cx, cy, r = W / 2, size * 0.46, size * 0.36
+    marker_vals = [m[0] for m in (markers or [])]
+    scale_max = max(plan * 1.3, value * 1.1, *(marker_vals or [0]), *([v * 1.12 for v in marker_vals]), 1)
+
+    def pt(frac, radius):
+        angle = math.radians(180 - frac * 180)
+        return cx + radius * math.cos(angle), cy - radius * math.sin(angle)
+
+    def zone(frac0, frac1, color):
+        # large-arc-flag: любой под-отрезок нашего полукруга (frac в [0,1] → максимум
+        # 180°) никогда не требует "длинного" пути дуги (>180°) — всегда 0. Раньше
+        # тут стояло frac1-frac0>0.5, что при span ~97° уже включало large=1 и
+        # ломало дугу (уходила вниз и обрезалась вьюбоксом — видимый разрыв сверху).
+        x1, y1 = pt(frac0, r)
+        x2, y2 = pt(frac1, r)
+        sw = size * 0.078
+        return (f'<path d="M {x1:.2f} {y1:.2f} A {r:.2f} {r:.2f} 0 0 1 {x2:.2f} {y2:.2f}" '
+                f'fill="none" stroke="{color}" stroke-width="{sw:.1f}"/>')
+
+    red_end = min(0.70 * plan / scale_max, 1) if plan else 1
+    yellow_end = min(0.95 * plan / scale_max, 1) if plan else 1
+    zones = (
+        zone(0, red_end, 'var(--critical, #9E4438)') +
+        (zone(red_end, yellow_end, 'var(--warn, #B58028)') if yellow_end > red_end else '') +
+        (zone(yellow_end, 1, 'var(--good, #3E7A52)') if yellow_end < 1 else '')
+    )
+
+    needle_frac = min(value, scale_max) / scale_max
+    nx, ny = pt(needle_frac, r - size * 0.09)
+    bx1, by1 = pt(max(needle_frac - 0.018, 0), size * 0.055)
+    bx2, by2 = pt(min(needle_frac + 0.018, 1), size * 0.055)
+    needle = (
+        f'<polygon points="{nx:.2f},{ny:.2f} {bx1:.2f},{by1:.2f} {bx2:.2f},{by2:.2f}" fill="var(--ink)"/>'
+        f'<circle cx="{cx:.2f}" cy="{cy:.2f}" r="{size * 0.038:.1f}" fill="none" stroke="var(--ink)" stroke-width="{size * 0.016:.1f}"/>'
+    )
+
+    ticks = ''.join(
+        f'<text x="{x:.1f}" y="{y + size * 0.05:.1f}" text-anchor="middle" class="mp-speedo-tick">{_money(scale_max * f)}</text>'
+        for f, (x, y) in ((f, pt(f, r + size * 0.06)) for f in (0, 1))
+    )
+
+    marker_svg = ''
+    for mv, mlabel in (markers or []):
+        mf = min(mv / scale_max, 1)
+        mx1, my1 = pt(mf, r - size * 0.045)
+        mx2, my2 = pt(mf, r + size * 0.045)
+        lx, ly = pt(mf, r + size * 0.115)
+        marker_svg += (
+            f'<line x1="{mx1:.2f}" y1="{my1:.2f}" x2="{mx2:.2f}" y2="{my2:.2f}" '
+            f'stroke="var(--ink)" stroke-width="{size * 0.012:.1f}"/>'
+            f'<text x="{lx:.2f}" y="{ly:.2f}" text-anchor="middle" class="mp-speedo-marker">{mlabel}</text>'
+        )
+
+    return f'<svg viewBox="0 0 {W:.0f} {H:.0f}" class="mp-speedo-svg">{zones}{marker_svg}{needle}{ticks}</svg>'
+
+
 def build_month_plan_html(mp):
     """План/факт по обороту (СНГ / Международное) — план из персональных колонок
     брокеров в листе «Запрос на лиды», факт — их реальный оборот за тот же месяц
     из «Сделки Бали» (см. секцию 8 fetch_data.py). Сегмент брокера определяется
     языком в том же листе: ru/ru-ukr → СНГ, всё остальное → международное.
-    Вёрстка — KPI + круговой gauge + донат долей + бары по сегментам, по мотивам
-    референса https://www.cossa.ru/cubeline/229458/ (Power BI, «для магазина мебели»)."""
+    Вёрстка — спидометры со стрелкой (референс — «Точка безубыточности»,
+    https://www.cossa.ru/cubeline/229458/, Power BI финотчёт для магазина
+    мебели): общий (с порогами командного бонуса) + по сегментам."""
     if not mp or not mp.get('segments'):
         return ''
 
     segs = mp['segments']
     total_plan = mp.get('total_plan') or sum(s.get('plan') or 0 for s in segs)
     total_fact = mp.get('total_fact') or sum(s.get('fact') or 0 for s in segs)
-    total_pct = (total_fact / total_plan * 100) if total_plan else 0
 
     def status(pct):
         if pct >= 95: return 'good'
         if pct >= 70: return 'warn'
         return 'critical'
 
-    seg_colors = {'sng': 'var(--accent, #4A5D3E)', 'intl': 'var(--accent-2, #B08343)'}
+    BONUS_MARKERS = [(2_500_000, '$2 500'), (3_000_000, '$4 000')]
+    BONUS_NOTE = 'Командный бонус: $2 500 при обороте $2,5 млн за месяц, $4 000 при $3 млн'
 
-    # ── круговой gauge: факт/план по компании ──
-    g_r, g_sw = 42, 10
-    g_circ = 2 * math.pi * g_r
-    g_off = g_circ * (1 - min(total_pct, 100) / 100)
-    gauge_svg = (
-        '<svg viewBox="0 0 100 100" class="mp-gauge-svg">'
-        '<circle cx="50" cy="50" r="' + str(g_r) + '" fill="none" stroke="var(--surface-2, #EAE6DC)" '
-        'stroke-width="' + str(g_sw) + '"/>'
-        '<circle cx="50" cy="50" r="' + str(g_r) + '" fill="none" stroke="var(--' + status(total_pct) + ', #2F6B4F)" '
-        'stroke-width="' + str(g_sw) + '" stroke-linecap="round" '
-        'stroke-dasharray="' + f'{g_circ:.2f}' + '" stroke-dashoffset="' + f'{g_off:.2f}' + '" '
-        'transform="rotate(-90 50 50)"/>'
-        '<text x="50" y="47" text-anchor="middle" class="mp-gauge-pct">' + f'{total_pct:.0f}%' + '</text>'
-        '<text x="50" y="63" text-anchor="middle" class="mp-gauge-sub">факт / план</text>'
-        '</svg>'
-    )
-
-    # ── донат: доли плана по сегментам ──
-    d_r, d_sw = 34, 13
-    d_circ = 2 * math.pi * d_r
-    arcs, offset_acc = [], 0.0
-    for s in segs:
-        share = (s.get('plan') or 0) / total_plan if total_plan else 0
-        arc_len = d_circ * share
-        arcs.append(
-            '<circle cx="42" cy="42" r="' + str(d_r) + '" fill="none" stroke="' + seg_colors.get(s['key'], 'var(--accent)') + '" '
-            'stroke-width="' + str(d_sw) + '" stroke-dasharray="' + f'{arc_len:.2f} {d_circ:.2f}' + '" '
-            'stroke-dashoffset="' + f'{-offset_acc:.2f}' + '" transform="rotate(-90 42 42)"/>'
-        )
-        offset_acc += arc_len
-    donut_svg = '<svg viewBox="0 0 84 84" class="mp-donut-svg">' + ''.join(arcs) + '</svg>'
-    donut_legend = ''.join(
-        '<div class="mp-donut-row">'
-        '<span class="mp-donut-dot" style="background:' + seg_colors.get(s['key'], 'var(--accent)') + '"></span>'
-        '<span class="mp-donut-name">' + _esc(s['label']) + '</span>'
-        '<span class="mp-donut-share">' + (f"{(s.get('plan') or 0) / total_plan * 100:.0f}%" if total_plan else '—') + '</span>'
-        '</div>'
-        for s in segs
-    )
-
-    def card(s):
-        plan, fact = s.get('plan') or 0, s.get('fact') or 0
+    def speedo(label, fact, plan, size=220, markers=None, big=False):
         pct = (fact / plan * 100) if plan else 0
         cls = status(pct)
-        color = seg_colors.get(s['key'], 'var(--accent)')
         return (
-            '<div class="mp-card" style="border-left-color:' + color + '">'
-            '<div class="mp-card-label">' + _esc(s['label']) + '</div>'
-            '<div class="mp-card-bar"><div class="mp-card-fill ' + cls + '" style="width:' +
-            str(round(min(pct, 100), 1)) + '%"></div>'
-            '<div class="mp-card-target"></div></div>'
-            '<div class="mp-card-row">'
-            '<span class="mp-card-pct ' + cls + '">' + f'{pct:.0f}%' + '</span>'
-            '<span class="mp-card-vals">' + _money(fact) + ' <span class="mp-of">из</span> ' + _money(plan) + '</span>'
-            '</div>'
+            '<div class="mp-speedo' + (' mp-speedo-big' if big else '') + '">'
+            '<div class="mp-speedo-label">' + _esc(label) + '</div>' +
+            _speedo_svg(fact, plan, size=size, markers=markers) +
+            '<div class="mp-speedo-value">' + _money(fact) + '</div>'
+            '<div class="mp-speedo-sub">из ' + _money(plan) + ''' плана · <span class="''' + cls + '">' + f'{pct:.0f}%' + '</span></div>' +
+            ('<div class="mp-speedo-bonus">' + _esc(BONUS_NOTE) + '</div>' if big else '') +
             '</div>'
         )
+
+    total_speedo = speedo('Компания · факт / план', total_fact, total_plan, size=280, markers=BONUS_MARKERS, big=True)
+    seg_speedos = ''.join(speedo(s['label'], s.get('fact') or 0, s.get('plan') or 0) for s in segs)
 
     caveat = ''
     if mp.get('unmatched_names'):
@@ -198,69 +221,38 @@ def build_month_plan_html(mp):
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
-.mp-top {
-  display: grid; grid-template-columns: 1fr auto auto; gap: 24px; align-items: center;
-  background: var(--surface, #FBF9F3); border: 1px solid var(--rule, #D9D4C7); padding: 18px 24px; margin-bottom: 14px;
+.mp-speedo-big-row { margin-bottom: 14px; }
+.mp-speedo-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
+@media (max-width: 700px) { .mp-speedo-row { grid-template-columns: 1fr; } }
+.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 16px 16px 14px; text-align: center; }
+.mp-speedo-big { max-width: 460px; margin: 0 auto 14px; }
+.mp-speedo-label {
+  font-family: var(--font-sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 4px;
 }
-@media (max-width: 640px) { .mp-top { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
-.mp-kpi-label { font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
-.mp-kpi-value { font-family: var(--font-display); font-weight: 500; font-size: 40px; letter-spacing: -0.02em; line-height: 1; }
-.mp-kpi-sub { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 6px; }
-.mp-gauge { width: 108px; }
-.mp-gauge-svg { width: 108px; height: 108px; }
-.mp-gauge-pct { font-family: var(--font-mono); font-size: 17px; font-weight: 700; fill: var(--ink); }
-.mp-gauge-sub { font-family: var(--font-sans); font-size: 6.5px; text-transform: uppercase; letter-spacing: 0.06em; fill: var(--muted); }
-.mp-donut { display: flex; align-items: center; gap: 12px; }
-.mp-donut-svg { width: 72px; height: 72px; flex: none; }
-.mp-donut-legend { display: flex; flex-direction: column; gap: 5px; }
-.mp-donut-row { display: flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 11px; }
-.mp-donut-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
-.mp-donut-name { color: var(--ink-2); }
-.mp-donut-share { font-family: var(--font-mono); color: var(--ink); font-weight: 600; margin-left: 2px; }
-.mp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
-@media (max-width: 700px) { .mp-grid { grid-template-columns: 1fr; } }
-.mp-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid; padding: 14px 16px; }
-.mp-card-label {
-  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--muted); font-weight: 600; margin-bottom: 10px;
-}
-.mp-card-bar { position: relative; height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
-.mp-card-fill { height: 100%; border-radius: 2px 0 0 2px; }
-.mp-card-fill.good { background: var(--good); }
-.mp-card-fill.warn { background: var(--warn); }
-.mp-card-fill.critical { background: var(--critical); }
-.mp-card-target { position: absolute; top: -1px; bottom: -1px; right: 0; width: 2px; background: var(--ink); opacity: 0.5; }
-.mp-card-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.mp-card-pct { font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
-.mp-card-pct.good { color: var(--good); }
-.mp-card-pct.warn { color: var(--warn); }
-.mp-card-pct.critical { color: var(--critical); }
-.mp-card-vals { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
-.mp-of { color: var(--muted); }
-.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 0 0 22px; }
+.mp-speedo-svg { width: 100%; max-width: 260px; height: auto; }
+.mp-speedo-big .mp-speedo-svg { max-width: 380px; }
+.mp-speedo-tick { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
+.mp-speedo-marker { font-family: var(--font-sans); font-size: 8.5px; font-weight: 600; fill: var(--ink); }
+.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; margin-top: -6px; }
+.mp-speedo-big .mp-speedo-value { font-size: 38px; }
+.mp-speedo-sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.mp-speedo-sub .good { color: var(--good); font-weight: 700; }
+.mp-speedo-sub .warn { color: var(--warn); font-weight: 700; }
+.mp-speedo-sub .critical { color: var(--critical); font-weight: 700; }
+.mp-speedo-bonus { font-family: var(--font-sans); font-size: 11px; color: var(--ink-2); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule); }
+.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 10px 0 22px; }
 </style>
 <section class="mp-section">
   <div class="mp-head">
     <h2>План / факт · оборот · ''' + _esc(mp.get('month_label', '')) + '''</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
-  <div class="mp-top">
-    <div>
-      <div class="mp-kpi-label">Факт</div>
-      <div class="mp-kpi-value">''' + _money(total_fact) + '''</div>
-      <div class="mp-kpi-sub">из ''' + _money(total_plan) + ''' плана</div>
-    </div>
-    <div class="mp-gauge">''' + gauge_svg + '''</div>
-    <div class="mp-donut">
-      ''' + donut_svg + '''
-      <div class="mp-donut-legend">''' + donut_legend + '''</div>
-    </div>
-  </div>
-  <div class="mp-grid">''' + ''.join(card(s) for s in segs) + '''</div>
+  <div class="mp-speedo-big-row">''' + total_speedo + '''</div>
+  <div class="mp-speedo-row">''' + seg_speedos + '''</div>
   ''' + caveat + '''
 </section>
 ''')
-
 
 def compute_signals():
     combined = stat.get('combined') or {}
@@ -283,10 +275,9 @@ def compute_signals():
 
 
 # ── 1. Base HTML ─────────────────────────────────────
+# «План/факт» показываем только на отдельной странице rating.html
+# (build_rating_html, standalone=True) — не на этой вкладке.
 base = (TEMPLATES / 'komissia_base.html').read_text()
-base = base.replace('  </header>\n\n  <p class="lede" id="lede">',
-                     '  </header>\n' + build_month_plan_html(month_plan) +
-                     '\n  <p class="lede" id="lede">', 1)
 
 # ── 2-3. Merge with a Funnels tab structure ─────────
 # Simple: wrap komissia inside a view container with nav tabs

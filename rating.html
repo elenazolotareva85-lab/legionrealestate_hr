@@ -104,65 +104,35 @@ body { font-family: 'Montserrat', system-ui, sans-serif; background: #FFFFFF; fo
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
-.mp-top {
-  display: grid; grid-template-columns: 1fr auto auto; gap: 24px; align-items: center;
-  background: var(--surface, #FBF9F3); border: 1px solid var(--rule, #D9D4C7); padding: 18px 24px; margin-bottom: 14px;
+.mp-speedo-big-row { margin-bottom: 14px; }
+.mp-speedo-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
+@media (max-width: 700px) { .mp-speedo-row { grid-template-columns: 1fr; } }
+.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 16px 16px 14px; text-align: center; }
+.mp-speedo-big { max-width: 460px; margin: 0 auto 14px; }
+.mp-speedo-label {
+  font-family: var(--font-sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 4px;
 }
-@media (max-width: 640px) { .mp-top { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
-.mp-kpi-label { font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
-.mp-kpi-value { font-family: var(--font-display); font-weight: 500; font-size: 40px; letter-spacing: -0.02em; line-height: 1; }
-.mp-kpi-sub { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 6px; }
-.mp-gauge { width: 108px; }
-.mp-gauge-svg { width: 108px; height: 108px; }
-.mp-gauge-pct { font-family: var(--font-mono); font-size: 17px; font-weight: 700; fill: var(--ink); }
-.mp-gauge-sub { font-family: var(--font-sans); font-size: 6.5px; text-transform: uppercase; letter-spacing: 0.06em; fill: var(--muted); }
-.mp-donut { display: flex; align-items: center; gap: 12px; }
-.mp-donut-svg { width: 72px; height: 72px; flex: none; }
-.mp-donut-legend { display: flex; flex-direction: column; gap: 5px; }
-.mp-donut-row { display: flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 11px; }
-.mp-donut-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
-.mp-donut-name { color: var(--ink-2); }
-.mp-donut-share { font-family: var(--font-mono); color: var(--ink); font-weight: 600; margin-left: 2px; }
-.mp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
-@media (max-width: 700px) { .mp-grid { grid-template-columns: 1fr; } }
-.mp-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid; padding: 14px 16px; }
-.mp-card-label {
-  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--muted); font-weight: 600; margin-bottom: 10px;
-}
-.mp-card-bar { position: relative; height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
-.mp-card-fill { height: 100%; border-radius: 2px 0 0 2px; }
-.mp-card-fill.good { background: var(--good); }
-.mp-card-fill.warn { background: var(--warn); }
-.mp-card-fill.critical { background: var(--critical); }
-.mp-card-target { position: absolute; top: -1px; bottom: -1px; right: 0; width: 2px; background: var(--ink); opacity: 0.5; }
-.mp-card-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.mp-card-pct { font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
-.mp-card-pct.good { color: var(--good); }
-.mp-card-pct.warn { color: var(--warn); }
-.mp-card-pct.critical { color: var(--critical); }
-.mp-card-vals { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
-.mp-of { color: var(--muted); }
-.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 0 0 22px; }
+.mp-speedo-svg { width: 100%; max-width: 260px; height: auto; }
+.mp-speedo-big .mp-speedo-svg { max-width: 380px; }
+.mp-speedo-tick { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
+.mp-speedo-marker { font-family: var(--font-sans); font-size: 8.5px; font-weight: 600; fill: var(--ink); }
+.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; margin-top: -6px; }
+.mp-speedo-big .mp-speedo-value { font-size: 38px; }
+.mp-speedo-sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.mp-speedo-sub .good { color: var(--good); font-weight: 700; }
+.mp-speedo-sub .warn { color: var(--warn); font-weight: 700; }
+.mp-speedo-sub .critical { color: var(--critical); font-weight: 700; }
+.mp-speedo-bonus { font-family: var(--font-sans); font-size: 11px; color: var(--ink-2); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule); }
+.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 10px 0 22px; }
 </style>
 <section class="mp-section">
   <div class="mp-head">
     <h2>План / факт · оборот · сентябрь 2026</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
-  <div class="mp-top">
-    <div>
-      <div class="mp-kpi-label">Факт</div>
-      <div class="mp-kpi-value">$0</div>
-      <div class="mp-kpi-sub">из $2,40 млн плана</div>
-    </div>
-    <div class="mp-gauge"><svg viewBox="0 0 100 100" class="mp-gauge-svg"><circle cx="50" cy="50" r="42" fill="none" stroke="var(--surface-2, #EAE6DC)" stroke-width="10"/><circle cx="50" cy="50" r="42" fill="none" stroke="var(--critical, #2F6B4F)" stroke-width="10" stroke-linecap="round" stroke-dasharray="263.89" stroke-dashoffset="263.89" transform="rotate(-90 50 50)"/><text x="50" y="47" text-anchor="middle" class="mp-gauge-pct">0%</text><text x="50" y="63" text-anchor="middle" class="mp-gauge-sub">факт / план</text></svg></div>
-    <div class="mp-donut">
-      <svg viewBox="0 0 84 84" class="mp-donut-svg"><circle cx="42" cy="42" r="34" fill="none" stroke="var(--accent, #4A5D3E)" stroke-width="13" stroke-dasharray="120.17 213.63" stroke-dashoffset="-0.00" transform="rotate(-90 42 42)"/><circle cx="42" cy="42" r="34" fill="none" stroke="var(--accent-2, #B08343)" stroke-width="13" stroke-dasharray="93.46 213.63" stroke-dashoffset="-120.17" transform="rotate(-90 42 42)"/></svg>
-      <div class="mp-donut-legend"><div class="mp-donut-row"><span class="mp-donut-dot" style="background:var(--accent, #4A5D3E)"></span><span class="mp-donut-name">СНГ</span><span class="mp-donut-share">56%</span></div><div class="mp-donut-row"><span class="mp-donut-dot" style="background:var(--accent-2, #B08343)"></span><span class="mp-donut-name">Международное</span><span class="mp-donut-share">44%</span></div></div>
-    </div>
-  </div>
-  <div class="mp-grid"><div class="mp-card" style="border-left-color:var(--accent, #4A5D3E)"><div class="mp-card-label">СНГ</div><div class="mp-card-bar"><div class="mp-card-fill critical" style="width:0.0%"></div><div class="mp-card-target"></div></div><div class="mp-card-row"><span class="mp-card-pct critical">0%</span><span class="mp-card-vals">$0 <span class="mp-of">из</span> $1,35 млн</span></div></div><div class="mp-card" style="border-left-color:var(--accent-2, #B08343)"><div class="mp-card-label">Международное</div><div class="mp-card-bar"><div class="mp-card-fill critical" style="width:0.0%"></div><div class="mp-card-target"></div></div><div class="mp-card-row"><span class="mp-card-pct critical">0%</span><span class="mp-card-vals">$0 <span class="mp-of">из</span> $1,05 млн</span></div></div></div>
+  <div class="mp-speedo-big-row"><div class="mp-speedo mp-speedo-big"><div class="mp-speedo-label">Компания · факт / план</div><svg viewBox="0 0 364 202" class="mp-speedo-svg"><path d="M 81.20 128.80 A 100.80 100.80 0 0 1 182.00 28.00" fill="none" stroke="var(--critical, #9E4438)" stroke-width="21.8"/><path d="M 182.00 28.00 A 100.80 100.80 0 0 1 235.63 43.45" fill="none" stroke="var(--warn, #B58028)" stroke-width="21.8"/><path d="M 235.63 43.45 A 100.80 100.80 0 0 1 282.80 128.80" fill="none" stroke="var(--good, #3E7A52)" stroke-width="21.8"/><line x1="243.19" y1="65.28" x2="260.67" y2="47.13" stroke="var(--ink)" stroke-width="3.4"/><text x="274.27" y="33.01" text-anchor="middle" class="mp-speedo-marker">$2 500</text><line x1="265.25" y1="99.67" x2="289.04" y2="91.35" stroke="var(--ink)" stroke-width="3.4"/><text x="307.54" y="84.87" text-anchor="middle" class="mp-speedo-marker">$4 000</text><polygon points="106.40,128.80 166.60,128.80 166.62,127.93" fill="var(--ink)"/><circle cx="182.00" cy="128.80" r="10.6" fill="none" stroke="var(--ink)" stroke-width="4.5"/><text x="64.4" y="142.8" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="299.6" y="142.8" text-anchor="middle" class="mp-speedo-tick">$3,36 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $2,40 млн плана · <span class="critical">0%</span></div><div class="mp-speedo-bonus">Командный бонус: $2 500 при обороте $2,5 млн за месяц, $4 000 при $3 млн</div></div></div>
+  <div class="mp-speedo-row"><div class="mp-speedo"><div class="mp-speedo-label">СНГ</div><svg viewBox="0 0 286 158" class="mp-speedo-svg"><path d="M 63.80 101.20 A 79.20 79.20 0 0 1 152.55 22.58" fill="none" stroke="var(--critical, #9E4438)" stroke-width="17.2"/><path d="M 152.55 22.58 A 79.20 79.20 0 0 1 195.52 41.92" fill="none" stroke="var(--warn, #B58028)" stroke-width="17.2"/><path d="M 195.52 41.92 A 79.20 79.20 0 0 1 222.20 101.20" fill="none" stroke="var(--good, #3E7A52)" stroke-width="17.2"/><polygon points="83.60,101.20 130.90,101.20 130.92,100.52" fill="var(--ink)"/><circle cx="143.00" cy="101.20" r="8.4" fill="none" stroke="var(--ink)" stroke-width="3.5"/><text x="50.6" y="112.2" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="235.4" y="112.2" text-anchor="middle" class="mp-speedo-tick">$1,75 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $1,35 млн плана · <span class="critical">0%</span></div></div><div class="mp-speedo"><div class="mp-speedo-label">Международное</div><svg viewBox="0 0 286 158" class="mp-speedo-svg"><path d="M 63.80 101.20 A 79.20 79.20 0 0 1 152.55 22.58" fill="none" stroke="var(--critical, #9E4438)" stroke-width="17.2"/><path d="M 152.55 22.58 A 79.20 79.20 0 0 1 195.52 41.92" fill="none" stroke="var(--warn, #B58028)" stroke-width="17.2"/><path d="M 195.52 41.92 A 79.20 79.20 0 0 1 222.20 101.20" fill="none" stroke="var(--good, #3E7A52)" stroke-width="17.2"/><polygon points="83.60,101.20 130.90,101.20 130.92,100.52" fill="var(--ink)"/><circle cx="143.00" cy="101.20" r="8.4" fill="none" stroke="var(--ink)" stroke-width="3.5"/><text x="50.6" y="112.2" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="235.4" y="112.2" text-anchor="middle" class="mp-speedo-tick">$1,36 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $1,05 млн плана · <span class="critical">0%</span></div></div></div>
   
 </section>
 
