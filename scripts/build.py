@@ -221,17 +221,17 @@ def build_month_plan_html(mp):
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
-.mp-speedo-big-row { margin-bottom: 14px; }
-.mp-speedo-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
-@media (max-width: 700px) { .mp-speedo-row { grid-template-columns: 1fr; } }
+.mp-speedo-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; margin-bottom: 10px; align-items: stretch; }
+@media (max-width: 700px) { .mp-speedo-layout { grid-template-columns: 1fr; } }
+.mp-speedo-right { display: flex; flex-direction: column; gap: 14px; }
+.mp-speedo-right .mp-speedo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 16px 16px 14px; text-align: center; }
-.mp-speedo-big { max-width: 460px; margin: 0 auto 14px; }
 .mp-speedo-label {
   font-family: var(--font-sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--muted); font-weight: 600; margin-bottom: 4px;
 }
 .mp-speedo-svg { width: 100%; max-width: 260px; height: auto; }
-.mp-speedo-big .mp-speedo-svg { max-width: 380px; }
+.mp-speedo-big .mp-speedo-svg { max-width: 340px; }
 .mp-speedo-tick { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
 .mp-speedo-marker { font-family: var(--font-sans); font-size: 8.5px; font-weight: 600; fill: var(--ink); }
 .mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; margin-top: -6px; }
@@ -248,8 +248,10 @@ def build_month_plan_html(mp):
     <h2>План / факт · оборот · ''' + _esc(mp.get('month_label', '')) + '''</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
-  <div class="mp-speedo-big-row">''' + total_speedo + '''</div>
-  <div class="mp-speedo-row">''' + seg_speedos + '''</div>
+  <div class="mp-speedo-layout">
+    ''' + total_speedo + '''
+    <div class="mp-speedo-right">''' + seg_speedos + '''</div>
+  </div>
   ''' + caveat + '''
 </section>
 ''')
