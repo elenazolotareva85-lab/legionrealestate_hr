@@ -1536,7 +1536,7 @@ render();
 </div>
 
 <div class="view view-rating" id="view-rating">
-<div class="rt-page" data-metric="comm">
+<div class="rt-page">
 <style>
 .rt-page {
   --ground: #FFFFFF; --surface: #F7F4EE; --surface-2: #EFEADF;
@@ -1568,17 +1568,6 @@ render();
 .rt-masthead h1 { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; margin: 0; color: var(--ink); }
 .rt-masthead p { color: var(--muted); font-size: 11px; margin: 2px 0 0; font-family: var(--font-sans); }
 .rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
-.rt-metric-switch {
-  display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden;
-  margin-bottom: 14px; position: sticky; top: 6px; z-index: 5; background: var(--ground);
-}
-.rt-metric-switch button {
-  background: var(--surface); border: none; border-right: 1px solid var(--rule);
-  padding: 6px 14px; font-family: var(--font-sans); color: var(--muted);
-  cursor: pointer; letter-spacing: 0.04em; font-weight: 600; text-transform: uppercase; font-size: 10px;
-}
-.rt-metric-switch button:last-child { border-right: none; }
-.rt-metric-switch button.active { background: var(--ink); color: var(--ground); }
 .rt-period { margin-bottom: 22px; }
 .rt-period:last-child { margin-bottom: 0; }
 .rt-period-title {
@@ -1586,9 +1575,6 @@ render();
   padding-top: 10px; border-top: 2px solid var(--ink);
 }
 .rt-period:first-child .rt-period-title { border-top: none; padding-top: 0; }
-.rt-metric-group[data-m] { display: none; }
-.rt-page[data-metric="turnover"] .rt-metric-group[data-m="turnover"] { display: block; }
-.rt-page[data-metric="comm"] .rt-metric-group[data-m="comm"] { display: block; }
 .rt-sub { color: var(--muted); font-size: 11px; margin: 0 0 8px; }
 .rt-table-wrap { overflow-x: auto; border: 1px solid var(--rule); }
 .rt-table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 11.5px; }
@@ -1606,8 +1592,7 @@ render();
 .rt-name { font-weight: 500; white-space: nowrap; }
 .rt-pos { font-size: 10px; color: var(--muted); font-weight: 400; font-family: var(--font-sans); }
 .rt-pos::before { content: ' · '; }
-[data-m="turnover"] .rt-turn { font-weight: 600; color: var(--accent-2); }
-[data-m="comm"] .rt-comm { font-weight: 600; color: var(--accent); }
+.rt-turn { font-weight: 600; color: var(--accent-2); }
 .rt-empty { text-align: center; color: var(--muted); padding: 24px; }
 .rt-top3-solo {
   background: var(--surface); border: 1px solid var(--rule); padding: 8px 12px; margin-bottom: 10px;
@@ -1625,78 +1610,43 @@ render();
 .rt-medal-rank { font-size: 12px; line-height: 1; }
 .rt-medal-name { font-family: var(--font-sans); font-size: 11.5px; font-weight: 500; flex: 1; }
 .rt-medal-val {
-  font-family: var(--font-mono); font-size: 11.5px; font-weight: 600;
+  font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--accent-2);
   font-variant-numeric: tabular-nums;
 }
-.rt-medal-val-turnover { color: var(--accent-2); }
-.rt-medal-val-comm { color: var(--accent); }
-</style><div class="rt-metric-switch" id="rtMetricSwitch" role="group"><button class="" data-metric="turnover">Ранжировать: по обороту</button><button class="active" data-metric="comm">Ранжировать: по выручке</button></div>
+</style>
     <section class="rt-period">
       <h2 class="rt-period-title">Весь период</h2>
       <p class="rt-sub">за всё время в реестре сделок · 23 действующих брокеров</p>
-      <div class="rt-metric-group" data-m="turnover"><div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-turnover">$9,54 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-turnover">$7,36 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Кристина Коновалова</span><span class="rt-medal-val rt-medal-val-turnover">$6,67 млн</span></div></div>
+      <div class="rt-metric-group"><div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val">$9,54 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val">$7,36 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Кристина Коновалова</span><span class="rt-medal-val">$6,67 млн</span></div></div>
         <div class="rt-table-wrap">
           <table class="rt-table">
             <thead><tr>
               <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>
-              <th class="num">Комиссия</th><th class="num">Средний чек</th>
+              <th class="num">Средний чек</th>
             </tr></thead>
-            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">48</td><td class="num rt-turn">$9,54 млн</td><td class="num rt-comm">$515 тыс</td><td class="num">$199 тыс</td></tr>
-<tr class=""><td class="rt-rank">2</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">42</td><td class="num rt-turn">$7,36 млн</td><td class="num rt-comm">$463 тыс</td><td class="num">$175 тыс</td></tr>
-<tr class=""><td class="rt-rank">3</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">34</td><td class="num rt-turn">$6,67 млн</td><td class="num rt-comm">$338 тыс</td><td class="num">$196 тыс</td></tr>
-<tr class=""><td class="rt-rank">4</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">41</td><td class="num rt-turn">$6,34 млн</td><td class="num rt-comm">$360 тыс</td><td class="num">$155 тыс</td></tr>
-<tr class=""><td class="rt-rank">5</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">35</td><td class="num rt-turn">$5,74 млн</td><td class="num rt-comm">$342 тыс</td><td class="num">$164 тыс</td></tr>
-<tr class=""><td class="rt-rank">6</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">41</td><td class="num rt-turn">$5,44 млн</td><td class="num rt-comm">$298 тыс</td><td class="num">$133 тыс</td></tr>
-<tr class=""><td class="rt-rank">7</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">22</td><td class="num rt-turn">$3,41 млн</td><td class="num rt-comm">$215 тыс</td><td class="num">$155 тыс</td></tr>
-<tr class=""><td class="rt-rank">8</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">19</td><td class="num rt-turn">$2,84 млн</td><td class="num rt-comm">$173 тыс</td><td class="num">$150 тыс</td></tr>
-<tr class=""><td class="rt-rank">9</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">20</td><td class="num rt-turn">$2,84 млн</td><td class="num rt-comm">$182 тыс</td><td class="num">$142 тыс</td></tr>
-<tr class=""><td class="rt-rank">10</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">14</td><td class="num rt-turn">$1,94 млн</td><td class="num rt-comm">$120 тыс</td><td class="num">$139 тыс</td></tr>
-<tr class=""><td class="rt-rank">11</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">16</td><td class="num rt-turn">$1,91 млн</td><td class="num rt-comm">$121 тыс</td><td class="num">$120 тыс</td></tr>
-<tr class=""><td class="rt-rank">12</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">11</td><td class="num rt-turn">$1,56 млн</td><td class="num rt-comm">$91 тыс</td><td class="num">$142 тыс</td></tr>
-<tr class=""><td class="rt-rank">13</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">4</td><td class="num rt-turn">$902 тыс</td><td class="num rt-comm">$59 тыс</td><td class="num">$226 тыс</td></tr>
-<tr class=""><td class="rt-rank">14</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">6</td><td class="num rt-turn">$708 тыс</td><td class="num rt-comm">$42 тыс</td><td class="num">$118 тыс</td></tr>
-<tr class=""><td class="rt-rank">15</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">3</td><td class="num rt-turn">$359 тыс</td><td class="num rt-comm">$22 тыс</td><td class="num">$120 тыс</td></tr>
-<tr class=""><td class="rt-rank">16</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$320 тыс</td><td class="num rt-comm">$19 тыс</td><td class="num">$320 тыс</td></tr>
-<tr class=""><td class="rt-rank">17</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num rt-comm">$15 тыс</td><td class="num">$250 тыс</td></tr>
-<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="rt-metric-group" data-m="comm"><div class="rt-top3-solo"><h4>Топ-3 · по выручке</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-comm">$515 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-comm">$463 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Андрей Лиштва</span><span class="rt-medal-val rt-medal-val-comm">$360 тыс</span></div></div>
-        <div class="rt-table-wrap">
-          <table class="rt-table">
-            <thead><tr>
-              <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>
-              <th class="num">Комиссия</th><th class="num">Средний чек</th>
-            </tr></thead>
-            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">48</td><td class="num rt-turn">$9,54 млн</td><td class="num rt-comm">$515 тыс</td><td class="num">$199 тыс</td></tr>
-<tr class=""><td class="rt-rank">2</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">42</td><td class="num rt-turn">$7,36 млн</td><td class="num rt-comm">$463 тыс</td><td class="num">$175 тыс</td></tr>
-<tr class=""><td class="rt-rank">3</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">41</td><td class="num rt-turn">$6,34 млн</td><td class="num rt-comm">$360 тыс</td><td class="num">$155 тыс</td></tr>
-<tr class=""><td class="rt-rank">4</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">35</td><td class="num rt-turn">$5,74 млн</td><td class="num rt-comm">$342 тыс</td><td class="num">$164 тыс</td></tr>
-<tr class=""><td class="rt-rank">5</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">34</td><td class="num rt-turn">$6,67 млн</td><td class="num rt-comm">$338 тыс</td><td class="num">$196 тыс</td></tr>
-<tr class=""><td class="rt-rank">6</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">41</td><td class="num rt-turn">$5,44 млн</td><td class="num rt-comm">$298 тыс</td><td class="num">$133 тыс</td></tr>
-<tr class=""><td class="rt-rank">7</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">22</td><td class="num rt-turn">$3,41 млн</td><td class="num rt-comm">$215 тыс</td><td class="num">$155 тыс</td></tr>
-<tr class=""><td class="rt-rank">8</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">20</td><td class="num rt-turn">$2,84 млн</td><td class="num rt-comm">$182 тыс</td><td class="num">$142 тыс</td></tr>
-<tr class=""><td class="rt-rank">9</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">19</td><td class="num rt-turn">$2,84 млн</td><td class="num rt-comm">$173 тыс</td><td class="num">$150 тыс</td></tr>
-<tr class=""><td class="rt-rank">10</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">16</td><td class="num rt-turn">$1,91 млн</td><td class="num rt-comm">$121 тыс</td><td class="num">$120 тыс</td></tr>
-<tr class=""><td class="rt-rank">11</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">14</td><td class="num rt-turn">$1,94 млн</td><td class="num rt-comm">$120 тыс</td><td class="num">$139 тыс</td></tr>
-<tr class=""><td class="rt-rank">12</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">11</td><td class="num rt-turn">$1,56 млн</td><td class="num rt-comm">$91 тыс</td><td class="num">$142 тыс</td></tr>
-<tr class=""><td class="rt-rank">13</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">4</td><td class="num rt-turn">$902 тыс</td><td class="num rt-comm">$59 тыс</td><td class="num">$226 тыс</td></tr>
-<tr class=""><td class="rt-rank">14</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">6</td><td class="num rt-turn">$708 тыс</td><td class="num rt-comm">$42 тыс</td><td class="num">$118 тыс</td></tr>
-<tr class=""><td class="rt-rank">15</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">3</td><td class="num rt-turn">$359 тыс</td><td class="num rt-comm">$22 тыс</td><td class="num">$120 тыс</td></tr>
-<tr class=""><td class="rt-rank">16</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$320 тыс</td><td class="num rt-comm">$19 тыс</td><td class="num">$320 тыс</td></tr>
-<tr class=""><td class="rt-rank">17</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num rt-comm">$15 тыс</td><td class="num">$250 тыс</td></tr>
-<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr></tbody>
+            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">48</td><td class="num rt-turn">$9,54 млн</td><td class="num">$199 тыс</td></tr>
+<tr class=""><td class="rt-rank">2</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">42</td><td class="num rt-turn">$7,36 млн</td><td class="num">$175 тыс</td></tr>
+<tr class=""><td class="rt-rank">3</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">34</td><td class="num rt-turn">$6,67 млн</td><td class="num">$196 тыс</td></tr>
+<tr class=""><td class="rt-rank">4</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">41</td><td class="num rt-turn">$6,34 млн</td><td class="num">$155 тыс</td></tr>
+<tr class=""><td class="rt-rank">5</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">35</td><td class="num rt-turn">$5,74 млн</td><td class="num">$164 тыс</td></tr>
+<tr class=""><td class="rt-rank">6</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">41</td><td class="num rt-turn">$5,44 млн</td><td class="num">$133 тыс</td></tr>
+<tr class=""><td class="rt-rank">7</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">22</td><td class="num rt-turn">$3,41 млн</td><td class="num">$155 тыс</td></tr>
+<tr class=""><td class="rt-rank">8</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">19</td><td class="num rt-turn">$2,84 млн</td><td class="num">$150 тыс</td></tr>
+<tr class=""><td class="rt-rank">9</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">20</td><td class="num rt-turn">$2,84 млн</td><td class="num">$142 тыс</td></tr>
+<tr class=""><td class="rt-rank">10</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">14</td><td class="num rt-turn">$1,94 млн</td><td class="num">$139 тыс</td></tr>
+<tr class=""><td class="rt-rank">11</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">16</td><td class="num rt-turn">$1,91 млн</td><td class="num">$120 тыс</td></tr>
+<tr class=""><td class="rt-rank">12</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">11</td><td class="num rt-turn">$1,56 млн</td><td class="num">$142 тыс</td></tr>
+<tr class=""><td class="rt-rank">13</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">4</td><td class="num rt-turn">$902 тыс</td><td class="num">$226 тыс</td></tr>
+<tr class=""><td class="rt-rank">14</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">6</td><td class="num rt-turn">$708 тыс</td><td class="num">$118 тыс</td></tr>
+<tr class=""><td class="rt-rank">15</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">3</td><td class="num rt-turn">$359 тыс</td><td class="num">$120 тыс</td></tr>
+<tr class=""><td class="rt-rank">16</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$320 тыс</td><td class="num">$320 тыс</td></tr>
+<tr class=""><td class="rt-rank">17</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num">$250 тыс</td></tr>
+<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -1704,69 +1654,36 @@ render();
     <section class="rt-period">
       <h2 class="rt-period-title">2026 год</h2>
       <p class="rt-sub">с января по текущий месяц 2026 · 23 действующих брокеров</p>
-      <div class="rt-metric-group" data-m="turnover"><div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-turnover">$3,58 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-turnover">$1,66 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Карина Ахметова</span><span class="rt-medal-val rt-medal-val-turnover">$991 тыс</span></div></div>
+      <div class="rt-metric-group"><div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val">$3,58 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val">$1,66 млн</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Карина Ахметова</span><span class="rt-medal-val">$991 тыс</span></div></div>
         <div class="rt-table-wrap">
           <table class="rt-table">
             <thead><tr>
               <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>
-              <th class="num">Комиссия</th><th class="num">Средний чек</th>
+              <th class="num">Средний чек</th>
             </tr></thead>
-            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">17</td><td class="num rt-turn">$3,58 млн</td><td class="num rt-comm">$200 тыс</td><td class="num">$211 тыс</td></tr>
-<tr class=""><td class="rt-rank">2</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">8</td><td class="num rt-turn">$1,66 млн</td><td class="num rt-comm">$115 тыс</td><td class="num">$207 тыс</td></tr>
-<tr class=""><td class="rt-rank">3</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">7</td><td class="num rt-turn">$991 тыс</td><td class="num rt-comm">$63 тыс</td><td class="num">$142 тыс</td></tr>
-<tr class=""><td class="rt-rank">4</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">4</td><td class="num rt-turn">$834 тыс</td><td class="num rt-comm">$49 тыс</td><td class="num">$209 тыс</td></tr>
-<tr class=""><td class="rt-rank">5</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">3</td><td class="num rt-turn">$688 тыс</td><td class="num rt-comm">$41 тыс</td><td class="num">$229 тыс</td></tr>
-<tr class=""><td class="rt-rank">6</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">3</td><td class="num rt-turn">$590 тыс</td><td class="num rt-comm">$40 тыс</td><td class="num">$197 тыс</td></tr>
-<tr class=""><td class="rt-rank">7</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">3</td><td class="num rt-turn">$369 тыс</td><td class="num rt-comm">$22 тыс</td><td class="num">$123 тыс</td></tr>
-<tr class=""><td class="rt-rank">8</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">3</td><td class="num rt-turn">$359 тыс</td><td class="num rt-comm">$22 тыс</td><td class="num">$120 тыс</td></tr>
-<tr class=""><td class="rt-rank">9</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">2</td><td class="num rt-turn">$353 тыс</td><td class="num rt-comm">$21 тыс</td><td class="num">$176 тыс</td></tr>
-<tr class=""><td class="rt-rank">10</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">2</td><td class="num rt-turn">$339 тыс</td><td class="num rt-comm">$26 тыс</td><td class="num">$169 тыс</td></tr>
-<tr class=""><td class="rt-rank">11</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$320 тыс</td><td class="num rt-comm">$19 тыс</td><td class="num">$320 тыс</td></tr>
-<tr class=""><td class="rt-rank">12</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num rt-comm">$15 тыс</td><td class="num">$250 тыс</td></tr>
-<tr class=""><td class="rt-rank">13</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$140 тыс</td><td class="num rt-comm">$8 тыс</td><td class="num">$140 тыс</td></tr>
-<tr class="rt-zero"><td class="rt-rank">14</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">15</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">16</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">17</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="rt-metric-group" data-m="comm"><div class="rt-top3-solo"><h4>Топ-3 · по выручке</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-comm">$200 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Валентина Бондаренко</span><span class="rt-medal-val rt-medal-val-comm">$115 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥉</span><span class="rt-medal-name">Карина Ахметова</span><span class="rt-medal-val rt-medal-val-comm">$63 тыс</span></div></div>
-        <div class="rt-table-wrap">
-          <table class="rt-table">
-            <thead><tr>
-              <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>
-              <th class="num">Комиссия</th><th class="num">Средний чек</th>
-            </tr></thead>
-            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">17</td><td class="num rt-turn">$3,58 млн</td><td class="num rt-comm">$200 тыс</td><td class="num">$211 тыс</td></tr>
-<tr class=""><td class="rt-rank">2</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">8</td><td class="num rt-turn">$1,66 млн</td><td class="num rt-comm">$115 тыс</td><td class="num">$207 тыс</td></tr>
-<tr class=""><td class="rt-rank">3</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">7</td><td class="num rt-turn">$991 тыс</td><td class="num rt-comm">$63 тыс</td><td class="num">$142 тыс</td></tr>
-<tr class=""><td class="rt-rank">4</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">4</td><td class="num rt-turn">$834 тыс</td><td class="num rt-comm">$49 тыс</td><td class="num">$209 тыс</td></tr>
-<tr class=""><td class="rt-rank">5</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">3</td><td class="num rt-turn">$688 тыс</td><td class="num rt-comm">$41 тыс</td><td class="num">$229 тыс</td></tr>
-<tr class=""><td class="rt-rank">6</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">3</td><td class="num rt-turn">$590 тыс</td><td class="num rt-comm">$40 тыс</td><td class="num">$197 тыс</td></tr>
-<tr class=""><td class="rt-rank">7</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">2</td><td class="num rt-turn">$339 тыс</td><td class="num rt-comm">$26 тыс</td><td class="num">$169 тыс</td></tr>
-<tr class=""><td class="rt-rank">8</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">3</td><td class="num rt-turn">$369 тыс</td><td class="num rt-comm">$22 тыс</td><td class="num">$123 тыс</td></tr>
-<tr class=""><td class="rt-rank">9</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">3</td><td class="num rt-turn">$359 тыс</td><td class="num rt-comm">$22 тыс</td><td class="num">$120 тыс</td></tr>
-<tr class=""><td class="rt-rank">10</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">2</td><td class="num rt-turn">$353 тыс</td><td class="num rt-comm">$21 тыс</td><td class="num">$176 тыс</td></tr>
-<tr class=""><td class="rt-rank">11</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$320 тыс</td><td class="num rt-comm">$19 тыс</td><td class="num">$320 тыс</td></tr>
-<tr class=""><td class="rt-rank">12</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num rt-comm">$15 тыс</td><td class="num">$250 тыс</td></tr>
-<tr class=""><td class="rt-rank">13</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$140 тыс</td><td class="num rt-comm">$8 тыс</td><td class="num">$140 тыс</td></tr>
-<tr class="rt-zero"><td class="rt-rank">14</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">15</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">16</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">17</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr></tbody>
+            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">17</td><td class="num rt-turn">$3,58 млн</td><td class="num">$211 тыс</td></tr>
+<tr class=""><td class="rt-rank">2</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">8</td><td class="num rt-turn">$1,66 млн</td><td class="num">$207 тыс</td></tr>
+<tr class=""><td class="rt-rank">3</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">7</td><td class="num rt-turn">$991 тыс</td><td class="num">$142 тыс</td></tr>
+<tr class=""><td class="rt-rank">4</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">4</td><td class="num rt-turn">$834 тыс</td><td class="num">$209 тыс</td></tr>
+<tr class=""><td class="rt-rank">5</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">3</td><td class="num rt-turn">$688 тыс</td><td class="num">$229 тыс</td></tr>
+<tr class=""><td class="rt-rank">6</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">3</td><td class="num rt-turn">$590 тыс</td><td class="num">$197 тыс</td></tr>
+<tr class=""><td class="rt-rank">7</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">3</td><td class="num rt-turn">$369 тыс</td><td class="num">$123 тыс</td></tr>
+<tr class=""><td class="rt-rank">8</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">3</td><td class="num rt-turn">$359 тыс</td><td class="num">$120 тыс</td></tr>
+<tr class=""><td class="rt-rank">9</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">2</td><td class="num rt-turn">$353 тыс</td><td class="num">$176 тыс</td></tr>
+<tr class=""><td class="rt-rank">10</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">2</td><td class="num rt-turn">$339 тыс</td><td class="num">$169 тыс</td></tr>
+<tr class=""><td class="rt-rank">11</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$320 тыс</td><td class="num">$320 тыс</td></tr>
+<tr class=""><td class="rt-rank">12</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num">$250 тыс</td></tr>
+<tr class=""><td class="rt-rank">13</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">1</td><td class="num rt-turn">$140 тыс</td><td class="num">$140 тыс</td></tr>
+<tr class="rt-zero"><td class="rt-rank">14</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">15</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">16</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">17</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -1774,69 +1691,36 @@ render();
     <section class="rt-period">
       <h2 class="rt-period-title">Август 2026</h2>
       <p class="rt-sub">текущий месяц · 23 действующих брокеров</p>
-      <div class="rt-metric-group" data-m="turnover"><div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-turnover">$419 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Александр Мужейко</span><span class="rt-medal-val rt-medal-val-turnover">$250 тыс</span></div></div>
+      <div class="rt-metric-group"><div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val">$419 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Александр Мужейко</span><span class="rt-medal-val">$250 тыс</span></div></div>
         <div class="rt-table-wrap">
           <table class="rt-table">
             <thead><tr>
               <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>
-              <th class="num">Комиссия</th><th class="num">Средний чек</th>
+              <th class="num">Средний чек</th>
             </tr></thead>
-            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">2</td><td class="num rt-turn">$419 тыс</td><td class="num rt-comm">$25 тыс</td><td class="num">$209 тыс</td></tr>
-<tr class=""><td class="rt-rank">2</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num rt-comm">$15 тыс</td><td class="num">$250 тыс</td></tr>
-<tr class="rt-zero"><td class="rt-rank">3</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">4</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">5</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">6</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">7</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">8</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">9</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">10</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">11</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">12</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">13</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">14</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">15</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">16</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">17</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="rt-metric-group" data-m="comm"><div class="rt-top3-solo"><h4>Топ-3 · по выручке</h4><div class="rt-medal"><span class="rt-medal-rank">🥇</span><span class="rt-medal-name">Андрей Бойко</span><span class="rt-medal-val rt-medal-val-comm">$25 тыс</span></div><div class="rt-medal"><span class="rt-medal-rank">🥈</span><span class="rt-medal-name">Александр Мужейко</span><span class="rt-medal-val rt-medal-val-comm">$15 тыс</span></div></div>
-        <div class="rt-table-wrap">
-          <table class="rt-table">
-            <thead><tr>
-              <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>
-              <th class="num">Комиссия</th><th class="num">Средний чек</th>
-            </tr></thead>
-            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">2</td><td class="num rt-turn">$419 тыс</td><td class="num rt-comm">$25 тыс</td><td class="num">$209 тыс</td></tr>
-<tr class=""><td class="rt-rank">2</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num rt-comm">$15 тыс</td><td class="num">$250 тыс</td></tr>
-<tr class="rt-zero"><td class="rt-rank">3</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">4</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">5</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">6</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">7</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">8</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">9</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">10</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">11</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">12</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">13</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">14</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">15</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">16</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">17</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr>
-<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num rt-comm">$0</td><td class="num">—</td></tr></tbody>
+            <tbody><tr class=""><td class="rt-rank">1</td><td class="rt-name">Андрей Бойко<span class="rt-pos">3 года 7 мес</span></td><td class="num">2</td><td class="num rt-turn">$419 тыс</td><td class="num">$209 тыс</td></tr>
+<tr class=""><td class="rt-rank">2</td><td class="rt-name">Александр Мужейко<span class="rt-pos">4 мес</span></td><td class="num">1</td><td class="num rt-turn">$250 тыс</td><td class="num">$250 тыс</td></tr>
+<tr class="rt-zero"><td class="rt-rank">3</td><td class="rt-name">Валентина Бондаренко<span class="rt-pos">3 года 2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">4</td><td class="rt-name">Андрей Лиштва<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">5</td><td class="rt-name">Александр Подопригора<span class="rt-pos">2 года 10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">6</td><td class="rt-name">Владислав Колода<span class="rt-pos">2 года 7 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">7</td><td class="rt-name">Анастасия Присяжнюк<span class="rt-pos">2 года 5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">8</td><td class="rt-name">Рената Бадюл<span class="rt-pos">2 года 3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">9</td><td class="rt-name">Виктория Багазий<span class="rt-pos">2 года 2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">10</td><td class="rt-name">Татьяна Бондаренко<span class="rt-pos">2 года 1 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">11</td><td class="rt-name">Карина Ахметова<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">12</td><td class="rt-name">Юлия Гудзенко<span class="rt-pos">1 год 6 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">13</td><td class="rt-name">Григорий Решетов<span class="rt-pos">1 год 3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">14</td><td class="rt-name">Максим Рувинский<span class="rt-pos">11 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">15</td><td class="rt-name">Марина Цыганок<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">16</td><td class="rt-name">Ирина Лисниченко<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">17</td><td class="rt-name">Кристина Коновалова<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">18</td><td class="rt-name">Анастасия Сорокина<span class="rt-pos">10 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">19</td><td class="rt-name">Андрей Гедикьянц<span class="rt-pos">5 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">20</td><td class="rt-name">Ольга Марценюк<span class="rt-pos">3 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">21</td><td class="rt-name">Khalad Khoualfi<span class="rt-pos">2 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">22</td><td class="rt-name">Светлана Гуляева<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr>
+<tr class="rt-zero"><td class="rt-rank">23</td><td class="rt-name">Эльнар Зейналов<span class="rt-pos">0 мес</span></td><td class="num">0</td><td class="num rt-turn">$0</td><td class="num">—</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -1844,16 +1728,6 @@ render();
 <footer class="footer" style="margin-top:24px">
   <span>Источники: <a href="https://docs.google.com/spreadsheets/d/12_D7HbtiuZDoHQRiVrSG6Q-4_wbCBN5xiRo2iYScCPk/edit" target="_blank" rel="noopener">Сделки Бали</a> (ОП1–ОП4) · <a href="https://docs.google.com/spreadsheets/d/1TLoMnXpgYWZwh0_0PupxWOCbibe37lwsMmibhBgbxs8/edit" target="_blank" rel="noopener">Staff_Legion</a> (действующие сотрудники)</span>
 </footer>
-<script>
-document.getElementById('rtMetricSwitch')?.addEventListener('click', (e) => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const key = e.target.dataset.metric;
-  const page = e.target.closest('.rt-page');
-  page.dataset.metric = key;
-  e.target.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-  e.target.classList.add('active');
-});
-</script>
 </div>
 </div>
 

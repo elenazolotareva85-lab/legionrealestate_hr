@@ -590,44 +590,42 @@ def build_rating_html(rating, standalone=False):
     cur_label = f'{month_names[cur_m]} {cur_y}' if cur_m else ''
 
     def totals_for(b, pred):
-        deals = turnover = comm = 0
+        deals = turnover = 0
         for mk, (n, t, c) in b.get('months', {}).items():
             y, m = (int(x) for x in mk.split('-'))
             if pred(y, m):
-                deals += n; turnover += t; comm += c
-        return deals, turnover, comm
+                deals += n; turnover += t
+        return deals, turnover
 
     MEDALS = ['🥇', '🥈', '🥉']
-    METRICS = [('turnover', 'по обороту', lambda r: r[2], 'rt-medal-val-turnover'),
-               ('comm', 'по выручке', lambda r: r[3], 'rt-medal-val-comm')]
 
     def rows_for(pred):
         rows = []
         for b in brokers:
-            deals, turnover, comm = totals_for(b, pred)
-            rows.append((b, deals, turnover, comm))
+            deals, turnover = totals_for(b, pred)
+            rows.append((b, deals, turnover))
         return rows
 
-    def render_top3(rows, label, pick, val_cls):
-        items = sorted((r for r in rows if r[1] > 0), key=lambda r: -pick(r))[:3]
+    def render_top3(rows):
+        items = sorted((r for r in rows if r[1] > 0), key=lambda r: -r[2])[:3]
         if not items:
             return ''
         cards = ''.join(
             '<div class="rt-medal">'
             '<span class="rt-medal-rank">' + MEDALS[i] + '</span>'
             '<span class="rt-medal-name">' + _esc(r[0]['name']) + '</span>'
-            '<span class="rt-medal-val ' + val_cls + '">' + _money(pick(r)) + '</span>'
+            '<span class="rt-medal-val">' + _money(r[2]) + '</span>'
             '</div>'
             for i, r in enumerate(items)
         )
-        return '<div class="rt-top3-solo"><h4>Топ-3 · ' + label + '</h4>' + cards + '</div>'
+        return '<div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4>' + cards + '</div>'
 
-    def render_table(rows, empty_note, pick):
-        rows = sorted(rows, key=lambda r: -pick(r))
+    def render_table(rows, empty_note):
+        rows = sorted(rows, key=lambda r: -r[2])
         body = []
         rank = 0
         any_deals = False
-        for b, deals, turnover, comm in rows:
+        for b, deals, turnover in rows:
             avg = turnover / deals if deals else 0
             rank += 1
             if deals:
@@ -641,25 +639,24 @@ def build_rating_html(rating, standalone=False):
                 '</td>'
                 '<td class="num">' + _int(deals) + '</td>'
                 '<td class="num rt-turn">' + _money(turnover) + '</td>'
-                '<td class="num rt-comm">' + _money(comm) + '</td>'
                 '<td class="num">' + (_money(avg) if deals else '—') + '</td>'
                 '</tr>'
             )
         if not any_deals:
-            body.append('<tr><td colspan="6" class="rt-empty">' + empty_note + '</td></tr>')
+            body.append('<tr><td colspan="5" class="rt-empty">' + empty_note + '</td></tr>')
         return '\n'.join(body)
 
-    def render_group(rows, note, metric_key, label, pick, val_cls):
+    def render_group(rows, note):
         return (
-            '\n      <div class="rt-metric-group" data-m="' + metric_key + '">'
-            + render_top3(rows, label, pick, val_cls) +
+            '\n      <div class="rt-metric-group">'
+            + render_top3(rows) +
             '\n        <div class="rt-table-wrap">'
             '\n          <table class="rt-table">'
             '\n            <thead><tr>'
             '\n              <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>'
-            '\n              <th class="num">Комиссия</th><th class="num">Средний чек</th>'
+            '\n              <th class="num">Средний чек</th>'
             '\n            </tr></thead>'
-            '\n            <tbody>' + render_table(rows, note, pick) + '</tbody>'
+            '\n            <tbody>' + render_table(rows, note) + '</tbody>'
             '\n          </table>'
             '\n        </div>'
             '\n      </div>'
@@ -672,22 +669,11 @@ def build_rating_html(rating, standalone=False):
          lambda y, m: y == cur_y and m == cur_m, 'В ' + cur_label + ' сделок пока нет.'),
     ]
 
-    switch_html = (
-        '<div class="rt-metric-switch" id="rtMetricSwitch" role="group">' +
-        ''.join(
-            '<button class="' + ('active' if key == 'comm' else '') + '" data-metric="' + key + '">Ранжировать: ' + label + '</button>'
-            for key, label, _pick, _cls in METRICS
-        ) + '</div>'
-    )
-
     sections_html = ''.join(
         '\n    <section class="rt-period">'
         '\n      <h2 class="rt-period-title">' + label + '</h2>'
         '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров</p>' +
-        ''.join(
-            render_group(rows_for(pred), note, metric_key, m_label, pick, val_cls)
-            for metric_key, m_label, pick, val_cls in METRICS
-        ) +
+        render_group(rows_for(pred), note) +
         '\n    </section>'
         for label, sub, pred, note in periods
     )
@@ -724,17 +710,6 @@ def build_rating_html(rating, standalone=False):
 .rt-masthead h1 { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; margin: 0; color: var(--ink); }
 .rt-masthead p { color: var(--muted); font-size: 11px; margin: 2px 0 0; font-family: var(--font-sans); }
 .rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
-.rt-metric-switch {
-  display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden;
-  margin-bottom: 14px; position: sticky; top: 6px; z-index: 5; background: var(--ground);
-}
-.rt-metric-switch button {
-  background: var(--surface); border: none; border-right: 1px solid var(--rule);
-  padding: 6px 14px; font-family: var(--font-sans); color: var(--muted);
-  cursor: pointer; letter-spacing: 0.04em; font-weight: 600; text-transform: uppercase; font-size: 10px;
-}
-.rt-metric-switch button:last-child { border-right: none; }
-.rt-metric-switch button.active { background: var(--ink); color: var(--ground); }
 .rt-period { margin-bottom: 22px; }
 .rt-period:last-child { margin-bottom: 0; }
 .rt-period-title {
@@ -742,9 +717,6 @@ def build_rating_html(rating, standalone=False):
   padding-top: 10px; border-top: 2px solid var(--ink);
 }
 .rt-period:first-child .rt-period-title { border-top: none; padding-top: 0; }
-.rt-metric-group[data-m] { display: none; }
-.rt-page[data-metric="turnover"] .rt-metric-group[data-m="turnover"] { display: block; }
-.rt-page[data-metric="comm"] .rt-metric-group[data-m="comm"] { display: block; }
 .rt-sub { color: var(--muted); font-size: 11px; margin: 0 0 8px; }
 .rt-table-wrap { overflow-x: auto; border: 1px solid var(--rule); }
 .rt-table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 11.5px; }
@@ -762,8 +734,7 @@ def build_rating_html(rating, standalone=False):
 .rt-name { font-weight: 500; white-space: nowrap; }
 .rt-pos { font-size: 10px; color: var(--muted); font-weight: 400; font-family: var(--font-sans); }
 .rt-pos::before { content: ' · '; }
-[data-m="turnover"] .rt-turn { font-weight: 600; color: var(--accent-2); }
-[data-m="comm"] .rt-comm { font-weight: 600; color: var(--accent); }
+.rt-turn { font-weight: 600; color: var(--accent-2); }
 .rt-empty { text-align: center; color: var(--muted); padding: 24px; }
 .rt-top3-solo {
   background: var(--surface); border: 1px solid var(--rule); padding: 8px 12px; margin-bottom: 10px;
@@ -781,24 +752,10 @@ def build_rating_html(rating, standalone=False):
 .rt-medal-rank { font-size: 12px; line-height: 1; }
 .rt-medal-name { font-family: var(--font-sans); font-size: 11.5px; font-weight: 500; flex: 1; }
 .rt-medal-val {
-  font-family: var(--font-mono); font-size: 11.5px; font-weight: 600;
+  font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--accent-2);
   font-variant-numeric: tabular-nums;
 }
-.rt-medal-val-turnover { color: var(--accent-2); }
-.rt-medal-val-comm { color: var(--accent); }
 </style>'''
-
-    script = '''
-<script>
-document.getElementById('rtMetricSwitch')?.addEventListener('click', (e) => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const key = e.target.dataset.metric;
-  const page = e.target.closest('.rt-page');
-  page.dataset.metric = key;
-  e.target.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-  e.target.classList.add('active');
-});
-</script>'''
 
     footer = (
         '\n<footer class="footer" style="margin-top:24px">'
@@ -816,8 +773,8 @@ document.getElementById('rtMetricSwitch')?.addEventListener('click', (e) => {
         '\n</div>'
     ) if standalone else ''
 
-    return ('<div class="rt-page" data-metric="comm">' + style + masthead +
-            switch_html + sections_html + footer + script + '\n</div>')
+    return ('<div class="rt-page">' + style + masthead +
+            sections_html + footer + '\n</div>')
 
 
 def build_rating_page(rating):
