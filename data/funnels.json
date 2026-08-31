@@ -4173,59 +4173,6 @@
     }
   },
   {
-    "name": "Виталий Медников",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2023-12-01",
-    "last_lead": "2025-02-22",
-    "periods": {
-      "all": {
-        "Bali": {
-          "LOST": {
-            "n": 96,
-            "budget": 12314002.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 96,
-            "budget": 12314002.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 36,
-            "budget": 3484002.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 36,
-            "budget": 3484002.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
     "name": "Карина Ахметова",
     "role": "broker",
     "position": "менеджер по продажам",
@@ -5242,37 +5189,6 @@
           "PRESENTATION": {
             "n": 1,
             "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Jess Joseph Abezis",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2024-04-15",
-    "last_lead": "2024-12-29",
-    "periods": {
-      "all": {
-        "Europe": {
-          "LOST": {
-            "n": 28,
-            "budget": 13840001.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 28,
-            "budget": 13840001.0
           },
           "WON": {
             "n": 0,
