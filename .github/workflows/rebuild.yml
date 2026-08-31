@@ -2,7 +2,8 @@ name: Rebuild dashboard
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # каждый день 06:00 UTC = 09:00 Europe/Sofia
+    - cron: '0 3 * * *'  # каждый день 03:00 UTC = 06:00 Europe/Kyiv летом (EEST, UTC+3);
+                          # зимой (EET, UTC+2) фактически будет 05:00 Киева — cron не следит за DST
   workflow_dispatch:      # ручной запуск через Actions → Run workflow
 
 jobs:
@@ -46,7 +47,7 @@ jobs:
         run: |
           git config user.name  "dashboard-bot"
           git config user.email "dashboard-bot@users.noreply.github.com"
-          git add index.html leads.html data/*.json || true
+          git add index.html leads.html rating.html data/*.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
