@@ -588,6 +588,9 @@ def build_rating_html(rating, standalone=False):
 
     hidden = {_norm(n) for n in NON_BROKERS}
     brokers = [b for b in rating.get('brokers', []) if _norm(b['name']) not in hidden]
+    # РОПы (Безносюк, Семчук) — по просьбе Елены видны только во «Весь период»,
+    # в остальных вкладках (месяц/квартал/полгода/год) по-прежнему скрыты.
+    brokers_incl_rops = rating.get('brokers', [])
     cur_y, cur_m = rating.get('cur_year'), rating.get('cur_month')
     month_names = ['', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
                    'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
@@ -603,9 +606,9 @@ def build_rating_html(rating, standalone=False):
 
     MEDALS = ['🥇', '🥈', '🥉']
 
-    def rows_for(pred):
+    def rows_for(pred, broker_list=None):
         rows = []
-        for b in brokers:
+        for b in (broker_list if broker_list is not None else brokers):
             deals, turnover = totals_for(b, pred)
             rows.append((b, deals, turnover))
         return rows
@@ -703,8 +706,9 @@ def build_rating_html(rating, standalone=False):
     )
     sections_html = ''.join(
         '\n    <div class="rt-pperiod' + (' active' if i == 0 else '') + '" id="rtp-' + key + '">'
-        '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров · окупаемость — из «Статистика по брокерам» (турнирная таблица)</p>' +
-        render_group(rows_for(pred), note, roi_keys) +
+        '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers_incl_rops if key == 'all' else brokers)) +
+        ' действующих брокеров · окупаемость — из «Статистика по брокерам» (турнирная таблица)</p>' +
+        render_group(rows_for(pred, brokers_incl_rops if key == 'all' else None), note, roi_keys) +
         '\n    </div>'
         for i, (key, label, sub, pred, note, roi_keys) in enumerate(periods)
     )
