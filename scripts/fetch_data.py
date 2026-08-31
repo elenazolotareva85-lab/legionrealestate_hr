@@ -147,14 +147,22 @@ block2 = parse_stat(range(51, 80))
 (DATA / 'stat.json').write_text(json.dumps({'combined': combined, 'block2': block2}, ensure_ascii=False, indent=2, sort_keys=True))
 
 # Declined
+# Обе стороны сравнения считаются формулой «Финальной оценки» из листа:
+# (маржа+кешбек + маржа партнёрки − реклама) / (выручка + выручка партнёрки).
+# Раньше 2025 брался как маржа/выручка, без вычета рекламы и без партнёрки,
+# и сравнивался с final_yield за 2026 — падение завышалось в среднем на 25 п.п.
 declined = []
 for n, c in combined.items():
     b = block2.get(n, {})
     if b.get('deals', 0) == 0: continue
     rev25 = max(0, c['revenue'] - b.get('revenue', 0))
     mar25 = max(0, c['margin_cb'] - b.get('margin_cb', 0))
-    if rev25 == 0: continue
-    y25 = 100 * mar25 / rev25
+    mkt25 = max(0, c['mkt_spend'] - b.get('mkt_spend', 0))
+    prev25 = max(0, c['partner_rev'] - b.get('partner_rev', 0))
+    pmar25 = max(0, c['partner_margin'] - b.get('partner_margin', 0))
+    base25 = rev25 + prev25
+    if base25 == 0: continue
+    y25 = 100 * (mar25 + pmar25 - mkt25) / base25
     y26 = b.get('final_yield', 0)
     drop = y25 - y26
     if drop >= 10:
