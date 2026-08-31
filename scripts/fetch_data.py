@@ -733,7 +733,7 @@ for r in rt_rows[1:]:
             else 'lead' if any(k in low for k in LEAD_POS) else None)
     if not role: continue                                        # квалификаторы, ассистенты, бэк-офис
     rt_staff.append({'name': name, 'pos': pos, 'role': role, 'dept': r[12].strip(),
-                     'head': r[5].strip(), 'start': r[0].strip()})
+                     'head': r[5].strip(), 'start': r[0].strip(), 'tenure_months': num(r[1])})
 rt_by_norm = {norm(s['name']): s for s in rt_staff}
 
 # 7.2 сделки: строка = сделка, если есть менеджер и цена объекта > 0, а год похож на год
@@ -793,5 +793,42 @@ for s in rt_staff:
 print(f'   rating: {len(rt_staff)} действующих ({sum(1 for s in rt_staff if s["role"] == "broker")} брокеров), '
       f'{len(rt_deal_rows)} сделок в реестре, {rt_future} отброшено как будущие месяцы')
 
+
+# ── 8. План на месяц: СНГ vs Международное ───────────
+print('8. Fetch monthly plan (СНГ / международное)...')
+
+LEADS_REQUEST_ID = '1tMJKZI4Jt1OZQxIlXs_Mx-mt1G2tdlT34H-uCbQ-cI0'
+LEADS_REQUEST_SHEET = 'Запрос на лиды сентябрь 2026'   # обновлять вручную с новым месяцем
+
+
+def lr_find(rows, label):
+    for r in rows:
+        if len(r) > 1 and r[1].strip() == label:
+            return r
+    return None
+
+
+def lr_get(row, idx):
+    return num(row[idx]) if row and len(row) > idx else None
+
+
+lr_rows = gc.open_by_key(LEADS_REQUEST_ID).worksheet(LEADS_REQUEST_SHEET).get_all_values()
+lr_sng, lr_intl, lr_total = (lr_find(lr_rows, 'План СНГ + PL'), lr_find(lr_rows, 'План Англ'),
+                              lr_find(lr_rows, 'Всего'))
+lr_month_label = re.sub(r'^Запрос на лиды\s*', '', LEADS_REQUEST_SHEET).strip()
+
+month_plan = {
+    'month_label': lr_month_label,
+    'segments': [
+        {'key': 'sng', 'label': 'СНГ + PL', 'leads': lr_get(lr_sng, 3), 'conv': lr_get(lr_sng, 4),
+         'avg_check': lr_get(lr_sng, 5), 'plan': lr_get(lr_sng, 6)},
+        {'key': 'intl', 'label': 'Международное (англ)', 'leads': lr_get(lr_intl, 3), 'conv': lr_get(lr_intl, 4),
+         'avg_check': lr_get(lr_intl, 5), 'plan': lr_get(lr_intl, 6)},
+    ],
+    'total_plan': lr_get(lr_total, 6),
+}
+(DATA / 'month_plan.json').write_text(json.dumps(month_plan, ensure_ascii=False, indent=2))
+print(f'   month plan ({lr_month_label}): СНГ ${month_plan["segments"][0]["plan"]:,.0f}, '
+      f'Intl ${month_plan["segments"][1]["plan"]:,.0f}')
 
 print('\nAll data fetched to data/*.json')

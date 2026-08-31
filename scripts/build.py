@@ -43,6 +43,7 @@ stat = load('stat.json', {'combined': {}, 'block2': {}})
 active_brokers = load('active_brokers.json', [])
 phuket = load('phuket.json', {})
 rating = load('rating.json', {})
+month_plan = load('month_plan.json', {})
 
 # ── Общие хелперы форматирования ─────────────────────
 BURN_MIN_LEADS = 20   # below this a zero-deal broker is noise, not a signal
@@ -80,6 +81,18 @@ def _plural(n, forms):
     if 2 <= n <= 4:
         return forms[1]
     return forms[2]
+
+
+def _tenure(months):
+    if not months or months <= 0:
+        return ''
+    years, rem = divmod(round(months), 12)
+    parts = []
+    if years:
+        parts.append(f'{years} ' + _plural(years, ['год', 'года', 'лет']))
+    if rem or not years:
+        parts.append(f'{rem} ' + _plural(rem, ['мес', 'мес', 'мес']))
+    return ' '.join(parts)
 
 
 def _names(names, limit=4):
@@ -167,6 +180,76 @@ def build_top_planfact_html():
 ''')
 
 
+def build_month_plan_html(mp):
+    """План на месяц (СНГ+PL / Международное) из листа «Запрос на лиды» — реальные
+    цифры, без факта: сам месяц ещё не наступил или только начался."""
+    if not mp or not mp.get('segments'):
+        return ''
+
+    segs = mp['segments']
+    total = mp.get('total_plan') or sum(s.get('plan') or 0 for s in segs)
+    colors = {'sng': 'sng', 'intl': 'intl'}
+
+    split_bar = ''.join(
+        '<div class="mp-split-seg ' + colors.get(s['key'], 'sng') + '" style="width:' +
+        str(round((s.get('plan') or 0) / total * 100, 2) if total else 0) + '%"></div>'
+        for s in segs
+    )
+
+    def card(s):
+        pct = round((s.get('plan') or 0) / total * 100) if total else 0
+        meta = []
+        if s.get('leads'): meta.append(_int(s['leads']) + ' лид.')
+        if s.get('conv'): meta.append(f"конв. {s['conv']:.1f}%".replace('.', ','))
+        if s.get('avg_check'): meta.append('чек ' + _money(s['avg_check']))
+        return (
+            '<div class="mp-card ' + colors.get(s['key'], 'sng') + '">'
+            '<div class="mp-card-label">' + _esc(s['label']) + '<span class="mp-card-share">' + str(pct) + '%</span></div>'
+            '<div class="mp-card-plan">' + _money(s.get('plan') or 0) + '</div>'
+            '<div class="mp-card-meta">' + ' · '.join(meta) + '</div>'
+            '</div>'
+        )
+
+    return ('''
+<style>
+.mp-section { max-width: 1280px; margin: 0 auto; padding: 4px 32px 0; }
+.mp-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.mp-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+.mp-badge {
+  font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
+}
+.mp-split-bar { display: flex; height: 10px; border-radius: 2px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--rule); }
+.mp-split-seg.sng { background: var(--accent); }
+.mp-split-seg.intl { background: var(--accent-2); }
+.mp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
+@media (max-width: 700px) { .mp-grid { grid-template-columns: 1fr; } }
+.mp-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid; padding: 14px 16px; }
+.mp-card.sng { border-left-color: var(--accent); }
+.mp-card.intl { border-left-color: var(--accent-2); }
+.mp-card-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-sans); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); font-weight: 600; margin-bottom: 8px;
+}
+.mp-card-share { font-family: var(--font-mono); color: var(--ink-2); font-weight: 600; }
+.mp-card-plan { font-family: var(--font-display); font-weight: 500; font-size: 26px; margin-bottom: 4px; }
+.mp-card-meta { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+.mp-total { font-family: var(--font-sans); font-size: 12px; color: var(--ink-2); margin: 0 0 22px; }
+.mp-total strong { color: var(--ink); font-family: var(--font-mono); font-size: 13px; }
+</style>
+<section class="mp-section">
+  <div class="mp-head">
+    <h2>План на ''' + _esc(mp.get('month_label', '')) + ''' · оборот</h2>
+    <span class="mp-badge">Источник: «Запрос на лиды»</span>
+  </div>
+  <div class="mp-split-bar">''' + split_bar + '''</div>
+  <div class="mp-grid">''' + ''.join(card(s) for s in segs) + '''</div>
+  <p class="mp-total">Итого план: <strong>''' + _money(total) + '''</strong></p>
+</section>
+''')
+
+
 def compute_signals():
     combined = stat.get('combined') or {}
     active = {_norm(b['name']) for b in active_brokers if b.get('name')}
@@ -190,7 +273,8 @@ def compute_signals():
 # ── 1. Base HTML ─────────────────────────────────────
 base = (TEMPLATES / 'komissia_base.html').read_text()
 base = base.replace('  </header>\n\n  <p class="lede" id="lede">',
-                     '  </header>\n' + build_top_planfact_html() + '\n  <p class="lede" id="lede">', 1)
+                     '  </header>\n' + build_top_planfact_html() + build_month_plan_html(month_plan) +
+                     '\n  <p class="lede" id="lede">', 1)
 
 # ── 2-3. Merge with a Funnels tab structure ─────────
 # Simple: wrap komissia inside a view container with nav tabs
@@ -552,7 +636,9 @@ def build_rating_html(rating, standalone=False):
             body.append(
                 '<tr class="' + row_cls.strip() + '">'
                 '<td class="rt-rank">' + str(rank) + '</td>'
-                '<td class="rt-name">' + _esc(b['name']) + '<span class="rt-pos">' + _esc(b['pos']) + '</span></td>'
+                '<td class="rt-name">' + _esc(b['name']) +
+                ('<span class="rt-pos">' + _esc(_tenure(b.get('tenure_months'))) + '</span>' if _tenure(b.get('tenure_months')) else '') +
+                '</td>'
                 '<td class="num">' + _int(deals) + '</td>'
                 '<td class="num rt-turn">' + _money(turnover) + '</td>'
                 '<td class="num rt-comm">' + _money(comm) + '</td>'
