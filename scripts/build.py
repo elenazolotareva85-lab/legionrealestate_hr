@@ -43,6 +43,7 @@ leads_by_source = load('leads_by_source.json', [])
 stat = load('stat.json', {'combined': {}, 'block2': {}})
 active_brokers = load('active_brokers.json', [])
 phuket = load('phuket.json', {})
+ledger2026 = load('ledger2026.json', {})
 rating = load('rating.json', {})
 month_plan = load('month_plan.json', {})
 
@@ -1207,6 +1208,49 @@ def refresh_roster(html):
     return html[:start] + json.dumps(recs, ensure_ascii=False) + html[k + 1:]
 
 
+# ── 4a1. Свежий реестр 2026 вместо снапшота ──────────
+# month_2026 и year_deals['2026'] в шаблоне заморожены: у Бойко там 14 сделок
+# при 17 в «Сделках Бали», августа нет вовсе. Реестр — приоритетный источник,
+# поэтому текущий год пересобираем из него каждую сборку.
+def refresh_ledger_2026(html):
+    if not ledger2026:
+        print('   WARNING: ledger2026.json пуст — помесячная разбивка осталась из снапшота')
+        return html
+    m = re.search(r'(?:const|let|var)\s+records\s*=\s*', html)
+    if not m:
+        return html
+    start = m.end()
+    depth = 0
+    for k in range(start, len(html)):
+        if html[k] == '[':
+            depth += 1
+        elif html[k] == ']':
+            depth -= 1
+            if depth == 0:
+                break
+    try:
+        recs = json.loads(html[start:k + 1])
+    except Exception:
+        return html
+
+    by_norm = {_norm(v.get('name', key)): v for key, v in ledger2026.items()}
+    touched = 0
+    for r in recs:
+        led = by_norm.get(_norm(r['name']))
+        if not led:
+            continue
+        before = sum(v.get('deals', 0) for v in (r.get('month_2026') or {}).values())
+        r['month_2026'] = led['months']
+        r.setdefault('year_deals', {})['2026'] = {
+            'deals': led['deals'], 'turnover': led['turnover'], 'commission': led['commission'],
+        }
+        if before != led['deals']:
+            touched += 1
+    print(f'   реестр 2026: обновлено {len(by_norm)} брокеров, разбивка изменилась у {touched}')
+    return html[:start] + json.dumps(recs, ensure_ascii=False) + html[k + 1:]
+
+
+src = refresh_ledger_2026(src)
 src = refresh_roster(src)
 
 # ── 4b. Status/band must count ledger deals too ──────

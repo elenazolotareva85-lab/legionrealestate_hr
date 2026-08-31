@@ -29,6 +29,34 @@ SCOPES_SHEETS = [
 ]
 
 sheets_creds = Credentials.from_service_account_file(SHEETS_KEY, scopes=SCOPES_SHEETS)
+# Google регулярно отдаёт 503 на тяжёлых таблицах. Без повторов одна такая
+# ошибка роняет весь прогон и ночная сборка остаётся без данных.
+def _retry_gspread(tries=5, base_delay=6):
+    import time as _time
+    from gspread.http_client import HTTPClient
+    from gspread.exceptions import APIError
+    _orig = HTTPClient.request
+
+    def request(self, method, endpoint, **kwargs):
+        last = None
+        for attempt in range(tries):
+            try:
+                return _orig(self, method, endpoint, **kwargs)
+            except APIError as e:
+                code = getattr(getattr(e, 'response', None), 'status_code', None)
+                if code not in (429, 500, 502, 503, 504):
+                    raise
+                last = e
+                wait = base_delay * (attempt + 1)
+                print(f'   Google {code}, повтор через {wait}с ({attempt + 1}/{tries})', flush=True)
+                _time.sleep(wait)
+        raise last
+
+    HTTPClient.request = request
+
+
+_retry_gspread()
+
 gc = gspread.authorize(sheets_creds)
 bq_creds = Credentials.from_service_account_file(BQ_KEY)
 bq = bigquery.Client(credentials=bq_creds, project='disco-bedrock-428721-f8')
@@ -911,5 +939,66 @@ month_plan = {
 print(f'   month plan/fact ({lr_month_label}): СНГ план ${plan_sng:,.0f} факт ${fact_sng:,.0f}, '
       f'Intl план ${plan_intl:,.0f} факт ${fact_intl:,.0f}'
       + (f' — не сматчено: {unmatched}' if unmatched else ''))
+
+# ── 9. Реестр «Сделки Бали»: помесячно за 2026 ───────────
+# Снапшот в шаблоне заморожен и отстаёт: у Бойко в нём 14 сделок за 2026
+# при 17 в реестре, августа нет вовсе. Приоритетный источник по сделкам —
+# реестр, поэтому разбивку за текущий год пересобираем каждый прогон.
+print('9. Fetch ledger 2026 by month...')
+
+
+def _ledger_money(x):
+    x = (x or '').replace('\xa0', '').replace(' ', '').replace('$', '')
+    if re.search(r',\d{1,2}$', x):
+        x = x.replace('.', '').replace(',', '.')
+    else:
+        x = x.replace(',', '')
+    x = re.sub(r'[^0-9.\-]', '', x)
+    try:
+        return float(x)
+    except ValueError:
+        return 0.0
+
+
+sh_deals = gc.open_by_key(SDELKI_ID)
+ledger2026 = defaultdict(lambda: defaultdict(lambda: {'deals': 0, 'turnover': 0.0, 'commission': 0.0}))
+ledger_future = 0
+ledger_names = {}
+for tab in ('ОП1', 'ОП2', 'ОП3', 'ОП4'):
+    try:
+        rows = sh_deals.worksheet(tab).get_all_values()[1:]
+    except Exception as e:
+        print(f'   WARNING: лист {tab} не прочитан ({type(e).__name__}) — сделки из него не попадут')
+        continue
+    for r in rows:
+        r = r + [''] * 80
+        if r[1].strip() != '2026':
+            continue
+        mgr = r[3].strip()
+        price = _ledger_money(r[9])
+        if not mgr or price <= 0:                 # строка-итог или незаполненная сделка
+            continue
+        month = (r[0].strip().split('.')[0] or '')
+        if not month.isdigit() or not (1 <= int(month) <= 12):
+            continue
+        if int(month) > date.today().month:      # сделки будущих месяцев ещё не закрыты
+            ledger_future += 1
+            continue
+        key = norm(mgr)
+        ledger_names.setdefault(key, mgr)
+        d = ledger2026[key][str(int(month))]
+        d['deals'] += 1
+        d['turnover'] += price
+        d['commission'] += _ledger_money(r[13])
+
+out_ledger = {k: {'name': ledger_names[k],
+                  'months': {m: {kk: round(vv, 2) for kk, vv in v.items()} for m, v in sorted(months.items(), key=lambda x: int(x[0]))},
+                  'deals': sum(v['deals'] for v in months.values()),
+                  'turnover': round(sum(v['turnover'] for v in months.values()), 2),
+                  'commission': round(sum(v['commission'] for v in months.values()), 2)}
+              for k, months in ledger2026.items()}
+(DATA / 'ledger2026.json').write_text(json.dumps(out_ledger, ensure_ascii=False, indent=2, sort_keys=True))
+print(f'   ledger 2026: {len(out_ledger)} брокеров, {sum(v["deals"] for v in out_ledger.values())} сделок, '
+      f'{ledger_future} отброшено как будущие месяцы')
 
 print('\nAll data fetched to data/*.json')
