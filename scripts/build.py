@@ -14,6 +14,7 @@ Pipeline:
 """
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -89,6 +90,83 @@ def _names(names, limit=4):
     return shown
 
 
+MONTH_NAMES_RU = ['', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
+                   'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+
+
+def build_top_planfact_html():
+    """Шаблон-заглушка вверху дашборда: план/факт по обороту за текущий месяц,
+    3 сегмента (Бали / RU / ENG). Цифры — плейсхолдер, источник данных пришлют
+    отдельно — тогда заменить SEGMENTS на реальный расчёт."""
+    today = date.today()
+    month_label = f'{MONTH_NAMES_RU[today.month]} {today.year}'
+
+    SEGMENTS = [
+        {'label': 'Бали · направление', 'plan': 3_200_000, 'fact': 1_050_000},
+        {'label': 'Русскоговорящий сегмент', 'plan': 2_000_000, 'fact': 720_000},
+        {'label': 'Англоговорящий сегмент', 'plan': 1_200_000, 'fact': 330_000},
+    ]
+
+    def status(pct):
+        if pct >= 95: return 'good'
+        if pct >= 70: return 'warn'
+        return 'critical'
+
+    cards = []
+    for s in SEGMENTS:
+        pct = (s['fact'] / s['plan'] * 100) if s['plan'] else 0
+        cls = status(pct)
+        cards.append(
+            '<div class="tpf-card">'
+            '<div class="tpf-card-label">' + _esc(s['label']) + '</div>'
+            '<div class="tpf-card-bar"><div class="tpf-card-fill ' + cls + '" style="width:' +
+            str(round(min(pct, 100), 1)) + '%"></div></div>'
+            '<div class="tpf-card-row">'
+            '<span class="tpf-card-pct ' + cls + '">' + f'{pct:.0f}%' + '</span>'
+            '<span class="tpf-card-vals">' + _money(s['fact']) + ' <span class="tpf-of">из</span> ' + _money(s['plan']) + '</span>'
+            '</div>'
+            '</div>'
+        )
+
+    return ('''
+<style>
+.tpf-section { max-width: 1280px; margin: 0 auto; padding: 20px 32px 0; }
+.tpf-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.tpf-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+.tpf-badge {
+  font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--warn); border: 1px solid var(--warn); border-radius: 2px; padding: 2px 7px; font-weight: 600;
+}
+.tpf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
+@media (max-width: 900px) { .tpf-grid { grid-template-columns: 1fr; } }
+.tpf-card { background: var(--surface); border: 1px solid var(--rule); padding: 14px 16px; }
+.tpf-card-label {
+  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 10px;
+}
+.tpf-card-bar { height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+.tpf-card-fill { height: 100%; border-radius: 2px 0 0 2px; }
+.tpf-card-fill.good { background: var(--good); }
+.tpf-card-fill.warn { background: var(--warn); }
+.tpf-card-fill.critical { background: var(--critical); }
+.tpf-card-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.tpf-card-pct { font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
+.tpf-card-pct.good { color: var(--good); }
+.tpf-card-pct.warn { color: var(--warn); }
+.tpf-card-pct.critical { color: var(--critical); }
+.tpf-card-vals { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+.tpf-of { color: var(--muted); }
+</style>
+<section class="tpf-section">
+  <div class="tpf-head">
+    <h2>План / факт · оборот · ''' + month_label + '''</h2>
+    <span class="tpf-badge">Шаблон — цифры плейсхолдер</span>
+  </div>
+  <div class="tpf-grid">''' + ''.join(cards) + '''</div>
+</section>
+''')
+
+
 def compute_signals():
     combined = stat.get('combined') or {}
     active = {_norm(b['name']) for b in active_brokers if b.get('name')}
@@ -111,6 +189,8 @@ def compute_signals():
 
 # ── 1. Base HTML ─────────────────────────────────────
 base = (TEMPLATES / 'komissia_base.html').read_text()
+base = base.replace('  </header>\n\n  <p class="lede" id="lede">',
+                     '  </header>\n' + build_top_planfact_html() + '\n  <p class="lede" id="lede">', 1)
 
 # ── 2-3. Merge with a Funnels tab structure ─────────
 # Simple: wrap komissia inside a view container with nav tabs
