@@ -794,41 +794,97 @@ print(f'   rating: {len(rt_staff)} действующих ({sum(1 for s in rt_st
       f'{len(rt_deal_rows)} сделок в реестре, {rt_future} отброшено как будущие месяцы')
 
 
-# ── 8. План на месяц: СНГ vs Международное ───────────
-print('8. Fetch monthly plan (СНГ / международное)...')
+# ── 8. План/факт на месяц: СНГ vs Международное ──────
+# Источник плана — лист «Запрос на лиды <месяц>» команды маркетинга: у каждого
+# брокера в блоке «БАЛИ» персональная колонка «план, $» (C) и язык (D). Дубли
+# (брокер работает на 2 языках, напр. Валентина Бондаренко ru/ukr + eng) сама
+# таблица разруливает — план стоит только в ОДНОЙ из строк, вторая = 0.
+# Правило сегментации (решение Елены 31.08.2026): СНГ = ru + ru/ukr,
+# международное = всё остальное (eng, pl, иврит…).
+print('8. Fetch monthly plan/fact (СНГ / международное)...')
 
 LEADS_REQUEST_ID = '1tMJKZI4Jt1OZQxIlXs_Mx-mt1G2tdlT34H-uCbQ-cI0'
 LEADS_REQUEST_SHEET = 'Запрос на лиды сентябрь 2026'   # обновлять вручную с новым месяцем
+PLAN_YEAR, PLAN_MONTH = 2026, 9                        # тот же месяц, что и лист выше
 
 
-def lr_find(rows, label):
-    for r in rows:
-        if len(r) > 1 and r[1].strip() == label:
-            return r
-    return None
-
-
-def lr_get(row, idx):
-    return num(row[idx]) if row and len(row) > idx else None
+def sng_or_intl(lang):
+    return 'sng' if (lang or '').strip().lower() in ('ru', 'ru/ukr') else 'intl'
 
 
 lr_rows = gc.open_by_key(LEADS_REQUEST_ID).worksheet(LEADS_REQUEST_SHEET).get_all_values()
-lr_sng, lr_intl, lr_total = (lr_find(lr_rows, 'План СНГ + PL'), lr_find(lr_rows, 'План Англ'),
-                              lr_find(lr_rows, 'Всего'))
 lr_month_label = re.sub(r'^Запрос на лиды\s*', '', LEADS_REQUEST_SHEET).strip()
 
+# 8.1 блок «БАЛИ»: с первой строки после маркера 'БАЛИ' до 'Итого Бали'.
+lr_start = next(i for i, r in enumerate(lr_rows) if r and r[0].strip() == 'БАЛИ') + 1
+lr_end = next(i for i, r in enumerate(lr_rows) if r and r[0].strip() == 'Итого Бали')
+lr_by_broker = {}   # name -> [(lang, plan), ...] в порядке появления
+for r in lr_rows[lr_start:lr_end]:
+    r = r + [''] * 4
+    name = r[0].strip()
+    if not name: continue
+    plan, lang = num(r[2]) or 0, r[3].strip()
+    lr_by_broker.setdefault(name, []).append((lang, plan))
+
+# у дублей план стоит только в одной строке — сегмент брокера = язык той
+# строки, где план максимален (при равенстве, включая 0/0, берём первую).
+# 'Эльнар'/'Светлана' в листе — без фамилии: матчим по токену, но ТОЛЬКО если
+# в листе сам брокер записан одним словом — иначе имя 'Анастасия' зацепило бы
+# любую другую Анастасию по общему первому имени (было — исправлено 31.08.2026).
+lr_primary, lr_single = {}, {}   # norm(name)/один токен -> (segment, plan)
+for name, entries in lr_by_broker.items():
+    lang, plan = max(entries, key=lambda e: e[1])
+    seg = sng_or_intl(lang)
+    if len(name.split()) == 1:
+        lr_single[name.strip().lower()] = (seg, plan)
+    else:
+        lr_primary[norm(name)] = (seg, plan)
+
+
+def lr_match(name):
+    n = norm(name)
+    if n in lr_primary:
+        return lr_primary[n]
+    for token in name.split():
+        hit = lr_single.get(token.strip().lower())
+        if hit:
+            return hit
+    return None
+
+
+plan_sng = sum(p for entries in lr_by_broker.values() for lang, p in [max(entries, key=lambda e: e[1])]
+                if sng_or_intl(lang) == 'sng')
+plan_intl = sum(p for entries in lr_by_broker.values() for lang, p in [max(entries, key=lambda e: e[1])]
+                 if sng_or_intl(lang) == 'intl')
+
+# 8.2 факт: сентябрьский оборот из «Сделки Бали» (rt_staff уже собран в блоке 7),
+# каждый брокер приписан к тому же сегменту, что и в плане.
+mk = f'{PLAN_YEAR}-{PLAN_MONTH:02d}'
+fact_sng = fact_intl = fact_unmatched = 0.0
+unmatched = []
+for s in rt_staff:
+    if s['role'] != 'broker': continue
+    turnover = s['months'].get(mk, [0, 0, 0])[1]
+    if not turnover: continue
+    hit = lr_match(s['name'])
+    if not hit:
+        unmatched.append(s['name']); fact_unmatched += turnover; continue
+    seg, _ = hit
+    if seg == 'sng': fact_sng += turnover
+    else: fact_intl += turnover
+
 month_plan = {
-    'month_label': lr_month_label,
+    'month_label': lr_month_label, 'year': PLAN_YEAR, 'month': PLAN_MONTH,
     'segments': [
-        {'key': 'sng', 'label': 'СНГ + PL', 'leads': lr_get(lr_sng, 3), 'conv': lr_get(lr_sng, 4),
-         'avg_check': lr_get(lr_sng, 5), 'plan': lr_get(lr_sng, 6)},
-        {'key': 'intl', 'label': 'Международное (англ)', 'leads': lr_get(lr_intl, 3), 'conv': lr_get(lr_intl, 4),
-         'avg_check': lr_get(lr_intl, 5), 'plan': lr_get(lr_intl, 6)},
+        {'key': 'sng', 'label': 'СНГ', 'plan': plan_sng, 'fact': round(fact_sng, 2)},
+        {'key': 'intl', 'label': 'Международное', 'plan': plan_intl, 'fact': round(fact_intl, 2)},
     ],
-    'total_plan': lr_get(lr_total, 6),
+    'total_plan': plan_sng + plan_intl, 'total_fact': round(fact_sng + fact_intl, 2),
+    'unmatched_names': unmatched, 'unmatched_fact': round(fact_unmatched, 2),
 }
 (DATA / 'month_plan.json').write_text(json.dumps(month_plan, ensure_ascii=False, indent=2))
-print(f'   month plan ({lr_month_label}): СНГ ${month_plan["segments"][0]["plan"]:,.0f}, '
-      f'Intl ${month_plan["segments"][1]["plan"]:,.0f}')
+print(f'   month plan/fact ({lr_month_label}): СНГ план ${plan_sng:,.0f} факт ${fact_sng:,.0f}, '
+      f'Intl план ${plan_intl:,.0f} факт ${fact_intl:,.0f}'
+      + (f' — не сматчено: {unmatched}' if unmatched else ''))
 
 print('\nAll data fetched to data/*.json')

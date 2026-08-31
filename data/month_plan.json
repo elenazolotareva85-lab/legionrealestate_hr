@@ -1,22 +1,23 @@
 {
   "month_label": "сентябрь 2026",
+  "year": 2026,
+  "month": 9,
   "segments": [
     {
       "key": "sng",
-      "label": "СНГ + PL",
-      "leads": 385.0,
-      "conv": 2.11,
-      "avg_check": 180000.0,
-      "plan": 1462230.0
+      "label": "СНГ",
+      "plan": 1350000.0,
+      "fact": 0.0
     },
     {
       "key": "intl",
-      "label": "Международное (англ)",
-      "leads": 314.0,
-      "conv": 2.11,
-      "avg_check": 180000.0,
-      "plan": 1192572.0
+      "label": "Международное",
+      "plan": 1050000.0,
+      "fact": 0.0
     }
   ],
-  "total_plan": 2654802.0
+  "total_plan": 2400000.0,
+  "total_fact": 0.0,
+  "unmatched_names": [],
+  "unmatched_fact": 0.0
 }

@@ -103,149 +103,84 @@ def _names(names, limit=4):
     return shown
 
 
-MONTH_NAMES_RU = ['', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
-                   'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+def build_month_plan_html(mp):
+    """План/факт по обороту (СНГ / Международное) — план из персональных колонок
+    брокеров в листе «Запрос на лиды», факт — их реальный оборот за тот же месяц
+    из «Сделки Бали» (см. секцию 8 fetch_data.py). Сегмент брокера определяется
+    языком в том же листе: ru/ru-ukr → СНГ, всё остальное → международное."""
+    if not mp or not mp.get('segments'):
+        return ''
 
-
-def build_top_planfact_html():
-    """Шаблон-заглушка вверху дашборда: план/факт по обороту за текущий месяц,
-    3 сегмента (Бали / RU / ENG). Цифры — плейсхолдер, источник данных пришлют
-    отдельно — тогда заменить SEGMENTS на реальный расчёт."""
-    today = date.today()
-    month_label = f'{MONTH_NAMES_RU[today.month]} {today.year}'
-
-    SEGMENTS = [
-        {'label': 'Бали · направление', 'plan': 3_200_000, 'fact': 1_050_000},
-        {'label': 'Русскоговорящий сегмент', 'plan': 2_000_000, 'fact': 720_000},
-        {'label': 'Англоговорящий сегмент', 'plan': 1_200_000, 'fact': 330_000},
-    ]
+    segs = mp['segments']
+    total_plan = mp.get('total_plan') or sum(s.get('plan') or 0 for s in segs)
+    total_fact = mp.get('total_fact') or sum(s.get('fact') or 0 for s in segs)
 
     def status(pct):
         if pct >= 95: return 'good'
         if pct >= 70: return 'warn'
         return 'critical'
 
-    cards = []
-    for s in SEGMENTS:
-        pct = (s['fact'] / s['plan'] * 100) if s['plan'] else 0
-        cls = status(pct)
-        cards.append(
-            '<div class="tpf-card">'
-            '<div class="tpf-card-label">' + _esc(s['label']) + '</div>'
-            '<div class="tpf-card-bar"><div class="tpf-card-fill ' + cls + '" style="width:' +
-            str(round(min(pct, 100), 1)) + '%"></div></div>'
-            '<div class="tpf-card-row">'
-            '<span class="tpf-card-pct ' + cls + '">' + f'{pct:.0f}%' + '</span>'
-            '<span class="tpf-card-vals">' + _money(s['fact']) + ' <span class="tpf-of">из</span> ' + _money(s['plan']) + '</span>'
-            '</div>'
-            '</div>'
-        )
-
-    return ('''
-<style>
-.tpf-section { max-width: 1280px; margin: 0 auto; padding: 20px 32px 0; }
-.tpf-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-.tpf-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0; letter-spacing: -0.01em; }
-.tpf-badge {
-  font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--warn); border: 1px solid var(--warn); border-radius: 2px; padding: 2px 7px; font-weight: 600;
-}
-.tpf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
-@media (max-width: 900px) { .tpf-grid { grid-template-columns: 1fr; } }
-.tpf-card { background: var(--surface); border: 1px solid var(--rule); padding: 14px 16px; }
-.tpf-card-label {
-  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--muted); font-weight: 600; margin-bottom: 10px;
-}
-.tpf-card-bar { height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
-.tpf-card-fill { height: 100%; border-radius: 2px 0 0 2px; }
-.tpf-card-fill.good { background: var(--good); }
-.tpf-card-fill.warn { background: var(--warn); }
-.tpf-card-fill.critical { background: var(--critical); }
-.tpf-card-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.tpf-card-pct { font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
-.tpf-card-pct.good { color: var(--good); }
-.tpf-card-pct.warn { color: var(--warn); }
-.tpf-card-pct.critical { color: var(--critical); }
-.tpf-card-vals { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
-.tpf-of { color: var(--muted); }
-</style>
-<section class="tpf-section">
-  <div class="tpf-head">
-    <h2>План / факт · оборот · ''' + month_label + '''</h2>
-    <span class="tpf-badge">Шаблон — цифры плейсхолдер</span>
-  </div>
-  <div class="tpf-grid">''' + ''.join(cards) + '''</div>
-</section>
-''')
-
-
-def build_month_plan_html(mp):
-    """План на месяц (СНГ+PL / Международное) из листа «Запрос на лиды» — реальные
-    цифры, без факта: сам месяц ещё не наступил или только начался."""
-    if not mp or not mp.get('segments'):
-        return ''
-
-    segs = mp['segments']
-    total = mp.get('total_plan') or sum(s.get('plan') or 0 for s in segs)
-    colors = {'sng': 'sng', 'intl': 'intl'}
-
-    split_bar = ''.join(
-        '<div class="mp-split-seg ' + colors.get(s['key'], 'sng') + '" style="width:' +
-        str(round((s.get('plan') or 0) / total * 100, 2) if total else 0) + '%"></div>'
-        for s in segs
-    )
-
     def card(s):
-        pct = round((s.get('plan') or 0) / total * 100) if total else 0
-        meta = []
-        if s.get('leads'): meta.append(_int(s['leads']) + ' лид.')
-        if s.get('conv'): meta.append(f"конв. {s['conv']:.1f}%".replace('.', ','))
-        if s.get('avg_check'): meta.append('чек ' + _money(s['avg_check']))
+        plan, fact = s.get('plan') or 0, s.get('fact') or 0
+        pct = (fact / plan * 100) if plan else 0
+        cls = status(pct)
         return (
-            '<div class="mp-card ' + colors.get(s['key'], 'sng') + '">'
-            '<div class="mp-card-label">' + _esc(s['label']) + '<span class="mp-card-share">' + str(pct) + '%</span></div>'
-            '<div class="mp-card-plan">' + _money(s.get('plan') or 0) + '</div>'
-            '<div class="mp-card-meta">' + ' · '.join(meta) + '</div>'
+            '<div class="mp-card">'
+            '<div class="mp-card-label">' + _esc(s['label']) + '</div>'
+            '<div class="mp-card-bar"><div class="mp-card-fill ' + cls + '" style="width:' +
+            str(round(min(pct, 100), 1)) + '%"></div></div>'
+            '<div class="mp-card-row">'
+            '<span class="mp-card-pct ' + cls + '">' + f'{pct:.0f}%' + '</span>'
+            '<span class="mp-card-vals">' + _money(fact) + ' <span class="mp-of">из</span> ' + _money(plan) + '</span>'
+            '</div>'
             '</div>'
         )
 
+    caveat = ''
+    if mp.get('unmatched_names'):
+        caveat = ('<p class="mp-caveat">Не учтены в факте (нет языка в листе «Запрос на лиды»): ' +
+                  _esc(', '.join(mp['unmatched_names'])) + '</p>')
+
     return ('''
 <style>
-.mp-section { max-width: 1280px; margin: 0 auto; padding: 4px 32px 0; }
+.mp-section { max-width: 1280px; margin: 0 auto; padding: 20px 32px 0; }
 .mp-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
 .mp-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 20px; margin: 0; letter-spacing: -0.01em; }
 .mp-badge {
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
-.mp-split-bar { display: flex; height: 10px; border-radius: 2px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--rule); }
-.mp-split-seg.sng { background: var(--accent); }
-.mp-split-seg.intl { background: var(--accent-2); }
-.mp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
+.mp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 10px; }
 @media (max-width: 700px) { .mp-grid { grid-template-columns: 1fr; } }
-.mp-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid; padding: 14px 16px; }
-.mp-card.sng { border-left-color: var(--accent); }
-.mp-card.intl { border-left-color: var(--accent-2); }
+.mp-card { background: var(--surface); border: 1px solid var(--rule); padding: 14px 16px; }
 .mp-card-label {
-  display: flex; justify-content: space-between; align-items: baseline;
-  font-family: var(--font-sans); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--muted); font-weight: 600; margin-bottom: 8px;
+  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin-bottom: 10px;
 }
-.mp-card-share { font-family: var(--font-mono); color: var(--ink-2); font-weight: 600; }
-.mp-card-plan { font-family: var(--font-display); font-weight: 500; font-size: 26px; margin-bottom: 4px; }
-.mp-card-meta { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
-.mp-total { font-family: var(--font-sans); font-size: 12px; color: var(--ink-2); margin: 0 0 22px; }
+.mp-card-bar { height: 8px; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+.mp-card-fill { height: 100%; border-radius: 2px 0 0 2px; }
+.mp-card-fill.good { background: var(--good); }
+.mp-card-fill.warn { background: var(--warn); }
+.mp-card-fill.critical { background: var(--critical); }
+.mp-card-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.mp-card-pct { font-family: var(--font-mono); font-size: 18px; font-weight: 600; }
+.mp-card-pct.good { color: var(--good); }
+.mp-card-pct.warn { color: var(--warn); }
+.mp-card-pct.critical { color: var(--critical); }
+.mp-card-vals { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+.mp-of { color: var(--muted); }
+.mp-total { font-family: var(--font-sans); font-size: 12px; color: var(--ink-2); margin: 0 0 8px; }
 .mp-total strong { color: var(--ink); font-family: var(--font-mono); font-size: 13px; }
+.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 0 0 22px; }
 </style>
 <section class="mp-section">
   <div class="mp-head">
-    <h2>План на ''' + _esc(mp.get('month_label', '')) + ''' · оборот</h2>
+    <h2>План / факт · оборот · ''' + _esc(mp.get('month_label', '')) + '''</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
-  <div class="mp-split-bar">''' + split_bar + '''</div>
   <div class="mp-grid">''' + ''.join(card(s) for s in segs) + '''</div>
-  <p class="mp-total">Итого план: <strong>''' + _money(total) + '''</strong></p>
+  <p class="mp-total">Итого: <strong>''' + _money(total_fact) + '''</strong> из <strong>''' + _money(total_plan) + '''</strong></p>
+  ''' + caveat + '''
 </section>
 ''')
 
@@ -273,7 +208,7 @@ def compute_signals():
 # ── 1. Base HTML ─────────────────────────────────────
 base = (TEMPLATES / 'komissia_base.html').read_text()
 base = base.replace('  </header>\n\n  <p class="lede" id="lede">',
-                     '  </header>\n' + build_top_planfact_html() + build_month_plan_html(month_plan) +
+                     '  </header>\n' + build_month_plan_html(month_plan) +
                      '\n  <p class="lede" id="lede">', 1)
 
 # ── 2-3. Merge with a Funnels tab structure ─────────
