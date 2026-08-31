@@ -675,23 +675,40 @@ def build_rating_html(rating, standalone=False):
             '\n      </div>'
         )
 
+    quarter = (cur_m - 1) // 3 + 1 if cur_m else None
+    half_months = set()
+    if cur_y and cur_m:
+        yy, mm = cur_y, cur_m
+        for _ in range(6):
+            half_months.add((yy, mm))
+            mm -= 1
+            if mm == 0: mm, yy = 12, yy - 1
+
     periods = [
-        ('Весь период', 'за всё время в реестре сделок', lambda y, m: True, 'Сделок за весь период не найдено.',
-         ('roi_mkt_all', 'roi_partner_all')),
-        ('2026 год', 'с января по текущий месяц 2026', lambda y, m: y == 2026, 'Сделок в 2026 году пока нет.',
-         ('roi_mkt_2026', 'roi_partner_2026')),
-        ((cur_label.capitalize() if cur_label else 'Текущий месяц'), 'текущий месяц',
+        ('month', (cur_label.capitalize() if cur_label else 'Текущий месяц'), 'текущий месяц',
          lambda y, m: y == cur_y and m == cur_m, 'В ' + cur_label + ' сделок пока нет.', (None, None)),
+        ('quarter', (f'{quarter} кв. {cur_y}' if quarter else 'Квартал'), 'текущий квартал',
+         lambda y, m: y == cur_y and (m - 1) // 3 + 1 == quarter, 'В этом квартале сделок пока нет.', (None, None)),
+        ('half', 'Полгода', 'последние 6 месяцев',
+         lambda y, m: (y, m) in half_months, 'За полгода сделок пока нет.', (None, None)),
+        ('year', f'{cur_y} год', f'с января по текущий месяц {cur_y}',
+         lambda y, m: y == cur_y, f'Сделок в {cur_y} году пока нет.', ('roi_mkt_2026', 'roi_partner_2026')),
+        ('all', 'Весь период', 'за всё время в реестре сделок',
+         lambda y, m: True, 'Сделок за весь период не найдено.', ('roi_mkt_all', 'roi_partner_all')),
     ]
 
+    ptabs_html = ''.join(
+        '<button class="rt-ptab' + (' active' if i == 0 else '') + '" data-rtp="' + key + '">' + label + '</button>'
+        for i, (key, label, _sub, _pred, _note, _roi) in enumerate(periods)
+    )
     sections_html = ''.join(
-        '\n    <section class="rt-period">'
-        '\n      <h2 class="rt-period-title">' + label + '</h2>'
+        '\n    <div class="rt-pperiod' + (' active' if i == 0 else '') + '" id="rtp-' + key + '">'
         '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров · окупаемость — из «Статистика по брокерам» (турнирная таблица)</p>' +
         render_group(rows_for(pred), note, roi_keys) +
-        '\n    </section>'
-        for label, sub, pred, note, roi_keys in periods
+        '\n    </div>'
+        for i, (key, label, sub, pred, note, roi_keys) in enumerate(periods)
     )
+    sections_html = '\n    <div class="rt-ptabs">' + ptabs_html + '</div>' + sections_html
 
     style = '''
 <style>
@@ -725,16 +742,26 @@ def build_rating_html(rating, standalone=False):
 }
 .rt-masthead { display: flex; align-items: center; gap: 10px; padding: 2px 0 12px; border-bottom: 1px solid var(--rule); margin-bottom: 12px; }
 .rt-masthead img { width: 28px; height: auto; display: block; }
+.rt-masthead-text { flex: 1; }
 .rt-masthead h1 { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; margin: 0; color: var(--ink); }
 .rt-masthead p { color: var(--muted); font-size: 11px; margin: 2px 0 0; font-family: var(--font-sans); }
-.rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
-.rt-period { margin-bottom: 22px; }
-.rt-period:last-child { margin-bottom: 0; }
-.rt-period-title {
-  font-family: var(--font-display); font-weight: 700; font-size: 17px; margin: 0 0 2px;
-  padding-top: 10px; border-top: 2px solid var(--ink);
+.rt-theme-toggle {
+  background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px;
+  width: 28px; height: 28px; cursor: pointer; color: var(--ink-2); font-size: 14px;
+  line-height: 1; display: inline-flex; align-items: center; justify-content: center; flex: none;
 }
-.rt-period:first-child .rt-period-title { border-top: none; padding-top: 0; }
+.rt-lede { color: var(--ink-2); font-family: var(--font-display); font-size: 18px; }
+.rt-ptabs {
+  display: flex; gap: 2px; border-bottom: 2px solid var(--ink); margin-bottom: 14px;
+}
+.rt-ptab {
+  background: var(--surface); border: 1px solid var(--rule); border-bottom: none;
+  padding: 8px 16px; font-family: var(--font-sans); font-size: 11.5px; font-weight: 600;
+  color: var(--muted); cursor: pointer; letter-spacing: 0.02em;
+}
+.rt-ptab.active { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+.rt-pperiod { display: none; }
+.rt-pperiod.active { display: block; }
 .rt-sub { color: var(--muted); font-size: 11px; margin: 0 0 8px; }
 .rt-table-wrap { overflow-x: auto; border: 1px solid var(--rule); }
 .rt-table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 11.5px; }
@@ -789,15 +816,44 @@ def build_rating_html(rating, standalone=False):
     masthead = (
         '\n<div class="rt-masthead">'
         '\n  <img src="assets/legion-mark-gold.png" alt="Legion Real Estate" />'
-        '\n  <div><h1>Рейтинг брокеров</h1>'
+        '\n  <div class="rt-masthead-text"><h1>Рейтинг брокеров</h1>'
         '\n  <p>Legion Real Estate · Бали — только действующие сотрудники, по данным реестра сделок</p></div>'
+        '\n  <button class="rt-theme-toggle" id="rtThemeToggle" aria-label="Тема">◐</button>'
         '\n</div>'
     ) if standalone else ''
 
     plan_html = build_month_plan_html(month_plan) if standalone else ''
 
+    theme_script = '''
+<script>
+document.getElementById('rtThemeToggle')?.addEventListener('click', () => {
+  const page = document.querySelector('.rt-page');
+  const cur = page.getAttribute('data-theme');
+  if (cur === 'dark') page.setAttribute('data-theme', 'light');
+  else if (cur === 'light') page.removeAttribute('data-theme');
+  else {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    page.setAttribute('data-theme', prefersDark ? 'light' : 'dark');
+  }
+});
+</script>''' if standalone else ''
+
+    ptabs_script = '''
+<script>
+document.querySelectorAll('.rt-ptabs').forEach(function (nav) {
+  nav.addEventListener('click', function (e) {
+    if (e.target.tagName !== 'BUTTON') return;
+    var key = e.target.dataset.rtp;
+    var page = e.target.closest('.rt-page');
+    page.querySelectorAll('.rt-ptab').forEach(function (b) { b.classList.remove('active'); });
+    e.target.classList.add('active');
+    page.querySelectorAll('.rt-pperiod').forEach(function (p) { p.classList.toggle('active', p.id === 'rtp-' + key); });
+  });
+});
+</script>'''
+
     return ('<div class="rt-page">' + style + masthead + plan_html +
-            sections_html + footer + '\n</div>')
+            sections_html + footer + theme_script + ptabs_script + '\n</div>')
 
 
 def build_rating_page(rating):
