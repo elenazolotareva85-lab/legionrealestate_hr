@@ -719,9 +719,12 @@ function filteredRecords() {
     const deals = s.deals || 0;
     const y = s.final_yield || s.yield_pct || 0;
     if (filterMode === 'staff') return r.is_active;
-    if (filterMode === 'active') return deals > 0;
-    if (filterMode === 'green') return deals > 0 && y >= GREEN_YIELD;
-    if (filterMode === 'warn') return y < 25 || deals === 0;
+    // Срезы ниже — это виды на текущую команду. Уволенных показывает
+    // только «Все (вкл. уволенных)», иначе в «Требует внимания» попадал
+    // весь архив ушедших и список терял смысл.
+    if (filterMode === 'active') return r.is_active && deals > 0;
+    if (filterMode === 'green') return r.is_active && deals > 0 && y >= GREEN_YIELD;
+    if (filterMode === 'warn') return r.is_active && (y < 25 || deals === 0);
     return true;
   });
 }
