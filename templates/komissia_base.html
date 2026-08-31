@@ -585,8 +585,14 @@ function ledgerDealsFor(r) {
   return r.year_deals[period] || {deals:0,turnover:0,commission:0};
 }
 function turnoverFor(r) {
+  // «Сделки Бали» — приоритетный источник по сделкам и обороту.
+  // «Статистика по брокерам» отстаёт: за 2025+2026 в ней 155 сделок против 231.
   const s = statFor(r), l = ledgerDealsFor(r);
-  return period === 'all' ? (l.turnover || s.turnover) : (s.turnover || l.turnover);
+  return l.turnover || s.turnover;
+}
+function dealsFor(r) {
+  const s = statFor(r), l = ledgerDealsFor(r);
+  return l.deals || s.deals || 0;
 }
 function razborFor(r) {
   if (period === 'combined' || period === 'all') return r.razbor_combined;
@@ -635,10 +641,10 @@ function updateKPI() {
   const revenue = list.reduce((s, r) => s + (statFor(r).revenue || 0), 0);
   const margin = list.reduce((s, r) => s + (statFor(r).margin_cb || 0), 0);
   const dealsStat = list.reduce((s, r) => s + (statFor(r).deals || 0), 0);
-  const ledgerDeals = list.reduce((s, r) => s + (ledgerDealsFor(r).deals || 0), 0);
+  const ledgerDeals = list.reduce((s, r) => s + dealsFor(r), 0);
   const ledgerTurnover = list.reduce((s, r) => s + (ledgerDealsFor(r).turnover || 0), 0);
   const ledgerComm = list.reduce((s, r) => s + (ledgerDealsFor(r).commission || 0), 0);
-  const dealsShow = Math.max(dealsStat, ledgerDeals);
+  const dealsShow = ledgerDeals;
   const conv = leads ? (100 * dealsShow / leads) : 0;
   // За всю историю сделки охватывают 2023-2026, а лиды и реклама — только с 2025:
   // делить одно на другое нельзя, поэтому вместо конверсии показываем оборот.
@@ -728,7 +734,7 @@ function filteredRecords() {
     // Жёсткое «на 2026 только актуальные» скрывало уволенных вместе с их
     // сделками и лидами 2026 года — под фильтром «Все» они снова видны.
     const s = statFor(r);
-    const deals = s.deals || 0;
+    const deals = dealsFor(r);
     const y = s.final_yield || s.yield_pct || 0;
     if (filterMode === 'staff') return r.is_active;
     // Срезы ниже — это виды на текущую команду. Уволенных показывает
@@ -778,7 +784,7 @@ function deltaCls(v, teamV, higherBetter) {
 function renderBrokerKPI(r, s, y, ledgerDeals) {
   const rank = rankByYield(r);
   const teamA = teamAvgs();
-  const dealsShow = Math.max(s.deals||0, ledgerDeals.deals||0);
+  const dealsShow = dealsFor(r);
   const y2025 = (r.year_deals['2025']||{}).deals || 0;
   const y2026 = (r.year_deals['2026']||{}).deals || 0;
   const convDelta = deltaCls(s.conv || 0, teamA.conv, true);
@@ -839,7 +845,7 @@ function renderTable() {
     const razbor = razborFor(r);
     const ledgerDeals = ledgerDealsFor(r);
     // Show max of stat deals and ledger deals
-    const dealsShow = Math.max(s.deals||0, ledgerDeals.deals||0);
+    const dealsShow = dealsFor(r);
     const turnoverShow = turnoverFor(r);
     return `
       <tr class="row-main" data-id="${r.id}" tabindex="0" role="button">
@@ -1011,7 +1017,7 @@ document.querySelectorAll('.period-tabs button').forEach(btn => {
 });
 
 function renderCharts() {
-  const list = filteredRecords().filter(r => (statFor(r).deals||0) > 0 || (ledgerDealsFor(r).deals||0) > 0);
+  const list = filteredRecords().filter(r => dealsFor(r) > 0);
   const byT = [...list].sort((a,b) => turnoverFor(b) - turnoverFor(a));
   const maxT = Math.max(...byT.map(r => turnoverFor(r) || 0), 1);
   document.getElementById('turnoverBars').innerHTML = byT.map(r => {

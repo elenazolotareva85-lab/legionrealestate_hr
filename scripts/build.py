@@ -1218,7 +1218,7 @@ _old_band = """function bandFor(r) {
   const deals = s.deals || 0;"""
 _new_band = """function bandFor(r) {
   const s = statFor(r);
-  const deals = Math.max(s.deals || 0, ledgerDealsFor(r).deals || 0);
+  const deals = dealsFor(r);
   if (deals > 0 && !(s.deals || 0) && !(s.final_yield || s.yield_pct)) return 'neutral';"""
 
 _old_status = """function statusLabel(r) {
@@ -1226,7 +1226,7 @@ _old_status = """function statusLabel(r) {
   if ((s.deals||0) === 0) return 'Нет сделок';"""
 _new_status = """function statusLabel(r) {
   const s = statFor(r);
-  const _d = Math.max(s.deals||0, ledgerDealsFor(r).deals||0);
+  const _d = dealsFor(r);
   if (_d === 0) return 'Нет сделок';
   // Сделки есть только в ledger, доходность по ним не считалась — не выдаём 0% за «ниже нормы».
   if (!(s.deals || 0) && !(s.final_yield || s.yield_pct)) return 'Нет данных';"""
