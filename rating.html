@@ -104,40 +104,30 @@ body { font-family: 'Montserrat', system-ui, sans-serif; background: #FFFFFF; fo
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
-.mp-speedo-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; margin-bottom: 10px; align-items: stretch; }
-@media (max-width: 700px) { .mp-speedo-layout { grid-template-columns: 1fr; } }
-.mp-speedo-right { display: flex; flex-direction: column; gap: 14px; }
-.mp-speedo-right .mp-speedo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 18px 18px 16px; text-align: center; }
-.mp-speedo-big { display: flex; flex-direction: column; align-items: center; max-width: 480px; margin: 0 auto; }
+.mp-speedo-row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+@media (max-width: 640px) { .mp-speedo-row3 { grid-template-columns: 1fr; } }
+.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 10px 10px 9px; text-align: center; }
 .mp-speedo-label {
-  font-family: var(--font-sans); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--muted); font-weight: 600; margin-bottom: 6px;
+  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--muted); font-weight: 600; margin-bottom: 2px;
 }
-.mp-speedo-big .mp-speedo-label { font-size: 14px; }
-.mp-speedo-svg { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; }
-.mp-speedo-big .mp-speedo-svg { max-width: 460px; }
-.mp-speedo-tick { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
-.mp-speedo-marker { font-family: var(--font-sans); font-size: 10px; font-weight: 700; fill: var(--ink); }
-.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 32px; letter-spacing: -0.02em; margin-top: -4px; }
-.mp-speedo-big .mp-speedo-value { font-size: 46px; }
-.mp-speedo-sub { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); margin-top: 4px; }
-.mp-speedo-big .mp-speedo-sub { font-size: 15px; margin-top: 6px; }
+.mp-speedo-svg { display: block; width: 100%; max-width: 210px; height: auto; margin: 0 auto; }
+.mp-speedo-tick { font-family: var(--font-mono); font-size: 10px; fill: var(--muted); }
+.mp-speedo-marker { font-family: var(--font-sans); font-size: 9.5px; font-weight: 700; fill: var(--ink); }
+.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 24px; letter-spacing: -0.02em; margin-top: -6px; }
+.mp-speedo-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); margin-top: 1px; }
 .mp-speedo-sub .good { color: var(--good); font-weight: 700; }
 .mp-speedo-sub .warn { color: var(--warn); font-weight: 700; }
 .mp-speedo-sub .critical { color: var(--critical); font-weight: 700; }
-.mp-speedo-bonus { font-family: var(--font-sans); font-size: 12.5px; color: var(--ink-2); margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule); }
-.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 10px 0 22px; }
+.mp-speedo-bonus { font-family: var(--font-sans); font-size: 9.5px; color: var(--ink-2); margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--rule); }
+.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 8px 0 18px; }
 </style>
 <section class="mp-section">
   <div class="mp-head">
     <h2>План / факт · оборот · сентябрь 2026</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
-  <div class="mp-speedo-layout">
-    <div class="mp-speedo mp-speedo-big"><div class="mp-speedo-label">Компания · факт / план</div><svg viewBox="0 0 364 202" class="mp-speedo-svg"><path d="M 81.20 128.80 A 100.80 100.80 0 0 1 200.89 29.79" fill="none" stroke="var(--critical, #9E4438)" stroke-width="21.8"/><path d="M 200.89 29.79 A 100.80 100.80 0 0 1 246.25 51.13" fill="none" stroke="var(--warn, #B58028)" stroke-width="21.8"/><path d="M 246.25 51.13 A 100.80 100.80 0 0 1 282.80 128.80" fill="none" stroke="var(--good, #3E7A52)" stroke-width="21.8"/><line x1="258.38" y1="84.70" x2="280.21" y2="72.10" stroke="var(--ink)" stroke-width="3.4"/><text x="297.18" y="62.30" text-anchor="middle" class="mp-speedo-marker">$2 500</text><line x1="270.20" y1="128.80" x2="295.40" y2="128.80" stroke="var(--ink)" stroke-width="3.4"/><text x="315.00" y="128.80" text-anchor="middle" class="mp-speedo-marker">$4 000</text><polygon points="106.40,128.80 166.60,128.80 166.62,127.93" fill="var(--ink)"/><circle cx="182.00" cy="128.80" r="10.6" fill="none" stroke="var(--ink)" stroke-width="4.5"/><text x="64.4" y="142.8" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="299.6" y="142.8" text-anchor="middle" class="mp-speedo-tick">$3,00 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $2,40 млн плана · <span class="critical">0%</span></div><div class="mp-speedo-bonus">Командный бонус: $2 500 при обороте $2,5 млн за месяц, $4 000 при $3 млн</div></div>
-    <div class="mp-speedo-right"><div class="mp-speedo"><div class="mp-speedo-label">СНГ</div><svg viewBox="0 0 286 158" class="mp-speedo-svg"><path d="M 63.80 101.20 A 79.20 79.20 0 0 1 174.45 28.51" fill="none" stroke="var(--critical, #9E4438)" stroke-width="17.2"/><path d="M 174.45 28.51 A 79.20 79.20 0 0 1 208.50 56.68" fill="none" stroke="var(--warn, #B58028)" stroke-width="17.2"/><path d="M 208.50 56.68 A 79.20 79.20 0 0 1 222.20 101.20" fill="none" stroke="var(--good, #3E7A52)" stroke-width="17.2"/><polygon points="83.60,101.20 130.90,101.20 130.92,100.52" fill="var(--ink)"/><circle cx="143.00" cy="101.20" r="8.4" fill="none" stroke="var(--ink)" stroke-width="3.5"/><text x="50.6" y="112.2" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="235.4" y="112.2" text-anchor="middle" class="mp-speedo-tick">$1,50 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $1,35 млн плана · <span class="critical">0%</span></div></div><div class="mp-speedo"><div class="mp-speedo-label">Международное</div><svg viewBox="0 0 286 158" class="mp-speedo-svg"><path d="M 63.80 101.20 A 79.20 79.20 0 0 1 140.51 22.04" fill="none" stroke="var(--critical, #9E4438)" stroke-width="17.2"/><path d="M 140.51 22.04 A 79.20 79.20 0 0 1 174.45 28.51" fill="none" stroke="var(--warn, #B58028)" stroke-width="17.2"/><path d="M 174.45 28.51 A 79.20 79.20 0 0 1 222.20 101.20" fill="none" stroke="var(--good, #3E7A52)" stroke-width="17.2"/><polygon points="83.60,101.20 130.90,101.20 130.92,100.52" fill="var(--ink)"/><circle cx="143.00" cy="101.20" r="8.4" fill="none" stroke="var(--ink)" stroke-width="3.5"/><text x="50.6" y="112.2" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="235.4" y="112.2" text-anchor="middle" class="mp-speedo-tick">$1,50 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $1,05 млн плана · <span class="critical">0%</span></div></div></div>
-  </div>
+  <div class="mp-speedo-row3"><div class="mp-speedo"><div class="mp-speedo-label">Компания</div><svg viewBox="0 0 260 144" class="mp-speedo-svg"><path d="M 58.00 92.00 A 72.00 72.00 0 0 1 143.49 21.28" fill="none" stroke="var(--critical, #9E4438)" stroke-width="15.6"/><path d="M 143.49 21.28 A 72.00 72.00 0 0 1 175.89 36.52" fill="none" stroke="var(--warn, #B58028)" stroke-width="15.6"/><path d="M 175.89 36.52 A 72.00 72.00 0 0 1 202.00 92.00" fill="none" stroke="var(--good, #3E7A52)" stroke-width="15.6"/><line x1="184.56" y1="60.50" x2="200.15" y2="51.50" stroke="var(--ink)" stroke-width="2.4"/><text x="212.27" y="44.50" text-anchor="middle" class="mp-speedo-marker">$2 500</text><line x1="193.00" y1="92.00" x2="211.00" y2="92.00" stroke="var(--ink)" stroke-width="2.4"/><text x="225.00" y="92.00" text-anchor="middle" class="mp-speedo-marker">$4 000</text><polygon points="76.00,92.00 119.00,92.00 119.02,91.38" fill="var(--ink)"/><circle cx="130.00" cy="92.00" r="7.6" fill="none" stroke="var(--ink)" stroke-width="3.2"/><text x="46.0" y="102.0" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="214.0" y="102.0" text-anchor="middle" class="mp-speedo-tick">$3,00 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $2,40 млн плана · <span class="critical">0%</span></div><div class="mp-speedo-bonus">Бонус: $2 500 при $2,5 млн/мес, $4 000 при $3 млн</div></div><div class="mp-speedo"><div class="mp-speedo-label">СНГ</div><svg viewBox="0 0 260 144" class="mp-speedo-svg"><path d="M 58.00 92.00 A 72.00 72.00 0 0 1 158.59 25.92" fill="none" stroke="var(--critical, #9E4438)" stroke-width="15.6"/><path d="M 158.59 25.92 A 72.00 72.00 0 0 1 189.55 51.53" fill="none" stroke="var(--warn, #B58028)" stroke-width="15.6"/><path d="M 189.55 51.53 A 72.00 72.00 0 0 1 202.00 92.00" fill="none" stroke="var(--good, #3E7A52)" stroke-width="15.6"/><polygon points="76.00,92.00 119.00,92.00 119.02,91.38" fill="var(--ink)"/><circle cx="130.00" cy="92.00" r="7.6" fill="none" stroke="var(--ink)" stroke-width="3.2"/><text x="46.0" y="102.0" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="214.0" y="102.0" text-anchor="middle" class="mp-speedo-tick">$1,50 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $1,35 млн плана · <span class="critical">0%</span></div></div><div class="mp-speedo"><div class="mp-speedo-label">Международное</div><svg viewBox="0 0 260 144" class="mp-speedo-svg"><path d="M 58.00 92.00 A 72.00 72.00 0 0 1 127.74 20.04" fill="none" stroke="var(--critical, #9E4438)" stroke-width="15.6"/><path d="M 127.74 20.04 A 72.00 72.00 0 0 1 158.59 25.92" fill="none" stroke="var(--warn, #B58028)" stroke-width="15.6"/><path d="M 158.59 25.92 A 72.00 72.00 0 0 1 202.00 92.00" fill="none" stroke="var(--good, #3E7A52)" stroke-width="15.6"/><polygon points="76.00,92.00 119.00,92.00 119.02,91.38" fill="var(--ink)"/><circle cx="130.00" cy="92.00" r="7.6" fill="none" stroke="var(--ink)" stroke-width="3.2"/><text x="46.0" y="102.0" text-anchor="middle" class="mp-speedo-tick">$0</text><text x="214.0" y="102.0" text-anchor="middle" class="mp-speedo-tick">$1,50 млн</text></svg><div class="mp-speedo-value">$0</div><div class="mp-speedo-sub">из $1,05 млн плана · <span class="critical">0%</span></div></div></div>
   
 </section>
 

@@ -193,23 +193,25 @@ def build_month_plan_html(mp):
         return 'critical'
 
     BONUS_MARKERS = [(2_500_000, '$2 500'), (3_000_000, '$4 000')]
-    BONUS_NOTE = 'Командный бонус: $2 500 при обороте $2,5 млн за месяц, $4 000 при $3 млн'
+    BONUS_NOTE = 'Бонус: $2 500 при $2,5 млн/мес, $4 000 при $3 млн'
 
-    def speedo(label, fact, plan, size=220, markers=None, big=False):
+    def speedo(label, fact, plan, markers=None, note=None):
         pct = (fact / plan * 100) if plan else 0
         cls = status(pct)
         return (
-            '<div class="mp-speedo' + (' mp-speedo-big' if big else '') + '">'
+            '<div class="mp-speedo">'
             '<div class="mp-speedo-label">' + _esc(label) + '</div>' +
-            _speedo_svg(fact, plan, size=size, markers=markers) +
+            _speedo_svg(fact, plan, size=200, markers=markers) +
             '<div class="mp-speedo-value">' + _money(fact) + '</div>'
             '<div class="mp-speedo-sub">из ' + _money(plan) + ''' плана · <span class="''' + cls + '">' + f'{pct:.0f}%' + '</span></div>' +
-            ('<div class="mp-speedo-bonus">' + _esc(BONUS_NOTE) + '</div>' if big else '') +
+            ('<div class="mp-speedo-bonus">' + _esc(note) + '</div>' if note else '') +
             '</div>'
         )
 
-    total_speedo = speedo('Компания · факт / план', total_fact, total_plan, size=280, markers=BONUS_MARKERS, big=True)
-    seg_speedos = ''.join(speedo(s['label'], s.get('fact') or 0, s.get('plan') or 0) for s in segs)
+    row3 = (
+        speedo('Компания', total_fact, total_plan, markers=BONUS_MARKERS, note=BONUS_NOTE) +
+        ''.join(speedo(s['label'], s.get('fact') or 0, s.get('plan') or 0) for s in segs)
+    )
 
     caveat = ''
     if mp.get('unmatched_names'):
@@ -225,40 +227,30 @@ def build_month_plan_html(mp):
   font-family: var(--font-sans); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--accent); border: 1px solid var(--accent); border-radius: 2px; padding: 2px 7px; font-weight: 600;
 }
-.mp-speedo-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; margin-bottom: 10px; align-items: stretch; }
-@media (max-width: 700px) { .mp-speedo-layout { grid-template-columns: 1fr; } }
-.mp-speedo-right { display: flex; flex-direction: column; gap: 14px; }
-.mp-speedo-right .mp-speedo { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 18px 18px 16px; text-align: center; }
-.mp-speedo-big { display: flex; flex-direction: column; align-items: center; max-width: 480px; margin: 0 auto; }
+.mp-speedo-row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+@media (max-width: 640px) { .mp-speedo-row3 { grid-template-columns: 1fr; } }
+.mp-speedo { background: var(--surface); border: 1px solid var(--rule); padding: 10px 10px 9px; text-align: center; }
 .mp-speedo-label {
-  font-family: var(--font-sans); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--muted); font-weight: 600; margin-bottom: 6px;
+  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--muted); font-weight: 600; margin-bottom: 2px;
 }
-.mp-speedo-big .mp-speedo-label { font-size: 14px; }
-.mp-speedo-svg { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; }
-.mp-speedo-big .mp-speedo-svg { max-width: 460px; }
-.mp-speedo-tick { font-family: var(--font-mono); font-size: 10.5px; fill: var(--muted); }
-.mp-speedo-marker { font-family: var(--font-sans); font-size: 10px; font-weight: 700; fill: var(--ink); }
-.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 32px; letter-spacing: -0.02em; margin-top: -4px; }
-.mp-speedo-big .mp-speedo-value { font-size: 46px; }
-.mp-speedo-sub { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); margin-top: 4px; }
-.mp-speedo-big .mp-speedo-sub { font-size: 15px; margin-top: 6px; }
+.mp-speedo-svg { display: block; width: 100%; max-width: 210px; height: auto; margin: 0 auto; }
+.mp-speedo-tick { font-family: var(--font-mono); font-size: 10px; fill: var(--muted); }
+.mp-speedo-marker { font-family: var(--font-sans); font-size: 9.5px; font-weight: 700; fill: var(--ink); }
+.mp-speedo-value { font-family: var(--font-display); font-weight: 500; font-size: 24px; letter-spacing: -0.02em; margin-top: -6px; }
+.mp-speedo-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); margin-top: 1px; }
 .mp-speedo-sub .good { color: var(--good); font-weight: 700; }
 .mp-speedo-sub .warn { color: var(--warn); font-weight: 700; }
 .mp-speedo-sub .critical { color: var(--critical); font-weight: 700; }
-.mp-speedo-bonus { font-family: var(--font-sans); font-size: 12.5px; color: var(--ink-2); margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule); }
-.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 10px 0 22px; }
+.mp-speedo-bonus { font-family: var(--font-sans); font-size: 9.5px; color: var(--ink-2); margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--rule); }
+.mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 8px 0 18px; }
 </style>
 <section class="mp-section">
   <div class="mp-head">
     <h2>План / факт · оборот · ''' + _esc(mp.get('month_label', '')) + '''</h2>
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
-  <div class="mp-speedo-layout">
-    ''' + total_speedo + '''
-    <div class="mp-speedo-right">''' + seg_speedos + '''</div>
-  </div>
+  <div class="mp-speedo-row3">''' + row3 + '''</div>
   ''' + caveat + '''
 </section>
 ''')
