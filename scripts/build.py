@@ -624,7 +624,14 @@ def build_rating_html(rating, standalone=False):
         )
         return '<div class="rt-top3-solo"><h4>Топ-3 · по обороту</h4>' + cards + '</div>'
 
-    def render_table(rows, empty_note):
+    def _roi_cell(v):
+        if v is None:
+            return '<td class="num rt-roi">—</td>'
+        cls = 'good' if v >= 45 else ('warn' if v >= 20 else 'critical')
+        return '<td class="num rt-roi ' + cls + '">' + f'{v:.0f}%' + '</td>'
+
+    def render_table(rows, empty_note, roi_keys):
+        mkt_key, partner_key = roi_keys
         rows = sorted(rows, key=lambda r: -r[2])
         body = []
         rank = 0
@@ -643,14 +650,16 @@ def build_rating_html(rating, standalone=False):
                 '</td>'
                 '<td class="num">' + _int(deals) + '</td>'
                 '<td class="num rt-turn">' + _money(turnover) + '</td>'
-                '<td class="num">' + (_money(avg) if deals else '—') + '</td>'
+                '<td class="num">' + (_money(avg) if deals else '—') + '</td>' +
+                _roi_cell(b.get(mkt_key) if mkt_key else None) +
+                _roi_cell(b.get(partner_key) if partner_key else None) +
                 '</tr>'
             )
         if not any_deals:
-            body.append('<tr><td colspan="5" class="rt-empty">' + empty_note + '</td></tr>')
+            body.append('<tr><td colspan="7" class="rt-empty">' + empty_note + '</td></tr>')
         return '\n'.join(body)
 
-    def render_group(rows, note):
+    def render_group(rows, note, roi_keys):
         return (
             '\n      <div class="rt-metric-group">'
             + render_top3(rows) +
@@ -658,28 +667,30 @@ def build_rating_html(rating, standalone=False):
             '\n          <table class="rt-table">'
             '\n            <thead><tr>'
             '\n              <th>#</th><th>Брокер</th><th class="num">Сделок</th><th class="num">Оборот</th>'
-            '\n              <th class="num">Средний чек</th>'
+            '\n              <th class="num">Средний чек</th><th class="num">Окуп. маркет.</th><th class="num">Окуп. партн.</th>'
             '\n            </tr></thead>'
-            '\n            <tbody>' + render_table(rows, note) + '</tbody>'
+            '\n            <tbody>' + render_table(rows, note, roi_keys) + '</tbody>'
             '\n          </table>'
             '\n        </div>'
             '\n      </div>'
         )
 
     periods = [
-        ('Весь период', 'за всё время в реестре сделок', lambda y, m: True, 'Сделок за весь период не найдено.'),
-        ('2026 год', 'с января по текущий месяц 2026', lambda y, m: y == 2026, 'Сделок в 2026 году пока нет.'),
+        ('Весь период', 'за всё время в реестре сделок', lambda y, m: True, 'Сделок за весь период не найдено.',
+         ('roi_mkt_all', 'roi_partner_all')),
+        ('2026 год', 'с января по текущий месяц 2026', lambda y, m: y == 2026, 'Сделок в 2026 году пока нет.',
+         ('roi_mkt_2026', 'roi_partner_2026')),
         ((cur_label.capitalize() if cur_label else 'Текущий месяц'), 'текущий месяц',
-         lambda y, m: y == cur_y and m == cur_m, 'В ' + cur_label + ' сделок пока нет.'),
+         lambda y, m: y == cur_y and m == cur_m, 'В ' + cur_label + ' сделок пока нет.', (None, None)),
     ]
 
     sections_html = ''.join(
         '\n    <section class="rt-period">'
         '\n      <h2 class="rt-period-title">' + label + '</h2>'
-        '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров</p>' +
-        render_group(rows_for(pred), note) +
+        '\n      <p class="rt-sub">' + sub + ' · ' + _int(len(brokers)) + ' действующих брокеров · окупаемость — из «Статистика по брокерам» (турнирная таблица)</p>' +
+        render_group(rows_for(pred), note, roi_keys) +
         '\n    </section>'
-        for label, sub, pred, note in periods
+        for label, sub, pred, note, roi_keys in periods
     )
 
     style = '''
@@ -742,6 +753,9 @@ def build_rating_html(rating, standalone=False):
 .rt-pos { font-size: 10px; color: var(--muted); font-weight: 400; font-family: var(--font-sans); }
 .rt-pos::before { content: ' · '; }
 .rt-turn { font-weight: 600; color: var(--accent-2); }
+.rt-roi.good { color: var(--good); font-weight: 600; }
+.rt-roi.warn { color: var(--warn); }
+.rt-roi.critical { color: var(--critical); }
 .rt-empty { text-align: center; color: var(--muted); padding: 24px; }
 .rt-top3-solo {
   background: var(--surface); border: 1px solid var(--rule); padding: 8px 12px; margin-bottom: 10px;

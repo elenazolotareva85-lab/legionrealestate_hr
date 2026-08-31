@@ -108,7 +108,8 @@ def parse_stat(rng):
             'avg_check': num(r[7]) or 0, 'revenue': num(r[8]) or 0,
             'margin_cb': num(r[10]) or 0, 'mkt_spend': num(r[11]) or 0,
             'avg_lead_price': num(r[13]) or 0, 'yield_pct': num(r[14]) or 0,
-            'partner_rev': num(r[15]) or 0, 'final_yield': num(r[18]) or 0,
+            'partner_rev': num(r[15]) or 0, 'partner_margin': num(r[16]) or 0,
+            'final_yield': num(r[18]) or 0,
         }
     return out
 
@@ -735,6 +736,30 @@ for r in rt_rows[1:]:
     rt_staff.append({'name': name, 'pos': pos, 'role': role, 'dept': r[12].strip(),
                      'head': r[5].strip(), 'start': r[0].strip(), 'tenure_months': num(r[1])})
 rt_by_norm = {norm(s['name']): s for s in rt_staff}
+
+# 7.1b окупаемость по маркетингу и по партнёрке отдельно — из «Статистика по
+# брокерам» (combined/block2 из блока 2, уже собраны выше). «Доходность от
+# выручки, %» (col14, combined/block2['yield_pct']) — это и есть маркетинговая
+# окупаемость (маржа минус расходы на маркетинг, к выручке); окупаемость
+# партнёрки в листе отдельной колонкой не считают — берём маржу от партнёрки
+# к выручке от партнёрки.
+combined_by_norm = {norm(k): v for k, v in combined.items()}
+block2_by_norm = {norm(k): v for k, v in block2.items()}
+
+
+def _partner_roi(entry):
+    rev = entry.get('partner_rev') or 0
+    if not rev: return None
+    return round(100 * (entry.get('partner_margin') or 0) / rev, 1)
+
+
+for s in rt_staff:
+    c = combined_by_norm.get(norm(s['name']), {})
+    b2 = block2_by_norm.get(norm(s['name']), {})
+    s['roi_mkt_all'] = round(c['yield_pct'], 1) if c.get('yield_pct') is not None else None
+    s['roi_partner_all'] = _partner_roi(c)
+    s['roi_mkt_2026'] = round(b2['yield_pct'], 1) if b2.get('yield_pct') is not None else None
+    s['roi_partner_2026'] = _partner_roi(b2)
 
 # 7.2 сделки: строка = сделка, если есть менеджер и цена объекта > 0, а год похож на год
 #     (так отсекаются строки-итоги «маркет»/«прочее»). Всё после «НАРАБОТКИ» — воронка, не сделки.
