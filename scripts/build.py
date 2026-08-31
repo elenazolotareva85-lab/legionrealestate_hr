@@ -1250,6 +1250,79 @@ def refresh_ledger_2026(html):
     return html[:start] + json.dumps(recs, ensure_ascii=False) + html[k + 1:]
 
 
+# ── 4a0. Свежая статистика вместо снапшота ───────────
+# combined и y2026_stat в шаблоне заморожены и расходятся с листом: у Бадюл
+# на странице 46,1% при −100% в листе, у Мужейко −100% при 60,8%. Блок 2025
+# в снапшоте вдобавок посчитан старой формулой, без вычета рекламы
+# (у Бойко 71,4% вместо 49,6%). Пересобираем все три блока из stat.json.
+def _derive(d, sheet=None):
+    """Достраивает производные поля. Если строка есть в листе, доходности берём
+    оттуда как есть: «Финальная оценка» — это лучшее из маркетинговой и
+    партнёрской, а не всегда партнёрская, и повторять её расчётом рискованно."""
+    rev, mkt = d['revenue'], d['mkt_spend']
+    base = rev + d['partner_rev']
+    d['margin_minus_mkt'] = round(d['margin_cb'] - mkt, 2)
+    d['conv'] = round(100 * d['deals'] / d['leads'], 2) if d['leads'] else 0
+    d['avg_check'] = round(d['turnover'] / d['deals'], 2) if d['deals'] else 0
+    d['avg_lead_price'] = round(mkt / d['leads'], 2) if d['leads'] else 0
+    if sheet and sheet.get('yield_pct') is not None:
+        d['yield_pct'] = sheet['yield_pct']
+        d['final_yield'] = sheet.get('final_yield', sheet['yield_pct'])
+        return d
+    mkt_y = round(100 * (d['margin_cb'] - mkt) / rev, 2) if rev else (-100 if mkt else 0)
+    par_y = (round(100 * (d['margin_cb'] + d['partner_margin'] - mkt) / base, 2)
+             if base else (-100 if mkt else 0))
+    d['yield_pct'] = mkt_y
+    d['final_yield'] = max(mkt_y, par_y)
+    return d
+
+
+def refresh_stats(html):
+    combined_raw, block2_raw = stat.get('combined') or {}, stat.get('block2') or {}
+    if not combined_raw:
+        print('   WARNING: stat.json пуст — доходности остались из снапшота')
+        return html
+    m = re.search(r'(?:const|let|var)\s+records\s*=\s*', html)
+    if not m:
+        return html
+    start = m.end()
+    depth = 0
+    for k in range(start, len(html)):
+        if html[k] == '[':
+            depth += 1
+        elif html[k] == ']':
+            depth -= 1
+            if depth == 0:
+                break
+    try:
+        recs = json.loads(html[start:k + 1])
+    except Exception:
+        return html
+
+    comb = {_norm(n): v for n, v in combined_raw.items()}
+    y26 = {_norm(n): v for n, v in block2_raw.items()}
+    NUM = ('leads', 'deals', 'turnover', 'revenue', 'margin_cb', 'mkt_spend',
+           'partner_rev', 'partner_margin')
+    touched = 0
+    for r in recs:
+        n = _norm(r['name'])
+        c, b = comb.get(n), y26.get(n)
+        if not c:
+            continue
+        before = (r.get('y2026_stat') or {}).get('final_yield')
+        r['combined'] = _derive({k2: c.get(k2, 0) or 0 for k2 in NUM}, c)
+        r['y2026_stat'] = _derive({k2: (b or {}).get(k2, 0) or 0 for k2 in NUM}, b)
+        # Отдельного блока 2025 в листе нет — это разность общего и блока 2026.
+        r['y2025_stat'] = _derive({k2: max(0, (c.get(k2, 0) or 0) - ((b or {}).get(k2, 0) or 0))
+                                   for k2 in NUM})
+        if before != r['y2026_stat']['final_yield']:
+            touched += 1
+    print(f'   статистика: обновлено {len(comb)} брокеров, доходность 2026 изменилась у {touched}')
+    return html[:start] + json.dumps(recs, ensure_ascii=False) + html[k + 1:]
+
+
+src = refresh_stats(src)
+
 src = refresh_ledger_2026(src)
 src = refresh_roster(src)
 
