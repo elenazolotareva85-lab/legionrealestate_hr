@@ -342,6 +342,10 @@ tr.row-main.open .expand-arrow { transform: rotate(90deg); color: var(--accent);
 .side-item .who { color: var(--ink); font-family: var(--font-sans); }
 .side-item .amount { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 
+.mini-totals { display: flex; gap: 22px; margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--rule); }
+.mini-total { display: flex; flex-direction: column; gap: 2px; }
+.mini-total-label { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.mini-total-value { font-family: var(--font-mono); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 500; }
 .mini-svg { width: 100%; height: 100px; display: block; margin-top: 8px; }
 .mini-svg .bar { fill: var(--accent); }
 .mini-svg .m-label { font-family: var(--font-mono); font-size: 9px; fill: var(--muted); }
@@ -491,7 +495,8 @@ tr.row-main:focus { outline: none; }
           <th data-sort="revenue" class="num">Выручка <span class="sort-mark">↕</span></th>
           <th data-sort="mkt_spend" class="num">Реклама <span class="sort-mark">↕</span></th>
           <th data-sort="avg_lead_price" class="num">$/лид <span class="sort-mark">↕</span></th>
-          <th data-sort="yield_pct" class="num sorted">Доходн. <span class="sort-mark">↓</span></th>
+          <th data-sort="yield_pct" class="num">Дох. маркет. <span class="sort-mark">↕</span></th>
+          <th data-sort="final_yield" class="num sorted">Дох. партнёрка <span class="sort-mark">↓</span></th>
           <th>Статус</th>
         </tr>
       </thead>
@@ -530,7 +535,7 @@ const MONTHLY = {"2025": {"1": {"deals": 35, "turnover": 5786581.0, "commission"
 const PLANFACT = {"2024-08": {"oborot_plan": 2600000.0, "oborot_fact": 2141873.0, "vyruchka_plan": 85540.0, "vyruchka_fact": 73599.4}, "2024-09": {"oborot_plan": 6900000.0, "oborot_fact": 7623224.0, "vyruchka_plan": 244400.0, "vyruchka_fact": 291384.25}, "2024-10": {"oborot_plan": 6700000.0, "oborot_fact": 5065452.0, "vyruchka_plan": 236600.0, "vyruchka_fact": 255817.6}, "2024-11": {"oborot_plan": 4600000.0, "oborot_fact": 3989313.0, "vyruchka_plan": 240000.0, "vyruchka_fact": 241012.78}, "2024-12": {"oborot_plan": 6400000.0, "oborot_fact": 5911500.0, "vyruchka_plan": 384000.0, "vyruchka_fact": 363439.7}, "2025-01": {"oborot_plan": 7700000.0, "oborot_fact": 5483181.0, "vyruchka_plan": 462000.0, "vyruchka_fact": 307489.1}, "2025-02": {"oborot_plan": 8100000.0, "oborot_fact": 2311300.0, "vyruchka_plan": 486000.0, "vyruchka_fact": 147754.0}, "2025-03": {"oborot_plan": 8800000.0, "oborot_fact": 5139327.0, "vyruchka_plan": 528000.0, "vyruchka_fact": 359283.3}, "2025-04": {"oborot_plan": 8050000.0, "oborot_fact": 5018310.0, "vyruchka_plan": 503850.0, "vyruchka_fact": 339275.7}, "2026-01": {"oborot_plan": 689376.0, "oborot_fact": 842787.0, "vyruchka_plan": 62744.0, "vyruchka_fact": 50567.22}, "2026-02": {"oborot_plan": 2128690.0, "oborot_fact": 1803301.06, "vyruchka_plan": 153497.0, "vyruchka_fact": 112167.91}, "2026-03": {"oborot_plan": 3105556.0, "oborot_fact": 3105556.0, "vyruchka_plan": 251154.0, "vyruchka_fact": 194394.55}, "2026-04": {"oborot_plan": 3174220.0, "oborot_fact": 3174219.54, "vyruchka_plan": 262102.0, "vyruchka_fact": 184331.17}, "2026-05": {"oborot_plan": 3500000.0, "oborot_fact": 275120.0, "vyruchka_plan": 297500.0, "vyruchka_fact": 16507.2}, "2026-06": {"oborot_plan": 3300000.0, "oborot_fact": 1476127.0, "vyruchka_plan": 0, "vyruchka_fact": 86418.92}, "2026-07": {"oborot_plan": 3200000.0, "oborot_fact": 929000.0, "vyruchka_plan": 0, "vyruchka_fact": 67314.19}, "2026-08": {"oborot_plan": 3200000.0, "oborot_fact": 668750.0, "vyruchka_plan": 0, "vyruchka_fact": 40125.0}, "2026-09": {"oborot_plan": 3500000.0, "oborot_fact": 0, "vyruchka_plan": 0, "vyruchka_fact": 0}, "2026-10": {"oborot_plan": 4300000.0, "oborot_fact": 0, "vyruchka_plan": 0, "vyruchka_fact": 0}, "2026-11": {"oborot_plan": 4500000.0, "oborot_fact": 0, "vyruchka_plan": 0, "vyruchka_fact": 0}, "2026-12": {"oborot_plan": 4200000.0, "oborot_fact": 0, "vyruchka_plan": 0, "vyruchka_fact": 0}};
 const GREEN_YIELD = 45;
 let period = 'combined';
-let sortKey = 'yield_pct', sortDir = 'desc';
+let sortKey = 'final_yield', sortDir = 'desc';
 let filterMode = 'staff';
 let pfMetric = 'oborot';
 let pfRange = '2026';
@@ -597,6 +602,13 @@ function statusLabel(r) {
 }
 function chipCls(band) {
   return band==='good'?'status-good':band==='neutral'?'status-neutral':band==='warn'?'status-warn':'status-critical';
+}
+function yCls(v) {
+  if (!v) return '';
+  if (v >= GREEN_YIELD) return 'good';
+  if (v >= 25) return '';
+  if (v >= 0) return 'warn';
+  return 'critical';
 }
 function yieldCls(r) {
   const b = bandFor(r);
@@ -798,7 +810,8 @@ function renderTable() {
     let va, vb;
     if (sortKey === 'name') { va = a.name; vb = b.name; return sortDir==='asc' ? va.localeCompare(vb,'ru') : vb.localeCompare(va,'ru'); }
     const sa = statFor(a), sb = statFor(b);
-    if (sortKey === 'yield_pct') { va = sa.final_yield || sa.yield_pct || 0; vb = sb.final_yield || sb.yield_pct || 0; }
+    if (sortKey === 'yield_pct') { va = sa.yield_pct || 0; vb = sb.yield_pct || 0; }
+    else if (sortKey === 'final_yield') { va = sa.final_yield || sa.yield_pct || 0; vb = sb.final_yield || sb.yield_pct || 0; }
     else { va = sa[sortKey] || 0; vb = sb[sortKey] || 0; }
     return sortDir==='asc' ? va - vb : vb - va;
   });
@@ -825,11 +838,12 @@ function renderTable() {
         <td class="num">${s.revenue ? fmtMoney(s.revenue) : '—'}</td>
         <td class="num">${s.mkt_spend ? fmtMoney(s.mkt_spend) : '—'}</td>
         <td class="num">${s.avg_lead_price ? Math.round(s.avg_lead_price) : '—'}</td>
-        <td class="num yield-cell ${yieldCls(r)}">${y ? fmtPct(y) : '—'}</td>
+        <td class="num yield-cell ${yCls(s.yield_pct)}">${s.yield_pct ? fmtPct(s.yield_pct) : '—'}</td>
+        <td class="num yield-cell ${yCls(s.final_yield)}">${s.final_yield ? fmtPct(s.final_yield) : '—'}</td>
         <td><span class="status-chip ${chipCls(band)}">${statusLabel(r)}</span></td>
       </tr>
       <tr class="razbor-row" data-for="${r.id}">
-        <td colspan="10">
+        <td colspan="11">
           <div class="razbor">
             ${renderBrokerKPI(r, s, y, ledgerDeals)}
             <div>
@@ -847,6 +861,11 @@ function renderTable() {
                 <div style="margin-top:18px">
                   <h4 class="razbor-h">Сделки по месяцам 2026</h4>
                   <svg class="mini-svg" viewBox="0 0 300 100" preserveAspectRatio="none">${renderMiniMonths(r.month_2026)}</svg>
+                  <div class="mini-totals">
+                    <div class="mini-total"><span class="mini-total-label">Оборот</span><span class="mini-total-value">$${fmtMoney(s.turnover || Object.values(r.month_2026).reduce((a,v)=>a+(v.turnover||0),0))}</span></div>
+                    <div class="mini-total"><span class="mini-total-label">Выручка</span><span class="mini-total-value">$${fmtMoney(s.revenue || Object.values(r.month_2026).reduce((a,v)=>a+(v.commission||0),0))}</span></div>
+                    <div class="mini-total"><span class="mini-total-label">Сделок</span><span class="mini-total-value">${Math.max(s.deals||0, Object.values(r.month_2026).reduce((a,v)=>a+(v.deals||0),0))}</span></div>
+                  </div>
                 </div>
               ` : '' }
             </div>

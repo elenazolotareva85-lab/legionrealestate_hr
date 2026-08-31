@@ -1141,6 +1141,74 @@ new_extract = '''const clone = nameCell.cloneNode(true);
       const name = clone.textContent.trim();'''
 src = src.replace(old_extract, new_extract)
 
+# ── 4a. Актуализация списка брокеров ─────────────────
+# records в шаблоне — снапшот. Флаг is_active и даты берём из свежей штатки,
+# а тех, кто есть в штате, но записи не имеет, добавляем пустыми строками.
+def refresh_roster(html):
+    m = re.search(r'(?:const|let|var)\s+records\s*=\s*', html)
+    if not m:
+        print('   WARNING: массив records не найден — список брокеров остался из снапшота')
+        return html
+    start = m.end()
+    depth = 0
+    for k in range(start, len(html)):
+        if html[k] == '[':
+            depth += 1
+        elif html[k] == ']':
+            depth -= 1
+            if depth == 0:
+                break
+    try:
+        recs = json.loads(html[start:k + 1])
+    except Exception:
+        print('   WARNING: records не разобрался — список оставлен как есть')
+        return html
+
+    staff = {_norm(x['name']): x for x in active_brokers}
+    by_norm = {_norm(r['name']): r for r in recs}
+    fired = added = 0
+
+    for r in recs:
+        n = _norm(r['name'])
+        was = r.get('is_active')
+        r['is_active'] = n in staff
+        if was and not r['is_active']:
+            fired += 1
+        st = staff.get(n)
+        if st and not r.get('start_date'):
+            d = staff_dates.get(st['name']) or {}
+            if d.get('start'):
+                r['start_date'] = d['start']
+
+    empty_stat = {}
+    blank_razbor = {
+        'criteria': [], 'strengths': [], 'growth': ['Статистики пока нет — брокер не заведён в лист «Статистика по брокерам».'],
+        'recommendation': 'Добавить в лист статистики, чтобы считались лиды, доходность и место в рейтинге.',
+    }
+    for n, st in staff.items():
+        if n in by_norm:
+            continue
+        pos = (st.get('pos') or '').lower()
+        if 'менеджер по продажам' not in pos:     # не продажники в сводку не идут
+            continue
+        d = staff_dates.get(st['name']) or {}
+        recs.append({
+            'name': st['name'], 'id': re.sub(r'\W+', '_', st['name']),
+            'start_date': d.get('start', ''), 'is_active': True,
+            'combined': empty_stat, 'y2025_stat': empty_stat, 'y2026_stat': empty_stat,
+            'year_deals': {y: {'deals': 0, 'turnover': 0, 'commission': 0}
+                           for y in ('2023', '2024', '2025', '2026')},
+            'month_2026': {},
+            'razbor_combined': blank_razbor, 'razbor_2025': blank_razbor, 'razbor_2026': blank_razbor,
+        })
+        added += 1
+
+    print(f'   ростер: {len(recs)} записей, снят флаг у {fired}, добавлено новых {added}')
+    return html[:start] + json.dumps(recs, ensure_ascii=False) + html[k + 1:]
+
+
+src = refresh_roster(src)
+
 # ── 4b. Status/band must count ledger deals too ──────
 # The table already prints max(stat.deals, ledger.deals), but bandFor/statusLabel
 # looked only at stat.deals — so a broker with ledger-only deals (РОП с партнёрских
