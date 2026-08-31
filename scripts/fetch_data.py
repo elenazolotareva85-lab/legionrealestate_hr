@@ -9,7 +9,8 @@ import json
 import os
 import re
 from collections import defaultdict
-from datetime import date
+import io
+from datetime import date, datetime
 from pathlib import Path
 
 import gspread
@@ -190,15 +191,74 @@ print(f'   declined: {len(declined)}, greens: {len(greens)}')
 
 # ── 3. Razbory (dashboard + registry) ────────────────────
 print('3. Fetch razbory...')
-# Try via gspread first — but the file is .xlsx, so we'll rely on cached copy in data/razbory_raw.txt
-# Actually the file was uploaded as .xlsx; try opening via Drive API fallback.
-# For simplicity: skip if not cached — this is the file most likely to fail.
+# Файл лежит на Диске как .xlsx, поэтому gspread его не открывает: качаем через
+# Drive API и разворачиваем в тот же плоский CSV-текст, который разбирают
+# parse_razbory / parse_agreements. Раньше здесь читался кэш, обновляемый руками,
+# и данные отставали на дни. Кэш остался запасным вариантом на случай сбоя.
+
+
+def _flatten_xlsx(blob):
+    """xlsx → текст «имя листа + строки CSV», как в старом ручном дампе."""
+    import csv
+    import openpyxl
+    wb = openpyxl.load_workbook(io.BytesIO(blob), data_only=True, read_only=True)
+    out = io.StringIO()
+    for ws in wb.worksheets:
+        out.write(ws.title + '\n')
+        writer = csv.writer(out, lineterminator='\n')
+        for row in ws.iter_rows():
+            cells = []
+            for cell in row:
+                c = cell.value
+                fmt = cell.number_format or ''
+                if c is None:
+                    cells.append('')
+                elif isinstance(c, datetime):
+                    cells.append(c.strftime('%d.%m.%Y'))       # парсер ждёт 13.08.2026
+                elif isinstance(c, float) and '%' in fmt:
+                    cells.append(f'{c * 100:g}%')              # 0.24 → 24%, иначе счётчик читался как 0
+                elif isinstance(c, float) and c.is_integer():
+                    cells.append(str(int(c)))                  # 2.0 → 2
+                else:
+                    cells.append(str(c).replace('\n', ' ').strip())
+            # Хвостовые пустые ячейки не обрезаем: разбор договорённостей
+            # позиционный, и пропавшая запятая ломает ему всю строку.
+            if any(cells):
+                writer.writerow(cells)
+        out.write('\n')
+    return out.getvalue()
+
+
+def _download_razbory():
+    from googleapiclient.discovery import build
+    from googleapiclient.http import MediaIoBaseDownload
+    svc = build('drive', 'v3', credentials=sheets_creds, cache_discovery=False)
+    buf = io.BytesIO()
+    # supportsAllDrives обязателен: без него файл отдаёт 404, хотя доступ есть
+    dl = MediaIoBaseDownload(buf, svc.files().get_media(fileId=RAZBORY_ID, supportsAllDrives=True))
+    done = False
+    while not done:
+        _, done = dl.next_chunk()
+    return buf.getvalue()
+
+
+razbory_dump = ''
 try:
-    razbory_dump = (DATA / 'razbory_raw.txt').read_text()
-    print('   using cached razbory raw dump')
-except FileNotFoundError:
-    print('   WARNING: no razbory_raw.txt cached — razbory block will be empty')
-    razbory_dump = ''
+    blob = _download_razbory()
+    razbory_dump = _flatten_xlsx(blob)
+    (DATA / 'razbory_raw.txt').write_text(razbory_dump)
+    print(f'   разборы скачаны с Диска: {len(blob):,} байт xlsx')
+except Exception as e:
+    print(f'   WARNING: не удалось скачать разборы ({type(e).__name__}: {str(e)[:80]}) — беру кэш')
+    try:
+        razbory_dump = (DATA / 'razbory_raw.txt').read_text()
+    except FileNotFoundError:
+        print('   WARNING: кэша тоже нет — блок разборов будет пустым')
+
+
+def _razbory_period(raw):
+    m = re.search(r'Период с:,*\s*([\d.]+),*\s*по:,*\s*([\d.]+)', raw or '')
+    return {'start': m.group(1), 'end': m.group(2)} if m else {'start': '', 'end': ''}
 
 
 def parse_razbory(raw):
@@ -245,7 +305,7 @@ def parse_razbory(raw):
         'norm_met_pct': find_int('Выполнили норматив'),
     }
     return {
-        'period': {'start': '01.08.2026', 'end': '31.08.2026'},
+        'period': _razbory_period(raw),
         'summary': summary,
         'brokers': brokers,
     }
