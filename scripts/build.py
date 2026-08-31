@@ -1430,7 +1430,14 @@ overlay_addon = '''
       .replace(/і/g,'и').replace(/ї/g,'и').replace(/є/g,'е').replace(/ы/g,'и')
       .split(/\\s+/).sort().join(' ');
   }
-  function alias(n) { const b = norm(n); return [b, b.replace(/\\bмакс\\b/,'максим'), b.replace(/\\bмаксим\\b/,'макс')]; }
+  // \\b в JS не работает с кириллицей: границу слова определяет [A-Za-z0-9_],
+  // поэтому /\\bмакс\\b/ не совпадал никогда и «Макс Рувинский» не находился.
+  // Сравниваем токены целиком.
+  function alias(n) {
+    const b = norm(n);
+    const swap = (from, to) => b.split(' ').map(t => t === from ? to : t).sort().join(' ');
+    return [...new Set([b, swap('макс', 'максим'), swap('максим', 'макс')])];
+  }
   const nonBrokersNorm = new Set(OVERLAY.non_brokers.map(norm));
   const staffByNorm = {};
   for (const [k, v] of Object.entries(OVERLAY.staff_dates)) staffByNorm[norm(k)] = v;
