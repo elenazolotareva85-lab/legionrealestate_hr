@@ -688,9 +688,14 @@ def build_rating_html(rating, standalone=False):
             mm -= 1
             if mm == 0: mm, yy = 12, yy - 1
 
+    prev_y, prev_m = (cur_y, cur_m - 1) if cur_m and cur_m > 1 else (cur_y - 1 if cur_y else None, 12)
+    prev_label = f'{month_names[prev_m]} {prev_y}' if prev_m else ''
+
     periods = [
         ('month', (cur_label.capitalize() if cur_label else 'Текущий месяц'), 'текущий месяц',
          lambda y, m: y == cur_y and m == cur_m, 'В ' + cur_label + ' сделок пока нет.', (None, None)),
+        ('prev_month', (prev_label.capitalize() if prev_label else 'Прошлый месяц'), 'прошлый месяц',
+         lambda y, m: y == prev_y and m == prev_m, 'В ' + prev_label + ' сделок нет.', (None, None)),
         ('quarter', (f'{quarter} кв. {cur_y}' if quarter else 'Квартал'), 'текущий квартал',
          lambda y, m: y == cur_y and (m - 1) // 3 + 1 == quarter, 'В этом квартале сделок пока нет.', (None, None)),
         ('half', 'Полгода', 'последние 6 месяцев',
