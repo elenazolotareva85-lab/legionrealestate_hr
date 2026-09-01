@@ -1,16 +1,21 @@
 {
   "александр мужейко": {
-    "commission": 15000.0,
-    "deals": 1,
+    "commission": 30228.0,
+    "deals": 2,
     "months": {
       "8": {
         "commission": 15000.0,
         "deals": 1,
         "turnover": 250000.0
+      },
+      "9": {
+        "commission": 15228.0,
+        "deals": 1,
+        "turnover": 253800.0
       }
     },
     "name": "Александр Мужейко",
-    "turnover": 250000.0
+    "turnover": 503800.0
   },
   "александр подопригора": {
     "commission": 20885.25,
@@ -44,8 +49,8 @@
     "turnover": 338685.0
   },
   "анастасия сорокина": {
-    "commission": 21555.0,
-    "deals": 3,
+    "commission": 32295.0,
+    "deals": 4,
     "months": {
       "3": {
         "commission": 12255.0,
@@ -61,10 +66,15 @@
         "commission": 6000.0,
         "deals": 1,
         "turnover": 100000.0
+      },
+      "9": {
+        "commission": 10740.0,
+        "deals": 1,
+        "turnover": 179000.0
       }
     },
     "name": "Анастасия Сорокина",
-    "turnover": 359250.0
+    "turnover": 538250.0
   },
   "андрей бойко": {
     "commission": 199602.85,
@@ -129,7 +139,7 @@
   },
   "багазий виктория": {
     "commission": 41297.55,
-    "deals": 3,
+    "deals": 6,
     "months": {
       "2": {
         "commission": 9600.0,
@@ -140,14 +150,19 @@
         "commission": 31697.55,
         "deals": 2,
         "turnover": 528292.54
+      },
+      "9": {
+        "commission": 0.0,
+        "deals": 3,
+        "turnover": 585000.0
       }
     },
     "name": "Виктория Багазий",
-    "turnover": 688292.54
+    "turnover": 1273292.54
   },
   "бадюл рената": {
-    "commission": 48979.67,
-    "deals": 4,
+    "commission": 73312.67,
+    "deals": 6,
     "months": {
       "3": {
         "commission": 9001.67,
@@ -158,10 +173,15 @@
         "commission": 39978.0,
         "deals": 3,
         "turnover": 670000.0
+      },
+      "9": {
+        "commission": 24333.0,
+        "deals": 2,
+        "turnover": 405550.0
       }
     },
     "name": "Рената Бадюл",
-    "turnover": 834500.0
+    "turnover": 1240050.0
   },
   "безносюк роман": {
     "commission": 27120.0,
@@ -200,8 +220,8 @@
     "turnover": 430984.22
   },
   "бондаренко валентина": {
-    "commission": 114592.06,
-    "deals": 8,
+    "commission": 169330.06,
+    "deals": 13,
     "months": {
       "1": {
         "commission": 15771.0,
@@ -227,10 +247,28 @@
         "commission": 28000.0,
         "deals": 1,
         "turnover": 350000.0
+      },
+      "9": {
+        "commission": 54738.0,
+        "deals": 5,
+        "turnover": 1191300.0
       }
     },
     "name": "Валентина Бондаренко",
-    "turnover": 1659641.0
+    "turnover": 2850941.0
+  },
+  "бондаренко татьяна": {
+    "commission": 7500.0,
+    "deals": 2,
+    "months": {
+      "9": {
+        "commission": 7500.0,
+        "deals": 2,
+        "turnover": 270000.0
+      }
+    },
+    "name": "Татьяна Бондаренко",
+    "turnover": 270000.0
   },
   "валерия кулагина": {
     "commission": 11154.36,
@@ -246,8 +284,8 @@
     "turnover": 185906.0
   },
   "григорий решетов": {
-    "commission": 22116.0,
-    "deals": 3,
+    "commission": 31656.0,
+    "deals": 5,
     "months": {
       "2": {
         "commission": 14994.0,
@@ -258,10 +296,15 @@
         "commission": 7122.0,
         "deals": 1,
         "turnover": 118700.0
+      },
+      "9": {
+        "commission": 9540.0,
+        "deals": 2,
+        "turnover": 309000.0
       }
     },
     "name": "Григорий Решетов",
-    "turnover": 368600.0
+    "turnover": 677600.0
   },
   "ирина лисниченко": {
     "commission": 19200.0,
@@ -278,16 +321,21 @@
   },
   "коновалова кристина": {
     "commission": 8125.44,
-    "deals": 1,
+    "deals": 3,
     "months": {
       "7": {
         "commission": 8125.44,
         "deals": 1,
         "turnover": 140000.0
+      },
+      "9": {
+        "commission": 0.0,
+        "deals": 2,
+        "turnover": 750000.0
       }
     },
     "name": "Кристина Коновалова",
-    "turnover": 140000.0
+    "turnover": 890000.0
   },
   "максим микитишин": {
     "commission": 43966.68,

@@ -1,6 +1,6 @@
 {
   "cur_year": 2026,
-  "cur_month": 8,
+  "cur_month": 9,
   "brokers": [
     {
       "name": "Роман Безносюк",
@@ -484,6 +484,11 @@
           1,
           350000.0,
           28000.0
+        ],
+        "2026-09": [
+          1,
+          422300.0,
+          25338.0
         ]
       }
     },
@@ -494,7 +499,7 @@
       "dept": "sales_1",
       "head": "Владислав Семчук",
       "start": "02.11.2023",
-      "tenure_months": 34.4,
+      "tenure_months": 34.5,
       "roi_mkt_all": 24.4,
       "roi_partner_all": 48.7,
       "roi_mkt_2026": -100.0,
@@ -684,7 +689,7 @@
       "dept": "sales_1",
       "head": "Владислав Семчук",
       "start": "12.02.2024",
-      "tenure_months": 31.0,
+      "tenure_months": 31.1,
       "roi_mkt_all": 44.3,
       "roi_partner_all": null,
       "roi_mkt_2026": -100.0,
@@ -764,7 +769,7 @@
       "dept": "sales_2",
       "head": "Владислав Семчук",
       "start": "09.04.2024",
-      "tenure_months": 29.1,
+      "tenure_months": 29.2,
       "roi_mkt_all": 53.8,
       "roi_partner_all": 44.1,
       "roi_mkt_2026": 40.8,
@@ -924,6 +929,11 @@
           3,
           670000.0,
           39978.0
+        ],
+        "2026-09": [
+          2,
+          405550.0,
+          24333.0
         ]
       }
     },
@@ -1034,6 +1044,11 @@
           1,
           142000.0,
           8520.0
+        ],
+        "2026-09": [
+          1,
+          125000.0,
+          7500.0
         ]
       }
     },
@@ -1044,7 +1059,7 @@
       "dept": "sales_4",
       "head": "Владислав Семчук",
       "start": "27.02.2025",
-      "tenure_months": 18.3,
+      "tenure_months": 18.4,
       "roi_mkt_all": 48.9,
       "roi_partner_all": null,
       "roi_mkt_2026": 46.6,
@@ -1094,7 +1109,7 @@
       "dept": "sales_2",
       "head": "Владислав Семчук",
       "start": "14.03.2025",
-      "tenure_months": 17.8,
+      "tenure_months": 17.9,
       "roi_mkt_all": null,
       "roi_partner_all": null,
       "roi_mkt_2026": null,
@@ -1164,6 +1179,11 @@
           1,
           118700.0,
           7122.0
+        ],
+        "2026-09": [
+          1,
+          159000.0,
+          9540.0
         ]
       }
     },
@@ -1174,7 +1194,7 @@
       "dept": "sales_2",
       "head": "Владислав Семчук",
       "start": "13.10.2025",
-      "tenure_months": 10.7,
+      "tenure_months": 10.8,
       "roi_mkt_all": 45.3,
       "roi_partner_all": null,
       "roi_mkt_2026": 45.3,
@@ -1363,6 +1383,11 @@
           1,
           100000.0,
           6000.0
+        ],
+        "2026-09": [
+          1,
+          179000.0,
+          10740.0
         ]
       }
     },
@@ -1387,7 +1412,7 @@
       "dept": "sales",
       "head": "Владислав Семчук",
       "start": "23.04.2026",
-      "tenure_months": 4.3,
+      "tenure_months": 4.4,
       "roi_mkt_all": 60.8,
       "roi_partner_all": null,
       "roi_mkt_2026": 60.8,
@@ -1397,6 +1422,11 @@
           1,
           250000.0,
           15000.0
+        ],
+        "2026-09": [
+          1,
+          253800.0,
+          15228.0
         ]
       }
     },
@@ -1421,7 +1451,7 @@
       "dept": "sales",
       "head": "Владислав Семчук",
       "start": "19.06.2026",
-      "tenure_months": 2.4,
+      "tenure_months": 2.5,
       "roi_mkt_all": -100.0,
       "roi_partner_all": null,
       "roi_mkt_2026": -100.0,
@@ -1435,7 +1465,7 @@
       "dept": "sales",
       "head": "Владислав Семчук",
       "start": "24.08.2026",
-      "tenure_months": 0.2,
+      "tenure_months": 0.3,
       "roi_mkt_all": null,
       "roi_partner_all": null,
       "roi_mkt_2026": null,
@@ -1449,7 +1479,7 @@
       "dept": "sales",
       "head": "Владислав Семчук",
       "start": "24.08.2026",
-      "tenure_months": 0.2,
+      "tenure_months": 0.3,
       "roi_mkt_all": null,
       "roi_partner_all": null,
       "roi_mkt_2026": null,
@@ -1642,6 +1672,11 @@
       3,
       668750.0,
       40125.0
+    ],
+    "2026-09": [
+      7,
+      1544650.0,
+      92679.0
     ]
   },
   "outside": {
