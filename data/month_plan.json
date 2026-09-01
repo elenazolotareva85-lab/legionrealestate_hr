@@ -7,17 +7,17 @@
       "key": "sng",
       "label": "СНГ",
       "plan": 1350000.0,
-      "fact": 581300.0
+      "fact": 0.0
     },
     {
       "key": "intl",
       "label": "Международное",
       "plan": 1050000.0,
-      "fact": 963350.0
+      "fact": 0.0
     }
   ],
   "total_plan": 2400000.0,
-  "total_fact": 1544650.0,
+  "total_fact": 0.0,
   "unmatched_names": [],
   "unmatched_fact": 0.0
 }

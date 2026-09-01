@@ -857,8 +857,10 @@ for s in rt_staff:
     s['roi_mkt_2026'] = round(b2['yield_pct'], 1) if b2.get('yield_pct') is not None else None
     s['roi_partner_2026'] = _partner_roi(b2)
 
-# 7.2 сделки: строка = сделка, если есть менеджер и цена объекта > 0, а год похож на год
-#     (так отсекаются строки-итоги «маркет»/«прочее»). Всё после «НАРАБОТКИ» — воронка, не сделки.
+# 7.2 сделки: строка = сделка, если есть менеджер, цена объекта > 0, год похож
+#     на год (так отсекаются строки-итоги «маркет»/«прочее») и стоит галочка
+#     «Подтверждение получения комиссии» (кол. 30, 'TRUE'/'FALSE') — считаем
+#     только зашедшие сделки, а не весь реестр. Всё после «НАРАБОТКИ» — воронка, не сделки.
 sh_sd = gc.open_by_key(SDELKI_ID)
 
 
@@ -870,6 +872,7 @@ def rt_deals(title):
         if any('НАРАБОТКИ' in c for c in r[:5]): break
         year, month, mgr, price = r[1].strip(), r[0].strip(), r[3].strip(), num(r[9])
         if not re.fullmatch(r'20\d\d', year) or not mgr or not price or price <= 0: continue
+        if r[30].strip().upper() != 'TRUE': continue          # комиссия ещё не получена
         out.append({'y': int(year), 'm': int(num(month) or 0), 'mgr': DEAL_ALIASES.get(mgr.lower(), mgr),
                     'price': price, 'comm': num(r[13]) or 0.0,
                     'key': (int(year), int(num(month) or 0), round(price),
@@ -1045,6 +1048,8 @@ for tab in ('ОП1', 'ОП2', 'ОП3', 'ОП4'):
         mgr = r[3].strip()
         price = _ledger_money(r[9])
         if not mgr or price <= 0:                 # строка-итог или незаполненная сделка
+            continue
+        if r[30].strip().upper() != 'TRUE':       # комиссия ещё не получена
             continue
         month = (r[0].strip().split('.')[0] or '')
         if not month.isdigit() or not (1 <= int(month) <= 12):
