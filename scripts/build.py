@@ -1700,6 +1700,9 @@ def build_leads_year(ly):
     payload['rows'] = [[r['mon'], mi[r['manager']], si[r['source']], gi.get(r['stage'], 0),
                         ri.get(r['region'], 0), 1 if r['is_deal'] else 0, r['n'],
                         int(r['budget'] or 0), 1 if r.get('is_nonsales') else 0] for r in det]
+    # расход на брокера: [индекс брокера, месяц, $] — суммируется по выбранному периоду
+    payload['bsp'] = [[mi[b['manager']], b['mon'], int(b['spend'] or 0)]
+                      for b in ly.get('bspend', []) if b['manager'] in mi]
     payload['orph'] = [[o['d'], o['manager'], o['status'], o['region'], int(o['budget'] or 0),
                         o['source'], 1 if o['kind'] == 'gone' else 0] for o in orph]
 

@@ -98,8 +98,10 @@ font-variation-settings:"opsz" 72;line-height:1}
 <section><h2>Брокеры <span class="sm" id="brkCount"></span></h2>
 <div class="tw"><table><thead><tr><th>Брокер</th><th class="n">Квал-лидов</th>
 <th class="n">Интерес</th><th class="n">Презент.</th><th class="n">В работе</th><th class="n">Отложен</th><th class="n">Отказ</th><th class="n">Сделка</th>
-<th class="n">Живых</th><th class="n">Бюджет клиентов</th><th>Топ-источники</th></tr></thead><tbody id="brkBody"></tbody></table></div>
-<div class="note"><p>Квалификаторы в этой таблице не показаны — их лиды в воронке сделок означают, что ответственного не сменили. Они на листе «Без хозяина».</p></div></section>
+<th class="n">Живых</th><th class="n">Расход</th><th class="n">$ / лид</th><th class="n">Бюджет клиентов</th><th>Топ-источники</th></tr></thead><tbody id="brkBody"></tbody></table></div>
+<div class="note"><p><b>Расход — атрибуция, а не факт.</b> Деньги тратятся на объявление, а не на человека: берём цену лида по объявлению и умножаем на лиды брокера с этого объявления. Партнёрские и органические лиды объявления не имеют и честно стоят $0 — поэтому у брокера с сильной партнёркой «$ / лид» ниже не потому, что реклама сработала лучше. «$ / лид» = расход ÷ квал-лидов из первой колонки.</p>
+<p><b>Сумма колонки «Расход» меньше расхода в шапке — так и должно быть.</b> Здесь только деньги за лиды, которые дошли до воронки сделок и нашлись в рекламном кабинете; расход на лиды, которые до сделок не дошли, не разносится ни на кого. По этой же причине «$ / лид» в строке всегда ниже «$ за квал» в шапке: в шапке весь бюджет делится на квалы, здесь — только прослеженная часть.</p>
+<p>Квалификаторы в этой таблице не показаны — их лиды в воронке сделок означают, что ответственного не сменили. Они на листе «Без хозяина».</p></div></section>
 </div></div>
 <div class="view" id="v-orph"><div class="wrap">
 <header class="mh"><p class="eb">Legion Real Estate · данные на {{GENERATED}}</p>
@@ -158,6 +160,9 @@ font-variation-settings:"opsz" 72;line-height:1}
     }).join('');
   }
   function brokers(m){
+    var sp={}; (D.bsp||[]).forEach(function(b){
+      if(m!=='all' && b[1]!==m) return;
+      var k=D.m[b[0]]; sp[k]=(sp[k]||0)+b[2];});
     var by={}; rowsOf(m).filter(function(r){return r[5] && !r[8]}).forEach(function(r){
       var k=D.m[r[1]]; by[k]=by[k]||{t:0,st:{},src:{},bud:0};
       by[k].t+=r[6]; by[k].st[r[3]]=(by[k].st[r[3]]||0)+r[6];
@@ -171,6 +176,9 @@ font-variation-settings:"opsz" 72;line-height:1}
       return '<tr><td class="nm">'+k+'</td><td class="n st">'+N(v.t)+'</td>'+
         D.g.map(function(g,i){return '<td class="n '+(v.st[i]?'':'mu')+'">'+(v.st[i]||'—')+'</td>'}).join('')+
         '<td class="n '+(lp>=60?'st':(lp<40?'cr':''))+'">'+lp.toFixed(0)+'%</td>'+
+        '<td class="n">'+(sp[k]?M(sp[k]):'—')+'</td>'+
+        '<td class="n '+(sp[k]&&v.t?(sp[k]/v.t>=80?'cr':(sp[k]/v.t<=40?'st':'')):'mu')+'">'+
+          (sp[k]&&v.t?M(sp[k]/v.t):'—')+'</td>'+
         '<td class="n mu">'+M(v.bud)+'</td><td class="mu" style="font-size:10.5px">'+top+'</td></tr>';
     }).join('');
     document.getElementById('brkCount').textContent = list.length+' брокеров';

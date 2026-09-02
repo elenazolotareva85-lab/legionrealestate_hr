@@ -1156,6 +1156,28 @@ SELECT FORMAT_DATE('%Y-%m', date) mon, ROUND(SUM(spend)) spend
 FROM `disco-bedrock-428721-f8.main.main`
 WHERE date >= '{LY_FROM}' AND date < '{LY_TO}' GROUP BY mon""").result()}
 
+# Расход в разрезе брокера. Точного «расхода на брокера» нигде нет: деньги
+# тратятся на объявление, а не на человека. Считаем цену лида по объявлению
+# (spend / lead) и умножаем на лиды брокера с этого объявления. Партнёрские и
+# органические лиды объявления не имеют — они честно стоят $0.
+ly_bspend = [dict(r) for r in bq.query(f"""
+WITH lead_ads AS (
+  SELECT FORMAT_DATE('%Y-%m', DATE(createdAt)) mon, manager, CAST(ad_id AS STRING) aid, COUNT(*) n
+  FROM `disco-bedrock-428721-f8.deals_bali.deals_bali`
+  WHERE createdAt >= '{LY_FROM}' AND createdAt < '{LY_TO}'
+    AND manager IS NOT NULL AND manager != '' AND LOWER(pipeline) NOT LIKE '%техни%'
+    AND (pipeline LIKE 'Сделки%' OR pipeline LIKE '%Deals%')
+    AND manager NOT IN {LY_NON_SALES}
+    AND REGEXP_CONTAINS(CAST(ad_id AS STRING), r'^[0-9]+$')
+  GROUP BY mon, manager, aid
+), ad_cost AS (
+  SELECT CAST(ad_id AS STRING) aid, SUM(spend) spend, SUM(lead) leads
+  FROM `disco-bedrock-428721-f8.main.main` WHERE ad_id IS NOT NULL GROUP BY aid
+)
+SELECT l.mon, l.manager, ROUND(SUM(l.n * SAFE_DIVIDE(a.spend, NULLIF(a.leads, 0)))) spend
+FROM lead_ads l JOIN ad_cost a USING (aid)
+GROUP BY l.mon, l.manager HAVING spend > 0""").result()]
+
 # Брошенные лиды: живые, в воронке сделок, но ответственный либо не продавец,
 # либо его нет в актуальной штатке. Названия и id не выгружаем — страница публичная.
 _ly_staff = {norm(x['name']) for x in active_brokers} | {norm(x['name']) for x in ph_staff}
@@ -1181,10 +1203,10 @@ WHERE d.is_deal
 
 (DATA / 'leads_year.json').write_text(json.dumps({
     'year': LY_YEAR, 'generated': date.today().isoformat(),
-    'detail': ly_detail, 'spend': ly_spend, 'orphans': ly_orphans,
+    'detail': ly_detail, 'spend': ly_spend, 'bspend': ly_bspend, 'orphans': ly_orphans,
 }, ensure_ascii=False, default=str))
 _q = sum(r['n'] for r in ly_detail if r['is_deal'])
 print(f'   leads year: {sum(r["n"] for r in ly_detail)} лидов, {_q} квал, '
-      f'{len(ly_orphans)} без хозяина')
+      f'{len(ly_orphans)} без хозяина, расход разнесён на {len({r["manager"] for r in ly_bspend})} брокеров')
 
 print('\nAll data fetched to data/*.json')
