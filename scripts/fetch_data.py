@@ -10,7 +10,7 @@ import os
 import re
 from collections import defaultdict
 import io
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import gspread
@@ -1073,5 +1073,118 @@ out_ledger = {k: {'name': ledger_names[k],
 (DATA / 'ledger2026.json').write_text(json.dumps(out_ledger, ensure_ascii=False, indent=2, sort_keys=True))
 print(f'   ledger 2026: {len(out_ledger)} брокеров, {sum(v["deals"] for v in out_ledger.values())} сделок, '
       f'{ledger_future} отброшено как будущие месяцы')
+
+# ── 10. Лиды и продажи за год: когорты, источники, брошенные лиды ──
+# Питает leads-<год>.html. Логика квалификации структурная: квал = лид дошёл
+# до воронки сделок. Источник берётся из тегов CRM (там живут партнёрка и
+# органика), затем из рекламной кампании по ad_id, затем из utm.
+print('10. Fetch leads year report...')
+
+LY_YEAR = date.today().year
+LY_FROM = f'{LY_YEAR}-01-01'
+LY_TO = (date.today() + timedelta(days=1)).isoformat()
+
+LY_SOURCE = """CASE
+    WHEN LOWER(t) LIKE '%unit space%'  THEN 'Партнёр · Unit Space'
+    WHEN LOWER(t) LIKE '%самолет%'     THEN 'Партнёр · Самолет'
+    WHEN LOWER(t) LIKE '%elvion%'      THEN 'Партнёр · Elvion'
+    WHEN LOWER(t) LIKE '%reside%'      THEN 'Партнёр · Reside'
+    WHEN LOWER(t) LIKE '%2buy%'        THEN 'Партнёр · 2BUY&2LET'
+    WHEN LOWER(t) LIKE '%зайцева%'     THEN 'Партнёр · Зайцева'
+    WHEN LOWER(t) LIKE '%передал партнер%' OR LOWER(t) LIKE '%партнер%' OR LOWER(t) LIKE '%партнёр%'
+                                       THEN 'Партнёр · без имени'
+    WHEN LOWER(t) LIKE '%рекомендац%'  THEN 'Рекомендации клиентов'
+    WHEN LOWER(t) LIKE '%личн%'        THEN 'Личные контакты'
+    WHEN LOWER(t) LIKE '%leeloo%'      THEN 'Чат Leeloo'
+    WHEN LOWER(t) LIKE '%tilda%'       THEN 'Сайт Tilda'
+    WHEN LOWER(t) LIKE '%авито%'       THEN 'Авито'
+    WHEN LOWER(t) LIKE '%инста%'       THEN 'Instagram (органика)'
+    WHEN LOWER(t) LIKE '%acquisition%' THEN 'Acquisition'
+    WHEN LOWER(t) LIKE '%marketing vra%' THEN 'Marketing VRA'
+    WHEN LOWER(t) LIKE '%true square%' THEN 'True Square'
+    WHEN REGEXP_CONTAINS(LOWER(IFNULL(camp,'')), r'джадан|dzhadan')   THEN 'Реклама · Джадан'
+    WHEN REGEXP_CONTAINS(LOWER(IFNULL(camp,'')), r'ozdo')             THEN 'Реклама · Ozdo'
+    WHEN REGEXP_CONTAINS(LOWER(IFNULL(camp,'')), r'hanzhela|ганжела') THEN 'Реклама · Ганжела'
+    WHEN REGEXP_CONTAINS(LOWER(IFNULL(camp,'')), r'unit')             THEN 'Реклама · Unit Space'
+    WHEN aid IS NOT NULL               THEN 'Реклама · прочее'
+    WHEN bad_ad                        THEN 'Трекинг сломан'
+    WHEN utm = 'google'                THEN 'Google Ads'
+    WHEN utm != ''                     THEN CONCAT('Реклама · ', utm)
+    ELSE 'Источник неизвестен' END"""
+
+LY_STAGE = """CASE
+    WHEN LOWER(status) LIKE '%закрыто и не реализовано%' OR LOWER(status) LIKE '%не интересно%' THEN 'Отказ'
+    WHEN LOWER(status) LIKE '%успешно%' THEN 'Сделка'
+    WHEN LOWER(status) LIKE '%presentation%' OR LOWER(status) LIKE '%презентац%' OR LOWER(status) LIKE '%offer%'
+      OR LOWER(status) LIKE '%оффер%' OR LOWER(status) LIKE '%deposit%' OR LOWER(status) LIKE '%прогрев%' THEN 'Презентация+'
+    WHEN LOWER(status) LIKE '%interest%' OR LOWER(status) LIKE '%intetrest%' OR LOWER(status) LIKE '%интерес%'
+      OR LOWER(status) LIKE '%qualif%' OR LOWER(status) LIKE '%обработан%' THEN 'Интерес'
+    WHEN LOWER(status) LIKE '%defer%' OR LOWER(status) LIKE '%отлож%' OR LOWER(status) LIKE '%react%' THEN 'Отложен'
+    ELSE 'В работе' END"""
+
+# Кто не продавец: квалификаторы, боты и служебные учётки. Их лиды в воронке
+# сделок означают, что ответственного не сменили при передаче.
+LY_NON_SALES = ('Штогрин Дмитрий', 'Лутчин Вероника', 'Михайлевич Вікторія', 'Исак Анжелика',
+                'admin', 'admin3', 'Mykhaliuno Sofiia', 'Марина Антоненко', 'Парфентьев Александр',
+                'Виктория Машкова', 'Легостаев Александр', 'Валерія Бакай', 'Юлия Погорелова')
+
+_ly_base = f"""
+WITH d AS (
+  SELECT FORMAT_DATE('%Y-%m', DATE(createdAt)) mon, DATE(createdAt) dt, manager,
+         CAST(tags AS STRING) t,
+         IF(REGEXP_CONTAINS(CAST(ad_id AS STRING), r'^[0-9]+$'), CAST(ad_id AS STRING), NULL) aid,
+         ad_id IS NOT NULL AND NOT REGEXP_CONTAINS(CAST(ad_id AS STRING), r'^[0-9]+$') bad_ad,
+         TRIM(LOWER(IFNULL(utmSource,''))) utm, status, IFNULL(budget,0) budget,
+         pipeline LIKE 'Сделки%' OR pipeline LIKE '%Deals%' is_deal,
+         manager IN {LY_NON_SALES} is_nonsales,
+         IF(pipeline LIKE '%Europe%','Европа',
+            IF(LOWER(pipeline) LIKE '%thail%' OR LOWER(pipeline) LIKE '%таиланд%','Пхукет','Бали')) reg
+  FROM `disco-bedrock-428721-f8.deals_bali.deals_bali`
+  WHERE createdAt >= '{LY_FROM}' AND createdAt < '{LY_TO}'
+    AND manager IS NOT NULL AND manager != '' AND LOWER(pipeline) NOT LIKE '%техни%'
+), c AS (SELECT CAST(ad_id AS STRING) aid, ANY_VALUE(campaign_name) camp
+         FROM `disco-bedrock-428721-f8.main.main` WHERE ad_id IS NOT NULL GROUP BY aid)"""
+
+ly_detail = [dict(r) for r in bq.query(_ly_base + f"""
+SELECT d.mon, d.manager, {LY_SOURCE} source, {LY_STAGE} stage, d.reg region,
+       d.is_deal, d.is_nonsales, COUNT(*) n, ROUND(SUM(d.budget)) budget
+FROM d LEFT JOIN c USING (aid)
+GROUP BY mon, manager, source, stage, region, is_deal, is_nonsales""").result()]
+
+ly_spend = {r.mon: float(r.spend or 0) for r in bq.query(f"""
+SELECT FORMAT_DATE('%Y-%m', date) mon, ROUND(SUM(spend)) spend
+FROM `disco-bedrock-428721-f8.main.main`
+WHERE date >= '{LY_FROM}' AND date < '{LY_TO}' GROUP BY mon""").result()}
+
+# Брошенные лиды: живые, в воронке сделок, но ответственный либо не продавец,
+# либо его нет в актуальной штатке. Названия и id не выгружаем — страница публичная.
+_ly_staff = {norm(x['name']) for x in active_brokers} | {norm(x['name']) for x in ph_staff}
+_ly_alias = {'khaled khoualfi': 'khalad khoualfi', 'hudzenko yuliia': 'гудзенко юлия'}
+ly_orphans = []
+for r in bq.query(_ly_base + f"""
+SELECT d.dt, d.manager, d.status, d.reg region, d.budget, d.is_nonsales, {LY_SOURCE} source
+FROM d LEFT JOIN c USING (aid)
+WHERE d.is_deal
+  AND NOT (LOWER(d.status) LIKE '%закрыто и не реализовано%' OR LOWER(d.status) LIKE '%не интересно%'
+           OR LOWER(d.status) LIKE '%успешно%')""").result():
+    key = norm(r.manager)
+    key = norm(_ly_alias.get(key.replace(' ', ' '), key)) if key in _ly_alias else key
+    in_staff = key in _ly_staff or norm(_ly_alias.get(norm(r.manager), '')) in _ly_staff
+    if r.is_nonsales:
+        kind = 'quals'
+    elif not in_staff:
+        kind = 'gone'
+    else:
+        continue
+    ly_orphans.append({'kind': kind, 'd': str(r.dt), 'manager': r.manager, 'status': r.status,
+                       'region': r.region, 'budget': float(r.budget or 0), 'source': r.source})
+
+(DATA / 'leads_year.json').write_text(json.dumps({
+    'year': LY_YEAR, 'generated': date.today().isoformat(),
+    'detail': ly_detail, 'spend': ly_spend, 'orphans': ly_orphans,
+}, ensure_ascii=False, default=str))
+_q = sum(r['n'] for r in ly_detail if r['is_deal'])
+print(f'   leads year: {sum(r["n"] for r in ly_detail)} лидов, {_q} квал, '
+      f'{len(ly_orphans)} без хозяина')
 
 print('\nAll data fetched to data/*.json')

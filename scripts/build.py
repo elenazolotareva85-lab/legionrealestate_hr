@@ -44,6 +44,7 @@ stat = load('stat.json', {'combined': {}, 'block2': {}})
 active_brokers = load('active_brokers.json', [])
 phuket = load('phuket.json', {})
 ledger2026 = load('ledger2026.json', {})
+leads_year = load('leads_year.json', {})
 rating = load('rating.json', {})
 month_plan = load('month_plan.json', {})
 
@@ -1664,3 +1665,64 @@ else:
 rating_page = build_rating_page(rating)
 (REPO / 'rating.html').write_text(rating_page)
 print(f'rating.html written ({len(rating_page):,} bytes)')
+
+
+# ── 9. Страница «Лиды и продажи» ─────────────────────
+# Публичная, поэтому названия лидов и ссылки на карточки CRM не выводятся.
+# Лист выводов подключается, если лежит templates/leads_conclusions.html —
+# чтобы снять его, достаточно удалить файл.
+LY_STAGES = ['Интерес', 'Презентация+', 'В работе', 'Отложен', 'Отказ', 'Сделка']
+LY_LIVE = {'Интерес', 'Презентация+', 'В работе', 'Отложен', 'Сделка'}
+LY_MONTHS = {'01': 'январь', '02': 'февраль', '03': 'март', '04': 'апрель', '05': 'май', '06': 'июнь',
+             '07': 'июль', '08': 'август', '09': 'сентябрь', '10': 'октябрь', '11': 'ноябрь', '12': 'декабрь'}
+
+
+def build_leads_year(ly):
+    if not ly or not ly.get('detail'):
+        print('   WARNING: leads_year.json пуст — страница лидов не собрана')
+        return None
+    det, spend, orph = ly['detail'], ly.get('spend', {}), ly.get('orphans', [])
+    months = sorted({r['mon'] for r in det})
+    payload = {
+        'mon': months,
+        'lbl': [LY_MONTHS.get(m.split('-')[1], m) for m in months],
+        'm': sorted({r['manager'] for r in det}),
+        's': sorted({r['source'] for r in det}),
+        'g': LY_STAGES,
+        'r': ['Бали', 'Европа', 'Пхукет'],
+        'spend': spend,
+        'generated': ly.get('generated', ''),
+    }
+    mi = {v: i for i, v in enumerate(payload['m'])}
+    si = {v: i for i, v in enumerate(payload['s'])}
+    gi = {v: i for i, v in enumerate(LY_STAGES)}
+    ri = {v: i for i, v in enumerate(payload['r'])}
+    payload['rows'] = [[r['mon'], mi[r['manager']], si[r['source']], gi.get(r['stage'], 0),
+                        ri.get(r['region'], 0), 1 if r['is_deal'] else 0, r['n'],
+                        int(r['budget'] or 0), 1 if r.get('is_nonsales') else 0] for r in det]
+    payload['orph'] = [[o['d'], o['manager'], o['status'], o['region'], int(o['budget'] or 0),
+                        o['source'], 1 if o['kind'] == 'gone' else 0] for o in orph]
+
+    concl_file = TEMPLATES / 'leads_conclusions.html'
+    concl = concl_file.read_text(encoding='utf-8') if concl_file.exists() else ''
+    tab_concl = '<button data-v="concl" class="on">Выводы</button>' if concl else ''
+    view_concl = f'<div class="view on" id="v-concl">{concl}</div>' if concl else ''
+    year_on = '' if concl else ' class="on"'
+    year_view_on = '' if concl else ' on'
+
+    shell = (TEMPLATES / 'leads_year_base.html').read_text(encoding='utf-8')
+    return (shell
+            .replace('{{TAB_CONCL}}', tab_concl)
+            .replace('{{VIEW_CONCL}}', view_concl)
+            .replace('{{YEAR_TAB_ON}}', year_on)
+            .replace('{{YEAR_VIEW_ON}}', year_view_on)
+            .replace('{{YEAR}}', str(ly.get('year', '')))
+            .replace('{{GENERATED}}', ly.get('generated', ''))
+            .replace('LEADS_YEAR_PAYLOAD', json.dumps(payload, ensure_ascii=False, separators=(',', ':'))))
+
+
+_leads_page = build_leads_year(leads_year)
+if _leads_page:
+    _name = f"leads-{leads_year.get('year', '')}.html"
+    (REPO / _name).write_text(_leads_page, encoding='utf-8')
+    print(f'{_name} written ({len(_leads_page):,} bytes)')

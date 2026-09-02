@@ -160,7 +160,7 @@
       "deals": 17,
       "turnover": 4767953.7,
       "commission": 425824.65,
-      "margin": 150559.91,
+      "margin": 147011.75,
       "margin_known": 14
     }
   },
@@ -230,7 +230,7 @@
         "deals": 4,
         "turnover": 2198145.73,
         "commission": 173573.18,
-        "margin": 71958.8,
+        "margin": 68410.64,
         "margin_known": 4,
         "sources": {
           "ads": 1,
@@ -238,7 +238,7 @@
           "partner": 1
         },
         "ad_spend": 804.25,
-        "yield_pct": 41.0,
+        "yield_pct": 38.9,
         "ad_margin": 12504.47,
         "romi": 15.55
       },
@@ -308,7 +308,7 @@
         "deals": 2,
         "turnover": 1829323.9821,
         "commission": 136691.00421,
-        "margin": 47253.4,
+        "margin": 43705.24,
         "margin_known": 1
       }
     }
@@ -357,7 +357,7 @@
         "deals": 5,
         "turnover": 2407521.8,
         "commission": 206769.46000000002,
-        "margin": 66035.04000000001,
+        "margin": 62486.88,
         "margin_known": 5
       },
       "6": {
