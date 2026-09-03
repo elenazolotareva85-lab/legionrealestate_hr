@@ -6,18 +6,84 @@
     {
       "key": "sng",
       "label": "СНГ",
-      "plan": 1350000.0,
+      "plan": 1200168.0,
       "fact": 0.0
     },
     {
       "key": "intl",
       "label": "Международное",
-      "plan": 1050000.0,
+      "plan": 695034.0,
       "fact": 0.0
     }
   ],
-  "total_plan": 2400000.0,
+  "total_plan": 1895202.0,
   "total_fact": 0.0,
   "unmatched_names": [],
-  "unmatched_fact": 0.0
+  "unmatched_fact": 0.0,
+  "by_broker": [
+    {
+      "name": "Валентина Бондаренко",
+      "segment": "sng",
+      "plan": 300000.0,
+      "fact": 0
+    },
+    {
+      "name": "Рената Бадюл",
+      "segment": "intl",
+      "plan": 300000.0,
+      "fact": 0
+    },
+    {
+      "name": "Андрей Бойко",
+      "segment": "sng",
+      "plan": 250000.0,
+      "fact": 0
+    },
+    {
+      "name": "Александр Мужейко",
+      "segment": "intl",
+      "plan": 250000.0,
+      "fact": 0
+    },
+    {
+      "name": "Роман Безносюк",
+      "segment": "sng",
+      "plan": 200000.0,
+      "fact": 0
+    },
+    {
+      "name": "Виктория Багазий",
+      "segment": "sng",
+      "plan": 150000.0,
+      "fact": 0
+    },
+    {
+      "name": "Анастасия Сорокина",
+      "segment": "intl",
+      "plan": 150000.0,
+      "fact": 0
+    },
+    {
+      "name": "Кристина Коновалова",
+      "segment": "sng",
+      "plan": 100000.0,
+      "fact": 0
+    },
+    {
+      "name": "Григорий Решетов",
+      "segment": "sng",
+      "plan": 100000.0,
+      "fact": 0
+    },
+    {
+      "name": "Татьяна Бондаренко",
+      "segment": "intl",
+      "plan": 100000.0,
+      "fact": 0
+    }
+  ],
+  "budget_plan": {
+    "sng": 1100000.0,
+    "intl": 800000.0
+  }
 }
