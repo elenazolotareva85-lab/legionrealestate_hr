@@ -95,6 +95,9 @@ font-variation-settings:"opsz" 72;line-height:1}
 <div class="tw"><table><thead><tr><th>Источник</th><th class="n">Лидов</th><th></th><th class="n">Доля</th>
 <th class="n">Интерес</th><th class="n">Презент.</th><th class="n">В работе</th><th class="n">Отложен</th><th class="n">Отказ</th><th class="n">Сделка</th>
 <th class="n">Живых</th></tr></thead><tbody id="srcBody"></tbody></table></div></section>
+<section><h2>Живые лиды без хозяина <span class="sm" id="orphMonCount"></span></h2>
+<p class="lede">Лиды в воронке сделок за этот период, чей ответственный — уволенный сотрудник либо квалификатор/admin, а не продавец. Подробный разбор — на вкладке «Без хозяина».</p>
+<div class="tw"><table><thead><tr><th>Ответственный</th><th class="n">Лидов</th><th class="n">Бюджет клиентов</th><th>Тип</th><th>Топ-источники</th></tr></thead><tbody id="orphMonBody"></tbody></table></div></section>
 <section><h2>Брокеры <span class="sm" id="brkCount"></span></h2>
 <div class="tw"><table><thead><tr><th>Брокер</th><th class="n">Квал-лидов</th>
 <th class="n">Интерес</th><th class="n">Презент.</th><th class="n">В работе</th><th class="n">Отложен</th><th class="n">Отказ</th><th class="n">Сделка</th>
@@ -159,6 +162,25 @@ font-variation-settings:"opsz" 72;line-height:1}
         '<td class="n '+(lp>=60?'st':(lp<40?'cr':''))+'">'+lp.toFixed(0)+'%</td></tr>';
     }).join('');
   }
+  function orphansMonth(m){
+    var rows = D.orph.filter(function(o){ return m==='all' || o[0].slice(0,7)===m; });
+    var by={};
+    rows.forEach(function(o){
+      var k=o[1]; by[k]=by[k]||{n:0,b:0,src:{},gone:0};
+      by[k].n++; by[k].b+=o[4]; by[k].src[o[5]]=(by[k].src[o[5]]||0)+1;
+      if(o[6]) by[k].gone++;
+    });
+    var list=Object.keys(by).map(function(k){return [k,by[k]]}).sort(function(a,b){return b[1].n-a[1].n});
+    document.getElementById('orphMonBody').innerHTML = list.map(function(x){
+      var k=x[0], v=x[1];
+      var top=Object.keys(v.src).map(function(s){return [s,v.src[s]]}).sort(function(a,b){return b[1]-a[1]})
+        .slice(0,3).map(function(s){return s[0].replace('Реклама · ','')+' '+s[1]}).join(' · ');
+      var type = v.gone===v.n ? 'Уволен' : (v.gone===0 ? 'Квалификатор/admin' : 'Смешано');
+      return '<tr><td class="nm">'+k+'</td><td class="n st">'+N(v.n)+'</td><td class="n mu">'+M(v.b)+
+        '</td><td class="tg">'+type+'</td><td class="mu" style="font-size:10.5px">'+top+'</td></tr>';
+    }).join('');
+    document.getElementById('orphMonCount').textContent = list.length+' человек · '+rows.length+' лидов';
+  }
   function brokers(m){
     var sp={}; (D.bsp||[]).forEach(function(b){
       if(m!=='all' && b[1]!==m) return;
@@ -217,7 +239,7 @@ font-variation-settings:"opsz" 72;line-height:1}
   function render(){
     document.querySelectorAll('.months button').forEach(function(b){b.classList.toggle('on', b.dataset.m===cur)});
     document.getElementById('monLabel').textContent = cur==='all' ? 'весь год' : lbl[cur];
-    kpi(cur); sources(cur); brokers(cur); cohorts();
+    kpi(cur); sources(cur); orphansMonth(cur); brokers(cur); cohorts();
   }
   var mb=document.querySelector('.months');
   mb.innerHTML = D.mon.map(function(m,i){return '<button data-m="'+m+'">'+D.lbl[i].slice(0,3)+'</button>'}).join('')
