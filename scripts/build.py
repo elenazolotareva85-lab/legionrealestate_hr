@@ -220,6 +220,32 @@ def build_month_plan_html(mp):
         caveat = ('<p class="mp-caveat">Не учтены в факте (нет языка в листе «Запрос на лиды»): ' +
                   _esc(', '.join(mp['unmatched_names'])) + '</p>')
 
+    seg_label = {'sng': 'СНГ', 'intl': 'Международное'}
+
+    def broker_row(b):
+        plan, fact = b.get('plan') or 0, b.get('fact') or 0
+        pct = (fact / plan * 100) if plan else 0
+        cls = status(pct)
+        return (
+            '<tr><td class="rt-name">' + _esc(b['name']) + '</td>'
+            '<td>' + seg_label.get(b.get('segment'), '—') + '</td>'
+            '<td class="num">' + _money(plan) + '</td>'
+            '<td class="num rt-turn">' + _money(fact) + '</td>'
+            '<td class="num mp-bk-pct ' + cls + '">' + f'{pct:.0f}%' + '</td></tr>'
+        )
+
+    broker_table = ''
+    if mp.get('by_broker'):
+        broker_table = ('''
+  <h3 class="mp-bk-head">План / факт по брокеру</h3>
+  <div class="rt-table-wrap">
+    <table class="rt-table">
+      <thead><tr><th>Брокер</th><th>Сегмент</th><th class="num">План</th><th class="num">Факт</th><th class="num">%</th></tr></thead>
+      <tbody>''' + ''.join(broker_row(b) for b in mp['by_broker']) + '''</tbody>
+    </table>
+  </div>
+  <p class="mp-caveat">Личный план каждого брокера — из колонки «план, $» листа «Запрос на лиды»; показаны только брокеры с планом &gt; 0. Это не то же самое, что план по обороту сегмента выше — суммы личных планов не обязаны совпадать со строками «План Англ» / «План СНГ + PL».</p>''')
+
     return ('''
 <style>
 .mp-section { max-width: 1280px; margin: 0 auto; padding: 20px 32px 0; }
@@ -246,6 +272,13 @@ def build_month_plan_html(mp):
 .mp-speedo-sub .critical { color: var(--critical); font-weight: 700; }
 .mp-speedo-bonus { font-family: var(--font-sans); font-size: 9.5px; color: var(--ink-2); margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--rule); }
 .mp-caveat { font-family: var(--font-sans); font-size: 11px; color: var(--muted); margin: 8px 0 18px; }
+.mp-bk-head {
+  font-family: var(--font-sans); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600; margin: 4px 0 8px;
+}
+.mp-bk-pct.good { color: var(--good); font-weight: 700; }
+.mp-bk-pct.warn { color: var(--warn); font-weight: 700; }
+.mp-bk-pct.critical { color: var(--critical); font-weight: 700; }
 </style>
 <section class="mp-section">
   <div class="mp-head">
@@ -253,7 +286,7 @@ def build_month_plan_html(mp):
     <span class="mp-badge">Источник: «Запрос на лиды»</span>
   </div>
   <div class="mp-speedo-row3">''' + row3 + '''</div>
-  ''' + caveat + '''
+  ''' + caveat + broker_table + '''
 </section>
 ''')
 

@@ -918,13 +918,19 @@ print(f'   rating: {len(rt_staff)} действующих ({sum(1 for s in rt_st
       f'{len(rt_deal_rows)} сделок в реестре, {rt_future} отброшено как будущие месяцы')
 
 
-# ── 8. План/факт на месяц: СНГ vs Международное ──────
-# Источник плана — лист «Запрос на лиды <месяц>» команды маркетинга: у каждого
-# брокера в блоке «БАЛИ» персональная колонка «план, $» (C) и язык (D). Дубли
-# (брокер работает на 2 языках, напр. Валентина Бондаренко ru/ukr + eng) сама
-# таблица разруливает — план стоит только в ОДНОЙ из строк, вторая = 0.
+# ── 8. План/факт на месяц: СНГ vs Международное, + по брокерам ──
+# Источник персонального плана — лист «Запрос на лиды <месяц>» команды
+# маркетинга: у каждого брокера в блоке «БАЛИ» персональная колонка
+# «план, $» (C) и язык (D). Дубли (брокер работает на 2 языках, напр.
+# Валентина Бондаренко ru/ukr + eng) сама таблица разруливает — план стоит
+# только в ОДНОЙ из строк, вторая = 0.
 # Правило сегментации (решение Елены 31.08.2026): СНГ = ru + ru/ukr,
 # международное = всё остальное (eng, pl, иврит…).
+# 03.09.2026: план по ОБОРОТУ для спидометров компании/сегментов на
+# rating.html берётся не суммой этих личных бюджетов, а из строк «План Англ»
+# / «План СНГ + PL» того же листа (расчёт лидов×конверсия×ср.чек) — решение
+# Елены; личные колонки C остаются как есть и идут в новую таблицу
+# «план/факт по брокеру» (payload `by_broker`).
 print('8. Fetch monthly plan/fact (СНГ / международное)...')
 
 LEADS_REQUEST_ID = '1tMJKZI4Jt1OZQxIlXs_Mx-mt1G2tdlT34H-uCbQ-cI0'
@@ -976,10 +982,31 @@ def lr_match(name):
     return None
 
 
-plan_sng = sum(p for entries in lr_by_broker.values() for lang, p in [max(entries, key=lambda e: e[1])]
+plan_budget_sng = sum(p for entries in lr_by_broker.values() for lang, p in [max(entries, key=lambda e: e[1])]
                 if sng_or_intl(lang) == 'sng')
-plan_intl = sum(p for entries in lr_by_broker.values() for lang, p in [max(entries, key=lambda e: e[1])]
+plan_budget_intl = sum(p for entries in lr_by_broker.values() for lang, p in [max(entries, key=lambda e: e[1])]
                  if sng_or_intl(lang) == 'intl')
+
+# 8.1c план ПО ОБОРОТУ (решение Елены 03.09.2026) — не сумма персональных
+# бюджетов брокеров (та сумма выше), а расчёт «лидов × конверсия × средний
+# чек» в строках «План Англ» / «План СНГ + PL» внизу того же листа (колонка
+# «План, $»). Матчим по подписи в колонке B, а не по номеру строки: блок
+# «Итого» может сместиться при правке листа в новом месяце.
+def _lr_plan_row(label):
+    return next((r for r in lr_rows if len(r) > 7 and r[1].strip() == label), None)
+
+
+_row_engl, _row_sng = _lr_plan_row('План Англ'), _lr_plan_row('План СНГ + PL')
+turnover_plan_intl = num(_row_engl[7]) or 0 if _row_engl else 0
+turnover_plan_sng = num(_row_sng[7]) or 0 if _row_sng else 0
+
+# 8.1d план/факт по каждому брокеру персонально — план тот же (столбец C,
+# «план, $» из 8.1), факт добавляется ниже вместе с фактом по сегментам.
+lr_broker_plan = []
+for _name, _entries in lr_by_broker.items():
+    _lang, _plan = max(_entries, key=lambda e: e[1])
+    if not _plan: continue
+    lr_broker_plan.append({'name': _name, 'segment': sng_or_intl(_lang), 'plan': _plan})
 
 # 8.2 факт: сентябрьский оборот из «Сделки Бали» (rt_staff уже собран в блоке 7),
 # каждый брокер приписан к тому же сегменту, что и в плане.
@@ -997,18 +1024,25 @@ for s in rt_staff:
     if seg == 'sng': fact_sng += turnover
     else: fact_intl += turnover
 
+for _b in lr_broker_plan:
+    _st = rt_by_norm.get(norm(_b['name']))
+    _b['fact'] = round(_st['months'].get(mk, [0, 0, 0])[1], 2) if _st else 0.0
+lr_broker_plan.sort(key=lambda x: -x['plan'])
+
 month_plan = {
     'month_label': lr_month_label, 'year': PLAN_YEAR, 'month': PLAN_MONTH,
     'segments': [
-        {'key': 'sng', 'label': 'СНГ', 'plan': plan_sng, 'fact': round(fact_sng, 2)},
-        {'key': 'intl', 'label': 'Международное', 'plan': plan_intl, 'fact': round(fact_intl, 2)},
+        {'key': 'sng', 'label': 'СНГ', 'plan': turnover_plan_sng, 'fact': round(fact_sng, 2)},
+        {'key': 'intl', 'label': 'Международное', 'plan': turnover_plan_intl, 'fact': round(fact_intl, 2)},
     ],
-    'total_plan': plan_sng + plan_intl, 'total_fact': round(fact_sng + fact_intl, 2),
+    'total_plan': turnover_plan_sng + turnover_plan_intl, 'total_fact': round(fact_sng + fact_intl, 2),
     'unmatched_names': unmatched, 'unmatched_fact': round(fact_unmatched, 2),
+    'by_broker': lr_broker_plan,
+    'budget_plan': {'sng': plan_budget_sng, 'intl': plan_budget_intl},
 }
 (DATA / 'month_plan.json').write_text(json.dumps(month_plan, ensure_ascii=False, indent=2))
-print(f'   month plan/fact ({lr_month_label}): СНГ план ${plan_sng:,.0f} факт ${fact_sng:,.0f}, '
-      f'Intl план ${plan_intl:,.0f} факт ${fact_intl:,.0f}'
+print(f'   month plan/fact ({lr_month_label}): СНГ план ${turnover_plan_sng:,.0f} факт ${fact_sng:,.0f}, '
+      f'Intl план ${turnover_plan_intl:,.0f} факт ${fact_intl:,.0f}, {len(lr_broker_plan)} брокеров с личным планом'
       + (f' — не сматчено: {unmatched}' if unmatched else ''))
 
 # ── 9. Реестр «Сделки Бали»: помесячно за 2026 ───────────
