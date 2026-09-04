@@ -22,27 +22,27 @@
   "unmatched_fact": 0.0,
   "by_broker": [
     {
-      "name": "Валентина Бондаренко",
-      "segment": "sng",
-      "plan": 300000.0,
-      "fact": 0
-    },
-    {
       "name": "Рената Бадюл",
       "segment": "intl",
       "plan": 300000.0,
       "fact": 0
     },
     {
-      "name": "Андрей Бойко",
-      "segment": "sng",
+      "name": "Александр Мужейко",
+      "segment": "intl",
       "plan": 250000.0,
       "fact": 0
     },
     {
-      "name": "Александр Мужейко",
-      "segment": "intl",
-      "plan": 250000.0,
+      "name": "Андрей Бойко",
+      "segment": "sng",
+      "plan": 200000.0,
+      "fact": 0
+    },
+    {
+      "name": "Валентина Бондаренко",
+      "segment": "sng",
+      "plan": 200000.0,
       "fact": 0
     },
     {
@@ -64,6 +64,18 @@
       "fact": 0
     },
     {
+      "name": "Татьяна Бондаренко",
+      "segment": "intl",
+      "plan": 125000.0,
+      "fact": 0
+    },
+    {
+      "name": "Марина Циганок",
+      "segment": "intl",
+      "plan": 125000.0,
+      "fact": 0
+    },
+    {
       "name": "Кристина Коновалова",
       "segment": "sng",
       "plan": 100000.0,
@@ -74,16 +86,10 @@
       "segment": "sng",
       "plan": 100000.0,
       "fact": 0
-    },
-    {
-      "name": "Татьяна Бондаренко",
-      "segment": "intl",
-      "plan": 100000.0,
-      "fact": 0
     }
   ],
   "budget_plan": {
-    "sng": 1100000.0,
-    "intl": 800000.0
+    "sng": 950000.0,
+    "intl": 950000.0
   }
 }
