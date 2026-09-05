@@ -1,16 +1,16 @@
 {
   "александр мужейко": {
-    "commission": 15000.0,
+    "commission": 14940.0,
     "deals": 1,
     "months": {
       "8": {
-        "commission": 15000.0,
+        "commission": 14940.0,
         "deals": 1,
-        "turnover": 250000.0
+        "turnover": 249000.0
       }
     },
     "name": "Александр Мужейко",
-    "turnover": 250000.0
+    "turnover": 249000.0
   },
   "александр подопригора": {
     "commission": 14503.25,

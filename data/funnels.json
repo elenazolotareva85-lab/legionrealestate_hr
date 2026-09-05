@@ -1,627 +1,20 @@
 [
   {
-    "name": "Ольга Марценюк",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2026-07-17",
-    "last_lead": "2026-08-31",
+    "name": "Сергей Шевчук",
+    "role": "qualifier",
+    "position": "специалист контроля качества",
+    "first_lead": "2023-10-30",
+    "last_lead": "2026-02-01",
     "periods": {
       "all": {
-        "Europe": {
-          "NEW": {
-            "n": 41,
-            "budget": 3885000.0
-          },
-          "DEFERRED": {
-            "n": 6,
-            "budget": 1150000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 260000.0
-          },
-          "LOST": {
-            "n": 11,
-            "budget": 1160000.0
-          },
-          "QUALIFIED": {
-            "n": 8,
-            "budget": 2005000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "NEW": {
-            "n": 41,
-            "budget": 3885000.0
-          },
-          "DEFERRED": {
-            "n": 6,
-            "budget": 1150000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 260000.0
-          },
-          "LOST": {
-            "n": 11,
-            "budget": 1160000.0
-          },
-          "QUALIFIED": {
-            "n": 8,
-            "budget": 2005000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "y2026": {
-        "Europe": {
-          "OFFER": {
-            "n": 1,
-            "budget": 260000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "LOST": {
-            "n": 4,
-            "budget": 750000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 825000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "OFFER": {
-            "n": 1,
-            "budget": 260000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "LOST": {
-            "n": 4,
-            "budget": 750000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 825000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "l3m": {
-        "Europe": {
-          "OFFER": {
-            "n": 1,
-            "budget": 260000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "LOST": {
-            "n": 4,
-            "budget": 750000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 825000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "OFFER": {
-            "n": 1,
-            "budget": 260000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "LOST": {
-            "n": 4,
-            "budget": 750000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 825000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Александр Мужейко",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2026-02-22",
-    "last_lead": "2026-09-03",
-    "periods": {
-      "all": {
-        "Europe": {
-          "LOST": {
-            "n": 4,
-            "budget": 680000.0
-          },
-          "QUALIFIED": {
-            "n": 24,
-            "budget": 5310000.0
-          },
-          "NEW": {
-            "n": 19,
-            "budget": 1500000.0
-          },
-          "DEFERRED": {
-            "n": 4,
-            "budget": 850000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 536000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "NEW": {
-            "n": 2,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 4,
-            "budget": 680000.0
-          },
-          "QUALIFIED": {
-            "n": 24,
-            "budget": 5310000.0
-          },
-          "NEW": {
-            "n": 21,
-            "budget": 1500000.0
-          },
-          "DEFERRED": {
-            "n": 4,
-            "budget": 850000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 536000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "y2026": {
-        "Europe": {
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 400000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 500000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 536000.0
-          },
-          "LOST": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 400000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 500000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 536000.0
-          },
-          "LOST": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "l3m": {
-        "Europe": {
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 400000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 500000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 536000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 400000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 500000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 536000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Андрей Бойко",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2023-11-20",
-    "last_lead": "2026-09-03",
-    "periods": {
-      "all": {
-        "Bali": {
-          "WON": {
-            "n": 45,
-            "budget": 8004684.0
-          },
-          "LOST": {
-            "n": 700,
-            "budget": 133767325.0
-          },
-          "PRESENTATION": {
-            "n": 6,
-            "budget": 1385000.0
-          },
-          "QUALIFIED": {
-            "n": 18,
-            "budget": 3015002.0
-          },
-          "DEFERRED": {
-            "n": 16,
-            "budget": 1980000.0
-          },
-          "NEW": {
-            "n": 22,
-            "budget": 3690000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 410000.0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 1,
-            "budget": 120000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "WON": {
-            "n": 45,
-            "budget": 8004684.0
-          },
-          "LOST": {
-            "n": 701,
-            "budget": 133887325.0
-          },
-          "PRESENTATION": {
-            "n": 6,
-            "budget": 1385000.0
-          },
-          "QUALIFIED": {
-            "n": 18,
-            "budget": 3015002.0
-          },
-          "DEFERRED": {
-            "n": 16,
-            "budget": 1980000.0
-          },
-          "NEW": {
-            "n": 22,
-            "budget": 3690000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 410000.0
-          }
-        }
-      },
-      "y2026": {
-        "Bali": {
-          "LOST": {
-            "n": 88,
-            "budget": 13015775.0
-          },
-          "WON": {
-            "n": 12,
-            "budget": 2586370.0
-          },
-          "QUALIFIED": {
-            "n": 11,
-            "budget": 1795000.0
-          },
-          "DEFERRED": {
-            "n": 11,
-            "budget": 1480000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 1210000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 800000.0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 1,
-            "budget": 120000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 89,
-            "budget": 13135775.0
-          },
-          "WON": {
-            "n": 12,
-            "budget": 2586370.0
-          },
-          "QUALIFIED": {
-            "n": 11,
-            "budget": 1795000.0
-          },
-          "DEFERRED": {
-            "n": 11,
-            "budget": 1480000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 1210000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 800000.0
-          }
-        }
-      },
-      "l3m": {
-        "Bali": {
-          "LOST": {
-            "n": 46,
-            "budget": 6565000.0
-          },
-          "WON": {
-            "n": 1,
-            "budget": 295000.0
-          },
-          "QUALIFIED": {
-            "n": 10,
-            "budget": 1565000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "DEFERRED": {
-            "n": 10,
-            "budget": 1480000.0
-          },
-          "NEW": {
-            "n": 5,
-            "budget": 1010000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 800000.0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 46,
-            "budget": 6565000.0
-          },
-          "WON": {
-            "n": 1,
-            "budget": 295000.0
-          },
-          "QUALIFIED": {
-            "n": 10,
-            "budget": 1565000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "DEFERRED": {
-            "n": 10,
-            "budget": 1480000.0
-          },
-          "NEW": {
-            "n": 5,
-            "budget": 1010000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 800000.0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 281,
-            "budget": 51706201.0
-          },
-          "DEFERRED": {
-            "n": 5,
-            "budget": 500000.0
-          },
-          "WON": {
-            "n": 11,
-            "budget": 1381955.0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 281,
-            "budget": 51706201.0
-          },
-          "DEFERRED": {
-            "n": 5,
-            "budget": 500000.0
-          },
-          "WON": {
-            "n": 11,
-            "budget": 1381955.0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Андрей Лиштва",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2023-11-13",
-    "last_lead": "2026-08-24",
-    "periods": {
-      "all": {
-        "Bali": {
-          "LOST": {
-            "n": 745,
-            "budget": 142454444.0
-          },
-          "WON": {
-            "n": 48,
-            "budget": 8355814.0
-          },
-          "QUALIFIED": {
-            "n": 14,
-            "budget": 2120000.0
-          },
-          "DEFERRED": {
-            "n": 6,
-            "budget": 970000.0
-          },
-          "PRESENTATION": {
-            "n": 5,
-            "budget": 710000.0
-          },
+        "Australia": {
           "NEW": {
             "n": 3,
-            "budget": 330000.0
+            "budget": 0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          }
-        },
-        "Thailand": {
           "LOST": {
-            "n": 4,
-            "budget": 500000.0
+            "n": 1,
+            "budget": 0
           },
           "WON": {
             "n": 0,
@@ -630,622 +23,14 @@
         },
         "Europe": {
           "LOST": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 750,
-            "budget": 142954445.0
-          },
-          "WON": {
-            "n": 48,
-            "budget": 8355814.0
-          },
-          "QUALIFIED": {
-            "n": 14,
-            "budget": 2120000.0
-          },
-          "DEFERRED": {
-            "n": 6,
-            "budget": 970000.0
-          },
-          "PRESENTATION": {
-            "n": 5,
-            "budget": 710000.0
-          },
-          "NEW": {
             "n": 3,
-            "budget": 330000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 271,
-            "budget": 50162004.0
-          },
-          "WON": {
-            "n": 16,
-            "budget": 2635840.0
+            "budget": 1000000.0
           },
           "QUALIFIED": {
-            "n": 2,
-            "budget": 200000.0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 4,
-            "budget": 500000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 276,
-            "budget": 50662005.0
-          },
-          "WON": {
-            "n": 16,
-            "budget": 2635840.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 200000.0
-          }
-        }
-      },
-      "y2026": {
-        "Bali": {
-          "LOST": {
-            "n": 98,
-            "budget": 12667001.0
-          },
-          "DEFERRED": {
-            "n": 5,
-            "budget": 820000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 520000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 300000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 98,
-            "budget": 12667001.0
-          },
-          "DEFERRED": {
-            "n": 5,
-            "budget": 820000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 520000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 300000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "l3m": {
-        "Bali": {
-          "LOST": {
-            "n": 57,
-            "budget": 7725000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 520000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 270000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 300000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 57,
-            "budget": 7725000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 520000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 270000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 300000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Карина Ахметова",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2024-02-12",
-    "last_lead": "2026-08-27",
-    "periods": {
-      "all": {
-        "Bali": {
-          "LOST": {
-            "n": 497,
-            "budget": 68873003.0
-          },
-          "WON": {
-            "n": 14,
-            "budget": 1878000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 1160000.0
-          },
-          "DEFERRED": {
-            "n": 14,
-            "budget": 2490000.0
-          },
-          "PRESENTATION": {
-            "n": 13,
-            "budget": 1820000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 400000.0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 497,
-            "budget": 68873003.0
-          },
-          "WON": {
-            "n": 14,
-            "budget": 1878000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 1160000.0
-          },
-          "DEFERRED": {
-            "n": 14,
-            "budget": 2490000.0
-          },
-          "PRESENTATION": {
-            "n": 13,
-            "budget": 1820000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 400000.0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 335,
-            "budget": 45256002.0
-          },
-          "WON": {
-            "n": 7,
-            "budget": 1193000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 100000.0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 335,
-            "budget": 45256002.0
-          },
-          "WON": {
-            "n": 7,
-            "budget": 1193000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 100000.0
-          }
-        }
-      },
-      "y2026": {
-        "Bali": {
-          "WON": {
-            "n": 7,
-            "budget": 685000.0
-          },
-          "LOST": {
-            "n": 125,
-            "budget": 18137000.0
-          },
-          "DEFERRED": {
-            "n": 12,
-            "budget": 2250000.0
-          },
-          "PRESENTATION": {
-            "n": 8,
-            "budget": 1250000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 120000.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "WON": {
-            "n": 7,
-            "budget": 685000.0
-          },
-          "LOST": {
-            "n": 125,
-            "budget": 18137000.0
-          },
-          "DEFERRED": {
-            "n": 12,
-            "budget": 2250000.0
-          },
-          "PRESENTATION": {
-            "n": 8,
-            "budget": 1250000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 120000.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 0.0
-          }
-        }
-      },
-      "l3m": {
-        "Bali": {
-          "LOST": {
-            "n": 25,
-            "budget": 3465000.0
-          },
-          "DEFERRED": {
-            "n": 8,
-            "budget": 1310000.0
-          },
-          "PRESENTATION": {
-            "n": 8,
-            "budget": 1250000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 120000.0
-          },
-          "WON": {
-            "n": 3,
-            "budget": 235000.0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 25,
-            "budget": 3465000.0
-          },
-          "DEFERRED": {
-            "n": 8,
-            "budget": 1310000.0
-          },
-          "PRESENTATION": {
-            "n": 8,
-            "budget": 1250000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 120000.0
-          },
-          "WON": {
-            "n": 3,
-            "budget": 235000.0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Виктория Багазий",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2023-11-29",
-    "last_lead": "2026-09-03",
-    "periods": {
-      "all": {
-        "Bali": {
-          "LOST": {
-            "n": 872,
-            "budget": 122657008.0
-          },
-          "PRESENTATION": {
-            "n": 35,
-            "budget": 4916002.0
-          },
-          "DEFERRED": {
-            "n": 74,
-            "budget": 11447501.0
-          },
-          "WON": {
-            "n": 19,
-            "budget": 2070000.0
-          },
-          "NEW": {
-            "n": 55,
-            "budget": 7820000.0
-          },
-          "QUALIFIED": {
-            "n": 21,
-            "budget": 3580000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "OTHER": {
-            "n": 2,
-            "budget": 50000.0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 4,
-            "budget": 250000.0
-          },
-          "NEW": {
-            "n": 2,
-            "budget": 0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 877,
-            "budget": 122907008.0
-          },
-          "PRESENTATION": {
-            "n": 35,
-            "budget": 4916002.0
-          },
-          "DEFERRED": {
-            "n": 75,
-            "budget": 11447501.0
-          },
-          "WON": {
-            "n": 19,
-            "budget": 2070000.0
-          },
-          "NEW": {
-            "n": 57,
-            "budget": 7820000.0
-          },
-          "QUALIFIED": {
-            "n": 21,
-            "budget": 3580000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "OTHER": {
-            "n": 2,
-            "budget": 50000.0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 395,
-            "budget": 60597003.0
-          },
-          "WON": {
-            "n": 14,
-            "budget": 1540000.0
-          },
-          "DEFERRED": {
-            "n": 24,
-            "budget": 3270000.0
-          },
-          "PRESENTATION": {
-            "n": 6,
-            "budget": 750001.0
-          },
-          "NEW": {
-            "n": 14,
-            "budget": 1700000.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 220000.0
-          },
-          "OTHER": {
-            "n": 1,
-            "budget": 0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 2,
-            "budget": 100000.0
-          },
-          "NEW": {
-            "n": 2,
-            "budget": 0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 397,
-            "budget": 60697003.0
-          },
-          "WON": {
-            "n": 14,
-            "budget": 1540000.0
-          },
-          "DEFERRED": {
-            "n": 25,
-            "budget": 3270000.0
-          },
-          "PRESENTATION": {
-            "n": 6,
-            "budget": 750001.0
-          },
-          "NEW": {
-            "n": 16,
-            "budget": 1700000.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 220000.0
-          },
-          "OTHER": {
-            "n": 1,
-            "budget": 0.0
-          }
-        }
-      },
-      "y2026": {
-        "Bali": {
-          "PRESENTATION": {
-            "n": 27,
-            "budget": 3966001.0
-          },
-          "DEFERRED": {
-            "n": 44,
-            "budget": 6817501.0
-          },
-          "LOST": {
-            "n": 151,
-            "budget": 22034002.0
-          },
-          "NEW": {
-            "n": 32,
-            "budget": 4570000.0
-          },
-          "QUALIFIED": {
-            "n": 16,
-            "budget": 2770000.0
-          },
-          "WON": {
-            "n": 3,
-            "budget": 330000.0
-          }
-        },
-        "Europe": {
-          "LOST": {
             "n": 2,
             "budget": 150000.0
           },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Thailand": {
-          "LOST": {
+          "NEW": {
             "n": 1,
             "budget": 0
           },
@@ -1254,74 +39,60 @@
             "budget": 0
           }
         },
-        "ALL": {
-          "PRESENTATION": {
-            "n": 27,
-            "budget": 3966001.0
-          },
-          "DEFERRED": {
-            "n": 44,
-            "budget": 6817501.0
+        "Bali": {
+          "OTHER": {
+            "n": 2,
+            "budget": 0
           },
           "LOST": {
-            "n": 154,
-            "budget": 22184002.0
-          },
-          "NEW": {
-            "n": 32,
-            "budget": 4570000.0
+            "n": 4613,
+            "budget": 64181040.0
           },
           "QUALIFIED": {
-            "n": 16,
-            "budget": 2770000.0
+            "n": 1348,
+            "budget": 250336104.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 100000.0
           },
           "WON": {
-            "n": 3,
-            "budget": 330000.0
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 4,
+            "budget": 0.0
+          },
+          "LOST": {
+            "n": 4617,
+            "budget": 65181040.0
+          },
+          "QUALIFIED": {
+            "n": 1350,
+            "budget": 250486104.0
+          },
+          "OTHER": {
+            "n": 2,
+            "budget": 0.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         }
       },
-      "l3m": {
+      "y2025": {
         "Bali": {
-          "PRESENTATION": {
-            "n": 21,
-            "budget": 2890001.0
-          },
-          "DEFERRED": {
-            "n": 22,
-            "budget": 3545000.0
-          },
           "LOST": {
-            "n": 76,
-            "budget": 11155001.0
-          },
-          "NEW": {
-            "n": 28,
-            "budget": 3840000.0
-          },
-          "QUALIFIED": {
-            "n": 13,
-            "budget": 2240000.0
-          },
-          "WON": {
-            "n": 1,
-            "budget": 230000.0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 1,
-            "budget": 0
+            "n": 12,
+            "budget": 1000.0
           },
           "WON": {
             "n": 0,
@@ -1329,29 +100,13 @@
           }
         },
         "ALL": {
-          "PRESENTATION": {
-            "n": 21,
-            "budget": 2890001.0
-          },
-          "DEFERRED": {
-            "n": 22,
-            "budget": 3545000.0
-          },
           "LOST": {
-            "n": 78,
-            "budget": 11155001.0
-          },
-          "NEW": {
-            "n": 28,
-            "budget": 3840000.0
-          },
-          "QUALIFIED": {
-            "n": 13,
-            "budget": 2240000.0
+            "n": 12,
+            "budget": 1000.0
           },
           "WON": {
-            "n": 1,
-            "budget": 230000.0
+            "n": 0,
+            "budget": 0
           }
         }
       }
@@ -1362,33 +117,33 @@
     "role": "broker",
     "position": "менеджер по продажам",
     "first_lead": "2024-03-04",
-    "last_lead": "2026-09-03",
+    "last_lead": "2026-09-04",
     "periods": {
       "all": {
         "Europe": {
+          "WON": {
+            "n": 16,
+            "budget": 2752500.0
+          },
           "LOST": {
-            "n": 1088,
-            "budget": 245328681.0
+            "n": 1087,
+            "budget": 245128681.0
           },
           "DEFERRED": {
             "n": 72,
             "budget": 3519283001.0
           },
-          "WON": {
-            "n": 16,
-            "budget": 2752500.0
-          },
-          "NEW": {
-            "n": 28,
-            "budget": 7239000.0
-          },
           "OFFER": {
             "n": 18,
-            "budget": 4746000.0
+            "budget": 4651550.0
           },
           "QUALIFIED": {
             "n": 34,
             "budget": 8264000.0
+          },
+          "NEW": {
+            "n": 30,
+            "budget": 7564000.0
           },
           "PRESENTATION": {
             "n": 3,
@@ -1414,29 +169,29 @@
           }
         },
         "ALL": {
+          "WON": {
+            "n": 16,
+            "budget": 2752500.0
+          },
           "LOST": {
-            "n": 1093,
-            "budget": 245718681.0
+            "n": 1092,
+            "budget": 245518681.0
           },
           "DEFERRED": {
             "n": 72,
             "budget": 3519283001.0
           },
-          "WON": {
-            "n": 16,
-            "budget": 2752500.0
-          },
-          "NEW": {
-            "n": 29,
-            "budget": 7639000.0
-          },
           "OFFER": {
             "n": 18,
-            "budget": 4746000.0
+            "budget": 4651550.0
           },
           "QUALIFIED": {
             "n": 36,
             "budget": 8464001.0
+          },
+          "NEW": {
+            "n": 31,
+            "budget": 7964000.0
           },
           "PRESENTATION": {
             "n": 3,
@@ -1447,24 +202,16 @@
       "y2025": {
         "Europe": {
           "LOST": {
-            "n": 560,
-            "budget": 130607663.0
-          },
-          "DEFERRED": {
-            "n": 23,
-            "budget": 7138001.0
-          },
-          "NEW": {
-            "n": 6,
-            "budget": 1789000.0
-          },
-          "QUALIFIED": {
-            "n": 8,
-            "budget": 1885000.0
+            "n": 559,
+            "budget": 130407663.0
           },
           "WON": {
             "n": 10,
             "budget": 1683500.0
+          },
+          "DEFERRED": {
+            "n": 23,
+            "budget": 7138001.0
           },
           "OFFER": {
             "n": 5,
@@ -1473,6 +220,14 @@
           "PRESENTATION": {
             "n": 1,
             "budget": 500000.0
+          },
+          "NEW": {
+            "n": 7,
+            "budget": 1989000.0
+          },
+          "QUALIFIED": {
+            "n": 8,
+            "budget": 1885000.0
           }
         },
         "Bali": {
@@ -1495,24 +250,16 @@
         },
         "ALL": {
           "LOST": {
-            "n": 564,
-            "budget": 130797663.0
-          },
-          "DEFERRED": {
-            "n": 23,
-            "budget": 7138001.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 2189000.0
-          },
-          "QUALIFIED": {
-            "n": 9,
-            "budget": 2085000.0
+            "n": 563,
+            "budget": 130597663.0
           },
           "WON": {
             "n": 10,
             "budget": 1683500.0
+          },
+          "DEFERRED": {
+            "n": 23,
+            "budget": 7138001.0
           },
           "OFFER": {
             "n": 5,
@@ -1521,6 +268,14 @@
           "PRESENTATION": {
             "n": 1,
             "budget": 500000.0
+          },
+          "NEW": {
+            "n": 8,
+            "budget": 2389000.0
+          },
+          "QUALIFIED": {
+            "n": 9,
+            "budget": 2085000.0
           }
         }
       },
@@ -1530,14 +285,6 @@
             "n": 41,
             "budget": 3510175000.0
           },
-          "LOST": {
-            "n": 84,
-            "budget": 19387000.0
-          },
-          "OFFER": {
-            "n": 5,
-            "budget": 1050000.0
-          },
           "QUALIFIED": {
             "n": 12,
             "budget": 2669000.0
@@ -1549,6 +296,14 @@
           "WON": {
             "n": 3,
             "budget": 670000.0
+          },
+          "LOST": {
+            "n": 84,
+            "budget": 19387000.0
+          },
+          "OFFER": {
+            "n": 5,
+            "budget": 1050000.0
           }
         },
         "ALL": {
@@ -1556,14 +311,6 @@
             "n": 41,
             "budget": 3510175000.0
           },
-          "LOST": {
-            "n": 84,
-            "budget": 19387000.0
-          },
-          "OFFER": {
-            "n": 5,
-            "budget": 1050000.0
-          },
           "QUALIFIED": {
             "n": 12,
             "budget": 2669000.0
@@ -1575,6 +322,14 @@
           "WON": {
             "n": 3,
             "budget": 670000.0
+          },
+          "LOST": {
+            "n": 84,
+            "budget": 19387000.0
+          },
+          "OFFER": {
+            "n": 5,
+            "budget": 1050000.0
           }
         }
       },
@@ -1584,21 +339,21 @@
             "n": 29,
             "budget": 7820000.0
           },
-          "OFFER": {
-            "n": 4,
-            "budget": 900000.0
+          "QUALIFIED": {
+            "n": 10,
+            "budget": 1469000.0
           },
           "LOST": {
             "n": 45,
             "budget": 9997000.0
           },
+          "OFFER": {
+            "n": 4,
+            "budget": 900000.0
+          },
           "NEW": {
             "n": 6,
             "budget": 1675000.0
-          },
-          "QUALIFIED": {
-            "n": 10,
-            "budget": 1469000.0
           },
           "WON": {
             "n": 3,
@@ -1610,25 +365,288 @@
             "n": 29,
             "budget": 7820000.0
           },
-          "OFFER": {
-            "n": 4,
-            "budget": 900000.0
+          "QUALIFIED": {
+            "n": 10,
+            "budget": 1469000.0
           },
           "LOST": {
             "n": 45,
             "budget": 9997000.0
           },
+          "OFFER": {
+            "n": 4,
+            "budget": 900000.0
+          },
           "NEW": {
             "n": 6,
             "budget": 1675000.0
           },
-          "QUALIFIED": {
-            "n": 10,
-            "budget": 1469000.0
-          },
           "WON": {
             "n": 3,
             "budget": 670000.0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Марина Цыганок",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2024-03-16",
+    "last_lead": "2026-09-04",
+    "periods": {
+      "all": {
+        "Europe": {
+          "LOST": {
+            "n": 293,
+            "budget": 64360005.0
+          },
+          "DEFERRED": {
+            "n": 75,
+            "budget": 15194001.0
+          },
+          "QUALIFIED": {
+            "n": 11,
+            "budget": 3425000.0
+          },
+          "NEW": {
+            "n": 16,
+            "budget": 4065000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 400000.0
+          },
+          "PRESENTATION": {
+            "n": 4,
+            "budget": 950000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 4,
+            "budget": 675000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 297,
+            "budget": 65035005.0
+          },
+          "DEFERRED": {
+            "n": 75,
+            "budget": 15194001.0
+          },
+          "QUALIFIED": {
+            "n": 11,
+            "budget": 3425000.0
+          },
+          "NEW": {
+            "n": 16,
+            "budget": 4065000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 400000.0
+          },
+          "PRESENTATION": {
+            "n": 4,
+            "budget": 950000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "LOST": {
+            "n": 127,
+            "budget": 26880002.0
+          },
+          "DEFERRED": {
+            "n": 18,
+            "budget": 2855001.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 800000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 3,
+            "budget": 575000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 130,
+            "budget": 27455002.0
+          },
+          "DEFERRED": {
+            "n": 18,
+            "budget": 2855001.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 800000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
+          "DEFERRED": {
+            "n": 54,
+            "budget": 11916000.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 750000.0
+          },
+          "LOST": {
+            "n": 158,
+            "budget": 35530003.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 400000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 500000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 54,
+            "budget": 11916000.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 750000.0
+          },
+          "LOST": {
+            "n": 159,
+            "budget": 35630003.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 400000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 500000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "l3m": {
+        "Europe": {
+          "DEFERRED": {
+            "n": 16,
+            "budget": 2866000.0
+          },
+          "LOST": {
+            "n": 58,
+            "budget": 15353000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 400000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 16,
+            "budget": 2866000.0
+          },
+          "LOST": {
+            "n": 58,
+            "budget": 15353000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 400000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 0.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         }
       }
@@ -1643,63 +661,33 @@
     "periods": {
       "all": {
         "Europe": {
-          "NEW": {
-            "n": 56,
-            "budget": 13945000.0
-          },
           "LOST": {
             "n": 344,
             "budget": 81987921.0
           },
-          "QUALIFIED": {
-            "n": 31,
-            "budget": 7314000.0
-          },
-          "OFFER": {
-            "n": 6,
-            "budget": 875001.0
+          "NEW": {
+            "n": 56,
+            "budget": 13945000.0
           },
           "DEFERRED": {
             "n": 14,
             "budget": 2353000.0
           },
-          "WON": {
-            "n": 4,
-            "budget": 675000.0
-          },
           "PRESENTATION": {
             "n": 9,
             "budget": 1840000.0
-          }
-        },
-        "Bali": {
-          "LOST": {
-            "n": 177,
-            "budget": 30279003.0
-          },
-          "WON": {
-            "n": 3,
-            "budget": 233000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "DEFERRED": {
-            "n": 3,
-            "budget": 430000.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 690000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 610700.0
           },
           "OFFER": {
-            "n": 2,
-            "budget": 317000.0
+            "n": 6,
+            "budget": 875001.0
+          },
+          "QUALIFIED": {
+            "n": 31,
+            "budget": 7314000.0
+          },
+          "WON": {
+            "n": 4,
+            "budget": 675000.0
           }
         },
         "Thailand": {
@@ -1716,34 +704,64 @@
             "budget": 0
           }
         },
-        "ALL": {
-          "NEW": {
-            "n": 58,
-            "budget": 14145000.0
+        "Bali": {
+          "LOST": {
+            "n": 177,
+            "budget": 30279003.0
           },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 690000.0
+          },
+          "WON": {
+            "n": 3,
+            "budget": 233000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 610700.0
+          },
+          "DEFERRED": {
+            "n": 3,
+            "budget": 430000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 317000.0
+          }
+        },
+        "ALL": {
           "LOST": {
             "n": 522,
             "budget": 112266924.0
           },
-          "QUALIFIED": {
-            "n": 34,
-            "budget": 8004000.0
-          },
-          "OFFER": {
-            "n": 8,
-            "budget": 1192001.0
+          "NEW": {
+            "n": 58,
+            "budget": 14145000.0
           },
           "DEFERRED": {
             "n": 17,
             "budget": 2783000.0
           },
-          "WON": {
-            "n": 7,
-            "budget": 908000.0
-          },
           "PRESENTATION": {
             "n": 12,
             "budget": 2450700.0
+          },
+          "OFFER": {
+            "n": 8,
+            "budget": 1192001.0
+          },
+          "QUALIFIED": {
+            "n": 34,
+            "budget": 8004000.0
+          },
+          "WON": {
+            "n": 7,
+            "budget": 908000.0
           }
         }
       },
@@ -1753,14 +771,6 @@
             "n": 35,
             "budget": 8800000.0
           },
-          "LOST": {
-            "n": 83,
-            "budget": 20409001.0
-          },
-          "QUALIFIED": {
-            "n": 23,
-            "budget": 5220000.0
-          },
           "DEFERRED": {
             "n": 9,
             "budget": 1730000.0
@@ -1769,9 +779,17 @@
             "n": 7,
             "budget": 1330000.0
           },
+          "LOST": {
+            "n": 83,
+            "budget": 20409001.0
+          },
           "OFFER": {
             "n": 3,
             "budget": 410001.0
+          },
+          "QUALIFIED": {
+            "n": 23,
+            "budget": 5220000.0
           },
           "WON": {
             "n": 0,
@@ -1797,14 +815,6 @@
             "n": 35,
             "budget": 8800000.0
           },
-          "LOST": {
-            "n": 85,
-            "budget": 20709001.0
-          },
-          "QUALIFIED": {
-            "n": 24,
-            "budget": 5410000.0
-          },
           "DEFERRED": {
             "n": 9,
             "budget": 1730000.0
@@ -1813,9 +823,17 @@
             "n": 7,
             "budget": 1330000.0
           },
+          "LOST": {
+            "n": 85,
+            "budget": 20709001.0
+          },
           "OFFER": {
             "n": 3,
             "budget": 410001.0
+          },
+          "QUALIFIED": {
+            "n": 24,
+            "budget": 5410000.0
           },
           "WON": {
             "n": 3,
@@ -1824,36 +842,6 @@
         }
       },
       "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 175,
-            "budget": 29979003.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "DEFERRED": {
-            "n": 3,
-            "budget": 430000.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 610700.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 317000.0
-          }
-        },
         "Europe": {
           "LOST": {
             "n": 79,
@@ -1867,10 +855,6 @@
             "n": 5,
             "budget": 1144000.0
           },
-          "DEFERRED": {
-            "n": 3,
-            "budget": 380000.0
-          },
           "WON": {
             "n": 3,
             "budget": 475000.0
@@ -1878,12 +862,54 @@
           "NEW": {
             "n": 3,
             "budget": 585000.0
+          },
+          "DEFERRED": {
+            "n": 3,
+            "budget": 380000.0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 175,
+            "budget": 29979003.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 610700.0
+          },
+          "DEFERRED": {
+            "n": 3,
+            "budget": 430000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 317000.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 500000.0
           }
         },
         "ALL": {
           "LOST": {
             "n": 254,
             "budget": 48392911.0
+          },
+          "OFFER": {
+            "n": 4,
+            "budget": 782000.0
+          },
+          "QUALIFIED": {
+            "n": 7,
+            "budget": 1644000.0
           },
           "WON": {
             "n": 3,
@@ -1897,30 +923,14 @@
             "n": 6,
             "budget": 810000.0
           },
-          "QUALIFIED": {
-            "n": 7,
-            "budget": 1644000.0
-          },
           "PRESENTATION": {
             "n": 3,
             "budget": 610700.0
-          },
-          "OFFER": {
-            "n": 4,
-            "budget": 782000.0
           }
         }
       },
       "l3m": {
         "Europe": {
-          "OFFER": {
-            "n": 2,
-            "budget": 410000.0
-          },
-          "DEFERRED": {
-            "n": 4,
-            "budget": 735000.0
-          },
           "PRESENTATION": {
             "n": 6,
             "budget": 1080000.0
@@ -1929,13 +939,21 @@
             "n": 25,
             "budget": 6240000.0
           },
-          "NEW": {
-            "n": 23,
-            "budget": 4850000.0
+          "OFFER": {
+            "n": 2,
+            "budget": 410000.0
           },
           "QUALIFIED": {
             "n": 17,
             "budget": 3795000.0
+          },
+          "DEFERRED": {
+            "n": 4,
+            "budget": 735000.0
+          },
+          "NEW": {
+            "n": 23,
+            "budget": 4850000.0
           },
           "WON": {
             "n": 0,
@@ -1943,14 +961,6 @@
           }
         },
         "ALL": {
-          "OFFER": {
-            "n": 2,
-            "budget": 410000.0
-          },
-          "DEFERRED": {
-            "n": 4,
-            "budget": 735000.0
-          },
           "PRESENTATION": {
             "n": 6,
             "budget": 1080000.0
@@ -1959,537 +969,21 @@
             "n": 25,
             "budget": 6240000.0
           },
-          "NEW": {
-            "n": 23,
-            "budget": 4850000.0
+          "OFFER": {
+            "n": 2,
+            "budget": 410000.0
           },
           "QUALIFIED": {
             "n": 17,
             "budget": 3795000.0
           },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Валентина Бондаренко",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2023-11-22",
-    "last_lead": "2026-09-03",
-    "periods": {
-      "all": {
-        "Bali": {
-          "WON": {
-            "n": 50,
-            "budget": 8678464.0
-          },
-          "LOST": {
-            "n": 627,
-            "budget": 95553838.0
-          },
           "DEFERRED": {
-            "n": 65,
-            "budget": 12087000.0
-          },
-          "PRESENTATION": {
-            "n": 29,
-            "budget": 6303000.0
-          },
-          "QUALIFIED": {
-            "n": 31,
-            "budget": 4960001.0
-          },
-          "NEW": {
-            "n": 35,
-            "budget": 5715000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 270000.0
-          }
-        },
-        "Europe": {
-          "NEW": {
-            "n": 2,
-            "budget": 600000.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "LOST": {
-            "n": 3,
-            "budget": 600000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "WON": {
-            "n": 50,
-            "budget": 8678464.0
-          },
-          "LOST": {
-            "n": 630,
-            "budget": 96153838.0
-          },
-          "DEFERRED": {
-            "n": 65,
-            "budget": 12087000.0
-          },
-          "PRESENTATION": {
-            "n": 29,
-            "budget": 6303000.0
-          },
-          "QUALIFIED": {
-            "n": 32,
-            "budget": 5160001.0
-          },
-          "NEW": {
-            "n": 37,
-            "budget": 6315000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 270000.0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 209,
-            "budget": 40232002.0
-          },
-          "DEFERRED": {
-            "n": 28,
-            "budget": 5105000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 570000.0
-          },
-          "WON": {
-            "n": 18,
-            "budget": 3148650.0
-          }
-        },
-        "Europe": {
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "LOST": {
-            "n": 3,
-            "budget": 600000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 212,
-            "budget": 40832002.0
-          },
-          "DEFERRED": {
-            "n": 28,
-            "budget": 5105000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 570000.0
-          },
-          "WON": {
-            "n": 18,
-            "budget": 3148650.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 100000.0
-          }
-        }
-      },
-      "y2026": {
-        "Bali": {
-          "LOST": {
-            "n": 106,
-            "budget": 17083501.0
-          },
-          "DEFERRED": {
-            "n": 32,
-            "budget": 6112000.0
-          },
-          "WON": {
-            "n": 8,
-            "budget": 1558784.0
-          },
-          "NEW": {
-            "n": 11,
-            "budget": 1780000.0
-          },
-          "PRESENTATION": {
-            "n": 23,
-            "budget": 5273000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 270000.0
-          },
-          "QUALIFIED": {
-            "n": 6,
-            "budget": 730000.0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 106,
-            "budget": 17083501.0
-          },
-          "DEFERRED": {
-            "n": 32,
-            "budget": 6112000.0
-          },
-          "WON": {
-            "n": 8,
-            "budget": 1558784.0
-          },
-          "NEW": {
-            "n": 11,
-            "budget": 1780000.0
-          },
-          "PRESENTATION": {
-            "n": 23,
-            "budget": 5273000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 270000.0
-          },
-          "QUALIFIED": {
-            "n": 6,
-            "budget": 730000.0
-          }
-        }
-      },
-      "l3m": {
-        "Bali": {
-          "WON": {
             "n": 4,
-            "budget": 611068.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 270000.0
+            "budget": 735000.0
           },
           "NEW": {
-            "n": 9,
-            "budget": 1430000.0
-          },
-          "LOST": {
-            "n": 44,
-            "budget": 7295001.0
-          },
-          "DEFERRED": {
-            "n": 18,
-            "budget": 2930000.0
-          },
-          "PRESENTATION": {
-            "n": 17,
-            "budget": 3944000.0
-          },
-          "QUALIFIED": {
-            "n": 6,
-            "budget": 730000.0
-          }
-        },
-        "ALL": {
-          "WON": {
-            "n": 4,
-            "budget": 611068.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 270000.0
-          },
-          "NEW": {
-            "n": 9,
-            "budget": 1430000.0
-          },
-          "LOST": {
-            "n": 44,
-            "budget": 7295001.0
-          },
-          "DEFERRED": {
-            "n": 18,
-            "budget": 2930000.0
-          },
-          "PRESENTATION": {
-            "n": 17,
-            "budget": 3944000.0
-          },
-          "QUALIFIED": {
-            "n": 6,
-            "budget": 730000.0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Андрей Гедикьянц",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2024-10-01",
-    "last_lead": "2026-08-05",
-    "periods": {
-      "all": {
-        "Europe": {
-          "LOST": {
-            "n": 89,
-            "budget": 21345000.0
-          },
-          "NEW": {
-            "n": 20,
-            "budget": 3480000.0
-          },
-          "DEFERRED": {
-            "n": 24,
-            "budget": 5446055.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 440000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "LOST": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 90,
-            "budget": 21545000.0
-          },
-          "NEW": {
-            "n": 20,
-            "budget": 3480000.0
-          },
-          "DEFERRED": {
-            "n": 24,
-            "budget": 5446055.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 440000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "y2026": {
-        "Europe": {
-          "LOST": {
-            "n": 83,
-            "budget": 20560000.0
-          },
-          "NEW": {
-            "n": 14,
-            "budget": 2310000.0
-          },
-          "DEFERRED": {
             "n": 23,
-            "budget": 5146055.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 340000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "LOST": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 84,
-            "budget": 20760000.0
-          },
-          "NEW": {
-            "n": 14,
-            "budget": 2310000.0
-          },
-          "DEFERRED": {
-            "n": 23,
-            "budget": 5146055.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 340000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "l3m": {
-        "Europe": {
-          "LOST": {
-            "n": 69,
-            "budget": 17130000.0
-          },
-          "NEW": {
-            "n": 11,
-            "budget": 1660000.0
-          },
-          "DEFERRED": {
-            "n": 20,
-            "budget": 4196055.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 340000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "LOST": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 70,
-            "budget": 17330000.0
-          },
-          "NEW": {
-            "n": 11,
-            "budget": 1660000.0
-          },
-          "DEFERRED": {
-            "n": 20,
-            "budget": 4196055.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "PRESENTATION": {
-            "n": 2,
-            "budget": 340000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "y2025": {
-        "Europe": {
-          "LOST": {
-            "n": 6,
-            "budget": 785000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "NEW": {
-            "n": 3,
-            "budget": 650000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 6,
-            "budget": 785000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "NEW": {
-            "n": 3,
-            "budget": 650000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 100000.0
+            "budget": 4850000.0
           },
           "WON": {
             "n": 0,
@@ -2504,35 +998,9 @@
     "role": "broker",
     "position": "менеджер по продажам",
     "first_lead": "2023-11-29",
-    "last_lead": "2026-09-03",
+    "last_lead": "2026-09-04",
     "periods": {
       "all": {
-        "Bali": {
-          "LOST": {
-            "n": 305,
-            "budget": 47014004.0
-          },
-          "WON": {
-            "n": 7,
-            "budget": 909000.0
-          },
-          "QUALIFIED": {
-            "n": 9,
-            "budget": 1735000.0
-          },
-          "PRESENTATION": {
-            "n": 14,
-            "budget": 2550000.0
-          },
-          "DEFERRED": {
-            "n": 18,
-            "budget": 4140000.0
-          },
-          "NEW": {
-            "n": 14,
-            "budget": 2285000.0
-          }
-        },
         "Europe": {
           "LOST": {
             "n": 97,
@@ -2542,6 +1010,14 @@
             "n": 9,
             "budget": 1755000.0
           },
+          "NEW": {
+            "n": 6,
+            "budget": 900001.0
+          },
+          "PRESENTATION": {
+            "n": 12,
+            "budget": 3125000.0
+          },
           "WON": {
             "n": 3,
             "budget": 675000.0
@@ -2549,14 +1025,32 @@
           "QUALIFIED": {
             "n": 12,
             "budget": 3294277.0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 9,
+            "budget": 1735000.0
           },
-          "NEW": {
-            "n": 6,
-            "budget": 1150000.0
+          "LOST": {
+            "n": 306,
+            "budget": 47164004.0
+          },
+          "DEFERRED": {
+            "n": 18,
+            "budget": 4140000.0
           },
           "PRESENTATION": {
-            "n": 11,
-            "budget": 2875000.0
+            "n": 14,
+            "budget": 2550000.0
+          },
+          "WON": {
+            "n": 7,
+            "budget": 909000.0
+          },
+          "NEW": {
+            "n": 15,
+            "budget": 2285001.0
           }
         },
         "Thailand": {
@@ -2571,8 +1065,20 @@
         },
         "ALL": {
           "LOST": {
-            "n": 407,
-            "budget": 68444004.0
+            "n": 408,
+            "budget": 68594004.0
+          },
+          "DEFERRED": {
+            "n": 27,
+            "budget": 5895000.0
+          },
+          "NEW": {
+            "n": 21,
+            "budget": 3185002.0
+          },
+          "PRESENTATION": {
+            "n": 26,
+            "budget": 5675000.0
           },
           "WON": {
             "n": 10,
@@ -2581,40 +1087,86 @@
           "QUALIFIED": {
             "n": 21,
             "budget": 5029277.0
-          },
-          "PRESENTATION": {
-            "n": 25,
-            "budget": 5425000.0
-          },
-          "DEFERRED": {
-            "n": 27,
-            "budget": 5895000.0
-          },
-          "NEW": {
-            "n": 20,
-            "budget": 3435000.0
           }
         }
       },
-      "y2025": {
-        "Bali": {
+      "y2026": {
+        "Europe": {
           "LOST": {
-            "n": 161,
-            "budget": 20052003.0
-          },
-          "WON": {
-            "n": 4,
-            "budget": 540400.0
+            "n": 52,
+            "budget": 11798000.0
           },
           "DEFERRED": {
-            "n": 3,
-            "budget": 805000.0
+            "n": 9,
+            "budget": 1755000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 0
           },
           "PRESENTATION": {
             "n": 1,
             "budget": 150000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 115000.0
+          },
+          "LOST": {
+            "n": 122,
+            "budget": 20302001.0
+          },
+          "DEFERRED": {
+            "n": 14,
+            "budget": 3135000.0
+          },
+          "WON": {
+            "n": 3,
+            "budget": 368600.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 370000.0
+          },
+          "NEW": {
+            "n": 10,
+            "budget": 1500000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 174,
+            "budget": 32100001.0
+          },
+          "DEFERRED": {
+            "n": 23,
+            "budget": 4890000.0
+          },
+          "NEW": {
+            "n": 11,
+            "budget": 1500000.0
+          },
+          "PRESENTATION": {
+            "n": 4,
+            "budget": 520000.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 115000.0
+          },
+          "WON": {
+            "n": 3,
+            "budget": 368600.0
+          }
+        }
+      },
+      "y2025": {
         "Europe": {
           "LOST": {
             "n": 31,
@@ -2624,13 +1176,31 @@
             "n": 3,
             "budget": 675000.0
           },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 500000.0
-          },
           "PRESENTATION": {
             "n": 3,
             "budget": 700000.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 500000.0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 161,
+            "budget": 20052003.0
+          },
+          "DEFERRED": {
+            "n": 3,
+            "budget": 805000.0
+          },
+          "WON": {
+            "n": 4,
+            "budget": 540400.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 150000.0
           }
         },
         "Thailand": {
@@ -2652,10 +1222,6 @@
             "n": 7,
             "budget": 1215400.0
           },
-          "DEFERRED": {
-            "n": 3,
-            "budget": 805000.0
-          },
           "PRESENTATION": {
             "n": 4,
             "budget": 850000.0
@@ -2663,22 +1229,26 @@
           "QUALIFIED": {
             "n": 2,
             "budget": 500000.0
+          },
+          "DEFERRED": {
+            "n": 3,
+            "budget": 805000.0
           }
         }
       },
-      "y2026": {
+      "l3m": {
         "Europe": {
           "DEFERRED": {
-            "n": 9,
-            "budget": 1755000.0
-          },
-          "LOST": {
-            "n": 52,
-            "budget": 11798000.0
+            "n": 7,
+            "budget": 1375000.0
           },
           "NEW": {
             "n": 1,
             "budget": 0
+          },
+          "LOST": {
+            "n": 41,
+            "budget": 9181000.0
           },
           "PRESENTATION": {
             "n": 1,
@@ -2690,67 +1260,13 @@
           }
         },
         "Bali": {
-          "WON": {
-            "n": 3,
-            "budget": 368600.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 115000.0
-          },
           "LOST": {
-            "n": 122,
-            "budget": 20302001.0
-          },
-          "DEFERRED": {
-            "n": 14,
-            "budget": 3135000.0
-          },
-          "NEW": {
-            "n": 10,
-            "budget": 1500000.0
+            "n": 40,
+            "budget": 7583000.0
           },
           "PRESENTATION": {
             "n": 3,
             "budget": 370000.0
-          }
-        },
-        "ALL": {
-          "DEFERRED": {
-            "n": 23,
-            "budget": 4890000.0
-          },
-          "LOST": {
-            "n": 174,
-            "budget": 32100001.0
-          },
-          "NEW": {
-            "n": 11,
-            "budget": 1500000.0
-          },
-          "PRESENTATION": {
-            "n": 4,
-            "budget": 520000.0
-          },
-          "WON": {
-            "n": 3,
-            "budget": 368600.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 115000.0
-          }
-        }
-      },
-      "l3m": {
-        "Bali": {
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 0
-          },
-          "LOST": {
-            "n": 40,
-            "budget": 7583000.0
           },
           "DEFERRED": {
             "n": 10,
@@ -2760,46 +1276,16 @@
             "n": 10,
             "budget": 1500000.0
           },
-          "PRESENTATION": {
-            "n": 3,
-            "budget": 370000.0
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 0
           },
           "WON": {
             "n": 1,
             "budget": 118700.0
           }
         },
-        "Europe": {
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1375000.0
-          },
-          "LOST": {
-            "n": 41,
-            "budget": 9181000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 150000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
         "ALL": {
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 0.0
-          },
-          "LOST": {
-            "n": 81,
-            "budget": 16764000.0
-          },
           "DEFERRED": {
             "n": 17,
             "budget": 3485000.0
@@ -2808,9 +1294,17 @@
             "n": 11,
             "budget": 1500000.0
           },
+          "LOST": {
+            "n": 81,
+            "budget": 16764000.0
+          },
           "PRESENTATION": {
             "n": 4,
             "budget": 520000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 0.0
           },
           "WON": {
             "n": 1,
@@ -2821,318 +1315,291 @@
     }
   },
   {
-    "name": "Ирина Лисниченко",
+    "name": "Анастасия Сорокина",
     "role": "broker",
     "position": "менеджер по продажам",
-    "first_lead": "2024-08-22",
-    "last_lead": "2026-08-31",
+    "first_lead": "2024-03-13",
+    "last_lead": "2026-08-17",
     "periods": {
       "all": {
-        "Bali": {
-          "WON": {
-            "n": 2,
-            "budget": 420000.0
-          },
-          "LOST": {
-            "n": 192,
-            "budget": 27077802.0
-          },
-          "QUALIFIED": {
-            "n": 25,
-            "budget": 3680000.0
-          },
+        "Europe": {
           "DEFERRED": {
-            "n": 11,
-            "budget": 2103000.0
+            "n": 33,
+            "budget": 7210000.0
           },
           "NEW": {
-            "n": 32,
-            "budget": 4490000.0
+            "n": 80,
+            "budget": 19306001.0
+          },
+          "LOST": {
+            "n": 30,
+            "budget": 5593001.0
           },
           "PRESENTATION": {
-            "n": 5,
-            "budget": 1120000.0
+            "n": 43,
+            "budget": 10585000.0
+          },
+          "QUALIFIED": {
+            "n": 58,
+            "budget": 13639490.0
+          },
+          "OFFER": {
+            "n": 7,
+            "budget": 1850000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 204250.0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 350000.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 235000.0
+          },
+          "WON": {
+            "n": 4,
+            "budget": 721892.0
+          },
+          "LOST": {
+            "n": 1,
+            "budget": 0
           },
           "OFFER": {
             "n": 1,
-            "budget": 110000.0
-          }
-        },
-        "Thailand": {
-          "NEW": {
-            "n": 1,
-            "budget": 200000.0
+            "budget": 498108.0
           },
-          "QUALIFIED": {
+          "PRESENTATION": {
             "n": 1,
-            "budget": 120000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
+            "budget": 150000.0
           }
         },
         "ALL": {
-          "WON": {
-            "n": 2,
-            "budget": 420000.0
-          },
-          "LOST": {
-            "n": 192,
-            "budget": 27077802.0
-          },
-          "QUALIFIED": {
-            "n": 26,
-            "budget": 3800000.0
-          },
           "DEFERRED": {
-            "n": 11,
-            "budget": 2103000.0
+            "n": 33,
+            "budget": 7210000.0
           },
           "NEW": {
-            "n": 33,
-            "budget": 4690000.0
+            "n": 83,
+            "budget": 19541001.0
+          },
+          "LOST": {
+            "n": 31,
+            "budget": 5593001.0
           },
           "PRESENTATION": {
-            "n": 5,
-            "budget": 1120000.0
+            "n": 44,
+            "budget": 10735000.0
+          },
+          "QUALIFIED": {
+            "n": 59,
+            "budget": 13989490.0
           },
           "OFFER": {
-            "n": 1,
-            "budget": 110000.0
+            "n": 8,
+            "budget": 2348108.0
+          },
+          "WON": {
+            "n": 5,
+            "budget": 926142.0
           }
         }
       },
       "y2026": {
-        "Bali": {
-          "LOST": {
-            "n": 117,
-            "budget": 17642801.0
+        "Europe": {
+          "DEFERRED": {
+            "n": 18,
+            "budget": 3580000.0
           },
           "QUALIFIED": {
-            "n": 19,
-            "budget": 2560000.0
-          },
-          "DEFERRED": {
-            "n": 11,
-            "budget": 2103000.0
+            "n": 42,
+            "budget": 10404490.0
           },
           "NEW": {
-            "n": 10,
-            "budget": 1210000.0
+            "n": 70,
+            "budget": 17082001.0
           },
           "PRESENTATION": {
-            "n": 1,
-            "budget": 300000.0
+            "n": 32,
+            "budget": 7700000.0
+          },
+          "LOST": {
+            "n": 10,
+            "budget": 1800000.0
           },
           "OFFER": {
-            "n": 1,
-            "budget": 110000.0
+            "n": 6,
+            "budget": 1850000.0
           },
           "WON": {
             "n": 1,
-            "budget": 320000.0
+            "budget": 204250.0
+          }
+        },
+        "Bali": {
+          "NEW": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 90000.0
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 117,
-            "budget": 17642801.0
+          "DEFERRED": {
+            "n": 18,
+            "budget": 3580000.0
           },
           "QUALIFIED": {
-            "n": 19,
-            "budget": 2560000.0
-          },
-          "DEFERRED": {
-            "n": 11,
-            "budget": 2103000.0
+            "n": 42,
+            "budget": 10404490.0
           },
           "NEW": {
-            "n": 10,
-            "budget": 1210000.0
+            "n": 71,
+            "budget": 17082001.0
           },
           "PRESENTATION": {
-            "n": 1,
-            "budget": 300000.0
+            "n": 32,
+            "budget": 7700000.0
+          },
+          "LOST": {
+            "n": 10,
+            "budget": 1800000.0
           },
           "OFFER": {
-            "n": 1,
-            "budget": 110000.0
+            "n": 6,
+            "budget": 1850000.0
           },
           "WON": {
-            "n": 1,
-            "budget": 320000.0
+            "n": 2,
+            "budget": 294250.0
           }
         }
       },
       "y2025": {
-        "Bali": {
+        "Europe": {
           "LOST": {
-            "n": 71,
-            "budget": 8715001.0
+            "n": 16,
+            "budget": 2737001.0
+          },
+          "PRESENTATION": {
+            "n": 7,
+            "budget": 1735000.0
           },
           "QUALIFIED": {
-            "n": 1,
-            "budget": 150000.0
+            "n": 14,
+            "budget": 2715000.0
+          },
+          "NEW": {
+            "n": 7,
+            "budget": 1485000.0
+          },
+          "DEFERRED": {
+            "n": 12,
+            "budget": 2130000.0
           },
           "WON": {
             "n": 0,
             "budget": 0
           }
         },
-        "Thailand": {
-          "NEW": {
-            "n": 1,
-            "budget": 200000.0
-          },
+        "Bali": {
           "QUALIFIED": {
             "n": 1,
-            "budget": 120000.0
+            "budget": 350000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 100000.0
           },
           "WON": {
-            "n": 0,
+            "n": 2,
+            "budget": 451892.0
+          },
+          "LOST": {
+            "n": 1,
             "budget": 0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 498108.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 150000.0
           }
         },
         "ALL": {
           "LOST": {
-            "n": 71,
-            "budget": 8715001.0
+            "n": 17,
+            "budget": 2737001.0
+          },
+          "PRESENTATION": {
+            "n": 8,
+            "budget": 1885000.0
           },
           "QUALIFIED": {
-            "n": 2,
-            "budget": 270000.0
+            "n": 15,
+            "budget": 3065000.0
           },
           "NEW": {
-            "n": 1,
-            "budget": 200000.0
+            "n": 8,
+            "budget": 1585000.0
+          },
+          "DEFERRED": {
+            "n": 12,
+            "budget": 2130000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 2,
+            "budget": 451892.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 498108.0
           }
         }
       },
       "l3m": {
-        "Bali": {
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1300000.0
+        "Europe": {
+          "QUALIFIED": {
+            "n": 16,
+            "budget": 4065490.0
           },
           "PRESENTATION": {
-            "n": 1,
-            "budget": 300000.0
+            "n": 16,
+            "budget": 3800000.0
           },
           "LOST": {
-            "n": 48,
-            "budget": 8256000.0
-          },
-          "QUALIFIED": {
-            "n": 15,
-            "budget": 2080000.0
-          },
-          "NEW": {
-            "n": 8,
-            "budget": 975000.0
+            "n": 3,
+            "budget": 550000.0
           },
           "OFFER": {
-            "n": 1,
-            "budget": 110000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1300000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 300000.0
-          },
-          "LOST": {
-            "n": 48,
-            "budget": 8256000.0
-          },
-          "QUALIFIED": {
-            "n": 15,
-            "budget": 2080000.0
-          },
-          "NEW": {
-            "n": 8,
-            "budget": 975000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 110000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Кристина Коновалова",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2023-10-27",
-    "last_lead": "2026-09-03",
-    "periods": {
-      "all": {
-        "Bali": {
-          "LOST": {
-            "n": 486,
-            "budget": 117317032.0
-          },
-          "QUALIFIED": {
-            "n": 11,
-            "budget": 1510002.0
-          },
-          "WON": {
-            "n": 25,
-            "budget": 4303710.0
-          },
-          "DEFERRED": {
-            "n": 10,
-            "budget": 1950000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "PRESENTATION": {
-            "n": 6,
-            "budget": 930000.0
+            "n": 3,
+            "budget": 400000.0
           },
           "NEW": {
             "n": 37,
-            "budget": 5430000.0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 1,
-            "budget": 75000.0
+            "budget": 8992000.0
+          },
+          "DEFERRED": {
+            "n": 7,
+            "budget": 1150000.0
           },
           "WON": {
             "n": 0,
             "budget": 0
           }
         },
-        "Thailand": {
-          "LOST": {
-            "n": 6,
-            "budget": 950000.0
-          },
+        "Bali": {
           "NEW": {
             "n": 1,
-            "budget": 200000.0
+            "budget": 0
           },
           "WON": {
             "n": 0,
@@ -3140,211 +1607,33 @@
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 493,
-            "budget": 118342032.0
-          },
           "QUALIFIED": {
-            "n": 11,
-            "budget": 1510002.0
-          },
-          "WON": {
-            "n": 25,
-            "budget": 4303710.0
-          },
-          "DEFERRED": {
-            "n": 10,
-            "budget": 1950000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 1.0
+            "n": 16,
+            "budget": 4065490.0
           },
           "PRESENTATION": {
-            "n": 6,
-            "budget": 930000.0
+            "n": 16,
+            "budget": 3800000.0
+          },
+          "LOST": {
+            "n": 3,
+            "budget": 550000.0
+          },
+          "OFFER": {
+            "n": 3,
+            "budget": 400000.0
           },
           "NEW": {
             "n": 38,
-            "budget": 5630000.0
-          }
-        }
-      },
-      "y2025": {
-        "Bali": {
-          "LOST": {
-            "n": 116,
-            "budget": 24476000.0
+            "budget": 8992000.0
           },
-          "WON": {
+          "DEFERRED": {
             "n": 7,
-            "budget": 1265710.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 500000.0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 1,
-            "budget": 75000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 117,
-            "budget": 24551000.0
-          },
-          "WON": {
-            "n": 7,
-            "budget": 1265710.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 500000.0
-          }
-        }
-      },
-      "y2026": {
-        "Bali": {
-          "LOST": {
-            "n": 132,
-            "budget": 43501002.0
-          },
-          "DEFERRED": {
-            "n": 9,
-            "budget": 1450000.0
-          },
-          "WON": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "PRESENTATION": {
-            "n": 4,
-            "budget": 640000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 950000.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 290000.0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 5,
-            "budget": 850000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 137,
-            "budget": 44351002.0
-          },
-          "DEFERRED": {
-            "n": 9,
-            "budget": 1450000.0
-          },
-          "WON": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "PRESENTATION": {
-            "n": 4,
-            "budget": 640000.0
-          },
-          "NEW": {
-            "n": 8,
             "budget": 1150000.0
           },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 290000.0
-          }
-        }
-      },
-      "l3m": {
-        "Bali": {
           "WON": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1250000.0
-          },
-          "LOST": {
-            "n": 63,
-            "budget": 9095001.0
-          },
-          "PRESENTATION": {
-            "n": 4,
-            "budget": 640000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 950000.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 290000.0
-          }
-        },
-        "ALL": {
-          "WON": {
-            "n": 1,
-            "budget": 140000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1250000.0
-          },
-          "LOST": {
-            "n": 63,
-            "budget": 9095001.0
-          },
-          "PRESENTATION": {
-            "n": 4,
-            "budget": 640000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 950000.0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 290000.0
+            "n": 0,
+            "budget": 0
           }
         }
       }
@@ -3355,37 +1644,67 @@
     "role": "broker",
     "position": "head of product international, менеджер по продажам",
     "first_lead": "2024-04-24",
-    "last_lead": "2026-08-19",
+    "last_lead": "2026-09-05",
     "periods": {
       "all": {
         "Europe": {
-          "LOST": {
-            "n": 117,
-            "budget": 29582002.0
+          "NEW": {
+            "n": 66,
+            "budget": 19542914.0
+          },
+          "DEFERRED": {
+            "n": 5,
+            "budget": 2150000.0
           },
           "WON": {
             "n": 9,
             "budget": 1447400.0
           },
-          "NEW": {
-            "n": 66,
-            "budget": 19542914.0
-          },
           "QUALIFIED": {
             "n": 29,
             "budget": 108649000.0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 200000.0
+          "LOST": {
+            "n": 117,
+            "budget": 29582002.0
           },
           "PRESENTATION": {
             "n": 28,
             "budget": 9990000.0
           },
-          "DEFERRED": {
+          "OFFER": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "OTHER": {
             "n": 5,
-            "budget": 2150000.0
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 30,
+            "budget": 7085000.0
+          },
+          "NEW": {
+            "n": 26,
+            "budget": 6470000.0
+          },
+          "PRESENTATION": {
+            "n": 9,
+            "budget": 2070000.0
+          },
+          "QUALIFIED": {
+            "n": 7,
+            "budget": 1950000.0
+          },
+          "DEFERRED": {
+            "n": 2,
+            "budget": 350000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         },
         "Bali": {
@@ -3397,6 +1716,10 @@
             "n": 7,
             "budget": 1675000.0
           },
+          "NEW": {
+            "n": 9,
+            "budget": 950000.0
+          },
           "PRESENTATION": {
             "n": 12,
             "budget": 2355000.0
@@ -3404,10 +1727,6 @@
           "QUALIFIED": {
             "n": 4,
             "budget": 830000.0
-          },
-          "NEW": {
-            "n": 9,
-            "budget": 950000.0
           },
           "OFFER": {
             "n": 1,
@@ -3418,26 +1737,224 @@
             "budget": 300000.0
           }
         },
-        "Thailand": {
-          "LOST": {
-            "n": 30,
-            "budget": 7085000.0
+        "ALL": {
+          "NEW": {
+            "n": 101,
+            "budget": 26962914.0
           },
-          "PRESENTATION": {
-            "n": 9,
-            "budget": 2070000.0
+          "DEFERRED": {
+            "n": 14,
+            "budget": 4175000.0
+          },
+          "WON": {
+            "n": 10,
+            "budget": 1747400.0
           },
           "QUALIFIED": {
-            "n": 7,
-            "budget": 1950000.0
+            "n": 40,
+            "budget": 111429000.0
           },
+          "LOST": {
+            "n": 227,
+            "budget": 52829204.0
+          },
+          "PRESENTATION": {
+            "n": 49,
+            "budget": 14415000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 200000.0
+          },
+          "OTHER": {
+            "n": 5,
+            "budget": 0.0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
           "NEW": {
-            "n": 26,
-            "budget": 6470000.0
+            "n": 50,
+            "budget": 13677912.0
+          },
+          "DEFERRED": {
+            "n": 4,
+            "budget": 1750000.0
+          },
+          "QUALIFIED": {
+            "n": 14,
+            "budget": 104703000.0
+          },
+          "LOST": {
+            "n": 97,
+            "budget": 25650002.0
+          },
+          "PRESENTATION": {
+            "n": 28,
+            "budget": 9990000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 100000.0
+          }
+        },
+        "Thailand": {
+          "NEW": {
+            "n": 19,
+            "budget": 5150000.0
+          },
+          "LOST": {
+            "n": 24,
+            "budget": 5845000.0
+          },
+          "PRESENTATION": {
+            "n": 7,
+            "budget": 1650000.0
           },
           "DEFERRED": {
             "n": 2,
             "budget": 350000.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 800000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 3,
+            "budget": 420001.0
+          },
+          "DEFERRED": {
+            "n": 2,
+            "budget": 350000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 105000.0
+          },
+          "NEW": {
+            "n": 4,
+            "budget": 240000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 300000.0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 73,
+            "budget": 19067912.0
+          },
+          "DEFERRED": {
+            "n": 8,
+            "budget": 2450000.0
+          },
+          "QUALIFIED": {
+            "n": 17,
+            "budget": 105608000.0
+          },
+          "LOST": {
+            "n": 124,
+            "budget": 31915003.0
+          },
+          "PRESENTATION": {
+            "n": 36,
+            "budget": 11940000.0
+          },
+          "WON": {
+            "n": 2,
+            "budget": 400000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 0.0
+          }
+        }
+      },
+      "l3m": {
+        "Europe": {
+          "LOST": {
+            "n": 33,
+            "budget": 7823000.0
+          },
+          "PRESENTATION": {
+            "n": 18,
+            "budget": 7415000.0
+          },
+          "QUALIFIED": {
+            "n": 6,
+            "budget": 102710000.0
+          },
+          "NEW": {
+            "n": 34,
+            "budget": 9735912.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "NEW": {
+            "n": 19,
+            "budget": 5150000.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 800000.0
+          },
+          "LOST": {
+            "n": 17,
+            "budget": 4390000.0
+          },
+          "PRESENTATION": {
+            "n": 5,
+            "budget": 1000000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "DEFERRED": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "NEW": {
+            "n": 4,
+            "budget": 240000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 0
+          },
+          "LOST": {
+            "n": 1,
+            "budget": 1.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 300000.0
           },
           "WON": {
             "n": 0,
@@ -3446,32 +1963,32 @@
         },
         "ALL": {
           "LOST": {
-            "n": 227,
-            "budget": 52829204.0
-          },
-          "WON": {
-            "n": 10,
-            "budget": 1747400.0
-          },
-          "NEW": {
-            "n": 101,
-            "budget": 26962914.0
-          },
-          "QUALIFIED": {
-            "n": 40,
-            "budget": 111429000.0
-          },
-          "OFFER": {
-            "n": 2,
-            "budget": 200000.0
+            "n": 51,
+            "budget": 12213001.0
           },
           "PRESENTATION": {
-            "n": 49,
-            "budget": 14415000.0
+            "n": 24,
+            "budget": 8715000.0
+          },
+          "QUALIFIED": {
+            "n": 8,
+            "budget": 103510000.0
+          },
+          "NEW": {
+            "n": 57,
+            "budget": 15125912.0
           },
           "DEFERRED": {
-            "n": 14,
-            "budget": 4175000.0
+            "n": 2,
+            "budget": 450000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 0.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         }
       },
@@ -3481,51 +1998,25 @@
             "n": 16,
             "budget": 3532000.0
           },
-          "NEW": {
-            "n": 5,
-            "budget": 775000.0
-          },
           "WON": {
             "n": 8,
             "budget": 1347400.0
           },
-          "OFFER": {
+          "DEFERRED": {
             "n": 1,
-            "budget": 200000.0
+            "budget": 400000.0
           },
           "QUALIFIED": {
             "n": 5,
             "budget": 1381000.0
           },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 400000.0
-          }
-        },
-        "Bali": {
-          "LOST": {
-            "n": 72,
-            "budget": 15092201.0
-          },
-          "PRESENTATION": {
-            "n": 11,
-            "budget": 2055000.0
-          },
-          "DEFERRED": {
-            "n": 5,
-            "budget": 1325000.0
-          },
           "NEW": {
             "n": 5,
-            "budget": 710000.0
+            "budget": 775000.0
           },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 425000.0
+          "OFFER": {
+            "n": 1,
+            "budget": 200000.0
           }
         },
         "Thailand": {
@@ -3542,114 +2033,380 @@
             "budget": 0
           }
         },
+        "Bali": {
+          "DEFERRED": {
+            "n": 5,
+            "budget": 1325000.0
+          },
+          "NEW": {
+            "n": 5,
+            "budget": 710000.0
+          },
+          "LOST": {
+            "n": 72,
+            "budget": 15092201.0
+          },
+          "PRESENTATION": {
+            "n": 11,
+            "budget": 2055000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 425000.0
+          }
+        },
         "ALL": {
           "LOST": {
             "n": 92,
             "budget": 19614201.0
           },
-          "NEW": {
-            "n": 10,
-            "budget": 1485000.0
-          },
           "WON": {
             "n": 8,
             "budget": 1347400.0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 200000.0
+          "DEFERRED": {
+            "n": 6,
+            "budget": 1725000.0
           },
           "QUALIFIED": {
             "n": 7,
             "budget": 1806000.0
           },
-          "DEFERRED": {
-            "n": 6,
-            "budget": 1725000.0
+          "NEW": {
+            "n": 10,
+            "budget": 1485000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 200000.0
           },
           "PRESENTATION": {
             "n": 12,
             "budget": 2355000.0
           }
         }
-      },
-      "y2026": {
-        "Bali": {
+      }
+    }
+  },
+  {
+    "name": "Валентина Бондаренко",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2023-11-22",
+    "last_lead": "2026-09-04",
+    "periods": {
+      "all": {
+        "Europe": {
           "LOST": {
             "n": 3,
-            "budget": 420001.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 350000.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 105000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 0
+            "budget": 600000.0
           },
           "NEW": {
-            "n": 4,
-            "budget": 240000.0
+            "n": 2,
+            "budget": 600000.0
           },
-          "PRESENTATION": {
+          "QUALIFIED": {
             "n": 1,
-            "budget": 300000.0
+            "budget": 200000.0
           },
           "WON": {
-            "n": 1,
-            "budget": 300000.0
+            "n": 0,
+            "budget": 0
           }
         },
-        "Europe": {
+        "Bali": {
           "QUALIFIED": {
-            "n": 14,
-            "budget": 104703000.0
+            "n": 36,
+            "budget": 5690001.0
+          },
+          "LOST": {
+            "n": 631,
+            "budget": 96388838.0
+          },
+          "NEW": {
+            "n": 28,
+            "budget": 4600000.0
           },
           "WON": {
+            "n": 50,
+            "budget": 8678464.0
+          },
+          "DEFERRED": {
+            "n": 64,
+            "budget": 11937000.0
+          },
+          "PRESENTATION": {
+            "n": 29,
+            "budget": 6123000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 270000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 634,
+            "budget": 96988838.0
+          },
+          "NEW": {
+            "n": 30,
+            "budget": 5200000.0
+          },
+          "QUALIFIED": {
+            "n": 37,
+            "budget": 5890001.0
+          },
+          "WON": {
+            "n": 50,
+            "budget": 8678464.0
+          },
+          "DEFERRED": {
+            "n": 64,
+            "budget": 11937000.0
+          },
+          "PRESENTATION": {
+            "n": 29,
+            "budget": 6123000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 270000.0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "LOST": {
+            "n": 3,
+            "budget": 600000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "NEW": {
             "n": 1,
             "budget": 100000.0
           },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
           "LOST": {
-            "n": 97,
-            "budget": 25650002.0
+            "n": 210,
+            "budget": 40382002.0
           },
-          "NEW": {
-            "n": 50,
-            "budget": 13677912.0
+          "WON": {
+            "n": 18,
+            "budget": 3148650.0
+          },
+          "DEFERRED": {
+            "n": 27,
+            "budget": 4955000.0
           },
           "PRESENTATION": {
-            "n": 28,
-            "budget": 9990000.0
+            "n": 3,
+            "budget": 570000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 213,
+            "budget": 40982002.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "WON": {
+            "n": 18,
+            "budget": 3148650.0
+          },
+          "DEFERRED": {
+            "n": 27,
+            "budget": 4955000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 570000.0
+          }
+        }
+      },
+      "y2026": {
+        "Bali": {
+          "NEW": {
+            "n": 11,
+            "budget": 1780000.0
+          },
+          "DEFERRED": {
+            "n": 32,
+            "budget": 6112000.0
+          },
+          "LOST": {
+            "n": 107,
+            "budget": 17383501.0
+          },
+          "PRESENTATION": {
+            "n": 22,
+            "budget": 4973000.0
+          },
+          "WON": {
+            "n": 8,
+            "budget": 1558784.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "QUALIFIED": {
+            "n": 6,
+            "budget": 730000.0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 11,
+            "budget": 1780000.0
+          },
+          "DEFERRED": {
+            "n": 32,
+            "budget": 6112000.0
+          },
+          "LOST": {
+            "n": 107,
+            "budget": 17383501.0
+          },
+          "PRESENTATION": {
+            "n": 22,
+            "budget": 4973000.0
+          },
+          "WON": {
+            "n": 8,
+            "budget": 1558784.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "QUALIFIED": {
+            "n": 6,
+            "budget": 730000.0
+          }
+        }
+      },
+      "l3m": {
+        "Bali": {
+          "NEW": {
+            "n": 9,
+            "budget": 1430000.0
+          },
+          "LOST": {
+            "n": 45,
+            "budget": 7595001.0
+          },
+          "PRESENTATION": {
+            "n": 16,
+            "budget": 3644000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "QUALIFIED": {
+            "n": 6,
+            "budget": 730000.0
+          },
+          "WON": {
+            "n": 4,
+            "budget": 611068.0
+          },
+          "DEFERRED": {
+            "n": 18,
+            "budget": 2930000.0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 9,
+            "budget": 1430000.0
+          },
+          "LOST": {
+            "n": 45,
+            "budget": 7595001.0
+          },
+          "PRESENTATION": {
+            "n": 16,
+            "budget": 3644000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "QUALIFIED": {
+            "n": 6,
+            "budget": 730000.0
+          },
+          "WON": {
+            "n": 4,
+            "budget": 611068.0
+          },
+          "DEFERRED": {
+            "n": 18,
+            "budget": 2930000.0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Александр Мужейко",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2026-02-22",
+    "last_lead": "2026-09-03",
+    "periods": {
+      "all": {
+        "Europe": {
+          "LOST": {
+            "n": 4,
+            "budget": 680000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 536000.0
+          },
+          "NEW": {
+            "n": 19,
+            "budget": 1500000.0
+          },
+          "QUALIFIED": {
+            "n": 24,
+            "budget": 5310000.0
           },
           "DEFERRED": {
             "n": 4,
-            "budget": 1750000.0
+            "budget": 850000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         },
-        "Thailand": {
+        "Bali": {
           "NEW": {
-            "n": 19,
-            "budget": 5150000.0
-          },
-          "LOST": {
-            "n": 24,
-            "budget": 5845000.0
-          },
-          "PRESENTATION": {
-            "n": 7,
-            "budget": 1650000.0
-          },
-          "QUALIFIED": {
             "n": 2,
-            "budget": 800000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 350000.0
+            "budget": 0
           },
           "WON": {
             "n": 0,
@@ -3658,104 +2415,90 @@
         },
         "ALL": {
           "LOST": {
-            "n": 124,
-            "budget": 31915003.0
-          },
-          "DEFERRED": {
-            "n": 8,
-            "budget": 2450000.0
-          },
-          "QUALIFIED": {
-            "n": 17,
-            "budget": 105608000.0
+            "n": 4,
+            "budget": 680000.0
           },
           "OFFER": {
-            "n": 1,
-            "budget": 0.0
+            "n": 2,
+            "budget": 536000.0
           },
           "NEW": {
-            "n": 73,
-            "budget": 19067912.0
+            "n": 21,
+            "budget": 1500000.0
           },
-          "PRESENTATION": {
-            "n": 36,
-            "budget": 11940000.0
+          "QUALIFIED": {
+            "n": 24,
+            "budget": 5310000.0
+          },
+          "DEFERRED": {
+            "n": 4,
+            "budget": 850000.0
           },
           "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 536000.0
+          },
+          "DEFERRED": {
+            "n": 2,
+            "budget": 500000.0
+          },
+          "QUALIFIED": {
             "n": 2,
             "budget": 400000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "OFFER": {
+            "n": 2,
+            "budget": 536000.0
+          },
+          "DEFERRED": {
+            "n": 2,
+            "budget": 500000.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 400000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
           }
         }
       },
       "l3m": {
         "Europe": {
-          "QUALIFIED": {
-            "n": 6,
-            "budget": 102710000.0
+          "OFFER": {
+            "n": 2,
+            "budget": 536000.0
           },
-          "LOST": {
-            "n": 33,
-            "budget": 7823000.0
-          },
-          "NEW": {
-            "n": 34,
-            "budget": 9735912.0
-          },
-          "PRESENTATION": {
-            "n": 18,
-            "budget": 7415000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Thailand": {
-          "NEW": {
-            "n": 19,
-            "budget": 5150000.0
-          },
-          "LOST": {
-            "n": 17,
-            "budget": 4390000.0
-          },
-          "PRESENTATION": {
-            "n": 5,
-            "budget": 1000000.0
+          "DEFERRED": {
+            "n": 2,
+            "budget": 500000.0
           },
           "QUALIFIED": {
             "n": 2,
-            "budget": 800000.0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "OFFER": {
-            "n": 1,
-            "budget": 0
-          },
-          "DEFERRED": {
-            "n": 1,
-            "budget": 200000.0
-          },
-          "NEW": {
-            "n": 4,
-            "budget": 240000.0
-          },
-          "LOST": {
-            "n": 1,
-            "budget": 1.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 300000.0
+            "budget": 400000.0
           },
           "WON": {
             "n": 0,
@@ -3763,29 +2506,264 @@
           }
         },
         "ALL": {
-          "QUALIFIED": {
-            "n": 8,
-            "budget": 103510000.0
-          },
-          "LOST": {
-            "n": 51,
-            "budget": 12213001.0
-          },
-          "NEW": {
-            "n": 57,
-            "budget": 15125912.0
-          },
-          "PRESENTATION": {
-            "n": 24,
-            "budget": 8715000.0
+          "OFFER": {
+            "n": 2,
+            "budget": 536000.0
           },
           "DEFERRED": {
             "n": 2,
-            "budget": 450000.0
+            "budget": 500000.0
           },
-          "OFFER": {
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 400000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Андрей Гедикьянц",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2024-10-01",
+    "last_lead": "2026-08-05",
+    "periods": {
+      "all": {
+        "Europe": {
+          "DEFERRED": {
+            "n": 24,
+            "budget": 5446055.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 440000.0
+          },
+          "LOST": {
+            "n": 89,
+            "budget": 21345000.0
+          },
+          "NEW": {
+            "n": 20,
+            "budget": 3480000.0
+          },
+          "QUALIFIED": {
             "n": 1,
-            "budget": 0.0
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 24,
+            "budget": 5446055.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 440000.0
+          },
+          "LOST": {
+            "n": 90,
+            "budget": 21545000.0
+          },
+          "NEW": {
+            "n": 20,
+            "budget": 3480000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
+          "DEFERRED": {
+            "n": 23,
+            "budget": 5146055.0
+          },
+          "NEW": {
+            "n": 14,
+            "budget": 2310000.0
+          },
+          "LOST": {
+            "n": 83,
+            "budget": 20560000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 340000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 23,
+            "budget": 5146055.0
+          },
+          "NEW": {
+            "n": 14,
+            "budget": 2310000.0
+          },
+          "LOST": {
+            "n": 84,
+            "budget": 20760000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 340000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "DEFERRED": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "LOST": {
+            "n": 6,
+            "budget": 785000.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 650000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "LOST": {
+            "n": 6,
+            "budget": 785000.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 650000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "l3m": {
+        "Europe": {
+          "NEW": {
+            "n": 11,
+            "budget": 1660000.0
+          },
+          "DEFERRED": {
+            "n": 20,
+            "budget": 4196055.0
+          },
+          "LOST": {
+            "n": 69,
+            "budget": 17130000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 340000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 11,
+            "budget": 1660000.0
+          },
+          "DEFERRED": {
+            "n": 20,
+            "budget": 4196055.0
+          },
+          "LOST": {
+            "n": 70,
+            "budget": 17330000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 340000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 500000.0
           },
           "WON": {
             "n": 0,
@@ -3800,12 +2778,34 @@
     "role": "qualifier",
     "position": "квалификатор польский",
     "first_lead": "2024-06-02",
-    "last_lead": "2026-09-03",
+    "last_lead": "2026-09-04",
     "periods": {
       "all": {
+        "Europe": {
+          "QUALIFIED": {
+            "n": 224,
+            "budget": 43448608.0
+          },
+          "LOST": {
+            "n": 268,
+            "budget": 300000.0
+          },
+          "DEFERRED": {
+            "n": 10,
+            "budget": 250.0
+          },
+          "NEW": {
+            "n": 109,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
         "Thailand": {
           "LOST": {
-            "n": 89,
+            "n": 90,
             "budget": 150000.0
           },
           "QUALIFIED": {
@@ -3813,34 +2813,12 @@
             "budget": 16095001.0
           },
           "NEW": {
-            "n": 19,
+            "n": 18,
             "budget": 290000.0
           },
           "DEFERRED": {
             "n": 2,
             "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Europe": {
-          "NEW": {
-            "n": 105,
-            "budget": 0
-          },
-          "DEFERRED": {
-            "n": 10,
-            "budget": 250.0
-          },
-          "QUALIFIED": {
-            "n": 222,
-            "budget": 43323607.0
-          },
-          "LOST": {
-            "n": 268,
-            "budget": 300000.0
           },
           "WON": {
             "n": 0,
@@ -3848,13 +2826,13 @@
           }
         },
         "Bali": {
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 200001.0
+          },
           "LOST": {
             "n": 2,
             "budget": 0
-          },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 200000.0
           },
           "WON": {
             "n": 0,
@@ -3862,21 +2840,21 @@
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 359,
-            "budget": 450000.0
-          },
           "QUALIFIED": {
-            "n": 321,
-            "budget": 59618608.0
+            "n": 324,
+            "budget": 59743610.0
           },
-          "NEW": {
-            "n": 124,
-            "budget": 290000.0
+          "LOST": {
+            "n": 360,
+            "budget": 450000.0
           },
           "DEFERRED": {
             "n": 12,
             "budget": 250.0
+          },
+          "NEW": {
+            "n": 127,
+            "budget": 290000.0
           },
           "WON": {
             "n": 0,
@@ -3885,33 +2863,7 @@
         }
       },
       "y2026": {
-        "Thailand": {
-          "LOST": {
-            "n": 81,
-            "budget": 0
-          },
-          "QUALIFIED": {
-            "n": 59,
-            "budget": 11980000.0
-          },
-          "NEW": {
-            "n": 10,
-            "budget": 290000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
         "Europe": {
-          "DEFERRED": {
-            "n": 4,
-            "budget": 250.0
-          },
-          "NEW": {
-            "n": 34,
-            "budget": 0
-          },
           "QUALIFIED": {
             "n": 166,
             "budget": 32368605.0
@@ -3920,19 +2872,45 @@
             "n": 247,
             "budget": 300000.0
           },
+          "DEFERRED": {
+            "n": 4,
+            "budget": 250.0
+          },
+          "NEW": {
+            "n": 34,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 82,
+            "budget": 0
+          },
+          "QUALIFIED": {
+            "n": 59,
+            "budget": 11980000.0
+          },
+          "NEW": {
+            "n": 9,
+            "budget": 290000.0
+          },
           "WON": {
             "n": 0,
             "budget": 0
           }
         },
         "Bali": {
-          "LOST": {
-            "n": 2,
-            "budget": 0
-          },
           "QUALIFIED": {
             "n": 2,
             "budget": 200000.0
+          },
+          "LOST": {
+            "n": 2,
+            "budget": 0
           },
           "WON": {
             "n": 0,
@@ -3940,21 +2918,21 @@
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 330,
-            "budget": 300000.0
-          },
           "QUALIFIED": {
             "n": 227,
             "budget": 44548605.0
           },
-          "NEW": {
-            "n": 44,
-            "budget": 290000.0
+          "LOST": {
+            "n": 331,
+            "budget": 300000.0
           },
           "DEFERRED": {
             "n": 4,
             "budget": 250.0
+          },
+          "NEW": {
+            "n": 43,
+            "budget": 290000.0
           },
           "WON": {
             "n": 0,
@@ -3963,33 +2941,7 @@
         }
       },
       "l3m": {
-        "Thailand": {
-          "LOST": {
-            "n": 81,
-            "budget": 0
-          },
-          "QUALIFIED": {
-            "n": 59,
-            "budget": 11980000.0
-          },
-          "NEW": {
-            "n": 10,
-            "budget": 290000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
         "Europe": {
-          "DEFERRED": {
-            "n": 3,
-            "budget": 250.0
-          },
-          "NEW": {
-            "n": 33,
-            "budget": 0
-          },
           "QUALIFIED": {
             "n": 159,
             "budget": 30168605.0
@@ -3998,19 +2950,45 @@
             "n": 241,
             "budget": 300000.0
           },
+          "DEFERRED": {
+            "n": 3,
+            "budget": 250.0
+          },
+          "NEW": {
+            "n": 33,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 82,
+            "budget": 0
+          },
+          "QUALIFIED": {
+            "n": 59,
+            "budget": 11980000.0
+          },
+          "NEW": {
+            "n": 9,
+            "budget": 290000.0
+          },
           "WON": {
             "n": 0,
             "budget": 0
           }
         },
         "Bali": {
-          "LOST": {
-            "n": 2,
-            "budget": 0
-          },
           "QUALIFIED": {
             "n": 2,
             "budget": 200000.0
+          },
+          "LOST": {
+            "n": 2,
+            "budget": 0
           },
           "WON": {
             "n": 0,
@@ -4018,21 +2996,21 @@
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 324,
-            "budget": 300000.0
-          },
           "QUALIFIED": {
             "n": 220,
             "budget": 42348605.0
           },
-          "NEW": {
-            "n": 43,
-            "budget": 290000.0
+          "LOST": {
+            "n": 325,
+            "budget": 300000.0
           },
           "DEFERRED": {
             "n": 3,
             "budget": 250.0
+          },
+          "NEW": {
+            "n": 42,
+            "budget": 290000.0
           },
           "WON": {
             "n": 0,
@@ -4042,12 +3020,12 @@
       },
       "y2025": {
         "Europe": {
-          "DEFERRED": {
-            "n": 1,
-            "budget": 0
-          },
           "LOST": {
             "n": 5,
+            "budget": 0
+          },
+          "DEFERRED": {
+            "n": 1,
             "budget": 0
           },
           "QUALIFIED": {
@@ -4070,17 +3048,1386 @@
           }
         },
         "ALL": {
-          "DEFERRED": {
-            "n": 1,
-            "budget": 0.0
-          },
           "LOST": {
             "n": 5,
+            "budget": 0.0
+          },
+          "DEFERRED": {
+            "n": 1,
             "budget": 0.0
           },
           "QUALIFIED": {
             "n": 6,
             "budget": 1575000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Анастасия Присяжнюк",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2023-11-29",
+    "last_lead": "2026-09-03",
+    "periods": {
+      "all": {
+        "Europe": {
+          "LOST": {
+            "n": 2,
+            "budget": 200000.0
+          },
+          "NEW": {
+            "n": 9,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "OTHER": {
+            "n": 1,
+            "budget": 15000.0
+          },
+          "QUALIFIED": {
+            "n": 19,
+            "budget": 2840002.0
+          },
+          "LOST": {
+            "n": 584,
+            "budget": 94544010.0
+          },
+          "PRESENTATION": {
+            "n": 27,
+            "budget": 4390000.0
+          },
+          "DEFERRED": {
+            "n": 34,
+            "budget": 7088000.0
+          },
+          "NEW": {
+            "n": 12,
+            "budget": 2410000.0
+          },
+          "WON": {
+            "n": 30,
+            "budget": 4978856.0
+          },
+          "OFFER": {
+            "n": 7,
+            "budget": 815000.0
+          }
+        },
+        "Thailand": {
+          "NEW": {
+            "n": 12,
+            "budget": 2032000.0
+          },
+          "DEFERRED": {
+            "n": 5,
+            "budget": 1062000.0
+          },
+          "LOST": {
+            "n": 23,
+            "budget": 4064000.0
+          },
+          "PRESENTATION": {
+            "n": 4,
+            "budget": 1021000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 500000.0
+          },
+          "QUALIFIED": {
+            "n": 5,
+            "budget": 900000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 609,
+            "budget": 98808010.0
+          },
+          "NEW": {
+            "n": 33,
+            "budget": 4692000.0
+          },
+          "OTHER": {
+            "n": 1,
+            "budget": 15000.0
+          },
+          "QUALIFIED": {
+            "n": 24,
+            "budget": 3740002.0
+          },
+          "PRESENTATION": {
+            "n": 31,
+            "budget": 5411000.0
+          },
+          "DEFERRED": {
+            "n": 39,
+            "budget": 8150000.0
+          },
+          "WON": {
+            "n": 30,
+            "budget": 4978856.0
+          },
+          "OFFER": {
+            "n": 8,
+            "budget": 1315000.0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "NEW": {
+            "n": 9,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 100002.0
+          },
+          "LOST": {
+            "n": 193,
+            "budget": 30030007.0
+          },
+          "PRESENTATION": {
+            "n": 7,
+            "budget": 1025000.0
+          },
+          "DEFERRED": {
+            "n": 22,
+            "budget": 4360000.0
+          },
+          "WON": {
+            "n": 17,
+            "budget": 2995256.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 6,
+            "budget": 855000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 200,
+            "budget": 31085007.0
+          },
+          "NEW": {
+            "n": 9,
+            "budget": 250000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 100002.0
+          },
+          "PRESENTATION": {
+            "n": 8,
+            "budget": 1525000.0
+          },
+          "DEFERRED": {
+            "n": 22,
+            "budget": 4360000.0
+          },
+          "WON": {
+            "n": 17,
+            "budget": 2995256.0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 12,
+            "budget": 2220000.0
+          },
+          "LOST": {
+            "n": 82,
+            "budget": 14912000.0
+          },
+          "PRESENTATION": {
+            "n": 18,
+            "budget": 3065000.0
+          },
+          "NEW": {
+            "n": 8,
+            "budget": 1310000.0
+          },
+          "DEFERRED": {
+            "n": 6,
+            "budget": 1348000.0
+          },
+          "OFFER": {
+            "n": 7,
+            "budget": 815000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "DEFERRED": {
+            "n": 5,
+            "budget": 1062000.0
+          },
+          "LOST": {
+            "n": 16,
+            "budget": 3059000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 521000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 500000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 99,
+            "budget": 17971000.0
+          },
+          "QUALIFIED": {
+            "n": 12,
+            "budget": 2220000.0
+          },
+          "PRESENTATION": {
+            "n": 21,
+            "budget": 3586000.0
+          },
+          "NEW": {
+            "n": 8,
+            "budget": 1310000.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 2410000.0
+          },
+          "OFFER": {
+            "n": 8,
+            "budget": 1315000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "l3m": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 11,
+            "budget": 2060000.0
+          },
+          "NEW": {
+            "n": 8,
+            "budget": 1310000.0
+          },
+          "DEFERRED": {
+            "n": 2,
+            "budget": 240000.0
+          },
+          "PRESENTATION": {
+            "n": 17,
+            "budget": 2835000.0
+          },
+          "OFFER": {
+            "n": 7,
+            "budget": 815000.0
+          },
+          "LOST": {
+            "n": 23,
+            "budget": 4370000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 24,
+            "budget": 4370000.0
+          },
+          "QUALIFIED": {
+            "n": 11,
+            "budget": 2060000.0
+          },
+          "NEW": {
+            "n": 8,
+            "budget": 1310000.0
+          },
+          "DEFERRED": {
+            "n": 2,
+            "budget": 240000.0
+          },
+          "PRESENTATION": {
+            "n": 17,
+            "budget": 2835000.0
+          },
+          "OFFER": {
+            "n": 7,
+            "budget": 815000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Кристина Коновалова",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2023-10-27",
+    "last_lead": "2026-09-03",
+    "periods": {
+      "all": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 75000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 8,
+            "budget": 1020002.0
+          },
+          "WON": {
+            "n": 25,
+            "budget": 4303710.0
+          },
+          "LOST": {
+            "n": 495,
+            "budget": 118597033.0
+          },
+          "NEW": {
+            "n": 34,
+            "budget": 5070000.0
+          },
+          "DEFERRED": {
+            "n": 10,
+            "budget": 1950000.0
+          },
+          "PRESENTATION": {
+            "n": 4,
+            "budget": 500000.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 6,
+            "budget": 950000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 502,
+            "budget": 119622033.0
+          },
+          "QUALIFIED": {
+            "n": 8,
+            "budget": 1020002.0
+          },
+          "WON": {
+            "n": 25,
+            "budget": 4303710.0
+          },
+          "NEW": {
+            "n": 35,
+            "budget": 5270000.0
+          },
+          "DEFERRED": {
+            "n": 10,
+            "budget": 1950000.0
+          },
+          "PRESENTATION": {
+            "n": 4,
+            "budget": 500000.0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 75000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 116,
+            "budget": 24476000.0
+          },
+          "WON": {
+            "n": 7,
+            "budget": 1265710.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 500000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 117,
+            "budget": 24551000.0
+          },
+          "WON": {
+            "n": 7,
+            "budget": 1265710.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 500000.0
+          }
+        }
+      },
+      "y2026": {
+        "Bali": {
+          "LOST": {
+            "n": 140,
+            "budget": 44661003.0
+          },
+          "DEFERRED": {
+            "n": 9,
+            "budget": 1450000.0
+          },
+          "NEW": {
+            "n": 4,
+            "budget": 510000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 210000.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 5,
+            "budget": 850000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 145,
+            "budget": 45511003.0
+          },
+          "DEFERRED": {
+            "n": 9,
+            "budget": 1450000.0
+          },
+          "NEW": {
+            "n": 5,
+            "budget": 710000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 210000.0
+          }
+        }
+      },
+      "l3m": {
+        "Bali": {
+          "DEFERRED": {
+            "n": 7,
+            "budget": 1250000.0
+          },
+          "NEW": {
+            "n": 4,
+            "budget": 510000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "LOST": {
+            "n": 71,
+            "budget": 10255002.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 210000.0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 7,
+            "budget": 1250000.0
+          },
+          "NEW": {
+            "n": 4,
+            "budget": 510000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "LOST": {
+            "n": 71,
+            "budget": 10255002.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 210000.0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Ольга Марценюк",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2026-07-17",
+    "last_lead": "2026-08-31",
+    "periods": {
+      "all": {
+        "Europe": {
+          "NEW": {
+            "n": 41,
+            "budget": 3885000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 260000.0
+          },
+          "LOST": {
+            "n": 11,
+            "budget": 1160000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "DEFERRED": {
+            "n": 6,
+            "budget": 1150000.0
+          },
+          "QUALIFIED": {
+            "n": 8,
+            "budget": 2005000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 41,
+            "budget": 3885000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 260000.0
+          },
+          "LOST": {
+            "n": 11,
+            "budget": 1160000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "DEFERRED": {
+            "n": 6,
+            "budget": 1150000.0
+          },
+          "QUALIFIED": {
+            "n": 8,
+            "budget": 2005000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
+          "NEW": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 260000.0
+          },
+          "LOST": {
+            "n": 4,
+            "budget": 750000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 825000.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 260000.0
+          },
+          "LOST": {
+            "n": 4,
+            "budget": 750000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 825000.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "l3m": {
+        "Europe": {
+          "NEW": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 260000.0
+          },
+          "LOST": {
+            "n": 4,
+            "budget": 750000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 825000.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 260000.0
+          },
+          "LOST": {
+            "n": 4,
+            "budget": 750000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 825000.0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Виктория Багазий",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2023-11-29",
+    "last_lead": "2026-09-03",
+    "periods": {
+      "all": {
+        "Europe": {
+          "NEW": {
+            "n": 2,
+            "budget": 0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 0
+          },
+          "LOST": {
+            "n": 4,
+            "budget": 250000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 873,
+            "budget": 122757008.0
+          },
+          "OTHER": {
+            "n": 2,
+            "budget": 50000.0
+          },
+          "NEW": {
+            "n": 52,
+            "budget": 7350000.0
+          },
+          "QUALIFIED": {
+            "n": 23,
+            "budget": 3950000.0
+          },
+          "WON": {
+            "n": 19,
+            "budget": 2070000.0
+          },
+          "DEFERRED": {
+            "n": 74,
+            "budget": 11447501.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "PRESENTATION": {
+            "n": 35,
+            "budget": 4916002.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 54,
+            "budget": 7350000.0
+          },
+          "DEFERRED": {
+            "n": 75,
+            "budget": 11447501.0
+          },
+          "LOST": {
+            "n": 878,
+            "budget": 123007008.0
+          },
+          "OTHER": {
+            "n": 2,
+            "budget": 50000.0
+          },
+          "QUALIFIED": {
+            "n": 23,
+            "budget": 3950000.0
+          },
+          "WON": {
+            "n": 19,
+            "budget": 2070000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "PRESENTATION": {
+            "n": 35,
+            "budget": 4916002.0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "NEW": {
+            "n": 2,
+            "budget": 0
+          },
+          "DEFERRED": {
+            "n": 1,
+            "budget": 0
+          },
+          "LOST": {
+            "n": 2,
+            "budget": 100000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "OTHER": {
+            "n": 1,
+            "budget": 0
+          },
+          "LOST": {
+            "n": 396,
+            "budget": 60697003.0
+          },
+          "WON": {
+            "n": 14,
+            "budget": 1540000.0
+          },
+          "DEFERRED": {
+            "n": 24,
+            "budget": 3270000.0
+          },
+          "NEW": {
+            "n": 13,
+            "budget": 1600000.0
+          },
+          "PRESENTATION": {
+            "n": 6,
+            "budget": 750001.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 220000.0
+          }
+        },
+        "ALL": {
+          "NEW": {
+            "n": 15,
+            "budget": 1600000.0
+          },
+          "DEFERRED": {
+            "n": 25,
+            "budget": 3270000.0
+          },
+          "LOST": {
+            "n": 398,
+            "budget": 60797003.0
+          },
+          "OTHER": {
+            "n": 1,
+            "budget": 0.0
+          },
+          "WON": {
+            "n": 14,
+            "budget": 1540000.0
+          },
+          "PRESENTATION": {
+            "n": 6,
+            "budget": 750001.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 220000.0
+          }
+        }
+      },
+      "y2026": {
+        "Europe": {
+          "LOST": {
+            "n": 2,
+            "budget": 150000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "NEW": {
+            "n": 32,
+            "budget": 4570000.0
+          },
+          "LOST": {
+            "n": 151,
+            "budget": 22034002.0
+          },
+          "QUALIFIED": {
+            "n": 16,
+            "budget": 2770000.0
+          },
+          "DEFERRED": {
+            "n": 44,
+            "budget": 6817501.0
+          },
+          "PRESENTATION": {
+            "n": 27,
+            "budget": 3966001.0
+          },
+          "WON": {
+            "n": 3,
+            "budget": 330000.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 154,
+            "budget": 22184002.0
+          },
+          "NEW": {
+            "n": 32,
+            "budget": 4570000.0
+          },
+          "QUALIFIED": {
+            "n": 16,
+            "budget": 2770000.0
+          },
+          "DEFERRED": {
+            "n": 44,
+            "budget": 6817501.0
+          },
+          "PRESENTATION": {
+            "n": 27,
+            "budget": 3966001.0
+          },
+          "WON": {
+            "n": 3,
+            "budget": 330000.0
+          }
+        }
+      },
+      "l3m": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "NEW": {
+            "n": 28,
+            "budget": 3840000.0
+          },
+          "LOST": {
+            "n": 76,
+            "budget": 11155001.0
+          },
+          "DEFERRED": {
+            "n": 22,
+            "budget": 3545000.0
+          },
+          "PRESENTATION": {
+            "n": 21,
+            "budget": 2890001.0
+          },
+          "QUALIFIED": {
+            "n": 13,
+            "budget": 2240000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 230000.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 1,
+            "budget": 0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 78,
+            "budget": 11155001.0
+          },
+          "NEW": {
+            "n": 28,
+            "budget": 3840000.0
+          },
+          "DEFERRED": {
+            "n": 22,
+            "budget": 3545000.0
+          },
+          "PRESENTATION": {
+            "n": 21,
+            "budget": 2890001.0
+          },
+          "QUALIFIED": {
+            "n": 13,
+            "budget": 2240000.0
+          },
+          "WON": {
+            "n": 1,
+            "budget": 230000.0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Андрей Лиштва",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2023-11-13",
+    "last_lead": "2026-08-24",
+    "periods": {
+      "all": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 1.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 4,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "LOST": {
+            "n": 745,
+            "budget": 142454444.0
+          },
+          "QUALIFIED": {
+            "n": 14,
+            "budget": 2120000.0
+          },
+          "WON": {
+            "n": 48,
+            "budget": 8355814.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 330000.0
+          },
+          "DEFERRED": {
+            "n": 6,
+            "budget": 970000.0
+          },
+          "PRESENTATION": {
+            "n": 5,
+            "budget": 710000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 750,
+            "budget": 142954445.0
+          },
+          "QUALIFIED": {
+            "n": 14,
+            "budget": 2120000.0
+          },
+          "WON": {
+            "n": 48,
+            "budget": 8355814.0
+          },
+          "NEW": {
+            "n": 3,
+            "budget": 330000.0
+          },
+          "DEFERRED": {
+            "n": 6,
+            "budget": 970000.0
+          },
+          "PRESENTATION": {
+            "n": 5,
+            "budget": 710000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          }
+        }
+      },
+      "y2025": {
+        "Europe": {
+          "LOST": {
+            "n": 1,
+            "budget": 1.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 4,
+            "budget": 500000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Bali": {
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 200000.0
+          },
+          "LOST": {
+            "n": 271,
+            "budget": 50162004.0
+          },
+          "WON": {
+            "n": 16,
+            "budget": 2635840.0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 276,
+            "budget": 50662005.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 200000.0
+          },
+          "WON": {
+            "n": 16,
+            "budget": 2635840.0
+          }
+        }
+      },
+      "y2026": {
+        "Bali": {
+          "LOST": {
+            "n": 98,
+            "budget": 12667001.0
+          },
+          "DEFERRED": {
+            "n": 5,
+            "budget": 820000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 300000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 520000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "LOST": {
+            "n": 98,
+            "budget": 12667001.0
+          },
+          "DEFERRED": {
+            "n": 5,
+            "budget": 820000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 300000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 520000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        }
+      },
+      "l3m": {
+        "Bali": {
+          "DEFERRED": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "LOST": {
+            "n": 57,
+            "budget": 7725000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 300000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 520000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "ALL": {
+          "DEFERRED": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "LOST": {
+            "n": 57,
+            "budget": 7725000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 100000.0
+          },
+          "PRESENTATION": {
+            "n": 2,
+            "budget": 300000.0
+          },
+          "QUALIFIED": {
+            "n": 3,
+            "budget": 520000.0
           },
           "WON": {
             "n": 0,
@@ -4099,101 +4446,101 @@
     "periods": {
       "all": {
         "Bali": {
+          "OTHER": {
+            "n": 1,
+            "budget": 15000.0
+          },
+          "LOST": {
+            "n": 988,
+            "budget": 159056523.0
+          },
           "QUALIFIED": {
             "n": 10,
             "budget": 1385000.0
-          },
-          "LOST": {
-            "n": 989,
-            "budget": 159156523.0
-          },
-          "WON": {
-            "n": 40,
-            "budget": 5441566.0
-          },
-          "PRESENTATION": {
-            "n": 22,
-            "budget": 4134800.0
           },
           "NEW": {
             "n": 10,
             "budget": 1429000.0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 120000.0
+          "WON": {
+            "n": 40,
+            "budget": 5441566.0
           },
           "DEFERRED": {
             "n": 36,
             "budget": 5199000.0
           },
-          "OTHER": {
+          "PRESENTATION": {
+            "n": 22,
+            "budget": 4134800.0
+          },
+          "OFFER": {
             "n": 1,
-            "budget": 15000.0
+            "budget": 120000.0
           }
         },
         "ALL": {
+          "OTHER": {
+            "n": 1,
+            "budget": 15000.0
+          },
+          "LOST": {
+            "n": 988,
+            "budget": 159056523.0
+          },
           "QUALIFIED": {
             "n": 10,
             "budget": 1385000.0
-          },
-          "LOST": {
-            "n": 989,
-            "budget": 159156523.0
-          },
-          "WON": {
-            "n": 40,
-            "budget": 5441566.0
-          },
-          "PRESENTATION": {
-            "n": 22,
-            "budget": 4134800.0
           },
           "NEW": {
             "n": 10,
             "budget": 1429000.0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 120000.0
+          "WON": {
+            "n": 40,
+            "budget": 5441566.0
           },
           "DEFERRED": {
             "n": 36,
             "budget": 5199000.0
           },
-          "OTHER": {
+          "PRESENTATION": {
+            "n": 22,
+            "budget": 4134800.0
+          },
+          "OFFER": {
             "n": 1,
-            "budget": 15000.0
+            "budget": 120000.0
           }
         }
       },
       "y2025": {
         "Bali": {
           "LOST": {
-            "n": 383,
-            "budget": 64088005.0
-          },
-          "WON": {
-            "n": 8,
-            "budget": 987204.0
+            "n": 382,
+            "budget": 63988005.0
           },
           "PRESENTATION": {
             "n": 8,
             "budget": 1374800.0
+          },
+          "WON": {
+            "n": 8,
+            "budget": 987204.0
           }
         },
         "ALL": {
           "LOST": {
-            "n": 383,
-            "budget": 64088005.0
-          },
-          "WON": {
-            "n": 8,
-            "budget": 987204.0
+            "n": 382,
+            "budget": 63988005.0
           },
           "PRESENTATION": {
             "n": 8,
             "budget": 1374800.0
+          },
+          "WON": {
+            "n": 8,
+            "budget": 987204.0
           }
         }
       },
@@ -4203,10 +4550,6 @@
             "n": 1,
             "budget": 0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 120000.0
-          },
           "LOST": {
             "n": 65,
             "budget": 9182003.0
@@ -4215,13 +4558,17 @@
             "n": 35,
             "budget": 5079000.0
           },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 100000.0
+          },
           "WON": {
             "n": 2,
             "budget": 358835.0
           },
-          "PRESENTATION": {
+          "OFFER": {
             "n": 1,
-            "budget": 100000.0
+            "budget": 120000.0
           }
         },
         "ALL": {
@@ -4229,10 +4576,6 @@
             "n": 1,
             "budget": 0.0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 120000.0
-          },
           "LOST": {
             "n": 65,
             "budget": 9182003.0
@@ -4241,13 +4584,17 @@
             "n": 35,
             "budget": 5079000.0
           },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 100000.0
+          },
           "WON": {
             "n": 2,
             "budget": 358835.0
           },
-          "PRESENTATION": {
+          "OFFER": {
             "n": 1,
-            "budget": 100000.0
+            "budget": 120000.0
           }
         }
       },
@@ -4257,17 +4604,17 @@
             "n": 1,
             "budget": 0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 120000.0
+          "DEFERRED": {
+            "n": 35,
+            "budget": 5079000.0
           },
           "LOST": {
             "n": 29,
             "budget": 4155000.0
           },
-          "DEFERRED": {
-            "n": 35,
-            "budget": 5079000.0
+          "OFFER": {
+            "n": 1,
+            "budget": 120000.0
           },
           "WON": {
             "n": 0,
@@ -4279,17 +4626,17 @@
             "n": 1,
             "budget": 0.0
           },
-          "OFFER": {
-            "n": 1,
-            "budget": 120000.0
+          "DEFERRED": {
+            "n": 35,
+            "budget": 5079000.0
           },
           "LOST": {
             "n": 29,
             "budget": 4155000.0
           },
-          "DEFERRED": {
-            "n": 35,
-            "budget": 5079000.0
+          "OFFER": {
+            "n": 1,
+            "budget": 120000.0
           },
           "WON": {
             "n": 0,
@@ -4300,745 +4647,489 @@
     }
   },
   {
-    "name": "Анастасия Присяжнюк",
+    "name": "Карина Ахметова",
     "role": "broker",
     "position": "менеджер по продажам",
-    "first_lead": "2023-11-29",
-    "last_lead": "2026-09-03",
+    "first_lead": "2024-02-12",
+    "last_lead": "2026-08-27",
     "periods": {
       "all": {
-        "Thailand": {
-          "NEW": {
-            "n": 11,
-            "budget": 1832000.0
-          },
-          "LOST": {
-            "n": 23,
-            "budget": 4064000.0
-          },
-          "DEFERRED": {
-            "n": 5,
-            "budget": 1062000.0
-          },
-          "PRESENTATION": {
-            "n": 4,
-            "budget": 1021000.0
-          },
-          "QUALIFIED": {
-            "n": 6,
-            "budget": 1100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 500000.0
-          }
-        },
         "Bali": {
           "LOST": {
-            "n": 584,
-            "budget": 94544010.0
-          },
-          "DEFERRED": {
-            "n": 34,
-            "budget": 7088000.0
+            "n": 497,
+            "budget": 68873003.0
           },
           "QUALIFIED": {
-            "n": 19,
-            "budget": 2840002.0
+            "n": 3,
+            "budget": 400000.0
+          },
+          "WON": {
+            "n": 14,
+            "budget": 1878000.0
+          },
+          "DEFERRED": {
+            "n": 14,
+            "budget": 2490000.0
+          },
+          "NEW": {
+            "n": 7,
+            "budget": 1160000.0
           },
           "PRESENTATION": {
-            "n": 27,
-            "budget": 4390000.0
-          },
-          "WON": {
-            "n": 30,
-            "budget": 4978856.0
-          },
-          "OTHER": {
-            "n": 1,
-            "budget": 15000.0
-          },
-          "OFFER": {
-            "n": 7,
-            "budget": 815000.0
-          },
-          "NEW": {
-            "n": 12,
-            "budget": 2410000.0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 2,
-            "budget": 200000.0
-          },
-          "NEW": {
-            "n": 9,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 13,
+            "budget": 1820000.0
           }
         },
         "ALL": {
-          "NEW": {
-            "n": 32,
-            "budget": 4492000.0
-          },
           "LOST": {
-            "n": 609,
-            "budget": 98808010.0
-          },
-          "DEFERRED": {
-            "n": 39,
-            "budget": 8150000.0
-          },
-          "PRESENTATION": {
-            "n": 31,
-            "budget": 5411000.0
+            "n": 497,
+            "budget": 68873003.0
           },
           "QUALIFIED": {
-            "n": 25,
-            "budget": 3940002.0
+            "n": 3,
+            "budget": 400000.0
           },
           "WON": {
-            "n": 30,
-            "budget": 4978856.0
+            "n": 14,
+            "budget": 1878000.0
           },
-          "OFFER": {
-            "n": 8,
-            "budget": 1315000.0
+          "DEFERRED": {
+            "n": 14,
+            "budget": 2490000.0
           },
-          "OTHER": {
-            "n": 1,
-            "budget": 15000.0
+          "NEW": {
+            "n": 7,
+            "budget": 1160000.0
+          },
+          "PRESENTATION": {
+            "n": 13,
+            "budget": 1820000.0
           }
         }
       },
       "y2025": {
         "Bali": {
           "LOST": {
-            "n": 193,
-            "budget": 30030007.0
+            "n": 335,
+            "budget": 45256002.0
           },
-          "DEFERRED": {
-            "n": 22,
-            "budget": 4360000.0
-          },
-          "PRESENTATION": {
+          "WON": {
             "n": 7,
-            "budget": 1025000.0
-          },
-          "WON": {
-            "n": 17,
-            "budget": 2995256.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 100002.0
-          }
-        },
-        "Thailand": {
-          "LOST": {
-            "n": 6,
-            "budget": 855000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 500000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Europe": {
-          "LOST": {
-            "n": 1,
-            "budget": 200000.0
+            "budget": 1193000.0
           },
           "NEW": {
-            "n": 9,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 1,
+            "budget": 100000.0
           }
         },
         "ALL": {
           "LOST": {
-            "n": 200,
-            "budget": 31085007.0
-          },
-          "DEFERRED": {
-            "n": 22,
-            "budget": 4360000.0
-          },
-          "PRESENTATION": {
-            "n": 8,
-            "budget": 1525000.0
+            "n": 335,
+            "budget": 45256002.0
           },
           "WON": {
-            "n": 17,
-            "budget": 2995256.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 100002.0
+            "n": 7,
+            "budget": 1193000.0
           },
           "NEW": {
-            "n": 9,
-            "budget": 250000.0
+            "n": 1,
+            "budget": 100000.0
           }
         }
       },
       "y2026": {
-        "Europe": {
-          "LOST": {
+        "Bali": {
+          "QUALIFIED": {
             "n": 1,
             "budget": 0
           },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
           "LOST": {
-            "n": 82,
-            "budget": 14912000.0
-          },
-          "QUALIFIED": {
-            "n": 12,
-            "budget": 2220000.0
+            "n": 125,
+            "budget": 18137000.0
           },
           "DEFERRED": {
-            "n": 6,
-            "budget": 1348000.0
+            "n": 12,
+            "budget": 2250000.0
           },
-          "PRESENTATION": {
-            "n": 18,
-            "budget": 3065000.0
-          },
-          "OFFER": {
+          "WON": {
             "n": 7,
-            "budget": 815000.0
+            "budget": 685000.0
           },
           "NEW": {
-            "n": 8,
-            "budget": 1310000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Thailand": {
-          "DEFERRED": {
-            "n": 5,
-            "budget": 1062000.0
+            "n": 1,
+            "budget": 120000.0
           },
           "PRESENTATION": {
-            "n": 3,
-            "budget": 521000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          },
-          "LOST": {
-            "n": 16,
-            "budget": 3059000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 500000.0
+            "n": 8,
+            "budget": 1250000.0
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 99,
-            "budget": 17971000.0
-          },
           "QUALIFIED": {
-            "n": 12,
-            "budget": 2220000.0
+            "n": 1,
+            "budget": 0.0
+          },
+          "LOST": {
+            "n": 125,
+            "budget": 18137000.0
           },
           "DEFERRED": {
-            "n": 11,
-            "budget": 2410000.0
-          },
-          "PRESENTATION": {
-            "n": 21,
-            "budget": 3586000.0
-          },
-          "OFFER": {
-            "n": 8,
-            "budget": 1315000.0
-          },
-          "NEW": {
-            "n": 8,
-            "budget": 1310000.0
+            "n": 12,
+            "budget": 2250000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 7,
+            "budget": 685000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 120000.0
+          },
+          "PRESENTATION": {
+            "n": 8,
+            "budget": 1250000.0
           }
         }
       },
       "l3m": {
-        "Europe": {
-          "LOST": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
         "Bali": {
-          "OFFER": {
-            "n": 7,
-            "budget": 815000.0
-          },
-          "QUALIFIED": {
-            "n": 11,
-            "budget": 2060000.0
-          },
-          "PRESENTATION": {
-            "n": 17,
-            "budget": 2835000.0
-          },
-          "NEW": {
+          "DEFERRED": {
             "n": 8,
             "budget": 1310000.0
           },
-          "LOST": {
-            "n": 23,
-            "budget": 4370000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 240000.0
-          },
           "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Thailand": {
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "LOST": {
-            "n": 24,
-            "budget": 4370000.0
-          },
-          "OFFER": {
-            "n": 7,
-            "budget": 815000.0
-          },
-          "QUALIFIED": {
-            "n": 11,
-            "budget": 2060000.0
-          },
-          "PRESENTATION": {
-            "n": 17,
-            "budget": 2835000.0
-          },
-          "NEW": {
-            "n": 8,
-            "budget": 1310000.0
-          },
-          "DEFERRED": {
-            "n": 2,
-            "budget": 240000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Анастасия Сорокина",
-    "role": "broker",
-    "position": "менеджер по продажам",
-    "first_lead": "2024-03-13",
-    "last_lead": "2026-08-17",
-    "periods": {
-      "all": {
-        "Europe": {
-          "LOST": {
-            "n": 30,
-            "budget": 5593001.0
-          },
-          "PRESENTATION": {
-            "n": 43,
-            "budget": 10585000.0
-          },
-          "DEFERRED": {
-            "n": 33,
-            "budget": 7210000.0
-          },
-          "QUALIFIED": {
-            "n": 58,
-            "budget": 13639490.0
-          },
-          "NEW": {
-            "n": 80,
-            "budget": 19306001.0
-          },
-          "OFFER": {
-            "n": 7,
-            "budget": 1850000.0
-          },
-          "WON": {
-            "n": 1,
-            "budget": 204250.0
-          }
-        },
-        "Bali": {
-          "NEW": {
             "n": 3,
             "budget": 235000.0
           },
-          "QUALIFIED": {
+          "NEW": {
             "n": 1,
-            "budget": 350000.0
+            "budget": 120000.0
           },
           "LOST": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 4,
-            "budget": 721892.0
+            "n": 25,
+            "budget": 3465000.0
           },
           "PRESENTATION": {
-            "n": 1,
-            "budget": 150000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 498108.0
+            "n": 8,
+            "budget": 1250000.0
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 31,
-            "budget": 5593001.0
-          },
-          "PRESENTATION": {
-            "n": 44,
-            "budget": 10735000.0
-          },
           "DEFERRED": {
-            "n": 33,
-            "budget": 7210000.0
-          },
-          "QUALIFIED": {
-            "n": 59,
-            "budget": 13989490.0
-          },
-          "NEW": {
-            "n": 83,
-            "budget": 19541001.0
-          },
-          "OFFER": {
             "n": 8,
-            "budget": 2348108.0
+            "budget": 1310000.0
           },
           "WON": {
-            "n": 5,
-            "budget": 926142.0
+            "n": 3,
+            "budget": 235000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 120000.0
+          },
+          "LOST": {
+            "n": 25,
+            "budget": 3465000.0
+          },
+          "PRESENTATION": {
+            "n": 8,
+            "budget": 1250000.0
           }
         }
-      },
-      "y2025": {
-        "Europe": {
+      }
+    }
+  },
+  {
+    "name": "Андрей Бойко",
+    "role": "broker",
+    "position": "менеджер по продажам",
+    "first_lead": "2023-11-20",
+    "last_lead": "2026-09-04",
+    "periods": {
+      "all": {
+        "Bali": {
           "LOST": {
-            "n": 16,
-            "budget": 2737001.0
+            "n": 701,
+            "budget": 133902325.0
+          },
+          "QUALIFIED": {
+            "n": 15,
+            "budget": 2380002.0
+          },
+          "NEW": {
+            "n": 24,
+            "budget": 4090000.0
+          },
+          "WON": {
+            "n": 45,
+            "budget": 8004684.0
           },
           "PRESENTATION": {
             "n": 7,
             "budget": 1735000.0
           },
+          "OFFER": {
+            "n": 2,
+            "budget": 410000.0
+          },
           "DEFERRED": {
-            "n": 12,
-            "budget": 2130000.0
-          },
-          "QUALIFIED": {
-            "n": 14,
-            "budget": 2715000.0
-          },
-          "NEW": {
-            "n": 7,
-            "budget": 1485000.0
+            "n": 16,
+            "budget": 1980000.0
+          }
+        },
+        "Thailand": {
+          "LOST": {
+            "n": 1,
+            "budget": 120000.0
           },
           "WON": {
             "n": 0,
             "budget": 0
           }
         },
-        "Bali": {
-          "NEW": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 350000.0
-          },
-          "LOST": {
-            "n": 1,
-            "budget": 0
-          },
-          "WON": {
-            "n": 2,
-            "budget": 451892.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 150000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 498108.0
-          }
-        },
         "ALL": {
           "LOST": {
-            "n": 17,
-            "budget": 2737001.0
-          },
-          "PRESENTATION": {
-            "n": 8,
-            "budget": 1885000.0
-          },
-          "DEFERRED": {
-            "n": 12,
-            "budget": 2130000.0
+            "n": 702,
+            "budget": 134022325.0
           },
           "QUALIFIED": {
             "n": 15,
-            "budget": 3065000.0
+            "budget": 2380002.0
           },
           "NEW": {
-            "n": 8,
-            "budget": 1585000.0
+            "n": 24,
+            "budget": 4090000.0
           },
           "WON": {
-            "n": 2,
-            "budget": 451892.0
+            "n": 45,
+            "budget": 8004684.0
+          },
+          "PRESENTATION": {
+            "n": 7,
+            "budget": 1735000.0
           },
           "OFFER": {
-            "n": 1,
-            "budget": 498108.0
+            "n": 2,
+            "budget": 410000.0
+          },
+          "DEFERRED": {
+            "n": 16,
+            "budget": 1980000.0
           }
         }
       },
       "y2026": {
-        "Europe": {
-          "OFFER": {
-            "n": 6,
-            "budget": 1850000.0
-          },
-          "PRESENTATION": {
-            "n": 32,
-            "budget": 7700000.0
-          },
-          "NEW": {
-            "n": 70,
-            "budget": 17082001.0
-          },
-          "DEFERRED": {
-            "n": 18,
-            "budget": 3580000.0
-          },
+        "Bali": {
           "LOST": {
-            "n": 10,
-            "budget": 1800000.0
+            "n": 89,
+            "budget": 13150775.0
           },
           "QUALIFIED": {
-            "n": 42,
-            "budget": 10404490.0
+            "n": 10,
+            "budget": 1660000.0
           },
           "WON": {
+            "n": 12,
+            "budget": 2586370.0
+          },
+          "OFFER": {
             "n": 1,
-            "budget": 204250.0
+            "budget": 140000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 800000.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 1480000.0
+          },
+          "NEW": {
+            "n": 7,
+            "budget": 1210000.0
           }
         },
-        "Bali": {
-          "NEW": {
+        "Thailand": {
+          "LOST": {
             "n": 1,
-            "budget": 0
+            "budget": 120000.0
           },
           "WON": {
-            "n": 1,
-            "budget": 90000.0
+            "n": 0,
+            "budget": 0
           }
         },
         "ALL": {
-          "OFFER": {
-            "n": 6,
-            "budget": 1850000.0
-          },
-          "PRESENTATION": {
-            "n": 32,
-            "budget": 7700000.0
-          },
-          "NEW": {
-            "n": 71,
-            "budget": 17082001.0
-          },
-          "DEFERRED": {
-            "n": 18,
-            "budget": 3580000.0
-          },
           "LOST": {
-            "n": 10,
-            "budget": 1800000.0
+            "n": 90,
+            "budget": 13270775.0
           },
           "QUALIFIED": {
-            "n": 42,
-            "budget": 10404490.0
+            "n": 10,
+            "budget": 1660000.0
           },
           "WON": {
-            "n": 2,
-            "budget": 294250.0
+            "n": 12,
+            "budget": 2586370.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 800000.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 1480000.0
+          },
+          "NEW": {
+            "n": 7,
+            "budget": 1210000.0
           }
         }
       },
       "l3m": {
-        "Europe": {
-          "OFFER": {
-            "n": 3,
-            "budget": 400000.0
-          },
-          "PRESENTATION": {
-            "n": 16,
-            "budget": 3800000.0
-          },
-          "NEW": {
-            "n": 37,
-            "budget": 8992000.0
-          },
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1150000.0
-          },
+        "Bali": {
           "LOST": {
-            "n": 3,
-            "budget": 550000.0
+            "n": 47,
+            "budget": 6700000.0
           },
           "QUALIFIED": {
-            "n": 16,
-            "budget": 4065490.0
+            "n": 9,
+            "budget": 1430000.0
           },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "NEW": {
+          "OFFER": {
             "n": 1,
-            "budget": 0
+            "budget": 140000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 800000.0
+          },
+          "DEFERRED": {
+            "n": 10,
+            "budget": 1480000.0
+          },
+          "NEW": {
+            "n": 5,
+            "budget": 1010000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 1,
+            "budget": 295000.0
           }
         },
         "ALL": {
-          "OFFER": {
-            "n": 3,
-            "budget": 400000.0
-          },
-          "PRESENTATION": {
-            "n": 16,
-            "budget": 3800000.0
-          },
-          "NEW": {
-            "n": 38,
-            "budget": 8992000.0
-          },
-          "DEFERRED": {
-            "n": 7,
-            "budget": 1150000.0
-          },
           "LOST": {
-            "n": 3,
-            "budget": 550000.0
+            "n": 47,
+            "budget": 6700000.0
           },
           "QUALIFIED": {
-            "n": 16,
-            "budget": 4065490.0
+            "n": 9,
+            "budget": 1430000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 140000.0
+          },
+          "PRESENTATION": {
+            "n": 3,
+            "budget": 800000.0
+          },
+          "DEFERRED": {
+            "n": 10,
+            "budget": 1480000.0
+          },
+          "NEW": {
+            "n": 5,
+            "budget": 1010000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 1,
+            "budget": 295000.0
+          }
+        }
+      },
+      "y2025": {
+        "Bali": {
+          "WON": {
+            "n": 11,
+            "budget": 1381955.0
+          },
+          "LOST": {
+            "n": 281,
+            "budget": 51706201.0
+          },
+          "DEFERRED": {
+            "n": 5,
+            "budget": 500000.0
+          }
+        },
+        "ALL": {
+          "WON": {
+            "n": 11,
+            "budget": 1381955.0
+          },
+          "LOST": {
+            "n": 281,
+            "budget": 51706201.0
+          },
+          "DEFERRED": {
+            "n": 5,
+            "budget": 500000.0
           }
         }
       }
     }
   },
   {
-    "name": "Марина Цыганок",
+    "name": "Ирина Лисниченко",
     "role": "broker",
     "position": "менеджер по продажам",
-    "first_lead": "2024-03-16",
-    "last_lead": "2026-09-01",
+    "first_lead": "2024-08-22",
+    "last_lead": "2026-08-31",
     "periods": {
       "all": {
-        "Europe": {
-          "LOST": {
-            "n": 291,
-            "budget": 63760005.0
-          },
-          "DEFERRED": {
-            "n": 75,
-            "budget": 15294001.0
-          },
-          "NEW": {
-            "n": 16,
-            "budget": 3915000.0
+        "Bali": {
+          "QUALIFIED": {
+            "n": 25,
+            "budget": 3680000.0
           },
           "PRESENTATION": {
-            "n": 4,
-            "budget": 950000.0
+            "n": 5,
+            "budget": 1120000.0
           },
-          "QUALIFIED": {
-            "n": 12,
-            "budget": 3575000.0
+          "LOST": {
+            "n": 192,
+            "budget": 27077802.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 2103000.0
+          },
+          "NEW": {
+            "n": 32,
+            "budget": 4490000.0
           },
           "OFFER": {
             "n": 1,
-            "budget": 400000.0
+            "budget": 110000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 2,
+            "budget": 420000.0
           }
         },
-        "Bali": {
-          "LOST": {
-            "n": 4,
-            "budget": 675000.0
+        "Thailand": {
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 120000.0
           },
           "WON": {
             "n": 0,
@@ -5046,284 +5137,123 @@
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 295,
-            "budget": 64435005.0
-          },
-          "DEFERRED": {
-            "n": 75,
-            "budget": 15294001.0
-          },
-          "NEW": {
-            "n": 16,
-            "budget": 3915000.0
+          "QUALIFIED": {
+            "n": 26,
+            "budget": 3800000.0
           },
           "PRESENTATION": {
-            "n": 4,
-            "budget": 950000.0
+            "n": 5,
+            "budget": 1120000.0
           },
-          "QUALIFIED": {
-            "n": 12,
-            "budget": 3575000.0
+          "LOST": {
+            "n": 192,
+            "budget": 27077802.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 2103000.0
+          },
+          "NEW": {
+            "n": 33,
+            "budget": 4690000.0
           },
           "OFFER": {
             "n": 1,
-            "budget": 400000.0
+            "budget": 110000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
+            "n": 2,
+            "budget": 420000.0
           }
         }
       },
       "y2026": {
-        "Europe": {
-          "LOST": {
-            "n": 158,
-            "budget": 35530003.0
-          },
-          "DEFERRED": {
-            "n": 53,
-            "budget": 11766000.0
-          },
-          "NEW": {
-            "n": 3,
-            "budget": 750000.0
+        "Bali": {
+          "QUALIFIED": {
+            "n": 19,
+            "budget": 2560000.0
           },
           "PRESENTATION": {
-            "n": 2,
-            "budget": 500000.0
+            "n": 1,
+            "budget": 300000.0
           },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 400000.0
+          "LOST": {
+            "n": 117,
+            "budget": 17642801.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 2103000.0
+          },
+          "NEW": {
+            "n": 10,
+            "budget": 1210000.0
           },
           "OFFER": {
             "n": 1,
-            "budget": 400000.0
+            "budget": 110000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "LOST": {
             "n": 1,
-            "budget": 100000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
+            "budget": 320000.0
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 159,
-            "budget": 35630003.0
-          },
-          "DEFERRED": {
-            "n": 53,
-            "budget": 11766000.0
-          },
-          "NEW": {
-            "n": 3,
-            "budget": 750000.0
+          "QUALIFIED": {
+            "n": 19,
+            "budget": 2560000.0
           },
           "PRESENTATION": {
-            "n": 2,
-            "budget": 500000.0
+            "n": 1,
+            "budget": 300000.0
           },
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 400000.0
+          "LOST": {
+            "n": 117,
+            "budget": 17642801.0
+          },
+          "DEFERRED": {
+            "n": 11,
+            "budget": 2103000.0
+          },
+          "NEW": {
+            "n": 10,
+            "budget": 1210000.0
           },
           "OFFER": {
             "n": 1,
-            "budget": 400000.0
+            "budget": 110000.0
           },
           "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      },
-      "y2025": {
-        "Europe": {
-          "DEFERRED": {
-            "n": 19,
-            "budget": 3105001.0
-          },
-          "LOST": {
-            "n": 126,
-            "budget": 26630002.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 800000.0
-          },
-          "NEW": {
             "n": 1,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Bali": {
-          "LOST": {
-            "n": 3,
-            "budget": 575000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "DEFERRED": {
-            "n": 19,
-            "budget": 3105001.0
-          },
-          "LOST": {
-            "n": 129,
-            "budget": 27205002.0
-          },
-          "QUALIFIED": {
-            "n": 3,
-            "budget": 800000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
+            "budget": 320000.0
           }
         }
       },
       "l3m": {
-        "Europe": {
-          "DEFERRED": {
-            "n": 15,
-            "budget": 2716000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 400000.0
-          },
-          "LOST": {
-            "n": 58,
-            "budget": 15353000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 150000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "ALL": {
-          "DEFERRED": {
-            "n": 15,
-            "budget": 2716000.0
-          },
-          "OFFER": {
-            "n": 1,
-            "budget": 400000.0
-          },
-          "LOST": {
-            "n": 58,
-            "budget": 15353000.0
-          },
-          "NEW": {
-            "n": 1,
-            "budget": 0.0
-          },
-          "QUALIFIED": {
-            "n": 1,
-            "budget": 150000.0
-          },
-          "PRESENTATION": {
-            "n": 1,
-            "budget": 250000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        }
-      }
-    }
-  },
-  {
-    "name": "Сергей Шевчук",
-    "role": "qualifier",
-    "position": "специалист контроля качества",
-    "first_lead": "2023-10-30",
-    "last_lead": "2026-02-01",
-    "periods": {
-      "all": {
         "Bali": {
-          "LOST": {
-            "n": 4613,
-            "budget": 64181040.0
-          },
           "QUALIFIED": {
-            "n": 1348,
-            "budget": 250336104.0
+            "n": 15,
+            "budget": 2080000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "LOST": {
+            "n": 48,
+            "budget": 8256000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 110000.0
           },
           "DEFERRED": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "OTHER": {
-            "n": 2,
-            "budget": 0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Europe": {
-          "QUALIFIED": {
-            "n": 2,
-            "budget": 150000.0
+            "n": 7,
+            "budget": 1300000.0
           },
           "NEW": {
-            "n": 1,
-            "budget": 0
-          },
-          "LOST": {
-            "n": 3,
-            "budget": 1000000.0
-          },
-          "WON": {
-            "n": 0,
-            "budget": 0
-          }
-        },
-        "Australia": {
-          "LOST": {
-            "n": 1,
-            "budget": 0
-          },
-          "NEW": {
-            "n": 3,
-            "budget": 0
+            "n": 8,
+            "budget": 975000.0
           },
           "WON": {
             "n": 0,
@@ -5331,25 +5261,29 @@
           }
         },
         "ALL": {
-          "LOST": {
-            "n": 4617,
-            "budget": 65181040.0
-          },
           "QUALIFIED": {
-            "n": 1350,
-            "budget": 250486104.0
+            "n": 15,
+            "budget": 2080000.0
+          },
+          "PRESENTATION": {
+            "n": 1,
+            "budget": 300000.0
+          },
+          "LOST": {
+            "n": 48,
+            "budget": 8256000.0
+          },
+          "OFFER": {
+            "n": 1,
+            "budget": 110000.0
           },
           "DEFERRED": {
-            "n": 1,
-            "budget": 100000.0
-          },
-          "OTHER": {
-            "n": 2,
-            "budget": 0.0
+            "n": 7,
+            "budget": 1300000.0
           },
           "NEW": {
-            "n": 4,
-            "budget": 0.0
+            "n": 8,
+            "budget": 975000.0
           },
           "WON": {
             "n": 0,
@@ -5360,8 +5294,26 @@
       "y2025": {
         "Bali": {
           "LOST": {
-            "n": 12,
-            "budget": 1000.0
+            "n": 71,
+            "budget": 8715001.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 150000.0
+          },
+          "WON": {
+            "n": 0,
+            "budget": 0
+          }
+        },
+        "Thailand": {
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
+          },
+          "QUALIFIED": {
+            "n": 1,
+            "budget": 120000.0
           },
           "WON": {
             "n": 0,
@@ -5370,8 +5322,16 @@
         },
         "ALL": {
           "LOST": {
-            "n": 12,
-            "budget": 1000.0
+            "n": 71,
+            "budget": 8715001.0
+          },
+          "QUALIFIED": {
+            "n": 2,
+            "budget": 270000.0
+          },
+          "NEW": {
+            "n": 1,
+            "budget": 200000.0
           },
           "WON": {
             "n": 0,

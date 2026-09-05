@@ -5,119 +5,119 @@
     "periods": {
       "all": {
         "Без метки": 3136,
+        "Instagram": 402,
         "Кампании": 29,
-        "Yandex": 23,
         "Facebook": 1685,
-        "Google Ads": 574,
-        "TikTok": 145,
         "YouTube": 24,
+        "Google Ads": 574,
         "Другое": 6,
-        "Instagram": 402
-      },
-      "y2024": {
-        "Без метки": 2683,
-        "Кампании": 22,
-        "Yandex": 23,
-        "Facebook": 1294,
-        "Google Ads": 493,
-        "YouTube": 22,
-        "Другое": 3,
-        "TikTok": 140,
-        "Instagram": 402
-      },
-      "2024-03": {
-        "Без метки": 784,
-        "Facebook": 197,
-        "Кампании": 10,
-        "Google Ads": 97,
-        "YouTube": 2,
-        "TikTok": 48
-      },
-      "2024-01": {
-        "Без метки": 581,
-        "Facebook": 472,
-        "Кампании": 2,
-        "YouTube": 3,
-        "Google Ads": 43,
-        "TikTok": 16
-      },
-      "2024-05": {
-        "Кампании": 1,
-        "Yandex": 13,
-        "Google Ads": 59,
-        "Instagram": 115,
-        "TikTok": 1,
-        "Без метки": 89,
-        "Facebook": 105
+        "TikTok": 145,
+        "Yandex": 23
       },
       "y2023": {
-        "Кампании": 1,
-        "TikTok": 5,
         "Без метки": 446,
         "Facebook": 389,
         "Google Ads": 81,
+        "Кампании": 1,
+        "TikTok": 5,
         "YouTube": 2
       },
       "2023-12": {
-        "Кампании": 1,
-        "TikTok": 4,
         "Без метки": 368,
         "Facebook": 287,
-        "YouTube": 1,
-        "Google Ads": 67
+        "Google Ads": 67,
+        "Кампании": 1,
+        "TikTok": 4,
+        "YouTube": 1
+      },
+      "y2024": {
+        "Instagram": 402,
+        "Кампании": 22,
+        "YouTube": 22,
+        "Другое": 3,
+        "TikTok": 140,
+        "Без метки": 2683,
+        "Yandex": 23,
+        "Facebook": 1294,
+        "Google Ads": 493
+      },
+      "2024-05": {
+        "Instagram": 115,
+        "Кампании": 1,
+        "Yandex": 13,
+        "Без метки": 89,
+        "Facebook": 105,
+        "Google Ads": 59,
+        "TikTok": 1
+      },
+      "2024-06": {
+        "Instagram": 214,
+        "Yandex": 4,
+        "Без метки": 90,
+        "Facebook": 29,
+        "Google Ads": 20
+      },
+      "2024-07": {
+        "Instagram": 73,
+        "Другое": 3,
+        "YouTube": 14,
+        "Без метки": 39,
+        "Facebook": 15,
+        "Google Ads": 3,
+        "Кампании": 3
+      },
+      "2024-03": {
+        "YouTube": 2,
+        "Без метки": 784,
+        "Facebook": 197,
+        "Google Ads": 97,
+        "TikTok": 48,
+        "Кампании": 10
+      },
+      "2024-01": {
+        "YouTube": 3,
+        "Без метки": 581,
+        "Facebook": 472,
+        "Google Ads": 43,
+        "TikTok": 16,
+        "Кампании": 2
+      },
+      "2024-02": {
+        "TikTok": 27,
+        "Без метки": 704,
+        "Facebook": 196,
+        "Google Ads": 79
       },
       "2024-04": {
-        "Yandex": 6,
-        "Google Ads": 192,
-        "YouTube": 3,
         "TikTok": 48,
+        "Кампании": 6,
+        "Yandex": 6,
+        "YouTube": 3,
         "Без метки": 394,
         "Facebook": 280,
-        "Кампании": 6
+        "Google Ads": 192
       },
       "y2025": {
-        "Другое": 3,
         "Кампании": 6,
+        "Другое": 3,
         "Без метки": 6,
         "Facebook": 2
       },
       "2025-11": {
-        "Другое": 3,
         "Кампании": 6,
+        "Другое": 3,
         "Без метки": 6,
         "Facebook": 2
       },
-      "2024-02": {
-        "Google Ads": 79,
-        "TikTok": 27,
-        "Без метки": 704,
-        "Facebook": 196
+      "2023-11": {
+        "YouTube": 1,
+        "Без метки": 77,
+        "Facebook": 102,
+        "Google Ads": 14,
+        "TikTok": 1
       },
       "2023-10": {
         "Без метки": 1
-      },
-      "2023-11": {
-        "Google Ads": 14,
-        "YouTube": 1,
-        "TikTok": 1,
-        "Без метки": 77,
-        "Facebook": 102
-      },
-      "2024-06": {
-        "Google Ads": 20,
-        "Yandex": 4,
-        "Instagram": 214,
-        "Без метки": 90,
-        "Facebook": 29
-      },
-      "2024-07": {
-        "Другое": 3,
-        "Google Ads": 3,
-        "YouTube": 14,
-        "Instagram": 73,
-        "Кампании": 3,
-        "Без метки": 39,
-        "Facebook": 15
       },
       "y2026": {
         "Без метки": 1
@@ -133,202 +133,95 @@
   },
   {
     "name": "Рената Бадюл",
-    "total_leads_all": 1276,
+    "total_leads_all": 1277,
     "periods": {
       "all": {
-        "Без метки": 287,
-        "Другое": 62,
+        "Facebook": 407,
         "Instagram": 474,
-        "Facebook": 406,
+        "Без метки": 287,
+        "Кампании": 3,
         "Google Ads": 27,
         "YouTube": 7,
-        "TikTok": 10,
-        "Кампании": 3
-      },
-      "y2025": {
-        "Без метки": 131,
-        "Другое": 59,
-        "Instagram": 205,
-        "Facebook": 214,
-        "Google Ads": 6,
-        "YouTube": 5,
-        "TikTok": 6,
-        "Кампании": 2
-      },
-      "2025-02": {
-        "Без метки": 8,
-        "Facebook": 17,
-        "YouTube": 1,
-        "Google Ads": 2,
-        "Instagram": 32
-      },
-      "2025-04": {
-        "Без метки": 12,
-        "Facebook": 12,
-        "Google Ads": 1,
-        "Instagram": 11
-      },
-      "2025-11": {
-        "Другое": 15,
-        "Instagram": 3,
-        "Facebook": 20,
-        "Без метки": 13
-      },
-      "y2026": {
-        "Без метки": 48,
-        "Facebook": 96,
-        "TikTok": 4,
-        "Instagram": 43,
-        "Другое": 2
-      },
-      "2026-03": {
-        "Без метки": 6,
-        "Facebook": 1,
-        "Instagram": 3
-      },
-      "2025-08": {
-        "Instagram": 13,
-        "Другое": 6,
-        "Facebook": 13,
-        "Без метки": 14
+        "Другое": 62,
+        "TikTok": 10
       },
       "y2024": {
-        "Instagram": 226,
         "Facebook": 96,
+        "Instagram": 226,
         "Без метки": 108,
-        "Другое": 1,
         "Google Ads": 21,
-        "YouTube": 2,
-        "Кампании": 1
+        "Другое": 1,
+        "Кампании": 1,
+        "YouTube": 2
       },
       "2024-09": {
-        "Instagram": 30,
         "Facebook": 18,
         "Без метки": 23,
-        "Google Ads": 2
+        "Google Ads": 2,
+        "Instagram": 30
       },
-      "2024-12": {
-        "Facebook": 11,
-        "Без метки": 12,
-        "Google Ads": 1,
-        "Instagram": 41
+      "2024-10": {
+        "Instagram": 36,
+        "Без метки": 9,
+        "Facebook": 17,
+        "Google Ads": 3
+      },
+      "y2025": {
+        "Facebook": 214,
+        "Instagram": 205,
+        "Без метки": 131,
+        "Кампании": 2,
+        "YouTube": 5,
+        "Google Ads": 6,
+        "Другое": 59,
+        "TikTok": 6
       },
       "2025-06": {
-        "Instagram": 15,
         "Facebook": 19,
         "Без метки": 20,
         "TikTok": 4,
+        "Instagram": 15,
         "Другое": 1
       },
       "2025-05": {
-        "Instagram": 25,
         "Facebook": 14,
-        "Без метки": 9,
         "Кампании": 2,
+        "Без метки": 9,
         "Google Ads": 1,
+        "Instagram": 25,
         "YouTube": 1
       },
       "2025-07": {
-        "Instagram": 12,
         "Facebook": 21,
         "Без метки": 13,
-        "Другое": 2
-      },
-      "2026-01": {
-        "Facebook": 7,
-        "TikTok": 3,
-        "Instagram": 9,
-        "Другое": 1
-      },
-      "2025-09": {
-        "Facebook": 28,
-        "Без метки": 12,
-        "Другое": 17,
-        "Google Ads": 1,
-        "Instagram": 9
-      },
-      "2024-07": {
-        "Другое": 1,
-        "Google Ads": 3,
-        "Instagram": 27,
-        "Кампании": 1,
-        "Facebook": 20,
-        "Без метки": 26
-      },
-      "2024-05": {
-        "Google Ads": 1,
-        "Instagram": 2,
-        "Facebook": 1,
-        "Без метки": 4
-      },
-      "2025-01": {
-        "Google Ads": 1,
-        "YouTube": 1,
-        "Instagram": 28,
-        "Facebook": 11,
-        "Без метки": 13
-      },
-      "2024-11": {
-        "Google Ads": 2,
-        "Instagram": 29,
-        "Без метки": 7,
-        "Facebook": 11
-      },
-      "2024-08": {
-        "Google Ads": 8,
-        "YouTube": 2,
-        "Instagram": 55,
-        "Facebook": 17,
-        "Без метки": 8
-      },
-      "2025-03": {
-        "YouTube": 1,
-        "Instagram": 35,
-        "Facebook": 15,
-        "Без метки": 7
+        "Другое": 2,
+        "Instagram": 12
       },
       "2025-12": {
+        "Instagram": 9,
         "TikTok": 2,
         "YouTube": 1,
         "Другое": 1,
-        "Instagram": 9,
         "Facebook": 37
       },
-      "2026-07": {
-        "TikTok": 1,
-        "Instagram": 2,
-        "Facebook": 22,
-        "Без метки": 5
+      "2025-08": {
+        "Facebook": 13,
+        "Без метки": 14,
+        "Другое": 6,
+        "Instagram": 13
       },
-      "2025-10": {
-        "Другое": 17,
-        "Instagram": 13,
-        "Facebook": 7,
-        "Без метки": 10
+      "2025-11": {
+        "Facebook": 20,
+        "Без метки": 13,
+        "Другое": 15,
+        "Instagram": 3
       },
-      "2026-04": {
-        "Instagram": 6,
-        "Facebook": 7,
-        "Без метки": 4
-      },
-      "2024-06": {
-        "Instagram": 6,
-        "Facebook": 1
-      },
-      "2024-04": {
-        "Без метки": 9,
-        "Google Ads": 1
-      },
-      "2026-02": {
-        "Instagram": 1,
-        "Другое": 1,
-        "Без метки": 9
-      },
-      "2024-10": {
-        "Google Ads": 3,
-        "Instagram": 36,
-        "Без метки": 9,
-        "Facebook": 17
+      "y2026": {
+        "Instagram": 43,
+        "TikTok": 4,
+        "Без метки": 48,
+        "Facebook": 97,
+        "Другое": 2
       },
       "2026-05": {
         "Instagram": 12,
@@ -340,9 +233,112 @@
         "Facebook": 24,
         "Без метки": 5
       },
-      "2026-09": {
+      "2026-07": {
+        "Instagram": 2,
+        "TikTok": 1,
+        "Facebook": 22,
+        "Без метки": 5
+      },
+      "2024-04": {
+        "Без метки": 9,
+        "Google Ads": 1
+      },
+      "2025-02": {
+        "YouTube": 1,
+        "Без метки": 8,
+        "Facebook": 17,
+        "Google Ads": 2,
+        "Instagram": 32
+      },
+      "2024-07": {
+        "Другое": 1,
+        "Кампании": 1,
+        "Instagram": 27,
+        "Facebook": 20,
+        "Без метки": 26,
+        "Google Ads": 3
+      },
+      "2025-09": {
+        "Другое": 17,
+        "Facebook": 28,
+        "Без метки": 12,
+        "Google Ads": 1,
+        "Instagram": 9
+      },
+      "2025-10": {
+        "Другое": 17,
+        "Instagram": 13,
+        "Facebook": 7,
+        "Без метки": 10
+      },
+      "2025-04": {
+        "Без метки": 12,
+        "Facebook": 12,
+        "Google Ads": 1,
+        "Instagram": 11
+      },
+      "2026-03": {
+        "Без метки": 6,
         "Facebook": 1,
-        "Без метки": 1
+        "Instagram": 3
+      },
+      "2024-05": {
+        "Instagram": 2,
+        "Facebook": 1,
+        "Без метки": 4,
+        "Google Ads": 1
+      },
+      "2024-11": {
+        "Instagram": 29,
+        "Без метки": 7,
+        "Facebook": 11,
+        "Google Ads": 2
+      },
+      "2025-03": {
+        "Instagram": 35,
+        "YouTube": 1,
+        "Facebook": 15,
+        "Без метки": 7
+      },
+      "2024-12": {
+        "Facebook": 11,
+        "Без метки": 12,
+        "Google Ads": 1,
+        "Instagram": 41
+      },
+      "2025-01": {
+        "Instagram": 28,
+        "YouTube": 1,
+        "Facebook": 11,
+        "Google Ads": 1,
+        "Без метки": 13
+      },
+      "2026-01": {
+        "Facebook": 7,
+        "Другое": 1,
+        "Instagram": 9,
+        "TikTok": 3
+      },
+      "2024-08": {
+        "Instagram": 55,
+        "YouTube": 2,
+        "Facebook": 17,
+        "Без метки": 8,
+        "Google Ads": 8
+      },
+      "2026-04": {
+        "Instagram": 6,
+        "Facebook": 7,
+        "Без метки": 4
+      },
+      "2024-06": {
+        "Instagram": 6,
+        "Facebook": 1
+      },
+      "2026-02": {
+        "Instagram": 1,
+        "Другое": 1,
+        "Без метки": 9
       },
       "2024-03": {
         "Без метки": 10
@@ -350,6 +346,10 @@
       "2026-08": {
         "Facebook": 26,
         "Без метки": 13
+      },
+      "2026-09": {
+        "Facebook": 2,
+        "Без метки": 1
       }
     },
     "wons": {
@@ -422,23 +422,19 @@
         }
       },
       "y2024": {
-        "Без метки": {
-          "n": 1,
-          "budget": 154000.0
-        },
         "Facebook": {
           "n": 2,
           "budget": 245000.0
-        }
-      },
-      "2024-11": {
+        },
         "Без метки": {
           "n": 1,
           "budget": 154000.0
-        },
+        }
+      },
+      "2024-10": {
         "Facebook": {
           "n": 1,
-          "budget": 150000.0
+          "budget": 95000.0
         }
       },
       "2025-07": {
@@ -451,272 +447,276 @@
           "budget": 150000.0
         }
       },
+      "2024-11": {
+        "Facebook": {
+          "n": 1,
+          "budget": 150000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 154000.0
+        }
+      },
       "2025-04": {
         "Instagram": {
           "n": 1,
           "budget": 250000.0
-        }
-      },
-      "2024-10": {
-        "Facebook": {
-          "n": 1,
-          "budget": 95000.0
         }
       }
     }
   },
   {
     "name": "Александр Подопригора",
-    "total_leads_all": 1111,
+    "total_leads_all": 1110,
     "periods": {
       "all": {
-        "Telegram": 55,
-        "Instagram": 291,
-        "Facebook": 360,
         "Без метки": 269,
+        "Instagram": 291,
+        "Facebook": 359,
         "Кампании": 25,
         "Google Ads": 81,
         "TikTok": 27,
-        "YouTube": 2,
-        "Другое": 1
-      },
-      "y2025": {
-        "Telegram": 54,
-        "Instagram": 129,
-        "Facebook": 108,
-        "Кампании": 12,
-        "Без метки": 47,
-        "Google Ads": 21,
-        "TikTok": 25,
+        "Telegram": 55,
         "Другое": 1,
-        "YouTube": 1
-      },
-      "2025-10": {
-        "Telegram": 16,
-        "Instagram": 14,
-        "Facebook": 12,
-        "Без метки": 4,
-        "TikTok": 5,
-        "Google Ads": 2
+        "YouTube": 2
       },
       "y2024": {
+        "Без метки": 192,
         "Instagram": 148,
         "Facebook": 145,
-        "Без метки": 192,
         "Кампании": 13,
         "Google Ads": 39,
         "TikTok": 2,
         "YouTube": 1
       },
-      "2024-11": {
-        "Instagram": 16,
-        "Facebook": 6,
-        "Без метки": 13,
-        "Google Ads": 7
-      },
-      "2024-08": {
-        "Instagram": 36,
-        "Без метки": 4,
-        "Facebook": 7,
-        "Кампании": 4,
-        "Google Ads": 2
-      },
-      "2024-09": {
-        "Facebook": 8,
-        "Без метки": 8,
+      "2024-03": {
+        "Без метки": 31,
+        "Facebook": 10,
         "Google Ads": 2,
-        "Instagram": 11
-      },
-      "2025-01": {
-        "Instagram": 20,
-        "Facebook": 12,
-        "Без метки": 4
-      },
-      "2025-06": {
-        "Facebook": 11,
-        "Кампании": 1,
-        "Без метки": 7,
-        "Google Ads": 1,
-        "YouTube": 1,
-        "Instagram": 6
-      },
-      "2025-03": {
-        "Instagram": 16,
-        "Без метки": 3,
-        "Facebook": 5
-      },
-      "2025-05": {
-        "Facebook": 18,
-        "Без метки": 6,
         "TikTok": 2,
-        "Кампании": 1,
-        "Google Ads": 1,
-        "Instagram": 11
-      },
-      "2025-08": {
-        "Facebook": 4,
-        "Без метки": 3,
-        "TikTok": 8,
-        "Google Ads": 3,
-        "Instagram": 3
-      },
-      "2025-07": {
-        "Facebook": 7,
-        "Без метки": 3,
-        "TikTok": 5,
-        "Instagram": 2
+        "Кампании": 2
       },
       "y2026": {
-        "Instagram": 14,
-        "Google Ads": 14,
-        "Facebook": 95,
         "Без метки": 8,
-        "Telegram": 1
+        "Facebook": 95,
+        "Google Ads": 14,
+        "Telegram": 1,
+        "Instagram": 14
       },
-      "2026-04": {
-        "Instagram": 3,
-        "Facebook": 4,
-        "Без метки": 2,
-        "Google Ads": 4
+      "2026-07": {
+        "Без метки": 1,
+        "Facebook": 22,
+        "Instagram": 1
       },
-      "2024-06": {
-        "Instagram": 22,
-        "Без метки": 11,
-        "Facebook": 4,
+      "2024-09": {
+        "Instagram": 11,
+        "Facebook": 8,
+        "Без метки": 8,
         "Google Ads": 2
       },
+      "2024-10": {
+        "Facebook": 2,
+        "Без метки": 7,
+        "Google Ads": 4,
+        "Instagram": 26
+      },
+      "y2025": {
+        "Instagram": 129,
+        "Facebook": 107,
+        "Кампании": 12,
+        "TikTok": 25,
+        "Google Ads": 21,
+        "Telegram": 54,
+        "Без метки": 47,
+        "Другое": 1,
+        "YouTube": 1
+      },
+      "2025-08": {
+        "Instagram": 3,
+        "TikTok": 8,
+        "Facebook": 4,
+        "Без метки": 3,
+        "Google Ads": 3
+      },
+      "2025-05": {
+        "Instagram": 11,
+        "TikTok": 2,
+        "Facebook": 18,
+        "Google Ads": 1,
+        "Без метки": 6,
+        "Кампании": 1
+      },
+      "2025-06": {
+        "Instagram": 6,
+        "Кампании": 1,
+        "YouTube": 1,
+        "Facebook": 11,
+        "Без метки": 7,
+        "Google Ads": 1
+      },
+      "2026-05": {
+        "Facebook": 10,
+        "Без метки": 1,
+        "Instagram": 3
+      },
+      "2026-06": {
+        "Facebook": 24,
+        "Google Ads": 3,
+        "Без метки": 1,
+        "Instagram": 1
+      },
+      "2024-01": {
+        "Без метки": 37,
+        "Facebook": 50,
+        "Кампании": 2
+      },
+      "2025-07": {
+        "Instagram": 2,
+        "TikTok": 5,
+        "Facebook": 7,
+        "Без метки": 3
+      },
+      "2025-12": {
+        "Facebook": 7,
+        "Google Ads": 10,
+        "Без метки": 1,
+        "Telegram": 12,
+        "Instagram": 2
+      },
+      "2025-11": {
+        "Instagram": 2,
+        "Кампании": 10,
+        "TikTok": 1,
+        "Другое": 1,
+        "Facebook": 8,
+        "Google Ads": 1,
+        "Без метки": 5,
+        "Telegram": 23
+      },
+      "2026-08": {
+        "Facebook": 21,
+        "Без метки": 1,
+        "Google Ads": 5
+      },
+      "2024-08": {
+        "Кампании": 4,
+        "Без метки": 4,
+        "Facebook": 7,
+        "Google Ads": 2,
+        "Instagram": 36
+      },
       "2024-07": {
-        "Instagram": 17,
         "Кампании": 5,
         "Без метки": 19,
         "Facebook": 6,
-        "Google Ads": 6
+        "Google Ads": 6,
+        "Instagram": 17
+      },
+      "2025-09": {
+        "Telegram": 3,
+        "Instagram": 13,
+        "TikTok": 4,
+        "Facebook": 11,
+        "Google Ads": 1,
+        "Без метки": 3
+      },
+      "2026-01": {
+        "Telegram": 1,
+        "Instagram": 1,
+        "Facebook": 5,
+        "Без метки": 1,
+        "Google Ads": 1
+      },
+      "2024-06": {
+        "Без метки": 11,
+        "Facebook": 4,
+        "Google Ads": 2,
+        "Instagram": 22
+      },
+      "2025-03": {
+        "Без метки": 3,
+        "Facebook": 5,
+        "Instagram": 16
+      },
+      "2024-11": {
+        "Facebook": 6,
+        "Без метки": 13,
+        "Google Ads": 7,
+        "Instagram": 16
+      },
+      "2025-01": {
+        "Facebook": 12,
+        "Без метки": 4,
+        "Instagram": 20
+      },
+      "2025-02": {
+        "Instagram": 25,
+        "Facebook": 8,
+        "Google Ads": 2,
+        "Без метки": 2
+      },
+      "2024-12": {
+        "Instagram": 11,
+        "YouTube": 1,
+        "Facebook": 6,
+        "Google Ads": 3,
+        "Без метки": 8
+      },
+      "2025-04": {
+        "Instagram": 15,
+        "Facebook": 5,
+        "Без метки": 6
+      },
+      "2026-04": {
+        "Facebook": 4,
+        "Google Ads": 4,
+        "Без метки": 2,
+        "Instagram": 3
+      },
+      "2026-03": {
+        "Instagram": 5,
+        "Facebook": 9,
+        "Google Ads": 1
+      },
+      "2025-10": {
+        "Facebook": 11,
+        "Без метки": 4,
+        "Google Ads": 2,
+        "Telegram": 16,
+        "TikTok": 5,
+        "Instagram": 14
+      },
+      "2024-05": {
+        "Facebook": 10,
+        "Google Ads": 5,
+        "Без метки": 11,
+        "Instagram": 9
+      },
+      "2026-02": {
+        "Без метки": 1
+      },
+      "y2023": {
+        "Без метки": 22,
+        "Google Ads": 7,
+        "Facebook": 12
+      },
+      "2023-11": {
+        "Без метки": 8
       },
       "2024-02": {
         "Без метки": 33,
         "Facebook": 27,
         "Google Ads": 3
       },
-      "2025-11": {
-        "Facebook": 8,
-        "Без метки": 5,
-        "TikTok": 1,
-        "Кампании": 10,
-        "Другое": 1,
-        "Google Ads": 1,
-        "Instagram": 2,
-        "Telegram": 23
-      },
       "2024-04": {
         "Facebook": 9,
         "Без метки": 10,
         "Google Ads": 3
       },
-      "2024-05": {
-        "Instagram": 9,
-        "Facebook": 10,
-        "Без метки": 11,
-        "Google Ads": 5
-      },
-      "2024-10": {
-        "Google Ads": 4,
-        "Instagram": 26,
-        "Facebook": 2,
-        "Без метки": 7
-      },
-      "2024-03": {
-        "Google Ads": 2,
-        "TikTok": 2,
-        "Facebook": 10,
-        "Без метки": 31,
-        "Кампании": 2
-      },
-      "2025-12": {
-        "Google Ads": 10,
-        "Instagram": 2,
-        "Telegram": 12,
-        "Facebook": 7,
-        "Без метки": 1
-      },
-      "2025-09": {
-        "TikTok": 4,
-        "Google Ads": 1,
-        "Instagram": 13,
-        "Telegram": 3,
-        "Facebook": 11,
-        "Без метки": 3
-      },
-      "2026-06": {
-        "Google Ads": 3,
-        "Instagram": 1,
-        "Facebook": 24,
-        "Без метки": 1
-      },
-      "2026-08": {
-        "Google Ads": 5,
-        "Facebook": 21,
-        "Без метки": 1
-      },
-      "2024-01": {
-        "Кампании": 2,
-        "Без метки": 37,
-        "Facebook": 50
-      },
-      "2026-05": {
-        "Instagram": 3,
-        "Facebook": 10,
-        "Без метки": 1
-      },
-      "2026-07": {
-        "Instagram": 1,
-        "Без метки": 1,
-        "Facebook": 22
-      },
-      "2026-02": {
-        "Без метки": 1
-      },
-      "y2023": {
-        "Google Ads": 7,
-        "Без метки": 22,
-        "Facebook": 12
-      },
       "2023-12": {
-        "Google Ads": 7,
         "Без метки": 14,
+        "Google Ads": 7,
         "Facebook": 12
-      },
-      "2024-12": {
-        "Google Ads": 3,
-        "YouTube": 1,
-        "Instagram": 11,
-        "Facebook": 6,
-        "Без метки": 8
-      },
-      "2025-02": {
-        "Google Ads": 2,
-        "Instagram": 25,
-        "Facebook": 8,
-        "Без метки": 2
-      },
-      "2026-03": {
-        "Google Ads": 1,
-        "Instagram": 5,
-        "Facebook": 9
-      },
-      "2023-11": {
-        "Без метки": 8
-      },
-      "2026-01": {
-        "Google Ads": 1,
-        "Instagram": 1,
-        "Telegram": 1,
-        "Facebook": 5,
-        "Без метки": 1
-      },
-      "2025-04": {
-        "Instagram": 15,
-        "Facebook": 5,
-        "Без метки": 6
       }
     },
     "wons": {
@@ -747,13 +747,13 @@
           "n": 18,
           "budget": 2194743.0
         },
-        "Google Ads": {
-          "n": 1,
-          "budget": 110000.0
-        },
         "Facebook": {
           "n": 4,
           "budget": 725420.0
+        },
+        "Google Ads": {
+          "n": 1,
+          "budget": 110000.0
         }
       },
       "2024-09": {
@@ -777,13 +777,13 @@
           "n": 3,
           "budget": 324500.0
         },
-        "Google Ads": {
-          "n": 1,
-          "budget": 110000.0
-        },
         "Instagram": {
           "n": 1,
           "budget": 150000.0
+        },
+        "Google Ads": {
+          "n": 1,
+          "budget": 110000.0
         }
       },
       "2024-07": {
@@ -826,42 +826,24 @@
           "budget": 135000.0
         }
       },
-      "y2023": {
-        "Google Ads": {
-          "n": 1,
-          "budget": 118243.0
+      "2024-02": {
+        "Без метки": {
+          "n": 3,
+          "budget": 351280.0
         },
         "Facebook": {
           "n": 1,
-          "budget": 131921.0
-        },
-        "Без метки": {
-          "n": 1,
-          "budget": 112200.0
-        }
-      },
-      "2023-12": {
-        "Google Ads": {
-          "n": 1,
-          "budget": 118243.0
-        },
-        "Facebook": {
-          "n": 1,
-          "budget": 131921.0
-        },
-        "Без метки": {
-          "n": 1,
-          "budget": 112200.0
+          "budget": 144000.0
         }
       },
       "2024-10": {
-        "Instagram": {
-          "n": 1,
-          "budget": 253000.0
-        },
         "Без метки": {
           "n": 2,
           "budget": 231400.0
+        },
+        "Instagram": {
+          "n": 1,
+          "budget": 253000.0
         }
       },
       "2024-12": {
@@ -874,36 +856,60 @@
           "budget": 146520.0
         }
       },
+      "2025-08": {
+        "Без метки": {
+          "n": 3,
+          "budget": 373800.0
+        }
+      },
+      "y2026": {
+        "Без метки": {
+          "n": 1,
+          "budget": 111185.0
+        },
+        "Instagram": {
+          "n": 1,
+          "budget": 247650.0
+        }
+      },
+      "2026-02": {
+        "Без метки": {
+          "n": 1,
+          "budget": 111185.0
+        }
+      },
+      "y2023": {
+        "Без метки": {
+          "n": 1,
+          "budget": 112200.0
+        },
+        "Google Ads": {
+          "n": 1,
+          "budget": 118243.0
+        },
+        "Facebook": {
+          "n": 1,
+          "budget": 131921.0
+        }
+      },
+      "2023-12": {
+        "Без метки": {
+          "n": 1,
+          "budget": 112200.0
+        },
+        "Google Ads": {
+          "n": 1,
+          "budget": 118243.0
+        },
+        "Facebook": {
+          "n": 1,
+          "budget": 131921.0
+        }
+      },
       "2025-01": {
         "Без метки": {
           "n": 2,
           "budget": 215300.0
-        }
-      },
-      "2025-05": {
-        "Instagram": {
-          "n": 1,
-          "budget": 104104.0
-        }
-      },
-      "2024-02": {
-        "Без метки": {
-          "n": 3,
-          "budget": 351280.0
-        },
-        "Facebook": {
-          "n": 1,
-          "budget": 144000.0
-        }
-      },
-      "y2026": {
-        "Instagram": {
-          "n": 1,
-          "budget": 247650.0
-        },
-        "Без метки": {
-          "n": 1,
-          "budget": 111185.0
         }
       },
       "2026-04": {
@@ -912,22 +918,16 @@
           "budget": 247650.0
         }
       },
-      "2025-08": {
-        "Без метки": {
-          "n": 3,
-          "budget": 373800.0
-        }
-      },
       "2025-02": {
         "Без метки": {
           "n": 1,
           "budget": 159000.0
         }
       },
-      "2026-02": {
-        "Без метки": {
+      "2025-05": {
+        "Instagram": {
           "n": 1,
-          "budget": 111185.0
+          "budget": 104104.0
         }
       }
     }
@@ -940,128 +940,144 @@
         "Без метки": 119,
         "Facebook": 385,
         "Instagram": 360,
+        "Кампании": 15,
         "TikTok": 32,
         "Google Ads": 91,
         "Telegram": 78,
         "YouTube": 10,
-        "Кампании": 15,
         "Другое": 1
       },
       "y2025": {
         "Без метки": 44,
-        "Facebook": 120,
         "Instagram": 159,
+        "Facebook": 120,
         "Google Ads": 25,
         "Telegram": 77,
+        "YouTube": 3,
         "TikTok": 22,
-        "Кампании": 10,
         "Другое": 1,
-        "YouTube": 3
+        "Кампании": 10
       },
       "2025-01": {
         "Без метки": 2,
         "Facebook": 8,
         "Google Ads": 4,
-        "YouTube": 2,
-        "Instagram": 25
+        "Instagram": 25,
+        "YouTube": 2
       },
       "y2024": {
         "Facebook": 68,
-        "Instagram": 186,
         "Без метки": 58,
+        "Instagram": 186,
+        "Кампании": 4,
         "TikTok": 2,
         "Google Ads": 18,
-        "YouTube": 2,
-        "Кампании": 4
+        "YouTube": 2
       },
       "2024-11": {
         "Facebook": 15,
         "Без метки": 10,
-        "YouTube": 1,
         "Google Ads": 5,
-        "Instagram": 44
+        "Instagram": 44,
+        "YouTube": 1
       },
       "2024-07": {
         "Facebook": 2,
         "Без метки": 8,
-        "Кампании": 1,
         "Google Ads": 2,
+        "Кампании": 1,
         "Instagram": 6
       },
       "2024-08": {
         "Facebook": 15,
-        "Без метки": 3,
         "Кампании": 3,
+        "Без метки": 3,
         "Instagram": 56
       },
-      "2024-10": {
-        "Instagram": 15,
-        "Facebook": 7,
-        "Без метки": 2,
+      "2025-02": {
+        "Instagram": 28,
+        "Без метки": 3,
+        "Facebook": 4,
         "Google Ads": 1
+      },
+      "2024-12": {
+        "Instagram": 36,
+        "YouTube": 1,
+        "Facebook": 14,
+        "Без метки": 10,
+        "Google Ads": 3
+      },
+      "2025-04": {
+        "Instagram": 14,
+        "Без метки": 4,
+        "Facebook": 6
       },
       "y2026": {
         "Instagram": 15,
         "Facebook": 196,
-        "YouTube": 5,
         "Google Ads": 48,
-        "Без метки": 14,
         "TikTok": 8,
+        "Без метки": 14,
         "Кампании": 1,
+        "YouTube": 5,
         "Telegram": 1
       },
-      "2026-05": {
-        "Instagram": 2,
-        "Facebook": 17,
-        "Google Ads": 6
+      "2026-03": {
+        "Instagram": 4,
+        "TikTok": 2,
+        "Facebook": 8,
+        "Google Ads": 9
       },
       "2026-04": {
         "Facebook": 9,
-        "Без метки": 2,
-        "TikTok": 4,
         "Google Ads": 5,
-        "Instagram": 4
-      },
-      "2026-06": {
-        "Instagram": 2,
-        "Facebook": 45,
-        "Без метки": 3,
-        "Google Ads": 4
+        "Без метки": 2,
+        "Instagram": 4,
+        "TikTok": 4
       },
       "2025-10": {
         "Facebook": 17,
         "Без метки": 6,
-        "TikTok": 3,
+        "Telegram": 11,
         "Instagram": 8,
-        "Telegram": 11
+        "TikTok": 3
+      },
+      "2025-09": {
+        "Instagram": 7,
+        "TikTok": 4,
+        "Facebook": 8,
+        "Без метки": 4,
+        "Google Ads": 1,
+        "Telegram": 1
       },
       "2025-03": {
         "Facebook": 7,
-        "Без метки": 3,
         "Google Ads": 3,
+        "Без метки": 3,
         "Instagram": 26
+      },
+      "2026-01": {
+        "Instagram": 1,
+        "Кампании": 1,
+        "Facebook": 12,
+        "Google Ads": 7,
+        "Без метки": 3,
+        "YouTube": 2,
+        "Telegram": 1
       },
       "2024-05": {
         "Facebook": 1,
-        "Без метки": 1,
         "Google Ads": 1,
+        "Без метки": 1,
         "Instagram": 5
-      },
-      "2025-12": {
-        "Instagram": 6,
-        "Telegram": 29,
-        "Facebook": 7,
-        "Без метки": 2,
-        "TikTok": 1,
-        "Google Ads": 7
       },
       "2026-02": {
         "Facebook": 15,
-        "YouTube": 3,
         "Без метки": 5,
-        "TikTok": 2,
         "Google Ads": 12,
-        "Instagram": 2
+        "YouTube": 3,
+        "Instagram": 2,
+        "TikTok": 2
       },
       "2026-09": {
         "Facebook": 1
@@ -1071,63 +1087,20 @@
         "Без метки": 7,
         "Facebook": 2
       },
-      "2024-12": {
-        "Google Ads": 3,
-        "YouTube": 1,
-        "Instagram": 36,
-        "Facebook": 14,
-        "Без метки": 10
-      },
-      "2025-02": {
-        "Google Ads": 1,
-        "Instagram": 28,
-        "Без метки": 3,
-        "Facebook": 4
-      },
-      "2025-06": {
+      "2025-12": {
+        "Telegram": 29,
+        "Instagram": 6,
         "TikTok": 1,
-        "Instagram": 6,
-        "Кампании": 2,
-        "Facebook": 16,
-        "Без метки": 4
-      },
-      "2026-03": {
-        "Google Ads": 9,
-        "Instagram": 4,
-        "Facebook": 8,
-        "TikTok": 2
-      },
-      "2026-01": {
+        "Facebook": 7,
         "Google Ads": 7,
-        "Instagram": 1,
-        "Кампании": 1,
-        "Telegram": 1,
-        "Facebook": 12,
-        "YouTube": 2,
-        "Без метки": 3
-      },
-      "2025-07": {
-        "TikTok": 3,
-        "Google Ads": 1,
-        "Instagram": 6,
-        "Кампании": 3,
-        "Facebook": 12,
-        "Без метки": 5
+        "Без метки": 2
       },
       "2025-08": {
-        "TikTok": 9,
         "YouTube": 1,
-        "Instagram": 15,
-        "Facebook": 8,
-        "Без метки": 4
-      },
-      "2025-09": {
-        "Google Ads": 1,
-        "Instagram": 7,
-        "Telegram": 1,
         "Facebook": 8,
         "Без метки": 4,
-        "TikTok": 4
+        "Instagram": 15,
+        "TikTok": 9
       },
       "y2023": {
         "Без метки": 3,
@@ -1136,29 +1109,80 @@
       "2023-11": {
         "Без метки": 2
       },
-      "2025-11": {
-        "TikTok": 1,
-        "Кампании": 5,
-        "Другое": 1,
-        "Google Ads": 8,
-        "Instagram": 6,
-        "Telegram": 36,
-        "Facebook": 13,
-        "Без метки": 1
-      },
       "2024-06": {
         "Без метки": 1,
         "Instagram": 2
+      },
+      "2024-09": {
+        "Facebook": 5,
+        "Без метки": 7,
+        "Google Ads": 3,
+        "Instagram": 22
+      },
+      "2024-10": {
+        "Instagram": 15,
+        "Facebook": 7,
+        "Google Ads": 1,
+        "Без метки": 2
+      },
+      "2025-06": {
+        "Facebook": 16,
+        "Без метки": 4,
+        "Instagram": 6,
+        "TikTok": 1,
+        "Кампании": 2
+      },
+      "2025-05": {
+        "Facebook": 14,
+        "Без метки": 6,
+        "Instagram": 12
+      },
+      "2025-07": {
+        "Facebook": 12,
+        "Google Ads": 1,
+        "Без метки": 5,
+        "Instagram": 6,
+        "TikTok": 3,
+        "Кампании": 3
+      },
+      "2026-05": {
+        "Instagram": 2,
+        "Facebook": 17,
+        "Google Ads": 6
+      },
+      "2026-06": {
+        "Instagram": 2,
+        "Facebook": 45,
+        "Без метки": 3,
+        "Google Ads": 4
+      },
+      "2025-11": {
+        "Facebook": 13,
+        "Другое": 1,
+        "Google Ads": 8,
+        "Без метки": 1,
+        "Telegram": 36,
+        "Instagram": 6,
+        "Кампании": 5,
+        "TikTok": 1
+      },
+      "2024-02": {
+        "Facebook": 7,
+        "Без метки": 4,
+        "Google Ads": 2,
+        "TikTok": 1
+      },
+      "2024-04": {
+        "Без метки": 1
+      },
+      "2023-12": {
+        "Без метки": 1,
+        "Facebook": 1
       },
       "2026-07": {
         "Facebook": 78,
         "Без метки": 1,
         "Google Ads": 4
-      },
-      "2025-04": {
-        "Instagram": 14,
-        "Без метки": 4,
-        "Facebook": 6
       },
       "2024-03": {
         "Без метки": 4,
@@ -1167,30 +1191,6 @@
       "2026-08": {
         "Facebook": 11,
         "Google Ads": 1
-      },
-      "2024-09": {
-        "Google Ads": 3,
-        "Instagram": 22,
-        "Facebook": 5,
-        "Без метки": 7
-      },
-      "2024-02": {
-        "Google Ads": 2,
-        "TikTok": 1,
-        "Facebook": 7,
-        "Без метки": 4
-      },
-      "2025-05": {
-        "Instagram": 12,
-        "Facebook": 14,
-        "Без метки": 6
-      },
-      "2023-12": {
-        "Без метки": 1,
-        "Facebook": 1
-      },
-      "2024-04": {
-        "Без метки": 1
       }
     },
     "wons": {
@@ -1203,6 +1203,10 @@
           "n": 6,
           "budget": 300000.0
         },
+        "TikTok": {
+          "n": 1,
+          "budget": 230000.0
+        },
         "Facebook": {
           "n": 2,
           "budget": 200000.0
@@ -1210,10 +1214,6 @@
         "Google Ads": {
           "n": 2,
           "budget": 300000.0
-        },
-        "TikTok": {
-          "n": 1,
-          "budget": 230000.0
         }
       },
       "y2025": {
@@ -1256,78 +1256,6 @@
           "budget": 0
         }
       },
-      "y2024": {
-        "Instagram": {
-          "n": 1,
-          "budget": 100000.0
-        },
-        "Без метки": {
-          "n": 1,
-          "budget": 100000.0
-        }
-      },
-      "2024-10": {
-        "Instagram": {
-          "n": 1,
-          "budget": 100000.0
-        }
-      },
-      "2024-12": {
-        "Без метки": {
-          "n": 1,
-          "budget": 100000.0
-        }
-      },
-      "2025-07": {
-        "Без метки": {
-          "n": 2,
-          "budget": 100000.0
-        }
-      },
-      "2025-11": {
-        "Facebook": {
-          "n": 1,
-          "budget": 200000.0
-        }
-      },
-      "2025-04": {
-        "Instagram": {
-          "n": 1,
-          "budget": 150000.0
-        },
-        "Без метки": {
-          "n": 1,
-          "budget": 0
-        }
-      },
-      "2025-05": {
-        "Google Ads": {
-          "n": 1,
-          "budget": 100000.0
-        }
-      },
-      "2025-12": {
-        "Google Ads": {
-          "n": 1,
-          "budget": 200000.0
-        },
-        "Facebook": {
-          "n": 1,
-          "budget": 0
-        }
-      },
-      "2026-01": {
-        "Без метки": {
-          "n": 1,
-          "budget": 100000.0
-        }
-      },
-      "2025-03": {
-        "Instagram": {
-          "n": 1,
-          "budget": 100000.0
-        }
-      },
       "2025-01": {
         "Instagram": {
           "n": 2,
@@ -1351,23 +1279,221 @@
           "n": 1,
           "budget": 125000.0
         }
+      },
+      "2025-07": {
+        "Без метки": {
+          "n": 2,
+          "budget": 100000.0
+        }
+      },
+      "2025-04": {
+        "Без метки": {
+          "n": 1,
+          "budget": 0
+        },
+        "Instagram": {
+          "n": 1,
+          "budget": 150000.0
+        }
+      },
+      "2025-12": {
+        "Facebook": {
+          "n": 1,
+          "budget": 0
+        },
+        "Google Ads": {
+          "n": 1,
+          "budget": 200000.0
+        }
+      },
+      "2025-03": {
+        "Instagram": {
+          "n": 1,
+          "budget": 100000.0
+        }
+      },
+      "y2024": {
+        "Instagram": {
+          "n": 1,
+          "budget": 100000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 100000.0
+        }
+      },
+      "2024-10": {
+        "Instagram": {
+          "n": 1,
+          "budget": 100000.0
+        }
+      },
+      "2024-12": {
+        "Без метки": {
+          "n": 1,
+          "budget": 100000.0
+        }
+      },
+      "2025-11": {
+        "Facebook": {
+          "n": 1,
+          "budget": 200000.0
+        }
+      },
+      "2025-05": {
+        "Google Ads": {
+          "n": 1,
+          "budget": 100000.0
+        }
+      },
+      "2026-01": {
+        "Без метки": {
+          "n": 1,
+          "budget": 100000.0
+        }
       }
     }
   },
   {
     "name": "Валентина Бондаренко",
-    "total_leads_all": 847,
+    "total_leads_all": 848,
     "periods": {
       "all": {
         "Без метки": 251,
         "Instagram": 174,
-        "Facebook": 284,
+        "Facebook": 285,
         "Google Ads": 53,
-        "TikTok": 18,
-        "Кампании": 12,
         "Telegram": 40,
+        "TikTok": 18,
         "Другое": 13,
+        "Кампании": 12,
         "YouTube": 2
+      },
+      "y2024": {
+        "Без метки": 55,
+        "Instagram": 87,
+        "Facebook": 49,
+        "Google Ads": 15,
+        "Кампании": 3,
+        "TikTok": 1,
+        "YouTube": 2
+      },
+      "2024-09": {
+        "Без метки": 6,
+        "Facebook": 2,
+        "Google Ads": 2,
+        "Instagram": 13,
+        "YouTube": 1
+      },
+      "2024-10": {
+        "Instagram": 7,
+        "Без метки": 2,
+        "Facebook": 3
+      },
+      "y2025": {
+        "Facebook": 65,
+        "Instagram": 71,
+        "Без метки": 45,
+        "Telegram": 37,
+        "Google Ads": 13,
+        "Другое": 13,
+        "Кампании": 8,
+        "TikTok": 11
+      },
+      "2025-06": {
+        "Facebook": 6,
+        "Без метки": 4,
+        "Instagram": 7
+      },
+      "2025-05": {
+        "Facebook": 9,
+        "Без метки": 5,
+        "Instagram": 7,
+        "TikTok": 1
+      },
+      "2025-07": {
+        "Facebook": 5,
+        "Без метки": 4,
+        "Instagram": 1,
+        "Кампании": 2,
+        "TikTok": 3
+      },
+      "2025-08": {
+        "Facebook": 5,
+        "Google Ads": 1,
+        "Без метки": 1,
+        "Instagram": 1,
+        "TikTok": 4
+      },
+      "y2026": {
+        "Instagram": 16,
+        "TikTok": 6,
+        "Telegram": 3,
+        "Facebook": 159,
+        "Без метки": 34,
+        "Google Ads": 21
+      },
+      "2026-07": {
+        "Instagram": 2,
+        "Facebook": 39,
+        "Без метки": 6,
+        "Google Ads": 1
+      },
+      "2026-05": {
+        "Instagram": 2,
+        "TikTok": 2,
+        "Facebook": 14,
+        "Без метки": 4,
+        "Google Ads": 4
+      },
+      "2026-06": {
+        "Instagram": 2,
+        "Facebook": 17,
+        "Без метки": 6,
+        "Google Ads": 1
+      },
+      "2025-11": {
+        "Facebook": 16,
+        "Google Ads": 3,
+        "Другое": 3,
+        "Без метки": 2,
+        "Telegram": 18,
+        "Instagram": 3,
+        "Кампании": 6,
+        "TikTok": 1
+      },
+      "2025-12": {
+        "Instagram": 1,
+        "Другое": 2,
+        "Facebook": 5,
+        "Google Ads": 3,
+        "Без метки": 1,
+        "Telegram": 11
+      },
+      "2024-04": {
+        "Facebook": 2,
+        "Без метки": 3,
+        "Google Ads": 1
+      },
+      "2024-02": {
+        "Без метки": 6,
+        "Facebook": 2,
+        "TikTok": 1
+      },
+      "2025-10": {
+        "Telegram": 5,
+        "Другое": 7,
+        "Instagram": 4,
+        "Facebook": 8,
+        "Без метки": 4,
+        "Google Ads": 3
+      },
+      "2026-02": {
+        "Telegram": 1,
+        "Instagram": 2,
+        "Facebook": 18,
+        "Без метки": 3,
+        "Google Ads": 6
       },
       "y2023": {
         "Без метки": 117,
@@ -1381,233 +1507,93 @@
         "Google Ads": 3,
         "Кампании": 1
       },
-      "y2024": {
-        "Instagram": 87,
-        "Facebook": 49,
-        "Google Ads": 15,
-        "TikTok": 1,
-        "Без метки": 55,
-        "YouTube": 2,
-        "Кампании": 3
-      },
-      "2024-09": {
-        "Instagram": 13,
-        "Без метки": 6,
-        "Facebook": 2,
-        "YouTube": 1,
-        "Google Ads": 2
-      },
-      "2024-12": {
-        "Facebook": 6,
-        "Без метки": 7,
-        "Google Ads": 4,
-        "Instagram": 19
-      },
-      "y2025": {
-        "Facebook": 65,
-        "Instagram": 71,
-        "Google Ads": 13,
-        "Без метки": 45,
-        "Кампании": 8,
-        "Telegram": 37,
-        "Другое": 13,
-        "TikTok": 11
-      },
-      "2025-04": {
-        "Facebook": 4,
-        "Без метки": 5,
-        "Instagram": 12
-      },
-      "2025-05": {
-        "Instagram": 7,
-        "Facebook": 9,
-        "Без метки": 5,
-        "TikTok": 1
-      },
-      "2025-02": {
-        "Facebook": 2,
-        "Без метки": 9,
-        "Google Ads": 1,
-        "Instagram": 9
-      },
-      "2025-06": {
-        "Instagram": 7,
-        "Facebook": 6,
-        "Без метки": 4
-      },
-      "y2026": {
-        "Facebook": 158,
-        "Без метки": 34,
-        "Google Ads": 21,
-        "TikTok": 6,
-        "Instagram": 16,
-        "Telegram": 3
-      },
-      "2026-01": {
-        "Facebook": 12,
-        "Без метки": 6,
-        "Instagram": 2,
-        "Telegram": 2
-      },
-      "2025-09": {
-        "Facebook": 1,
-        "Без метки": 5,
-        "Другое": 1,
-        "TikTok": 2,
-        "Google Ads": 1,
-        "Instagram": 6,
-        "Telegram": 3
-      },
-      "2026-03": {
-        "Facebook": 10,
-        "Без метки": 3,
-        "TikTok": 3,
-        "Google Ads": 2,
-        "Instagram": 5
-      },
-      "2025-07": {
-        "Instagram": 1,
-        "Кампании": 2,
-        "Facebook": 5,
-        "Без метки": 4,
-        "TikTok": 3
-      },
-      "2025-08": {
-        "Instagram": 1,
-        "Facebook": 5,
-        "Без метки": 1,
-        "TikTok": 4,
-        "Google Ads": 1
-      },
-      "2025-11": {
-        "Instagram": 3,
-        "Telegram": 18,
-        "Facebook": 16,
-        "Без метки": 2,
-        "TikTok": 1,
-        "Кампании": 6,
-        "Другое": 3,
-        "Google Ads": 3
-      },
-      "2024-11": {
-        "Google Ads": 2,
-        "Instagram": 8,
-        "Facebook": 7,
-        "Без метки": 7
-      },
-      "2024-02": {
-        "TikTok": 1,
-        "Без метки": 6,
-        "Facebook": 2
-      },
-      "2024-08": {
-        "Google Ads": 2,
-        "Instagram": 22,
-        "Facebook": 4,
-        "Кампании": 1
-      },
-      "2025-03": {
-        "Google Ads": 1,
-        "Instagram": 11,
-        "Facebook": 3,
-        "Без метки": 4
-      },
       "2024-06": {
-        "Google Ads": 2,
         "Instagram": 9,
         "Facebook": 5,
-        "Без метки": 1
-      },
-      "2023-11": {
-        "Google Ads": 1,
-        "Facebook": 5,
-        "Без метки": 104
-      },
-      "2024-05": {
         "Google Ads": 2,
-        "Instagram": 2,
-        "Без метки": 2,
-        "Facebook": 2
-      },
-      "2026-02": {
-        "Google Ads": 6,
-        "Instagram": 2,
-        "Telegram": 1,
-        "Facebook": 18,
-        "Без метки": 3
-      },
-      "2025-10": {
-        "Google Ads": 3,
-        "Другое": 7,
-        "Instagram": 4,
-        "Telegram": 5,
-        "Facebook": 8,
-        "Без метки": 4
-      },
-      "2026-04": {
-        "Google Ads": 4,
-        "Instagram": 1,
-        "Facebook": 6,
-        "Без метки": 1,
-        "TikTok": 1
-      },
-      "2026-05": {
-        "TikTok": 2,
-        "Google Ads": 4,
-        "Instagram": 2,
-        "Facebook": 14,
-        "Без метки": 4
-      },
-      "2025-12": {
-        "Другое": 2,
-        "Google Ads": 3,
-        "Instagram": 1,
-        "Telegram": 11,
-        "Facebook": 5,
         "Без метки": 1
       },
       "2024-07": {
-        "YouTube": 1,
         "Instagram": 7,
+        "Кампании": 2,
+        "YouTube": 1,
         "Facebook": 3,
-        "Без метки": 3,
-        "Кампании": 2
+        "Без метки": 3
+      },
+      "2024-11": {
+        "Instagram": 8,
+        "Facebook": 7,
+        "Google Ads": 2,
+        "Без метки": 7
+      },
+      "2024-08": {
+        "Instagram": 22,
+        "Кампании": 1,
+        "Facebook": 4,
+        "Google Ads": 2
       },
       "2025-01": {
         "Instagram": 9,
         "Facebook": 1,
         "Без метки": 1
       },
-      "2024-04": {
-        "Facebook": 2,
-        "Без метки": 3,
-        "Google Ads": 1
+      "2024-12": {
+        "Facebook": 6,
+        "Google Ads": 4,
+        "Без метки": 7,
+        "Instagram": 19
       },
-      "2026-07": {
+      "2025-04": {
+        "Facebook": 4,
+        "Без метки": 5,
+        "Instagram": 12
+      },
+      "2025-03": {
+        "Instagram": 11,
+        "Facebook": 3,
         "Google Ads": 1,
-        "Instagram": 2,
-        "Facebook": 39,
-        "Без метки": 6
-      },
-      "2026-08": {
-        "Google Ads": 3,
-        "Facebook": 37,
         "Без метки": 4
       },
-      "2026-06": {
+      "2025-02": {
+        "Facebook": 2,
         "Google Ads": 1,
+        "Без метки": 9,
+        "Instagram": 9
+      },
+      "2026-01": {
+        "Facebook": 12,
+        "Без метки": 6,
+        "Telegram": 2,
+        "Instagram": 2
+      },
+      "2025-09": {
+        "Facebook": 1,
+        "Google Ads": 1,
+        "Без метки": 5,
+        "Другое": 1,
+        "Telegram": 3,
+        "Instagram": 6,
+        "TikTok": 2
+      },
+      "2026-03": {
+        "Facebook": 10,
+        "Google Ads": 2,
+        "Без метки": 3,
+        "Instagram": 5,
+        "TikTok": 3
+      },
+      "2024-05": {
         "Instagram": 2,
-        "Facebook": 17,
-        "Без метки": 6
-      },
-      "2024-10": {
-        "Instagram": 7,
         "Без метки": 2,
-        "Facebook": 3
+        "Facebook": 2,
+        "Google Ads": 2
       },
-      "2026-09": {
-        "Facebook": 5,
-        "Без метки": 1
+      "2026-04": {
+        "Instagram": 1,
+        "TikTok": 1,
+        "Facebook": 6,
+        "Без метки": 1,
+        "Google Ads": 4
       },
       "2024-03": {
         "Без метки": 7,
@@ -1616,6 +1602,20 @@
       "2024-01": {
         "Без метки": 11,
         "Facebook": 12
+      },
+      "2026-08": {
+        "Facebook": 37,
+        "Без метки": 4,
+        "Google Ads": 3
+      },
+      "2026-09": {
+        "Facebook": 6,
+        "Без метки": 1
+      },
+      "2023-11": {
+        "Facebook": 5,
+        "Google Ads": 1,
+        "Без метки": 104
       }
     },
     "wons": {
@@ -1628,13 +1628,13 @@
           "n": 8,
           "budget": 1830272.0
         },
-        "Instagram": {
-          "n": 9,
-          "budget": 1516887.0
-        },
         "Google Ads": {
           "n": 2,
           "budget": 220000.0
+        },
+        "Instagram": {
+          "n": 9,
+          "budget": 1516887.0
         }
       },
       "y2024": {
@@ -1646,13 +1646,13 @@
           "n": 5,
           "budget": 1066380.0
         },
-        "Instagram": {
-          "n": 4,
-          "budget": 674000.0
-        },
         "Google Ads": {
           "n": 1,
           "budget": 93000.0
+        },
+        "Instagram": {
+          "n": 4,
+          "budget": 674000.0
         }
       },
       "2024-01": {
@@ -1672,13 +1672,13 @@
           "n": 3,
           "budget": 611750.0
         },
-        "Instagram": {
-          "n": 1,
-          "budget": 87000.0
-        },
         "Facebook": {
           "n": 1,
           "budget": 230000.0
+        },
+        "Instagram": {
+          "n": 1,
+          "budget": 87000.0
         }
       },
       "y2023": {
@@ -1698,6 +1698,10 @@
           "n": 3,
           "budget": 763892.0
         },
+        "Instagram": {
+          "n": 1,
+          "budget": 89137.0
+        },
         "Без метки": {
           "n": 3,
           "budget": 578755.0
@@ -1705,10 +1709,6 @@
         "Google Ads": {
           "n": 1,
           "budget": 127000.0
-        },
-        "Instagram": {
-          "n": 1,
-          "budget": 89137.0
         }
       },
       "2026-07": {
@@ -1716,13 +1716,13 @@
           "n": 1,
           "budget": 171931.0
         },
-        "Без метки": {
-          "n": 1,
-          "budget": 350000.0
-        },
         "Instagram": {
           "n": 1,
           "budget": 89137.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 350000.0
         }
       },
       "y2025": {
@@ -1775,36 +1775,30 @@
           "budget": 297000.0
         }
       },
-      "2024-03": {
-        "Без метки": {
-          "n": 1,
-          "budget": 170000.0
-        }
-      },
       "2024-09": {
-        "Без метки": {
-          "n": 2,
-          "budget": 253000.0
-        },
         "Google Ads": {
           "n": 1,
           "budget": 93000.0
-        }
-      },
-      "2024-07": {
-        "Instagram": {
-          "n": 1,
-          "budget": 125000.0
         },
-        "Facebook": {
-          "n": 1,
-          "budget": 250000.0
+        "Без метки": {
+          "n": 2,
+          "budget": 253000.0
         }
       },
       "2023-12": {
         "Без метки": {
           "n": 2,
           "budget": 182200.0
+        }
+      },
+      "2024-07": {
+        "Facebook": {
+          "n": 1,
+          "budget": 250000.0
+        },
+        "Instagram": {
+          "n": 1,
+          "budget": 125000.0
         }
       },
       "2024-12": {
@@ -1817,20 +1811,20 @@
           "budget": 237000.0
         }
       },
-      "2025-09": {
+      "2025-07": {
         "Instagram": {
-          "n": 1,
-          "budget": 350000.0
+          "n": 2,
+          "budget": 303750.0
         },
         "Без метки": {
           "n": 1,
-          "budget": 323000.0
+          "budget": 141000.0
         }
       },
-      "2026-02": {
-        "Facebook": {
+      "2026-03": {
+        "Без метки": {
           "n": 1,
-          "budget": 329111.0
+          "budget": 228755.0
         }
       },
       "2024-08": {
@@ -1851,26 +1845,32 @@
           "budget": 127000.0
         }
       },
-      "2025-07": {
-        "Без метки": {
-          "n": 1,
-          "budget": 141000.0
-        },
-        "Instagram": {
-          "n": 2,
-          "budget": 303750.0
-        }
-      },
       "2026-01": {
         "Facebook": {
           "n": 1,
           "budget": 262850.0
         }
       },
-      "2026-03": {
+      "2024-03": {
         "Без метки": {
           "n": 1,
-          "budget": 228755.0
+          "budget": 170000.0
+        }
+      },
+      "2025-09": {
+        "Instagram": {
+          "n": 1,
+          "budget": 350000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 323000.0
+        }
+      },
+      "2026-02": {
+        "Facebook": {
+          "n": 1,
+          "budget": 329111.0
         }
       }
     }
@@ -1881,247 +1881,247 @@
     "periods": {
       "all": {
         "Без метки": 264,
-        "Instagram": 168,
         "Facebook": 277,
-        "Google Ads": 51,
         "Кампании": 15,
+        "Instagram": 168,
+        "Google Ads": 51,
         "YouTube": 3,
         "TikTok": 19,
         "Telegram": 36
       },
-      "y2026": {
-        "Без метки": 13,
-        "Facebook": 85,
-        "Кампании": 1,
-        "Google Ads": 20,
-        "Instagram": 4,
-        "TikTok": 7
-      },
-      "2026-03": {
-        "Без метки": 3,
-        "Facebook": 7,
-        "TikTok": 2,
-        "Google Ads": 8,
-        "Instagram": 2
-      },
-      "y2025": {
-        "Instagram": 89,
-        "Facebook": 84,
-        "Без метки": 43,
-        "Google Ads": 17,
-        "TikTok": 12,
-        "Кампании": 9,
-        "Telegram": 36
-      },
-      "2025-08": {
-        "Instagram": 10,
-        "Facebook": 4,
-        "Без метки": 1,
-        "TikTok": 4,
-        "Google Ads": 1
-      },
       "y2024": {
+        "Без метки": 136,
+        "Кампании": 4,
         "Instagram": 75,
         "Facebook": 64,
-        "Без метки": 136,
         "Google Ads": 11,
-        "YouTube": 3,
-        "Кампании": 4
-      },
-      "2024-09": {
-        "Instagram": 12,
-        "Facebook": 6,
-        "Без метки": 7,
-        "YouTube": 1
-      },
-      "2024-12": {
-        "Facebook": 5,
-        "Без метки": 10,
-        "YouTube": 1,
-        "Instagram": 15
-      },
-      "2025-04": {
-        "Facebook": 9,
-        "Без метки": 4,
-        "Instagram": 9
-      },
-      "2025-07": {
-        "Instagram": 4,
-        "Facebook": 14,
-        "Кампании": 2,
-        "Без метки": 4,
-        "TikTok": 1
-      },
-      "2025-05": {
-        "Instagram": 6,
-        "Кампании": 1,
-        "Facebook": 8,
-        "Без метки": 4,
-        "TikTok": 1
-      },
-      "2025-06": {
-        "Instagram": 4,
-        "Facebook": 11,
-        "Без метки": 3,
-        "Google Ads": 1
-      },
-      "2025-09": {
-        "Facebook": 4,
-        "Без метки": 4,
-        "TikTok": 2,
-        "Google Ads": 1,
-        "Instagram": 8,
-        "Telegram": 1
-      },
-      "y2023": {
-        "Без метки": 72,
-        "Google Ads": 3,
-        "Facebook": 44,
-        "Кампании": 1
-      },
-      "2023-12": {
-        "Без метки": 31,
-        "Facebook": 35,
-        "Google Ads": 2,
-        "Кампании": 1
-      },
-      "2025-11": {
-        "Instagram": 5,
-        "Telegram": 16,
-        "Facebook": 9,
-        "Без метки": 1,
-        "Кампании": 6,
-        "Google Ads": 2
-      },
-      "2023-11": {
-        "Google Ads": 1,
-        "Без метки": 41,
-        "Facebook": 9
-      },
-      "2024-07": {
-        "Google Ads": 1,
-        "Instagram": 4,
-        "Кампании": 1,
-        "Facebook": 2,
-        "Без метки": 7
-      },
-      "2024-08": {
-        "Google Ads": 3,
-        "Instagram": 24,
-        "Facebook": 6,
-        "Без метки": 5
-      },
-      "2025-02": {
-        "Без метки": 9,
-        "Google Ads": 4,
-        "Instagram": 16
-      },
-      "2025-01": {
-        "Google Ads": 1,
-        "Instagram": 6,
-        "Facebook": 5,
-        "Без метки": 2
-      },
-      "2024-05": {
-        "Google Ads": 1,
-        "Instagram": 1,
-        "Facebook": 2,
-        "Без метки": 2
-      },
-      "2026-02": {
-        "Кампании": 1,
-        "Google Ads": 4,
-        "Facebook": 2,
-        "TikTok": 3
-      },
-      "2024-11": {
-        "YouTube": 1,
-        "Instagram": 6,
-        "Facebook": 2,
-        "Без метки": 14
-      },
-      "2025-12": {
-        "TikTok": 1,
-        "Google Ads": 6,
-        "Instagram": 2,
-        "Telegram": 13,
-        "Facebook": 9,
-        "Без метки": 3
-      },
-      "2025-10": {
-        "Google Ads": 1,
-        "Instagram": 12,
-        "Telegram": 6,
-        "Facebook": 8,
-        "Без метки": 3,
-        "TikTok": 3
-      },
-      "2026-04": {
-        "Google Ads": 3,
-        "Instagram": 1,
-        "Facebook": 5,
-        "Без метки": 3,
-        "TikTok": 2
-      },
-      "2024-01": {
-        "Кампании": 1,
-        "Google Ads": 2,
-        "Без метки": 37,
-        "Facebook": 28
-      },
-      "2025-03": {
-        "Instagram": 7,
-        "Facebook": 3,
-        "Без метки": 5
-      },
-      "2024-06": {
-        "Instagram": 5,
-        "Facebook": 2,
-        "Без метки": 1
-      },
-      "2024-02": {
-        "Без метки": 21,
-        "Facebook": 5,
-        "Кампании": 1,
-        "Google Ads": 1
-      },
-      "2024-04": {
-        "Facebook": 1,
-        "Без метки": 4,
-        "Кампании": 1
+        "YouTube": 3
       },
       "2024-03": {
-        "Google Ads": 1,
         "Без метки": 11,
+        "Google Ads": 1,
         "Facebook": 1
       },
       "2024-10": {
-        "Google Ads": 2,
-        "Instagram": 8,
         "Без метки": 17,
-        "Facebook": 4
-      },
-      "2026-05": {
+        "Facebook": 4,
         "Google Ads": 2,
-        "Facebook": 9,
-        "Без метки": 4
+        "Instagram": 8
       },
-      "2026-08": {
-        "Google Ads": 1,
-        "Facebook": 15,
-        "Без метки": 1
-      },
-      "2026-06": {
+      "2024-01": {
+        "Без метки": 37,
+        "Facebook": 28,
         "Google Ads": 2,
-        "Facebook": 17,
-        "Без метки": 1
+        "Кампании": 1
+      },
+      "y2026": {
+        "Facebook": 85,
+        "Без метки": 13,
+        "Google Ads": 20,
+        "Instagram": 4,
+        "TikTok": 7,
+        "Кампании": 1
       },
       "2026-07": {
         "Facebook": 30,
         "Без метки": 1
       },
+      "2024-02": {
+        "Кампании": 1,
+        "Без метки": 21,
+        "Google Ads": 1,
+        "Facebook": 5
+      },
+      "2024-04": {
+        "Кампании": 1,
+        "Facebook": 1,
+        "Без метки": 4
+      },
+      "y2025": {
+        "Instagram": 89,
+        "Facebook": 84,
+        "Кампании": 9,
+        "Google Ads": 17,
+        "TikTok": 12,
+        "Telegram": 36,
+        "Без метки": 43
+      },
+      "2025-08": {
+        "Instagram": 10,
+        "TikTok": 4,
+        "Facebook": 4,
+        "Без метки": 1,
+        "Google Ads": 1
+      },
+      "2024-09": {
+        "Instagram": 12,
+        "YouTube": 1,
+        "Facebook": 6,
+        "Без метки": 7
+      },
+      "2025-07": {
+        "Instagram": 4,
+        "Кампании": 2,
+        "TikTok": 1,
+        "Facebook": 14,
+        "Без метки": 4
+      },
+      "2025-05": {
+        "Instagram": 6,
+        "TikTok": 1,
+        "Кампании": 1,
+        "Facebook": 8,
+        "Без метки": 4
+      },
+      "2025-06": {
+        "Instagram": 4,
+        "Facebook": 11,
+        "Google Ads": 1,
+        "Без метки": 3
+      },
+      "2025-12": {
+        "Facebook": 9,
+        "Google Ads": 6,
+        "Без метки": 3,
+        "Telegram": 13,
+        "Instagram": 2,
+        "TikTok": 1
+      },
+      "2025-11": {
+        "Instagram": 5,
+        "Кампании": 6,
+        "Facebook": 9,
+        "Без метки": 1,
+        "Google Ads": 2,
+        "Telegram": 16
+      },
+      "2026-06": {
+        "Facebook": 17,
+        "Google Ads": 2,
+        "Без метки": 1
+      },
+      "2026-08": {
+        "Facebook": 15,
+        "Без метки": 1,
+        "Google Ads": 1
+      },
+      "2026-05": {
+        "Facebook": 9,
+        "Без метки": 4,
+        "Google Ads": 2
+      },
+      "2024-07": {
+        "Кампании": 1,
+        "Facebook": 2,
+        "Без метки": 7,
+        "Google Ads": 1,
+        "Instagram": 4
+      },
+      "2024-11": {
+        "YouTube": 1,
+        "Facebook": 2,
+        "Без метки": 14,
+        "Instagram": 6
+      },
+      "2025-09": {
+        "Telegram": 1,
+        "TikTok": 2,
+        "Instagram": 8,
+        "Facebook": 4,
+        "Без метки": 4,
+        "Google Ads": 1
+      },
+      "y2023": {
+        "Кампании": 1,
+        "Без метки": 72,
+        "Google Ads": 3,
+        "Facebook": 44
+      },
+      "2023-12": {
+        "Кампании": 1,
+        "Без метки": 31,
+        "Facebook": 35,
+        "Google Ads": 2
+      },
+      "2023-11": {
+        "Без метки": 41,
+        "Google Ads": 1,
+        "Facebook": 9
+      },
+      "2024-06": {
+        "Facebook": 2,
+        "Без метки": 1,
+        "Instagram": 5
+      },
+      "2024-08": {
+        "Facebook": 6,
+        "Google Ads": 3,
+        "Без метки": 5,
+        "Instagram": 24
+      },
+      "2024-12": {
+        "Instagram": 15,
+        "YouTube": 1,
+        "Facebook": 5,
+        "Без метки": 10
+      },
+      "2025-03": {
+        "Facebook": 3,
+        "Без метки": 5,
+        "Instagram": 7
+      },
       "2026-01": {
         "Instagram": 1
+      },
+      "2025-02": {
+        "Instagram": 16,
+        "Без метки": 9,
+        "Google Ads": 4
+      },
+      "2025-04": {
+        "Instagram": 9,
+        "Facebook": 9,
+        "Без метки": 4
+      },
+      "2026-03": {
+        "Instagram": 2,
+        "TikTok": 2,
+        "Без метки": 3,
+        "Facebook": 7,
+        "Google Ads": 8
+      },
+      "2026-04": {
+        "Facebook": 5,
+        "Без метки": 3,
+        "Google Ads": 3,
+        "Instagram": 1,
+        "TikTok": 2
+      },
+      "2025-01": {
+        "Facebook": 5,
+        "Google Ads": 1,
+        "Без метки": 2,
+        "Instagram": 6
+      },
+      "2024-05": {
+        "Facebook": 2,
+        "Google Ads": 1,
+        "Без метки": 2,
+        "Instagram": 1
+      },
+      "2025-10": {
+        "Facebook": 8,
+        "Google Ads": 1,
+        "Без метки": 3,
+        "Telegram": 6,
+        "Instagram": 12,
+        "TikTok": 3
+      },
+      "2026-02": {
+        "Facebook": 2,
+        "Google Ads": 4,
+        "TikTok": 3,
+        "Кампании": 1
       }
     },
     "wons": {
@@ -2134,6 +2134,10 @@
           "n": 38,
           "budget": 6901814.0
         },
+        "Google Ads": {
+          "n": 1,
+          "budget": 169000.0
+        },
         "Instagram": {
           "n": 3,
           "budget": 415000.0
@@ -2141,10 +2145,6 @@
         "YouTube": {
           "n": 1,
           "budget": 120000.0
-        },
-        "Google Ads": {
-          "n": 1,
-          "budget": 169000.0
         }
       },
       "y2024": {
@@ -2156,17 +2156,17 @@
           "n": 23,
           "budget": 4548774.0
         },
-        "Instagram": {
+        "Google Ads": {
           "n": 1,
-          "budget": 100000.0
+          "budget": 169000.0
         },
         "YouTube": {
           "n": 1,
           "budget": 120000.0
         },
-        "Google Ads": {
+        "Instagram": {
           "n": 1,
-          "budget": 169000.0
+          "budget": 100000.0
         }
       },
       "2024-02": {
@@ -2261,28 +2261,6 @@
           "budget": 177500.0
         }
       },
-      "2024-09": {
-        "Без метки": {
-          "n": 4,
-          "budget": 801045.0
-        },
-        "Google Ads": {
-          "n": 1,
-          "budget": 169000.0
-        }
-      },
-      "2025-01": {
-        "Без метки": {
-          "n": 2,
-          "budget": 353900.0
-        }
-      },
-      "2025-07": {
-        "Без метки": {
-          "n": 1,
-          "budget": 346500.0
-        }
-      },
       "y2023": {
         "Без метки": {
           "n": 2,
@@ -2293,12 +2271,6 @@
         "Без метки": {
           "n": 2,
           "budget": 182200.0
-        }
-      },
-      "2025-06": {
-        "Без метки": {
-          "n": 1,
-          "budget": 150000.0
         }
       },
       "2024-08": {
@@ -2313,48 +2285,64 @@
           "budget": 250000.0
         }
       },
+      "2024-09": {
+        "Google Ads": {
+          "n": 1,
+          "budget": 169000.0
+        },
+        "Без метки": {
+          "n": 4,
+          "budget": 801045.0
+        }
+      },
       "2025-09": {
         "Без метки": {
           "n": 1,
           "budget": 159000.0
+        }
+      },
+      "2025-01": {
+        "Без метки": {
+          "n": 2,
+          "budget": 353900.0
+        }
+      },
+      "2025-06": {
+        "Без метки": {
+          "n": 1,
+          "budget": 150000.0
+        }
+      },
+      "2025-07": {
+        "Без метки": {
+          "n": 1,
+          "budget": 346500.0
         }
       }
     }
   },
   {
     "name": "Виктория Михайлевич",
-    "total_leads_all": 818,
+    "total_leads_all": 825,
     "periods": {
       "all": {
-        "Без метки": 175,
-        "Facebook": 533,
+        "Facebook": 539,
+        "Без метки": 176,
         "Instagram": 107,
         "TikTok": 3
       },
       "y2026": {
-        "Без метки": 175,
-        "Facebook": 528,
+        "Facebook": 534,
+        "Без метки": 176,
         "Instagram": 102
       },
-      "2026-07": {
-        "Без метки": 49,
-        "Facebook": 194,
-        "Instagram": 13
+      "2026-09": {
+        "Facebook": 6,
+        "Без метки": 5
       },
-      "2026-08": {
-        "Без метки": 32,
-        "Facebook": 162,
-        "Instagram": 1
-      },
-      "2026-06": {
-        "Без метки": 53,
-        "Facebook": 94,
-        "Instagram": 21
-      },
-      "2026-05": {
-        "Без метки": 33,
-        "Facebook": 74,
-        "Instagram": 60
+      "2026-04": {
+        "Facebook": 3,
+        "Без метки": 2
       },
       "2026-01": {
         "Instagram": 5,
@@ -2363,27 +2351,44 @@
       "2026-03": {
         "Instagram": 1
       },
+      "2026-02": {
+        "Без метки": 2,
+        "Instagram": 1
+      },
+      "2026-05": {
+        "Instagram": 60,
+        "Без метки": 33,
+        "Facebook": 74
+      },
       "y2025": {
-        "Facebook": 5,
         "Instagram": 4,
+        "Facebook": 5,
         "TikTok": 3
       },
       "2025-12": {
-        "Facebook": 4,
+        "Instagram": 2,
         "TikTok": 2,
-        "Instagram": 2
+        "Facebook": 4
+      },
+      "2026-06": {
+        "Instagram": 21,
+        "Без метки": 53,
+        "Facebook": 94
+      },
+      "2026-07": {
+        "Instagram": 13,
+        "Без метки": 49,
+        "Facebook": 194
+      },
+      "2026-08": {
+        "Instagram": 1,
+        "Без метки": 32,
+        "Facebook": 162
       },
       "2025-11": {
-        "Instagram": 1,
         "Facebook": 1,
-        "TikTok": 1
-      },
-      "2025-08": {
-        "Instagram": 1
-      },
-      "2026-02": {
         "Instagram": 1,
-        "Без метки": 2
+        "TikTok": 1
       },
       "y2024": {
         "Instagram": 1
@@ -2391,28 +2396,24 @@
       "2024-06": {
         "Instagram": 1
       },
-      "2026-09": {
-        "Без метки": 4
-      },
-      "2026-04": {
-        "Facebook": 3,
-        "Без метки": 2
+      "2025-08": {
+        "Instagram": 1
       }
     },
     "wons": {}
   },
   {
     "name": "Андрей Бойко",
-    "total_leads_all": 813,
+    "total_leads_all": 814,
     "periods": {
       "all": {
         "Без метки": 282,
-        "TikTok": 21,
-        "Facebook": 235,
+        "Facebook": 236,
         "Instagram": 162,
         "Google Ads": 54,
-        "YouTube": 7,
         "Другое": 9,
+        "YouTube": 7,
+        "TikTok": 21,
         "Telegram": 36,
         "Кампании": 7
       },
@@ -2421,16 +2422,9 @@
         "Facebook": 46,
         "Instagram": 78,
         "Google Ads": 15,
-        "Кампании": 2,
+        "Другое": 1,
         "YouTube": 1,
-        "Другое": 1
-      },
-      "2024-08": {
-        "Без метки": 6,
-        "Facebook": 4,
-        "Кампании": 1,
-        "Google Ads": 3,
-        "Instagram": 15
+        "Кампании": 2
       },
       "2024-05": {
         "Без метки": 7,
@@ -2441,81 +2435,85 @@
         "Facebook": 5,
         "Instagram": 14
       },
+      "2024-08": {
+        "Без метки": 6,
+        "Facebook": 4,
+        "Google Ads": 3,
+        "Instagram": 15,
+        "Кампании": 1
+      },
       "y2026": {
         "Без метки": 38,
-        "Facebook": 97,
-        "Instagram": 1,
-        "YouTube": 2,
+        "Facebook": 98,
         "Google Ads": 19,
-        "TikTok": 3
+        "TikTok": 3,
+        "Instagram": 1,
+        "YouTube": 2
       },
       "2026-02": {
         "Без метки": 5,
         "Facebook": 8,
-        "YouTube": 2,
-        "Google Ads": 9
+        "Google Ads": 9,
+        "YouTube": 2
+      },
+      "2024-07": {
+        "Facebook": 3,
+        "Без метки": 13,
+        "Google Ads": 2,
+        "Instagram": 4,
+        "Другое": 1,
+        "Кампании": 1
       },
       "y2025": {
-        "TikTok": 18,
         "Facebook": 81,
         "Instagram": 83,
         "Без метки": 46,
         "Google Ads": 18,
         "Другое": 7,
         "YouTube": 4,
+        "TikTok": 18,
         "Telegram": 36,
         "Кампании": 5
-      },
-      "2025-08": {
-        "TikTok": 8,
-        "Google Ads": 1,
-        "YouTube": 1,
-        "Instagram": 5,
-        "Другое": 1,
-        "Facebook": 6,
-        "Без метки": 5
-      },
-      "2024-07": {
-        "Facebook": 3,
-        "Без метки": 13,
-        "Другое": 1,
-        "Google Ads": 2,
-        "Instagram": 4,
-        "Кампании": 1
-      },
-      "2024-10": {
-        "Instagram": 7,
-        "Facebook": 6,
-        "Без метки": 6,
-        "Google Ads": 4
       },
       "2025-01": {
         "Facebook": 2,
         "Без метки": 8,
         "Google Ads": 1,
+        "Instagram": 7,
+        "YouTube": 1
+      },
+      "2025-02": {
+        "Instagram": 12,
+        "Facebook": 2,
+        "Google Ads": 1,
+        "Без метки": 2
+      },
+      "2025-04": {
+        "Instagram": 11,
         "YouTube": 1,
-        "Instagram": 7
+        "Facebook": 4,
+        "Google Ads": 2,
+        "Без метки": 2
+      },
+      "2024-12": {
+        "Instagram": 6,
+        "Facebook": 2,
+        "Google Ads": 2,
+        "Без метки": 7
       },
       "2025-10": {
         "Facebook": 14,
         "Без метки": 3,
         "Другое": 2,
+        "Telegram": 9,
         "TikTok": 5,
-        "Instagram": 6,
-        "Telegram": 9
+        "Instagram": 6
       },
       "2025-03": {
         "Facebook": 3,
-        "Без метки": 2,
         "Google Ads": 1,
+        "Без метки": 2,
         "Instagram": 9
-      },
-      "2025-12": {
-        "Instagram": 6,
-        "Telegram": 11,
-        "Facebook": 9,
-        "Без метки": 1,
-        "Google Ads": 4
       },
       "y2023": {
         "Без метки": 86,
@@ -2528,131 +2526,134 @@
         "Facebook": 2,
         "Другое": 1
       },
-      "2026-09": {
+      "2025-09": {
+        "Instagram": 3,
+        "TikTok": 1,
         "Facebook": 3,
+        "Без метки": 3,
+        "Google Ads": 3,
+        "Telegram": 3
+      },
+      "2026-09": {
+        "Facebook": 4,
         "Без метки": 1,
         "Google Ads": 2
       },
       "2024-11": {
         "Без метки": 9,
+        "Instagram": 10,
+        "YouTube": 1
+      },
+      "2025-11": {
+        "Другое": 4,
         "YouTube": 1,
-        "Instagram": 10
+        "Facebook": 18,
+        "Google Ads": 3,
+        "Без метки": 3,
+        "Telegram": 13,
+        "Instagram": 4,
+        "Кампании": 1
       },
-      "2023-12": {
-        "Google Ads": 2,
-        "Без метки": 9,
-        "Facebook": 9
-      },
-      "2024-12": {
-        "Google Ads": 2,
-        "Instagram": 6,
-        "Facebook": 2,
-        "Без метки": 7
-      },
-      "2025-04": {
-        "Google Ads": 2,
+      "2025-08": {
         "YouTube": 1,
-        "Instagram": 11,
-        "Facebook": 4,
-        "Без метки": 2
-      },
-      "2025-02": {
+        "Facebook": 6,
         "Google Ads": 1,
-        "Instagram": 12,
-        "Facebook": 2,
+        "Без метки": 5,
+        "Другое": 1,
+        "TikTok": 8,
+        "Instagram": 5
+      },
+      "2026-04": {
         "Без метки": 2
+      },
+      "2025-12": {
+        "Telegram": 11,
+        "Instagram": 6,
+        "Facebook": 9,
+        "Без метки": 1,
+        "Google Ads": 4
+      },
+      "2026-01": {
+        "TikTok": 1,
+        "Без метки": 7,
+        "Facebook": 14,
+        "Google Ads": 3
+      },
+      "2024-09": {
+        "Без метки": 8,
+        "Facebook": 7,
+        "Google Ads": 3,
+        "Instagram": 20
+      },
+      "2024-10": {
+        "Instagram": 7,
+        "Facebook": 6,
+        "Google Ads": 4,
+        "Без метки": 6
+      },
+      "2025-07": {
+        "Facebook": 9,
+        "Google Ads": 2,
+        "Без метки": 8,
+        "Instagram": 3,
+        "Кампании": 1
+      },
+      "2025-05": {
+        "Facebook": 5,
+        "Без метки": 9,
+        "Instagram": 12,
+        "TikTok": 1
+      },
+      "2025-06": {
+        "Facebook": 6,
+        "Instagram": 5,
+        "TikTok": 3,
+        "Кампании": 3
+      },
+      "2024-04": {
+        "Facebook": 1
+      },
+      "2024-02": {
+        "Без метки": 12,
+        "Facebook": 5,
+        "Google Ads": 1
       },
       "2026-08": {
         "Instagram": 1,
         "Без метки": 5,
         "Facebook": 13
       },
-      "2025-11": {
-        "Другое": 4,
-        "YouTube": 1,
-        "Кампании": 1,
-        "Google Ads": 3,
-        "Instagram": 4,
-        "Telegram": 13,
-        "Facebook": 18,
-        "Без метки": 3
-      },
-      "2025-05": {
+      "2026-06": {
         "TikTok": 1,
-        "Instagram": 12,
-        "Facebook": 5,
-        "Без метки": 9
+        "Facebook": 16,
+        "Без метки": 2,
+        "Google Ads": 2
       },
-      "2025-06": {
-        "TikTok": 3,
-        "Instagram": 5,
-        "Кампании": 3,
-        "Facebook": 6
+      "2026-05": {
+        "TikTok": 1,
+        "Facebook": 7,
+        "Без метки": 2,
+        "Google Ads": 2
       },
-      "2025-09": {
-        "Google Ads": 3,
-        "Instagram": 3,
-        "Telegram": 3,
-        "Facebook": 3,
-        "Без метки": 3,
-        "TikTok": 1
+      "2023-12": {
+        "Без метки": 9,
+        "Facebook": 9,
+        "Google Ads": 2
       },
-      "2026-04": {
-        "Без метки": 2
-      },
-      "2026-01": {
-        "Google Ads": 3,
-        "Без метки": 7,
-        "Facebook": 14,
-        "TikTok": 1
-      },
-      "2024-03": {
-        "Без метки": 6
+      "2026-03": {
+        "Без метки": 8
       },
       "2024-01": {
         "Без метки": 22,
         "Facebook": 13
       },
-      "2026-06": {
-        "Facebook": 16,
-        "Без метки": 2,
-        "TikTok": 1,
-        "Google Ads": 2
-      },
-      "2026-05": {
-        "Facebook": 7,
-        "Без метки": 2,
-        "TikTok": 1,
-        "Google Ads": 2
+      "2024-03": {
+        "Без метки": 6
       },
       "2026-07": {
         "Facebook": 36,
         "Без метки": 6,
         "Google Ads": 1
-      },
-      "2024-09": {
-        "Google Ads": 3,
-        "Instagram": 20,
-        "Без метки": 8,
-        "Facebook": 7
-      },
-      "2025-07": {
-        "Google Ads": 2,
-        "Instagram": 3,
-        "Кампании": 1,
-        "Facebook": 9,
-        "Без метки": 8
-      },
-      "2024-02": {
-        "Google Ads": 1,
-        "Без метки": 12,
-        "Facebook": 5
-      },
-      "2026-03": {
-        "Без метки": 8
-      },
-      "2024-04": {
-        "Facebook": 1
       }
     },
     "wons": {
@@ -2669,6 +2670,10 @@
           "n": 3,
           "budget": 492000.0
         },
+        "Telegram": {
+          "n": 1,
+          "budget": 117306.0
+        },
         "YouTube": {
           "n": 1,
           "budget": 20000.0
@@ -2676,10 +2681,6 @@
         "TikTok": {
           "n": 1,
           "budget": 335000.0
-        },
-        "Telegram": {
-          "n": 1,
-          "budget": 117306.0
         }
       },
       "y2024": {
@@ -2737,13 +2738,13 @@
           "n": 2,
           "budget": 172304.0
         },
-        "YouTube": {
-          "n": 1,
-          "budget": 20000.0
-        },
         "Telegram": {
           "n": 1,
           "budget": 117306.0
+        },
+        "YouTube": {
+          "n": 1,
+          "budget": 20000.0
         }
       },
       "2025-01": {
@@ -2800,22 +2801,20 @@
           "budget": 109700.0
         }
       },
-      "2024-07": {
-        "Без метки": {
-          "n": 1,
-          "budget": 180000.0
-        }
-      },
       "2024-02": {
         "Без метки": {
           "n": 3,
           "budget": 534800.0
         }
       },
-      "2026-08": {
+      "2024-12": {
+        "Instagram": {
+          "n": 1,
+          "budget": 111000.0
+        },
         "Без метки": {
-          "n": 3,
-          "budget": 587750.0
+          "n": 1,
+          "budget": 310000.0
         }
       },
       "2026-04": {
@@ -2824,26 +2823,16 @@
           "budget": 1167420.0
         }
       },
-      "2025-07": {
+      "2025-08": {
         "Facebook": {
           "n": 1,
-          "budget": 104104.0
+          "budget": 68200.0
         }
       },
       "2023-12": {
         "Без метки": {
           "n": 1,
           "budget": 2.0
-        }
-      },
-      "2024-12": {
-        "Без метки": {
-          "n": 1,
-          "budget": 310000.0
-        },
-        "Instagram": {
-          "n": 1,
-          "budget": 111000.0
         }
       },
       "2025-02": {
@@ -2854,6 +2843,12 @@
         "Без метки": {
           "n": 1,
           "budget": 210000.0
+        }
+      },
+      "2026-08": {
+        "Без метки": {
+          "n": 3,
+          "budget": 587750.0
         }
       },
       "2025-04": {
@@ -2868,10 +2863,16 @@
           "budget": 335000.0
         }
       },
-      "2025-08": {
+      "2024-07": {
+        "Без метки": {
+          "n": 1,
+          "budget": 180000.0
+        }
+      },
+      "2025-07": {
         "Facebook": {
           "n": 1,
-          "budget": 68200.0
+          "budget": 104104.0
         }
       }
     }
@@ -2882,23 +2883,163 @@
     "periods": {
       "all": {
         "Без метки": 156,
-        "Facebook": 238,
         "Instagram": 274,
-        "Кампании": 11,
+        "Facebook": 238,
         "Google Ads": 53,
-        "Другое": 6,
         "TikTok": 23,
+        "Другое": 6,
         "Telegram": 33,
+        "Кампании": 11,
         "YouTube": 3
       },
+      "y2025": {
+        "Без метки": 54,
+        "Instagram": 69,
+        "Facebook": 72,
+        "Google Ads": 16,
+        "Другое": 5,
+        "Telegram": 28,
+        "Кампании": 7,
+        "YouTube": 1,
+        "TikTok": 10
+      },
+      "2025-09": {
+        "Без метки": 5,
+        "Facebook": 2,
+        "Google Ads": 1,
+        "Telegram": 3,
+        "Instagram": 5,
+        "TikTok": 3
+      },
+      "y2024": {
+        "Instagram": 184,
+        "Facebook": 56,
+        "Google Ads": 24,
+        "Без метки": 77,
+        "Кампании": 4,
+        "YouTube": 1,
+        "Другое": 1
+      },
+      "2024-06": {
+        "Instagram": 66,
+        "Без метки": 16,
+        "Facebook": 10,
+        "Google Ads": 7
+      },
+      "2024-05": {
+        "Instagram": 22,
+        "YouTube": 1,
+        "Без метки": 16,
+        "Facebook": 8,
+        "Google Ads": 5
+      },
+      "2024-07": {
+        "Instagram": 13,
+        "Кампании": 2,
+        "Facebook": 7,
+        "Без метки": 6,
+        "Google Ads": 2
+      },
+      "2024-08": {
+        "Instagram": 25,
+        "Facebook": 7,
+        "Без метки": 4,
+        "Google Ads": 3,
+        "Кампании": 1
+      },
+      "2024-11": {
+        "Instagram": 8,
+        "Facebook": 2,
+        "Без метки": 6
+      },
+      "2025-01": {
+        "Instagram": 10,
+        "Facebook": 6,
+        "Google Ads": 1,
+        "Без метки": 5
+      },
+      "2025-02": {
+        "Facebook": 5,
+        "Без метки": 4,
+        "Google Ads": 1,
+        "Instagram": 7
+      },
+      "2024-12": {
+        "Facebook": 5,
+        "Google Ads": 4,
+        "Без метки": 5,
+        "Instagram": 15
+      },
       "y2026": {
-        "Без метки": 23,
         "Facebook": 110,
         "Instagram": 21,
+        "Без метки": 23,
         "TikTok": 13,
-        "Telegram": 5,
+        "Google Ads": 13,
         "YouTube": 1,
-        "Google Ads": 13
+        "Telegram": 5
+      },
+      "2026-01": {
+        "Facebook": 11,
+        "Без метки": 2,
+        "Google Ads": 3,
+        "YouTube": 1,
+        "Telegram": 5
+      },
+      "2025-10": {
+        "Instagram": 4,
+        "Facebook": 5,
+        "Без метки": 11,
+        "Google Ads": 1,
+        "Telegram": 5
+      },
+      "2026-04": {
+        "Instagram": 6,
+        "TikTok": 2,
+        "Facebook": 10,
+        "Без метки": 1,
+        "Google Ads": 5
+      },
+      "2025-03": {
+        "Instagram": 9,
+        "YouTube": 1,
+        "Facebook": 5,
+        "Google Ads": 1,
+        "Без метки": 4
+      },
+      "2026-03": {
+        "Facebook": 7,
+        "Без метки": 2,
+        "Instagram": 9,
+        "TikTok": 3
+      },
+      "2025-04": {
+        "Facebook": 5,
+        "Без метки": 2,
+        "Instagram": 13
+      },
+      "2026-02": {
+        "Instagram": 4,
+        "TikTok": 8,
+        "Facebook": 7,
+        "Без метки": 4,
+        "Google Ads": 1
+      },
+      "y2023": {
+        "Без метки": 2
+      },
+      "2023-12": {
+        "Без метки": 1
+      },
+      "2025-11": {
+        "Другое": 5,
+        "Telegram": 15,
+        "Instagram": 2,
+        "Кампании": 6,
+        "TikTok": 1,
+        "Без метки": 6,
+        "Facebook": 14,
+        "Google Ads": 5
       },
       "2026-08": {
         "Без метки": 3,
@@ -2909,49 +3050,17 @@
         "Facebook": 23,
         "Без метки": 3
       },
-      "y2025": {
-        "Instagram": 69,
-        "Facebook": 72,
-        "Google Ads": 16,
-        "Другое": 5,
-        "Кампании": 7,
-        "Telegram": 28,
-        "Без метки": 54,
-        "YouTube": 1,
-        "TikTok": 10
-      },
-      "2025-04": {
-        "Instagram": 13,
-        "Facebook": 5,
-        "Без метки": 2
-      },
-      "y2024": {
-        "Facebook": 56,
-        "Instagram": 184,
-        "Без метки": 77,
-        "Кампании": 4,
-        "Google Ads": 24,
-        "YouTube": 1,
-        "Другое": 1
+      "2024-09": {
+        "Instagram": 19,
+        "Facebook": 4,
+        "Без метки": 7
       },
       "2024-10": {
         "Facebook": 8,
         "Без метки": 7,
-        "Другое": 1,
         "Google Ads": 3,
+        "Другое": 1,
         "Instagram": 16
-      },
-      "2025-02": {
-        "Instagram": 7,
-        "Facebook": 5,
-        "Без метки": 4,
-        "Google Ads": 1
-      },
-      "2024-12": {
-        "Instagram": 15,
-        "Facebook": 5,
-        "Без метки": 5,
-        "Google Ads": 4
       },
       "2026-06": {
         "Facebook": 15,
@@ -2959,22 +3068,35 @@
         "Google Ads": 4,
         "Instagram": 1
       },
-      "2026-03": {
-        "Instagram": 9,
-        "Facebook": 7,
-        "Без метки": 2,
-        "TikTok": 3
-      },
-      "2025-09": {
-        "Instagram": 5,
-        "Telegram": 3,
-        "Без метки": 5,
-        "Facebook": 2,
-        "TikTok": 3,
-        "Google Ads": 1
+      "2025-07": {
+        "Instagram": 4,
+        "Кампании": 1,
+        "Facebook": 11,
+        "Без метки": 4
       },
       "2026-05": {
         "Facebook": 17,
+        "Без метки": 4
+      },
+      "2025-06": {
+        "Instagram": 6,
+        "TikTok": 1,
+        "Facebook": 6,
+        "Без метки": 3,
+        "Google Ads": 1
+      },
+      "2025-08": {
+        "Instagram": 5,
+        "TikTok": 3,
+        "Facebook": 4,
+        "Без метки": 5,
+        "Google Ads": 1
+      },
+      "2025-05": {
+        "Instagram": 1,
+        "TikTok": 2,
+        "Facebook": 5,
+        "Google Ads": 1,
         "Без метки": 4
       },
       "2024-03": {
@@ -2983,147 +3105,26 @@
       },
       "2025-12": {
         "Facebook": 4,
-        "Без метки": 1,
         "Google Ads": 3,
-        "Instagram": 3,
-        "Telegram": 5
+        "Без метки": 1,
+        "Telegram": 5,
+        "Instagram": 3
       },
       "2024-01": {
         "Без метки": 1
       },
-      "2024-08": {
-        "Кампании": 1,
-        "Google Ads": 3,
-        "Instagram": 25,
-        "Facebook": 7,
-        "Без метки": 4
-      },
-      "2025-05": {
-        "Google Ads": 1,
-        "Instagram": 1,
-        "Facebook": 5,
-        "Без метки": 4,
-        "TikTok": 2
-      },
-      "2025-11": {
-        "Другое": 5,
-        "Кампании": 6,
-        "Google Ads": 5,
-        "Instagram": 2,
-        "Telegram": 15,
-        "Без метки": 6,
-        "Facebook": 14,
-        "TikTok": 1
-      },
-      "2026-02": {
-        "TikTok": 8,
-        "Google Ads": 1,
-        "Instagram": 4,
-        "Facebook": 7,
-        "Без метки": 4
-      },
-      "2026-04": {
-        "TikTok": 2,
-        "Google Ads": 5,
-        "Instagram": 6,
-        "Facebook": 10,
-        "Без метки": 1
-      },
-      "2025-06": {
-        "Google Ads": 1,
-        "Instagram": 6,
-        "Facebook": 6,
-        "Без метки": 3,
-        "TikTok": 1
-      },
-      "2025-08": {
-        "Google Ads": 1,
-        "Instagram": 5,
-        "Facebook": 4,
-        "Без метки": 5,
-        "TikTok": 3
-      },
-      "2026-01": {
-        "Telegram": 5,
-        "Facebook": 11,
-        "Без метки": 2,
-        "YouTube": 1,
-        "Google Ads": 3
-      },
-      "2024-09": {
-        "Instagram": 19,
-        "Facebook": 4,
-        "Без метки": 7
-      },
-      "2025-07": {
-        "Instagram": 4,
-        "Кампании": 1,
-        "Facebook": 11,
-        "Без метки": 4
-      },
-      "y2023": {
-        "Без метки": 2
-      },
-      "2023-12": {
-        "Без метки": 1
-      },
-      "2024-07": {
-        "Кампании": 2,
-        "Google Ads": 2,
-        "Instagram": 13,
-        "Facebook": 7,
-        "Без метки": 6
-      },
-      "2024-06": {
-        "Google Ads": 7,
-        "Instagram": 66,
-        "Без метки": 16,
-        "Facebook": 10
-      },
-      "2024-05": {
-        "Google Ads": 5,
-        "YouTube": 1,
-        "Instagram": 22,
-        "Без метки": 16,
-        "Facebook": 8
-      },
-      "2025-01": {
-        "Google Ads": 1,
-        "Instagram": 10,
-        "Facebook": 6,
-        "Без метки": 5
-      },
-      "2025-03": {
-        "Google Ads": 1,
-        "YouTube": 1,
-        "Instagram": 9,
-        "Facebook": 5,
-        "Без метки": 4
-      },
-      "2025-10": {
-        "Google Ads": 1,
-        "Instagram": 4,
-        "Telegram": 5,
-        "Facebook": 5,
-        "Без метки": 11
-      },
-      "2024-11": {
-        "Instagram": 8,
-        "Facebook": 2,
-        "Без метки": 6
-      },
       "2024-04": {
+        "Кампании": 1,
         "Facebook": 3,
-        "Без метки": 7,
-        "Кампании": 1
-      },
-      "2024-02": {
-        "Без метки": 1
+        "Без метки": 7
       },
       "2026-09": {
         "Facebook": 4
       },
       "2023-11": {
+        "Без метки": 1
+      },
+      "2024-02": {
         "Без метки": 1
       }
     },
@@ -3193,10 +3194,6 @@
           "n": 13,
           "budget": 2209872.0
         },
-        "Facebook": {
-          "n": 2,
-          "budget": 413000.0
-        },
         "Instagram": {
           "n": 1,
           "budget": 225000.0
@@ -3204,6 +3201,10 @@
         "Google Ads": {
           "n": 1,
           "budget": 147384.0
+        },
+        "Facebook": {
+          "n": 2,
+          "budget": 413000.0
         }
       },
       "2025-10": {
@@ -3240,46 +3241,20 @@
           "budget": 135200.0
         }
       },
-      "2024-09": {
-        "Без метки": {
-          "n": 1,
-          "budget": 195000.0
-        },
-        "Google Ads": {
-          "n": 1,
-          "budget": 320000.0
-        }
-      },
-      "2024-12": {
-        "Google Ads": {
-          "n": 1,
-          "budget": 178000.0
-        },
-        "Без метки": {
-          "n": 1,
-          "budget": 140600.0
-        }
-      },
       "2024-06": {
         "Google Ads": {
           "n": 2,
           "budget": 300000.0
         }
       },
-      "2025-01": {
+      "2024-12": {
         "Без метки": {
           "n": 1,
-          "budget": 247000.0
-        }
-      },
-      "2025-05": {
-        "Без метки": {
-          "n": 1,
-          "budget": 255000.0
+          "budget": 140600.0
         },
-        "Facebook": {
+        "Google Ads": {
           "n": 1,
-          "budget": 168000.0
+          "budget": 178000.0
         }
       },
       "2025-09": {
@@ -3297,6 +3272,32 @@
           "n": 1,
           "budget": 147384.0
         }
+      },
+      "2025-05": {
+        "Facebook": {
+          "n": 1,
+          "budget": 168000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 255000.0
+        }
+      },
+      "2024-09": {
+        "Google Ads": {
+          "n": 1,
+          "budget": 320000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 195000.0
+        }
+      },
+      "2025-01": {
+        "Без метки": {
+          "n": 1,
+          "budget": 247000.0
+        }
       }
     }
   },
@@ -3305,66 +3306,136 @@
     "total_leads_all": 658,
     "periods": {
       "all": {
-        "Другое": 8,
         "Без метки": 132,
-        "Facebook": 228,
         "Instagram": 238,
+        "Facebook": 228,
         "Кампании": 3,
+        "Другое": 8,
         "Google Ads": 10,
         "TikTok": 21,
         "Telegram": 18
       },
-      "y2025": {
-        "Другое": 7,
-        "Facebook": 98,
-        "Instagram": 99,
-        "Без метки": 38,
-        "TikTok": 17,
-        "Google Ads": 4,
-        "Telegram": 18,
-        "Кампании": 2
-      },
-      "2025-11": {
-        "Другое": 2,
-        "Google Ads": 2,
-        "Telegram": 8,
-        "Facebook": 15,
-        "Без метки": 1
-      },
-      "y2026": {
-        "Без метки": 35,
-        "Facebook": 96,
-        "Instagram": 49,
-        "Кампании": 1,
-        "TikTok": 4
-      },
-      "2026-02": {
-        "Без метки": 12,
-        "Facebook": 10,
-        "Кампании": 1,
-        "TikTok": 1,
-        "Instagram": 4
-      },
-      "2025-10": {
-        "Facebook": 12,
-        "Без метки": 5,
-        "Другое": 1,
-        "TikTok": 2,
-        "Google Ads": 1,
-        "Instagram": 5,
-        "Telegram": 7
-      },
       "y2024": {
+        "Без метки": 59,
         "Instagram": 90,
         "Facebook": 34,
-        "Без метки": 59,
         "Google Ads": 6,
         "Другое": 1
       },
       "2024-10": {
-        "Instagram": 22,
         "Без метки": 7,
         "Facebook": 5,
+        "Google Ads": 2,
+        "Instagram": 22
+      },
+      "2024-09": {
+        "Instagram": 17,
+        "Facebook": 6,
+        "Без метки": 20
+      },
+      "y2025": {
+        "Instagram": 99,
+        "Facebook": 98,
+        "Другое": 7,
+        "TikTok": 17,
+        "Telegram": 18,
+        "Без метки": 38,
+        "Кампании": 2,
+        "Google Ads": 4
+      },
+      "2025-06": {
+        "Instagram": 5,
+        "Кампании": 2,
+        "TikTok": 1,
+        "Facebook": 8
+      },
+      "2025-12": {
+        "Facebook": 3,
+        "Без метки": 2,
+        "Instagram": 2,
+        "TikTok": 1
+      },
+      "2025-08": {
+        "Instagram": 7,
+        "Другое": 3,
+        "TikTok": 4,
+        "Facebook": 10,
+        "Без метки": 13
+      },
+      "2025-05": {
+        "Instagram": 6,
+        "TikTok": 1,
+        "Facebook": 12,
+        "Без метки": 3
+      },
+      "2025-07": {
+        "Instagram": 2,
+        "TikTok": 5,
+        "Facebook": 11,
+        "Без метки": 8,
+        "Google Ads": 1
+      },
+      "y2026": {
+        "Facebook": 96,
+        "Кампании": 1,
+        "Без метки": 35,
+        "Instagram": 49,
+        "TikTok": 4
+      },
+      "2026-05": {
+        "Facebook": 11,
+        "Без метки": 5,
+        "Instagram": 18
+      },
+      "2026-06": {
+        "Facebook": 4,
+        "Instagram": 3
+      },
+      "2026-08": {
+        "Facebook": 17,
+        "Без метки": 5
+      },
+      "2026-07": {
+        "Facebook": 31,
+        "Без метки": 2,
+        "Instagram": 3
+      },
+      "2024-03": {
+        "Без метки": 3
+      },
+      "2026-02": {
+        "Кампании": 1,
+        "Без метки": 12,
+        "Facebook": 10,
+        "Instagram": 4,
+        "TikTok": 1
+      },
+      "2025-09": {
+        "Telegram": 3,
+        "Instagram": 11,
+        "TikTok": 3,
+        "Другое": 1,
+        "Facebook": 9
+      },
+      "2025-10": {
+        "Другое": 1,
+        "Facebook": 12,
+        "Без метки": 5,
+        "Google Ads": 1,
+        "Telegram": 7,
+        "Instagram": 5,
+        "TikTok": 2
+      },
+      "2026-03": {
+        "Instagram": 6,
+        "Без метки": 6,
+        "Facebook": 3
+      },
+      "2024-12": {
+        "Instagram": 13,
+        "Другое": 1,
+        "Facebook": 10,
+        "Без метки": 11,
         "Google Ads": 2
       },
       "2024-08": {
@@ -3375,8 +3446,8 @@
       },
       "2024-11": {
         "Facebook": 6,
-        "Без метки": 8,
         "Google Ads": 1,
+        "Без метки": 8,
         "Instagram": 22
       },
       "2025-01": {
@@ -3384,35 +3455,29 @@
         "Без метки": 2,
         "Instagram": 14
       },
-      "2025-12": {
-        "Instagram": 2,
-        "Facebook": 3,
-        "Без метки": 2,
-        "TikTok": 1
+      "2025-02": {
+        "Instagram": 13,
+        "Facebook": 4,
+        "Без метки": 2
+      },
+      "2026-01": {
+        "Instagram": 7,
+        "TikTok": 3,
+        "Facebook": 6
+      },
+      "2025-04": {
+        "Instagram": 17,
+        "Facebook": 5
       },
       "2025-03": {
         "Facebook": 4,
         "Без метки": 2,
         "Instagram": 17
       },
-      "2026-07": {
-        "Instagram": 3,
-        "Facebook": 31,
-        "Без метки": 2
-      },
       "2026-04": {
         "Facebook": 14,
         "Без метки": 5,
         "Instagram": 8
-      },
-      "2026-05": {
-        "Instagram": 18,
-        "Facebook": 11,
-        "Без метки": 5
-      },
-      "2026-06": {
-        "Instagram": 3,
-        "Facebook": 4
       },
       "2024-06": {
         "Facebook": 1
@@ -3425,76 +3490,12 @@
       "2024-05": {
         "Без метки": 1
       },
-      "2024-12": {
+      "2025-11": {
+        "Facebook": 15,
         "Google Ads": 2,
-        "Instagram": 13,
-        "Facebook": 10,
-        "Без метки": 11,
-        "Другое": 1
-      },
-      "2025-07": {
-        "TikTok": 5,
-        "Google Ads": 1,
-        "Instagram": 2,
-        "Facebook": 11,
-        "Без метки": 8
-      },
-      "2025-08": {
-        "TikTok": 4,
-        "Другое": 3,
-        "Instagram": 7,
-        "Facebook": 10,
-        "Без метки": 13
-      },
-      "2025-06": {
-        "TikTok": 1,
-        "Instagram": 5,
-        "Кампании": 2,
-        "Facebook": 8
-      },
-      "2025-05": {
-        "TikTok": 1,
-        "Instagram": 6,
-        "Facebook": 12,
-        "Без метки": 3
-      },
-      "2026-03": {
-        "Instagram": 6,
-        "Без метки": 6,
-        "Facebook": 3
-      },
-      "2025-02": {
-        "Instagram": 13,
-        "Facebook": 4,
-        "Без метки": 2
-      },
-      "2026-01": {
-        "Instagram": 7,
-        "Facebook": 6,
-        "TikTok": 3
-      },
-      "2025-04": {
-        "Instagram": 17,
-        "Facebook": 5
-      },
-      "2025-09": {
-        "Instagram": 11,
-        "Telegram": 3,
-        "Facebook": 9,
-        "Другое": 1,
-        "TikTok": 3
-      },
-      "2026-08": {
-        "Facebook": 17,
-        "Без метки": 5
-      },
-      "2024-03": {
-        "Без метки": 3
-      },
-      "2024-09": {
-        "Instagram": 17,
-        "Facebook": 6,
-        "Без метки": 20
+        "Без метки": 1,
+        "Другое": 2,
+        "Telegram": 8
       },
       "2024-04": {
         "Без метки": 3
@@ -3509,13 +3510,13 @@
           "n": 4,
           "budget": 475000.0
         },
-        "Instagram": {
-          "n": 1,
-          "budget": 200000.0
-        },
         "Facebook": {
           "n": 2,
           "budget": 233000.0
+        },
+        "Instagram": {
+          "n": 1,
+          "budget": 200000.0
         }
       },
       "y2025": {
@@ -3534,16 +3535,24 @@
           "budget": 160000.0
         }
       },
-      "y2024": {
-        "Instagram": {
+      "y2026": {
+        "Facebook": {
           "n": 1,
-          "budget": 200000.0
+          "budget": 83000.0
+        },
+        "Без метки": {
+          "n": 2,
+          "budget": 150000.0
         }
       },
-      "2024-11": {
-        "Instagram": {
+      "2026-02": {
+        "Facebook": {
           "n": 1,
-          "budget": 200000.0
+          "budget": 83000.0
+        },
+        "Без метки": {
+          "n": 2,
+          "budget": 150000.0
         }
       },
       "2025-02": {
@@ -3558,24 +3567,16 @@
           "budget": 165000.0
         }
       },
-      "y2026": {
-        "Facebook": {
+      "y2024": {
+        "Instagram": {
           "n": 1,
-          "budget": 83000.0
-        },
-        "Без метки": {
-          "n": 2,
-          "budget": 150000.0
+          "budget": 200000.0
         }
       },
-      "2026-02": {
-        "Facebook": {
+      "2024-11": {
+        "Instagram": {
           "n": 1,
-          "budget": 83000.0
-        },
-        "Без метки": {
-          "n": 2,
-          "budget": 150000.0
+          "budget": 200000.0
         }
       }
     }
@@ -3586,34 +3587,15 @@
     "periods": {
       "all": {
         "Без метки": 434,
-        "Facebook": 67,
-        "Instagram": 91,
         "Кампании": 4,
+        "Instagram": 91,
+        "Facebook": 67,
         "Google Ads": 23,
+        "Yandex": 1,
         "Другое": 20,
         "YouTube": 4,
         "Telegram": 2,
-        "TikTok": 3,
-        "Yandex": 1
-      },
-      "y2024": {
-        "Без метки": 266,
-        "Instagram": 38,
-        "Facebook": 33,
-        "Другое": 19,
-        "Кампании": 3,
-        "Google Ads": 14,
-        "YouTube": 3,
-        "Yandex": 1
-      },
-      "2024-10": {
-        "Без метки": 220,
-        "Facebook": 29,
-        "Другое": 19,
-        "Кампании": 3,
-        "YouTube": 2,
-        "Google Ads": 12,
-        "Instagram": 21
+        "TikTok": 3
       },
       "y2025": {
         "Без метки": 151,
@@ -3621,114 +3603,133 @@
         "Instagram": 52,
         "Кампании": 1,
         "Google Ads": 9,
+        "YouTube": 1,
         "Telegram": 2,
         "Другое": 1,
-        "TikTok": 2,
-        "YouTube": 1
+        "TikTok": 2
+      },
+      "2025-07": {
+        "Без метки": 12,
+        "Facebook": 5,
+        "Instagram": 7
+      },
+      "2025-11": {
+        "Без метки": 10,
+        "Facebook": 5,
+        "Telegram": 2,
+        "TikTok": 2
+      },
+      "2025-08": {
+        "Без метки": 8,
+        "Facebook": 2,
+        "Instagram": 3
+      },
+      "2025-05": {
+        "Без метки": 16,
+        "Facebook": 3,
+        "Google Ads": 1,
+        "Instagram": 7
+      },
+      "y2024": {
+        "Кампании": 3,
+        "Instagram": 38,
+        "Yandex": 1,
+        "Другое": 19,
+        "Без метки": 266,
+        "Facebook": 33,
+        "YouTube": 3,
+        "Google Ads": 14
+      },
+      "2024-10": {
+        "Кампании": 3,
+        "Instagram": 21,
+        "Другое": 19,
+        "YouTube": 2,
+        "Без метки": 220,
+        "Facebook": 29,
+        "Google Ads": 12
+      },
+      "2025-06": {
+        "Facebook": 3,
+        "Без метки": 8,
+        "Google Ads": 1,
+        "Instagram": 4
       },
       "2025-12": {
+        "Instagram": 1,
         "Без метки": 2,
         "Facebook": 2,
-        "Google Ads": 2,
-        "Instagram": 1
+        "Google Ads": 2
       },
       "2025-04": {
-        "Instagram": 9,
         "Кампании": 1,
         "Без метки": 18,
         "Facebook": 1,
-        "Google Ads": 2
-      },
-      "2025-09": {
-        "Instagram": 3,
-        "Facebook": 1,
-        "Без метки": 8
+        "Google Ads": 2,
+        "Instagram": 9
       },
       "2024-12": {
-        "Instagram": 12,
+        "Yandex": 1,
         "Без метки": 21,
         "Facebook": 1,
         "Google Ads": 1,
-        "Yandex": 1
+        "Instagram": 12
       },
       "2025-02": {
-        "Instagram": 3,
+        "YouTube": 1,
         "Facebook": 1,
         "Без метки": 16,
         "Google Ads": 1,
-        "YouTube": 1
-      },
-      "2025-05": {
-        "Google Ads": 1,
-        "Instagram": 7,
-        "Без метки": 16,
-        "Facebook": 3
-      },
-      "2025-06": {
-        "Google Ads": 1,
-        "Instagram": 4,
-        "Facebook": 3,
-        "Без метки": 8
+        "Instagram": 3
       },
       "y2026": {
         "Без метки": 17,
-        "Facebook": 6,
         "Instagram": 1,
+        "Facebook": 6,
         "TikTok": 1
       },
       "2026-03": {
         "Без метки": 9,
         "Facebook": 1
       },
-      "2025-07": {
-        "Instagram": 7,
-        "Без метки": 12,
-        "Facebook": 5
-      },
-      "2025-08": {
-        "Instagram": 3,
-        "Без метки": 8,
-        "Facebook": 2
-      },
-      "2026-01": {
-        "Facebook": 2,
-        "Без метки": 2,
-        "TikTok": 1
-      },
-      "2025-01": {
-        "Google Ads": 1,
-        "Instagram": 5,
-        "Без метки": 20,
-        "Facebook": 1
-      },
       "2024-11": {
-        "Google Ads": 1,
-        "YouTube": 1,
         "Instagram": 5,
+        "YouTube": 1,
         "Без метки": 25,
-        "Facebook": 3
-      },
-      "2025-11": {
-        "Telegram": 2,
-        "Без метки": 10,
-        "Facebook": 5,
-        "TikTok": 2
-      },
-      "2025-10": {
-        "Google Ads": 1,
-        "Instagram": 3,
-        "Другое": 1,
-        "Без метки": 10
+        "Facebook": 3,
+        "Google Ads": 1
       },
       "2025-03": {
         "Instagram": 7,
         "Без метки": 23,
         "Facebook": 4
       },
+      "2025-09": {
+        "Facebook": 1,
+        "Без метки": 8,
+        "Instagram": 3
+      },
+      "2025-10": {
+        "Instagram": 3,
+        "Другое": 1,
+        "Без метки": 10,
+        "Google Ads": 1
+      },
+      "2025-01": {
+        "Instagram": 5,
+        "Без метки": 20,
+        "Facebook": 1,
+        "Google Ads": 1
+      },
       "2026-02": {
         "Instagram": 1,
         "Facebook": 3,
         "Без метки": 6
+      },
+      "2026-01": {
+        "Facebook": 2,
+        "Без метки": 2,
+        "TikTok": 1
       }
     },
     "wons": {}
@@ -3739,168 +3740,171 @@
     "periods": {
       "all": {
         "Без метки": 196,
-        "Кампании": 8,
-        "Instagram": 101,
         "Facebook": 228,
+        "Instagram": 101,
         "TikTok": 11,
-        "Другое": 4,
         "Google Ads": 59,
+        "Другое": 4,
         "Telegram": 24,
+        "Кампании": 8,
         "YouTube": 1
+      },
+      "y2024": {
+        "Без метки": 60,
+        "Facebook": 40,
+        "Instagram": 56,
+        "TikTok": 2,
+        "Google Ads": 17,
+        "Кампании": 7,
+        "Другое": 1
+      },
+      "2024-08": {
+        "Без метки": 7,
+        "Facebook": 3,
+        "Instagram": 12,
+        "Кампании": 2
       },
       "y2026": {
         "Без метки": 22,
-        "Facebook": 125,
-        "Google Ads": 30,
-        "TikTok": 9,
         "Instagram": 12,
-        "YouTube": 1,
+        "Facebook": 125,
+        "TikTok": 9,
+        "Google Ads": 30,
         "Telegram": 2,
+        "YouTube": 1,
         "Другое": 1
       },
-      "2026-01": {
-        "Без метки": 2,
-        "Facebook": 3,
-        "TikTok": 1,
-        "Instagram": 3,
-        "Telegram": 1
+      "2026-02": {
+        "Без метки": 3,
+        "Facebook": 9,
+        "Google Ads": 6,
+        "YouTube": 1,
+        "Instagram": 1,
+        "Другое": 1,
+        "TikTok": 1
       },
       "y2023": {
         "Без метки": 48,
         "Facebook": 27,
-        "Другое": 1,
-        "Google Ads": 4
+        "Google Ads": 4,
+        "Другое": 1
       },
-      "2023-12": {
-        "Без метки": 16,
-        "Facebook": 20,
-        "Google Ads": 4
+      "2023-11": {
+        "Без метки": 32,
+        "Facebook": 7
       },
       "y2025": {
         "Без метки": 66,
-        "Instagram": 33,
         "Facebook": 36,
-        "Telegram": 22,
+        "Instagram": 33,
         "Другое": 1,
+        "Telegram": 22,
         "Google Ads": 8,
         "Кампании": 1
       },
-      "2025-09": {
-        "Без метки": 5,
-        "Google Ads": 1
-      },
-      "y2024": {
-        "Кампании": 7,
-        "Instagram": 56,
-        "Facebook": 40,
-        "TikTok": 2,
-        "Другое": 1,
-        "Google Ads": 17,
-        "Без метки": 60
-      },
-      "2024-01": {
-        "Кампании": 1,
-        "Google Ads": 4,
-        "Без метки": 13,
-        "Facebook": 13
-      },
-      "2024-09": {
-        "Instagram": 6,
-        "Без метки": 3,
-        "Facebook": 1
-      },
-      "2025-05": {
-        "Instagram": 6,
-        "Facebook": 3,
-        "Без метки": 3
-      },
-      "2025-04": {
-        "Facebook": 2,
-        "Без метки": 4,
-        "Instagram": 4
-      },
-      "2026-03": {
-        "Facebook": 6,
-        "Без метки": 2,
-        "TikTok": 2,
-        "Google Ads": 4,
-        "Instagram": 6
-      },
-      "2025-06": {
-        "Instagram": 2,
-        "Facebook": 5,
-        "Без метки": 2
-      },
-      "2024-12": {
-        "Facebook": 2,
-        "Без метки": 3,
-        "Google Ads": 1,
-        "Instagram": 14
-      },
-      "2025-11": {
-        "Instagram": 1,
-        "Telegram": 14,
-        "Без метки": 4,
-        "Facebook": 8,
-        "Другое": 1,
-        "Google Ads": 4,
-        "Кампании": 1
+      "2025-10": {
+        "Без метки": 1
       },
       "2024-07": {
-        "Кампании": 4,
-        "Google Ads": 1,
-        "Instagram": 5,
         "Без метки": 7,
-        "Facebook": 3
-      },
-      "2024-02": {
-        "TikTok": 1,
-        "Facebook": 6,
-        "Без метки": 6
-      },
-      "2024-11": {
-        "Другое": 1,
-        "Google Ads": 2,
-        "Instagram": 10,
-        "Facebook": 4,
-        "Без метки": 5
+        "Facebook": 3,
+        "Google Ads": 1,
+        "Кампании": 4,
+        "Instagram": 5
       },
       "2024-05": {
-        "Google Ads": 4,
-        "Instagram": 4,
         "Facebook": 6,
+        "Google Ads": 4,
+        "Без метки": 3,
+        "Instagram": 4
+      },
+      "2025-01": {
+        "Facebook": 4,
+        "Без метки": 1,
+        "Instagram": 9
+      },
+      "2024-12": {
+        "Instagram": 14,
+        "Facebook": 2,
+        "Google Ads": 1,
         "Без метки": 3
       },
-      "2024-06": {
-        "Google Ads": 1,
-        "Instagram": 3,
+      "2026-03": {
+        "Instagram": 6,
+        "TikTok": 2,
+        "Facebook": 6,
+        "Google Ads": 4,
         "Без метки": 2
       },
       "2025-02": {
-        "Без метки": 7,
-        "Instagram": 3
-      },
-      "2026-02": {
-        "Google Ads": 6,
-        "Instagram": 1,
-        "Без метки": 3,
-        "Facebook": 9,
-        "YouTube": 1,
-        "Другое": 1,
-        "TikTok": 1
+        "Instagram": 3,
+        "Без метки": 7
       },
       "2026-04": {
-        "Google Ads": 4,
-        "Instagram": 2,
         "Facebook": 10,
+        "Google Ads": 4,
         "Без метки": 7,
+        "Instagram": 2,
         "TikTok": 4
       },
-      "2026-05": {
+      "2026-01": {
+        "Instagram": 3,
         "TikTok": 1,
-        "Google Ads": 6,
-        "Facebook": 10,
-        "Без метки": 3
+        "Без метки": 2,
+        "Facebook": 3,
+        "Telegram": 1
+      },
+      "2024-11": {
+        "Facebook": 4,
+        "Google Ads": 2,
+        "Без метки": 5,
+        "Другое": 1,
+        "Instagram": 10
+      },
+      "2025-03": {
+        "Facebook": 2,
+        "Без метки": 3,
+        "Instagram": 7
+      },
+      "2025-04": {
+        "Instagram": 4,
+        "Facebook": 2,
+        "Без метки": 4
+      },
+      "2024-03": {
+        "TikTok": 1,
+        "Без метки": 8,
+        "Google Ads": 1
+      },
+      "2024-06": {
+        "Google Ads": 1,
+        "Без метки": 2,
+        "Instagram": 3
+      },
+      "2025-11": {
+        "Другое": 1,
+        "Без метки": 4,
+        "Facebook": 8,
+        "Google Ads": 4,
+        "Telegram": 14,
+        "Instagram": 1,
+        "Кампании": 1
+      },
+      "2026-07": {
+        "Telegram": 1,
+        "Без метки": 2,
+        "Facebook": 34,
+        "Google Ads": 3
+      },
+      "2026-09": {
+        "Facebook": 1
+      },
+      "2025-12": {
+        "Telegram": 8,
+        "Instagram": 1,
+        "Facebook": 12,
+        "Без метки": 1,
+        "Google Ads": 3
       },
       "2025-07": {
         "Без метки": 6
@@ -3908,72 +3912,69 @@
       "2025-08": {
         "Без метки": 29
       },
-      "2024-08": {
-        "Instagram": 12,
-        "Без метки": 7,
+      "2024-09": {
+        "Без метки": 3,
+        "Facebook": 1,
+        "Instagram": 6
+      },
+      "2024-01": {
+        "Кампании": 1,
+        "Без метки": 13,
+        "Facebook": 13,
+        "Google Ads": 4
+      },
+      "2025-05": {
         "Facebook": 3,
-        "Кампании": 2
+        "Без метки": 3,
+        "Instagram": 6
       },
-      "2025-01": {
-        "Instagram": 9,
-        "Facebook": 4,
-        "Без метки": 1
+      "2024-10": {
+        "Instagram": 2,
+        "Без метки": 2,
+        "Facebook": 1,
+        "Google Ads": 3
       },
-      "2025-03": {
-        "Instagram": 7,
-        "Facebook": 2,
-        "Без метки": 3
+      "2024-02": {
+        "Facebook": 6,
+        "Без метки": 6,
+        "TikTok": 1
       },
       "2024-04": {
         "Facebook": 1,
         "Без метки": 1
       },
-      "2024-10": {
-        "Google Ads": 3,
-        "Instagram": 2,
+      "2025-06": {
+        "Facebook": 5,
         "Без метки": 2,
-        "Facebook": 1
+        "Instagram": 2
       },
-      "2024-03": {
-        "Google Ads": 1,
+      "2026-05": {
         "TikTok": 1,
-        "Без метки": 8
-      },
-      "2025-12": {
-        "Google Ads": 3,
-        "Instagram": 1,
-        "Telegram": 8,
-        "Facebook": 12,
-        "Без метки": 1
-      },
-      "2026-06": {
+        "Facebook": 10,
         "Google Ads": 6,
-        "Facebook": 19,
-        "Без метки": 1
+        "Без метки": 3
       },
-      "2026-07": {
-        "Google Ads": 3,
-        "Telegram": 1,
-        "Без метки": 2,
-        "Facebook": 34
+      "2025-09": {
+        "Без метки": 5,
+        "Google Ads": 1
       },
-      "2026-08": {
-        "Google Ads": 1,
-        "Facebook": 33,
-        "Без метки": 2
+      "2023-12": {
+        "Без метки": 16,
+        "Google Ads": 4,
+        "Facebook": 20
       },
       "2023-10": {
         "Другое": 1
       },
-      "2023-11": {
-        "Без метки": 32,
-        "Facebook": 7
+      "2026-08": {
+        "Facebook": 33,
+        "Без метки": 2,
+        "Google Ads": 1
       },
-      "2025-10": {
-        "Без метки": 1
-      },
-      "2026-09": {
-        "Facebook": 1
+      "2026-06": {
+        "Facebook": 19,
+        "Без метки": 1,
+        "Google Ads": 6
       }
     },
     "wons": {
@@ -4014,13 +4015,13 @@
           "n": 1,
           "budget": 250000.0
         },
-        "Без метки": {
-          "n": 1,
-          "budget": 500000.0
-        },
         "Instagram": {
           "n": 1,
           "budget": 200000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 500000.0
         }
       },
       "y2025": {
@@ -4032,19 +4033,31 @@
           "n": 4,
           "budget": 765710.0
         },
-        "Facebook": {
-          "n": 1,
-          "budget": 150000.0
-        },
         "Instagram": {
           "n": 1,
           "budget": 250000.0
+        },
+        "Facebook": {
+          "n": 1,
+          "budget": 150000.0
         }
       },
       "2025-11": {
         "Telegram": {
           "n": 1,
           "budget": 100000.0
+        }
+      },
+      "2024-08": {
+        "Без метки": {
+          "n": 1,
+          "budget": 500000.0
+        }
+      },
+      "2024-10": {
+        "Без метки": {
+          "n": 1,
+          "budget": 320000.0
         }
       },
       "y2023": {
@@ -4059,18 +4072,22 @@
           "budget": 128000.0
         }
       },
-      "2025-07": {
+      "y2026": {
         "Без метки": {
           "n": 1,
-          "budget": 292500.0
-        },
-        "Facebook": {
+          "budget": 140000.0
+        }
+      },
+      "2026-07": {
+        "Без метки": {
           "n": 1,
-          "budget": 150000.0
-        },
-        "Instagram": {
+          "budget": 140000.0
+        }
+      },
+      "2025-02": {
+        "Без метки": {
           "n": 1,
-          "budget": 250000.0
+          "budget": 134500.0
         }
       },
       "2024-03": {
@@ -4107,6 +4124,20 @@
           "budget": 0
         }
       },
+      "2025-07": {
+        "Instagram": {
+          "n": 1,
+          "budget": 250000.0
+        },
+        "Без метки": {
+          "n": 1,
+          "budget": 292500.0
+        },
+        "Facebook": {
+          "n": 1,
+          "budget": 150000.0
+        }
+      },
       "2025-03": {
         "Без метки": {
           "n": 1,
@@ -4118,165 +4149,120 @@
           "n": 1,
           "budget": 138710.0
         }
-      },
-      "2024-08": {
-        "Без метки": {
-          "n": 1,
-          "budget": 500000.0
-        }
-      },
-      "2024-10": {
-        "Без метки": {
-          "n": 1,
-          "budget": 320000.0
-        }
-      },
-      "y2026": {
-        "Без метки": {
-          "n": 1,
-          "budget": 140000.0
-        }
-      },
-      "2026-07": {
-        "Без метки": {
-          "n": 1,
-          "budget": 140000.0
-        }
-      },
-      "2025-02": {
-        "Без метки": {
-          "n": 1,
-          "budget": 134500.0
-        }
       }
     }
   },
   {
     "name": "Григорий Решетов",
-    "total_leads_all": 623,
+    "total_leads_all": 626,
     "periods": {
       "all": {
         "Другое": 17,
-        "Без метки": 286,
+        "Без метки": 287,
+        "Facebook": 193,
         "Instagram": 71,
-        "Facebook": 191,
-        "Кампании": 4,
-        "YouTube": 2,
         "TikTok": 39,
         "Telegram": 2,
-        "Google Ads": 11
+        "Google Ads": 11,
+        "Кампании": 4,
+        "YouTube": 2
       },
       "y2025": {
         "Другое": 17,
-        "Instagram": 41,
         "Facebook": 48,
-        "Кампании": 4,
-        "YouTube": 1,
+        "Instagram": 41,
         "TikTok": 31,
         "Без метки": 180,
-        "Telegram": 2
+        "Telegram": 2,
+        "Кампании": 4,
+        "YouTube": 1
       },
       "2025-11": {
         "Другое": 9,
-        "Кампании": 1,
-        "Instagram": 4,
         "Telegram": 2,
+        "Instagram": 4,
+        "Кампании": 1,
+        "TikTok": 5,
         "Facebook": 11,
-        "Без метки": 41,
-        "TikTok": 5
+        "Без метки": 41
       },
       "y2026": {
-        "Без метки": 102,
-        "Facebook": 142,
+        "Без метки": 103,
+        "Facebook": 144,
         "Instagram": 30,
         "TikTok": 8,
         "Google Ads": 11,
         "YouTube": 1
+      },
+      "2026-03": {
+        "Без метки": 4,
+        "Facebook": 3,
+        "Google Ads": 1,
+        "Instagram": 4,
+        "TikTok": 2
+      },
+      "2025-02": {
+        "Facebook": 1,
+        "Без метки": 1,
+        "Instagram": 2
+      },
+      "2025-03": {
+        "Instagram": 2
+      },
+      "2026-04": {
+        "Instagram": 12,
+        "TikTok": 2,
+        "Facebook": 7,
+        "Без метки": 4
+      },
+      "2025-10": {
+        "Instagram": 6,
+        "TikTok": 8,
+        "Другое": 1,
+        "Facebook": 4,
+        "Без метки": 2
+      },
+      "2025-09": {
+        "Facebook": 3,
+        "Другое": 4,
+        "Без метки": 12,
+        "Instagram": 9,
+        "TikTok": 7
+      },
+      "2026-01": {
+        "Без метки": 23,
+        "Facebook": 3,
+        "Instagram": 4,
+        "TikTok": 2
+      },
+      "2026-02": {
+        "Instagram": 1,
+        "Без метки": 16,
+        "Facebook": 14,
+        "YouTube": 1
+      },
+      "2025-08": {
+        "Другое": 2,
+        "Instagram": 3,
+        "TikTok": 3,
+        "Facebook": 6,
+        "Без метки": 2
+      },
+      "2025-04": {
+        "Без метки": 1,
+        "Instagram": 2
       },
       "2026-07": {
         "Без метки": 12,
         "Facebook": 28,
         "Google Ads": 5
       },
-      "2025-09": {
-        "Instagram": 9,
-        "Другое": 4,
-        "Facebook": 3,
-        "Без метки": 12,
-        "TikTok": 7
-      },
-      "2026-06": {
-        "Facebook": 26,
-        "Без метки": 12,
-        "Google Ads": 1,
-        "Instagram": 1
-      },
-      "2026-05": {
-        "Facebook": 16,
-        "Без метки": 4,
-        "TikTok": 2,
-        "Instagram": 8
-      },
-      "2026-03": {
-        "Instagram": 4,
-        "Без метки": 4,
-        "Facebook": 3,
-        "TikTok": 2,
-        "Google Ads": 1
-      },
-      "2025-02": {
-        "Instagram": 2,
-        "Facebook": 1,
-        "Без метки": 1
-      },
-      "2026-01": {
-        "Instagram": 4,
-        "Без метки": 23,
-        "Facebook": 3,
-        "TikTok": 2
-      },
-      "2025-04": {
-        "Instagram": 2,
-        "Без метки": 1
-      },
-      "2025-12": {
-        "Facebook": 6,
-        "Без метки": 40,
-        "TikTok": 3,
-        "Другое": 1,
-        "Instagram": 2
-      },
-      "2026-08": {
-        "Facebook": 43,
-        "Без метки": 21,
-        "Google Ads": 4
-      },
       "2025-07": {
+        "Instagram": 6,
+        "TikTok": 5,
         "YouTube": 1,
-        "Instagram": 6,
         "Без метки": 79,
-        "Facebook": 11,
-        "TikTok": 5
-      },
-      "2025-10": {
-        "TikTok": 8,
-        "Instagram": 6,
-        "Facebook": 4,
-        "Без метки": 2,
-        "Другое": 1
-      },
-      "2026-04": {
-        "TikTok": 2,
-        "Instagram": 12,
-        "Facebook": 7,
-        "Без метки": 4
-      },
-      "2025-08": {
-        "Instagram": 3,
-        "Другое": 2,
-        "Facebook": 6,
-        "Без метки": 2,
-        "TikTok": 3
+        "Facebook": 11
       },
       "2025-06": {
         "Instagram": 4,
@@ -4289,24 +4275,36 @@
         "Без метки": 1,
         "Facebook": 1
       },
-      "2025-03": {
-        "Instagram": 2
+      "2026-06": {
+        "Facebook": 26,
+        "Без метки": 12,
+        "Google Ads": 1,
+        "Instagram": 1
       },
-      "y2024": {
-        "Без метки": 3,
-        "Facebook": 1
+      "2026-05": {
+        "Facebook": 16,
+        "Без метки": 4,
+        "Instagram": 8,
+        "TikTok": 2
       },
-      "2024-04": {
-        "Без метки": 1
+      "2025-12": {
+        "Facebook": 6,
+        "Без метки": 40,
+        "Instagram": 2,
+        "Другое": 1,
+        "TikTok": 3
       },
-      "2026-02": {
-        "Instagram": 1,
-        "Без метки": 16,
-        "Facebook": 14,
-        "YouTube": 1
+      "2026-08": {
+        "Facebook": 43,
+        "Без метки": 21,
+        "Google Ads": 4
       },
       "2025-01": {
         "Facebook": 1
+      },
+      "y2024": {
+        "Facebook": 1,
+        "Без метки": 3
       },
       "2024-11": {
         "Facebook": 1
@@ -4318,13 +4316,16 @@
         "Без метки": 1
       },
       "2026-09": {
-        "Без метки": 6,
-        "Facebook": 2
+        "Без метки": 7,
+        "Facebook": 4
       },
       "y2023": {
         "Без метки": 1
       },
       "2023-11": {
+        "Без метки": 1
+      },
+      "2024-04": {
         "Без метки": 1
       }
     },
@@ -4356,13 +4357,13 @@
           "n": 1,
           "budget": 159900.0
         },
-        "Без метки": {
-          "n": 2,
-          "budget": 180500.0
-        },
         "Facebook": {
           "n": 2,
           "budget": 450000.0
+        },
+        "Без метки": {
+          "n": 2,
+          "budget": 180500.0
         }
       },
       "2025-06": {
@@ -4381,22 +4382,10 @@
           "budget": 180500.0
         }
       },
-      "2025-10": {
-        "Instagram": {
-          "n": 1,
-          "budget": 225000.0
-        }
-      },
       "y2026": {
         "Без метки": {
           "n": 3,
           "budget": 368600.0
-        }
-      },
-      "2026-02": {
-        "Без метки": {
-          "n": 2,
-          "budget": 249900.0
         }
       },
       "2026-06": {
@@ -4416,6 +4405,18 @@
           "n": 1,
           "budget": 200000.0
         }
+      },
+      "2026-02": {
+        "Без метки": {
+          "n": 2,
+          "budget": 249900.0
+        }
+      },
+      "2025-10": {
+        "Instagram": {
+          "n": 1,
+          "budget": 225000.0
+        }
       }
     }
   },
@@ -4424,36 +4425,35 @@
     "total_leads_all": 548,
     "periods": {
       "all": {
-        "Facebook": 217,
         "Instagram": 138,
+        "Facebook": 217,
         "Google Ads": 68,
+        "Другое": 2,
         "TikTok": 30,
         "Без метки": 29,
         "Telegram": 57,
-        "Кампании": 7,
-        "Другое": 2
+        "Кампании": 7
       },
       "y2025": {
-        "Facebook": 100,
         "Instagram": 117,
+        "Facebook": 100,
         "Google Ads": 28,
+        "Другое": 2,
         "TikTok": 21,
         "Telegram": 52,
-        "Без метки": 18,
         "Кампании": 6,
-        "Другое": 2
+        "Без метки": 18
       },
-      "2025-01": {
-        "Facebook": 2,
-        "Без метки": 1,
-        "Google Ads": 1,
-        "Instagram": 12
+      "2025-02": {
+        "Instagram": 22,
+        "Facebook": 5,
+        "Google Ads": 1
       },
-      "2025-03": {
-        "Facebook": 10,
-        "Без метки": 1,
-        "Google Ads": 1,
-        "Instagram": 20
+      "2025-04": {
+        "Instagram": 17,
+        "Facebook": 7,
+        "Google Ads": 3,
+        "Без метки": 2
       },
       "y2026": {
         "Instagram": 15,
@@ -4463,127 +4463,138 @@
         "TikTok": 9,
         "Telegram": 5
       },
-      "2026-05": {
-        "Instagram": 1,
-        "Facebook": 10,
-        "Без метки": 2,
-        "TikTok": 1,
-        "Google Ads": 5
-      },
-      "2026-02": {
-        "Facebook": 19,
-        "Без метки": 2,
+      "2026-03": {
+        "Instagram": 5,
         "TikTok": 2,
-        "Google Ads": 10,
-        "Instagram": 3
-      },
-      "2026-04": {
-        "Facebook": 6,
-        "Без метки": 1,
-        "TikTok": 4,
-        "Google Ads": 8,
-        "Instagram": 4,
-        "Telegram": 1
-      },
-      "2025-10": {
-        "Facebook": 8,
-        "Без метки": 2,
-        "TikTok": 1,
-        "Google Ads": 1,
-        "Instagram": 4,
-        "Telegram": 9
-      },
-      "2025-12": {
-        "Instagram": 2,
-        "Telegram": 12,
-        "Facebook": 14,
-        "TikTok": 2,
+        "Facebook": 7,
         "Google Ads": 7
+      },
+      "2025-01": {
+        "Facebook": 2,
+        "Google Ads": 1,
+        "Без метки": 1,
+        "Instagram": 12
       },
       "y2024": {
         "Instagram": 6,
-        "Кампании": 1,
-        "Google Ads": 1,
+        "Без метки": 2,
         "Facebook": 5,
-        "Без метки": 2
-      },
-      "2024-10": {
-        "Instagram": 1
-      },
-      "2025-04": {
-        "Google Ads": 3,
-        "Instagram": 17,
-        "Facebook": 7,
-        "Без метки": 2
-      },
-      "2025-02": {
         "Google Ads": 1,
-        "Instagram": 22,
-        "Facebook": 5
-      },
-      "2026-01": {
-        "Google Ads": 5,
-        "Instagram": 2,
-        "Telegram": 4,
-        "Facebook": 14,
-        "Без метки": 2
-      },
-      "2026-03": {
-        "Google Ads": 7,
-        "Instagram": 5,
-        "Facebook": 7,
-        "TikTok": 2
-      },
-      "2025-07": {
-        "TikTok": 5,
-        "Google Ads": 1,
-        "Instagram": 8,
-        "Facebook": 6,
-        "Без метки": 1
-      },
-      "2025-08": {
-        "TikTok": 5,
-        "Instagram": 5,
-        "Facebook": 10,
-        "Без метки": 1
-      },
-      "2025-06": {
-        "TikTok": 3,
-        "Instagram": 5,
-        "Кампании": 2,
-        "Facebook": 9,
-        "Без метки": 1
-      },
-      "2025-09": {
-        "Google Ads": 2,
-        "Instagram": 5,
-        "Telegram": 1,
-        "Facebook": 3,
-        "Без метки": 1,
-        "TikTok": 2
-      },
-      "2025-11": {
-        "TikTok": 3,
-        "Другое": 2,
-        "Кампании": 3,
-        "Google Ads": 11,
-        "Instagram": 4,
-        "Telegram": 30,
-        "Facebook": 13,
-        "Без метки": 2
-      },
-      "2024-04": {
         "Кампании": 1
       },
       "2024-12": {
         "Instagram": 3,
         "Facebook": 4
       },
-      "2025-05": {
-        "Кампании": 1,
-        "Instagram": 13,
+      "2025-03": {
+        "Facebook": 10,
+        "Google Ads": 1,
+        "Без метки": 1,
+        "Instagram": 20
+      },
+      "2025-09": {
+        "Instagram": 5,
+        "TikTok": 2,
+        "Facebook": 3,
+        "Без метки": 1,
+        "Google Ads": 2,
+        "Telegram": 1
+      },
+      "2026-01": {
+        "Instagram": 2,
+        "Facebook": 14,
+        "Без метки": 2,
+        "Google Ads": 5,
+        "Telegram": 4
+      },
+      "2026-02": {
+        "Facebook": 19,
+        "Google Ads": 10,
+        "Без метки": 2,
+        "TikTok": 2,
+        "Instagram": 3
+      },
+      "2026-04": {
+        "Facebook": 6,
+        "Google Ads": 8,
+        "Без метки": 1,
+        "Telegram": 1,
+        "Instagram": 4,
+        "TikTok": 4
+      },
+      "2025-10": {
+        "Facebook": 8,
+        "Google Ads": 1,
+        "Без метки": 2,
+        "Telegram": 9,
+        "Instagram": 4,
+        "TikTok": 1
+      },
+      "2025-11": {
+        "Другое": 2,
         "Facebook": 13,
-        "Без метки": 6
+        "Без метки": 2,
+        "Google Ads": 11,
+        "Telegram": 30,
+        "Instagram": 4,
+        "Кампании": 3,
+        "TikTok": 3
+      },
+      "2025-12": {
+        "Telegram": 12,
+        "Instagram": 2,
+        "TikTok": 2,
+        "Facebook": 14,
+        "Google Ads": 7
+      },
+      "2025-06": {
+        "Кампании": 2,
+        "Facebook": 9,
+        "Без метки": 1,
+        "Instagram": 5,
+        "TikTok": 3
+      },
+      "2025-05": {
+        "Facebook": 13,
+        "Без метки": 6,
+        "Кампании": 1,
+        "Instagram": 13
+      },
+      "2026-05": {
+        "Instagram": 1,
+        "TikTok": 1,
+        "Facebook": 10,
+        "Без метки": 2,
+        "Google Ads": 5
+      },
+      "2025-08": {
+        "Facebook": 10,
+        "Без метки": 1,
+        "Instagram": 5,
+        "TikTok": 5
+      },
+      "2025-07": {
+        "Facebook": 6,
+        "Без метки": 1,
+        "Google Ads": 1,
+        "Instagram": 8,
+        "TikTok": 5
+      },
+      "2024-10": {
+        "Instagram": 1
+      },
+      "2024-09": {
+        "Без метки": 2,
+        "Google Ads": 1
+      },
+      "2024-02": {
+        "Facebook": 1
+      },
+      "2024-11": {
+        "Instagram": 1
+      },
+      "2024-06": {
+        "Instagram": 1
       },
       "2026-06": {
         "Facebook": 10,
@@ -4598,18 +4609,8 @@
         "Без метки": 1,
         "Google Ads": 2
       },
-      "2024-09": {
-        "Google Ads": 1,
-        "Без метки": 2
-      },
-      "2024-11": {
-        "Instagram": 1
-      },
-      "2024-06": {
-        "Instagram": 1
-      },
-      "2024-02": {
-        "Facebook": 1
+      "2024-04": {
+        "Кампании": 1
       }
     },
     "wons": {
@@ -4671,17 +4672,7 @@
           "budget": 150000.0
         }
       },
-      "2025-05": {
-        "Instagram": {
-          "n": 1,
-          "budget": 150000.0
-        }
-      },
       "y2026": {
-        "Facebook": {
-          "n": 4,
-          "budget": 600000.0
-        },
         "Google Ads": {
           "n": 1,
           "budget": 85000.0
@@ -4689,12 +4680,10 @@
         "Без метки": {
           "n": 2,
           "budget": 0
-        }
-      },
-      "2026-03": {
+        },
         "Facebook": {
-          "n": 1,
-          "budget": 150000.0
+          "n": 4,
+          "budget": 600000.0
         }
       },
       "2026-06": {
@@ -4728,171 +4717,186 @@
           "n": 1,
           "budget": 0
         }
+      },
+      "2025-05": {
+        "Instagram": {
+          "n": 1,
+          "budget": 150000.0
+        }
+      },
+      "2026-03": {
+        "Facebook": {
+          "n": 1,
+          "budget": 150000.0
+        }
       }
     }
   },
   {
     "name": "Максим Рувинский",
-    "total_leads_all": 492,
+    "total_leads_all": 497,
     "periods": {
       "all": {
-        "Instagram": 112,
-        "Facebook": 237,
         "Без метки": 102,
         "TikTok": 20,
+        "Instagram": 112,
+        "Facebook": 242,
         "Другое": 16,
+        "Кампании": 2,
         "Google Ads": 2,
-        "YouTube": 1,
-        "Кампании": 2
-      },
-      "y2026": {
-        "Instagram": 72,
-        "TikTok": 14,
-        "Без метки": 84,
-        "Facebook": 176,
         "YouTube": 1
       },
-      "2026-02": {
-        "Instagram": 3,
-        "Без метки": 6,
-        "Facebook": 4,
-        "TikTok": 1
+      "y2026": {
+        "Без метки": 84,
+        "Facebook": 181,
+        "Instagram": 72,
+        "TikTok": 14,
+        "YouTube": 1
       },
-      "y2024": {
-        "Instagram": 5,
-        "Без метки": 3,
-        "Google Ads": 1,
-        "Кампании": 1,
-        "Facebook": 1
+      "2026-08": {
+        "Без метки": 20,
+        "Facebook": 34,
+        "Instagram": 1
       },
-      "2024-11": {
-        "Instagram": 2
+      "2026-07": {
+        "Без метки": 33,
+        "Facebook": 53,
+        "Instagram": 4
       },
       "y2025": {
+        "TikTok": 6,
         "Instagram": 35,
         "Facebook": 60,
         "Без метки": 15,
         "Другое": 16,
-        "TikTok": 6,
-        "Кампании": 1,
-        "Google Ads": 1
+        "Google Ads": 1,
+        "Кампании": 1
       },
-      "2025-03": {
-        "Instagram": 4,
+      "2025-05": {
+        "TikTok": 1,
+        "Instagram": 1,
+        "Facebook": 1,
+        "Кампании": 1
+      },
+      "2025-07": {
+        "Instagram": 3,
+        "Facebook": 5,
         "Без метки": 1
       },
-      "2024-08": {
-        "Instagram": 1,
+      "2025-12": {
+        "Facebook": 20,
+        "Без метки": 3,
+        "Instagram": 3,
+        "TikTok": 4,
+        "Другое": 1
+      },
+      "2025-11": {
+        "Instagram": 8,
+        "Другое": 6,
+        "Facebook": 21,
+        "Без метки": 3
+      },
+      "y2024": {
+        "Instagram": 5,
+        "Кампании": 1,
+        "Без метки": 3,
+        "Facebook": 1,
+        "Google Ads": 1
+      },
+      "2024-09": {
+        "Instagram": 1
+      },
+      "2025-06": {
+        "Instagram": 2,
+        "Facebook": 1,
         "Без метки": 1
       },
       "2025-08": {
+        "Instagram": 6,
+        "TikTok": 1,
         "Facebook": 2,
         "Без метки": 1,
-        "TikTok": 1,
-        "Instagram": 6,
         "Другое": 1
       },
-      "2025-06": {
-        "Facebook": 1,
-        "Без метки": 1,
-        "Instagram": 2
+      "2026-05": {
+        "Facebook": 21,
+        "Без метки": 2,
+        "Instagram": 25
       },
-      "2025-05": {
-        "Facebook": 1,
-        "TikTok": 1,
-        "Кампании": 1,
-        "Instagram": 1
-      },
-      "2026-04": {
-        "Instagram": 16,
-        "Без метки": 5,
-        "Facebook": 16,
-        "TikTok": 1
-      },
-      "2024-04": {
-        "Без метки": 1,
-        "Кампании": 1
+      "2026-06": {
+        "Facebook": 21,
+        "Без метки": 9,
+        "Instagram": 4
       },
       "2025-10": {
-        "Instagram": 3,
+        "Другое": 2,
         "Без метки": 4,
         "Facebook": 3,
-        "Другое": 2,
-        "Google Ads": 1
-      },
-      "2025-11": {
-        "Facebook": 21,
-        "Другое": 6,
-        "Без метки": 3,
-        "Instagram": 8
-      },
-      "2025-07": {
-        "Facebook": 5,
-        "Без метки": 1,
+        "Google Ads": 1,
         "Instagram": 3
-      },
-      "2026-01": {
-        "TikTok": 11,
-        "YouTube": 1,
-        "Instagram": 5,
-        "Facebook": 17,
-        "Без метки": 2
-      },
-      "2026-03": {
-        "TikTok": 1,
-        "Instagram": 14,
-        "Facebook": 10,
-        "Без метки": 7
       },
       "2025-09": {
         "Другое": 6,
         "Instagram": 4,
         "Facebook": 6
       },
-      "2025-01": {
-        "Facebook": 1
+      "2024-04": {
+        "Кампании": 1,
+        "Без метки": 1
       },
-      "2025-12": {
+      "2026-02": {
+        "Без метки": 6,
+        "Facebook": 4,
         "Instagram": 3,
-        "Другое": 1,
-        "Facebook": 20,
-        "Без метки": 3,
-        "TikTok": 4
+        "TikTok": 1
       },
-      "2026-05": {
-        "Instagram": 25,
-        "Facebook": 21,
+      "2026-04": {
+        "Без метки": 5,
+        "Facebook": 16,
+        "Instagram": 16,
+        "TikTok": 1
+      },
+      "2026-03": {
+        "Instagram": 14,
+        "TikTok": 1,
+        "Facebook": 10,
+        "Без метки": 7
+      },
+      "2026-01": {
+        "Instagram": 5,
+        "TikTok": 11,
+        "YouTube": 1,
+        "Facebook": 17,
         "Без метки": 2
       },
-      "2026-06": {
-        "Instagram": 4,
-        "Facebook": 21,
-        "Без метки": 9
-      },
-      "2026-07": {
-        "Instagram": 4,
-        "Без метки": 33,
-        "Facebook": 53
-      },
-      "2026-08": {
-        "Instagram": 1,
-        "Без метки": 20,
-        "Facebook": 34
-      },
       "2024-12": {
-        "Google Ads": 1,
         "Instagram": 1,
-        "Facebook": 1
+        "Facebook": 1,
+        "Google Ads": 1
       },
-      "2024-06": {
-        "Без метки": 1
+      "2025-01": {
+        "Facebook": 1
       },
       "2025-04": {
         "Instagram": 1,
         "Без метки": 1
       },
-      "2024-09": {
+      "2024-08": {
+        "Без метки": 1,
         "Instagram": 1
+      },
+      "2026-09": {
+        "Facebook": 5
+      },
+      "2025-03": {
+        "Без метки": 1,
+        "Instagram": 4
+      },
+      "2024-06": {
+        "Без метки": 1
+      },
+      "2024-11": {
+        "Instagram": 2
       }
     },
     "wons": {
@@ -4963,16 +4967,10 @@
         }
       },
       "y2026": {
-        "Без метки": {
-          "n": 1,
-          "budget": 300000.0
-        },
         "Facebook": {
           "n": 1,
           "budget": 100000.0
-        }
-      },
-      "2026-03": {
+        },
         "Без метки": {
           "n": 1,
           "budget": 300000.0
@@ -4983,15 +4981,21 @@
           "n": 1,
           "budget": 100000.0
         }
+      },
+      "2026-03": {
+        "Без метки": {
+          "n": 1,
+          "budget": 300000.0
+        }
       }
     }
   },
   {
     "name": "Марина Цыганок",
-    "total_leads_all": 411,
+    "total_leads_all": 412,
     "periods": {
       "all": {
-        "Без метки": 103,
+        "Без метки": 104,
         "Instagram": 99,
         "Facebook": 187,
         "TikTok": 11,
@@ -5003,8 +5007,8 @@
         "Без метки": 21,
         "Facebook": 86,
         "Instagram": 40,
-        "Другое": 9,
         "TikTok": 3,
+        "Другое": 9,
         "YouTube": 1
       },
       "2025-08": {
@@ -5013,17 +5017,13 @@
         "Другое": 3,
         "Instagram": 6
       },
-      "y2026": {
-        "Instagram": 55,
-        "TikTok": 8,
-        "Без метки": 78,
-        "Facebook": 100,
-        "Google Ads": 1
+      "y2024": {
+        "Instagram": 4,
+        "Без метки": 4,
+        "Facebook": 1
       },
-      "2026-02": {
-        "Instagram": 14,
-        "Без метки": 19,
-        "Facebook": 15
+      "2024-10": {
+        "Instagram": 1
       },
       "2025-11": {
         "Facebook": 19,
@@ -5031,63 +5031,18 @@
         "Другое": 5,
         "Instagram": 2
       },
-      "y2024": {
-        "Instagram": 4,
-        "Без метки": 4,
-        "Facebook": 1
-      },
-      "2024-11": {
-        "Instagram": 2
-      },
-      "2025-03": {
-        "Instagram": 4,
-        "Facebook": 1,
-        "YouTube": 1
-      },
-      "2026-04": {
-        "Instagram": 6,
-        "Facebook": 9,
-        "Без метки": 7
-      },
-      "2024-04": {
-        "Без метки": 2
-      },
-      "2025-07": {
-        "Facebook": 3,
-        "Instagram": 3
-      },
-      "2025-10": {
-        "Instagram": 1,
-        "Facebook": 1,
-        "Другое": 1
-      },
-      "2025-06": {
-        "Facebook": 3,
-        "Без метки": 1,
-        "TikTok": 1,
-        "Instagram": 3
-      },
-      "2026-01": {
-        "TikTok": 8,
-        "Google Ads": 1,
-        "Instagram": 10,
-        "Без метки": 7,
-        "Facebook": 7
-      },
-      "2025-05": {
-        "Без метки": 1
-      },
-      "2024-10": {
-        "Instagram": 1
-      },
       "2025-12": {
         "Instagram": 18,
+        "TikTok": 2,
         "Facebook": 46,
-        "Без метки": 3,
-        "TikTok": 2
+        "Без метки": 3
       },
-      "2024-08": {
-        "Facebook": 1
+      "y2026": {
+        "Instagram": 55,
+        "Без метки": 79,
+        "Facebook": 100,
+        "Google Ads": 1,
+        "TikTok": 8
       },
       "2026-05": {
         "Instagram": 8,
@@ -5102,39 +5057,88 @@
       "2026-06": {
         "Instagram": 2
       },
-      "2024-05": {
-        "Без метки": 1
-      },
-      "2026-09": {
-        "Без метки": 3
-      },
-      "2026-03": {
-        "Instagram": 14,
-        "Без метки": 14,
-        "Facebook": 12
-      },
-      "2025-04": {
-        "Instagram": 2,
-        "Facebook": 1,
+      "2024-04": {
         "Без метки": 2
       },
-      "2024-12": {
-        "Instagram": 1
+      "2025-07": {
+        "Facebook": 3,
+        "Instagram": 3
       },
-      "2024-03": {
+      "2025-06": {
+        "Facebook": 3,
+        "Без метки": 1,
+        "Instagram": 3,
+        "TikTok": 1
+      },
+      "2025-05": {
         "Без метки": 1
       },
+      "2026-01": {
+        "Без метки": 7,
+        "Facebook": 7,
+        "Google Ads": 1,
+        "Instagram": 10,
+        "TikTok": 8
+      },
+      "2026-03": {
+        "Без метки": 14,
+        "Facebook": 12,
+        "Instagram": 14
+      },
+      "2026-02": {
+        "Instagram": 14,
+        "Без метки": 19,
+        "Facebook": 15
+      },
+      "2024-11": {
+        "Instagram": 2
+      },
+      "2025-03": {
+        "Instagram": 4,
+        "YouTube": 1,
+        "Facebook": 1
+      },
+      "2026-04": {
+        "Instagram": 6,
+        "Facebook": 9,
+        "Без метки": 7
+      },
+      "2025-02": {
+        "Facebook": 1
+      },
       "2025-09": {
-        "Instagram": 1,
         "Facebook": 6,
+        "Без метки": 1,
+        "Instagram": 1
+      },
+      "2025-10": {
+        "Instagram": 1,
+        "Другое": 1,
+        "Facebook": 1
+      },
+      "2025-04": {
+        "Facebook": 1,
+        "Без метки": 2,
+        "Instagram": 2
+      },
+      "2024-03": {
         "Без метки": 1
       },
       "2026-08": {
         "Facebook": 2,
         "Без метки": 17
       },
-      "2025-02": {
+      "2024-08": {
         "Facebook": 1
+      },
+      "2024-12": {
+        "Instagram": 1
+      },
+      "2024-05": {
+        "Без метки": 1
+      },
+      "2026-09": {
+        "Без метки": 4
       }
     },
     "wons": {}
@@ -5145,43 +5149,60 @@
     "periods": {
       "all": {
         "Без метки": 84,
-        "Instagram": 21,
         "Facebook": 137,
-        "TikTok": 13,
+        "Instagram": 21,
         "Google Ads": 49,
+        "TikTok": 13,
         "Telegram": 27
       },
       "y2025": {
         "Без метки": 66,
-        "TikTok": 7,
-        "Telegram": 24,
         "Instagram": 5,
+        "Telegram": 24,
         "Facebook": 15,
-        "Google Ads": 17
+        "Google Ads": 17,
+        "TikTok": 7
       },
       "2025-09": {
         "Без метки": 11,
+        "Instagram": 1,
+        "TikTok": 1
+      },
+      "y2026": {
+        "Facebook": 122,
+        "Instagram": 14,
+        "Google Ads": 32,
+        "TikTok": 6,
+        "Без метки": 18,
+        "Telegram": 3
+      },
+      "2026-03": {
+        "Facebook": 9,
+        "Google Ads": 3,
+        "Instagram": 1,
+        "TikTok": 1
+      },
+      "2026-02": {
+        "Instagram": 6,
         "TikTok": 1,
+        "Facebook": 9,
+        "Без метки": 4,
+        "Google Ads": 9
+      },
+      "2026-04": {
+        "Instagram": 3,
+        "TikTok": 2,
+        "Facebook": 7,
+        "Google Ads": 7,
+        "Без метки": 1
+      },
+      "2025-03": {
         "Instagram": 1
       },
       "y2024": {
         "Instagram": 2
       },
-      "2024-09": {
-        "Instagram": 1
-      },
-      "y2026": {
-        "Facebook": 122,
-        "TikTok": 6,
-        "Google Ads": 32,
-        "Без метки": 18,
-        "Instagram": 14,
-        "Telegram": 3
-      },
-      "2026-03": {
-        "Facebook": 9,
-        "TikTok": 1,
-        "Google Ads": 3,
+      "2024-08": {
         "Instagram": 1
       },
       "2026-01": {
@@ -5189,49 +5210,51 @@
         "Без метки": 1,
         "Telegram": 1
       },
-      "2025-12": {
-        "TikTok": 4,
-        "Google Ads": 7,
-        "Instagram": 3,
-        "Telegram": 18,
-        "Без метки": 7,
-        "Facebook": 11
-      },
-      "2026-07": {
-        "TikTok": 1,
-        "Google Ads": 1,
-        "Instagram": 1,
-        "Telegram": 2,
-        "Facebook": 22,
-        "Без метки": 5
-      },
-      "2026-04": {
-        "Google Ads": 7,
-        "Instagram": 3,
-        "Facebook": 7,
-        "Без метки": 1,
-        "TikTok": 2
-      },
       "2025-11": {
         "Telegram": 6,
+        "TikTok": 2,
         "Без метки": 10,
         "Facebook": 3,
-        "TikTok": 2,
         "Google Ads": 10
       },
-      "2026-02": {
-        "Google Ads": 9,
-        "Instagram": 6,
-        "Facebook": 9,
-        "Без метки": 4,
+      "2025-12": {
+        "Без метки": 7,
+        "Facebook": 11,
+        "Google Ads": 7,
+        "Telegram": 18,
+        "Instagram": 3,
+        "TikTok": 4
+      },
+      "2026-07": {
+        "Facebook": 22,
+        "Без метки": 5,
+        "Google Ads": 1,
+        "Telegram": 2,
+        "Instagram": 1,
         "TikTok": 1
       },
+      "2024-09": {
+        "Instagram": 1
+      },
+      "2026-05": {
+        "Facebook": 16,
+        "Google Ads": 5,
+        "Без метки": 2,
+        "Instagram": 2
+      },
+      "2026-08": {
+        "Facebook": 29,
+        "Google Ads": 6
+      },
       "2026-06": {
-        "TikTok": 1,
+        "Facebook": 16,
+        "Без метки": 5,
         "Google Ads": 1,
         "Instagram": 1,
-        "Facebook": 16,
-        "Без метки": 5
+        "TikTok": 1
+      },
+      "2025-10": {
+        "Без метки": 16
       },
       "2025-08": {
         "Без метки": 17
@@ -5240,27 +5263,8 @@
         "Без метки": 4,
         "Facebook": 1
       },
-      "2025-03": {
-        "Instagram": 1
-      },
-      "2024-08": {
-        "Instagram": 1
-      },
       "2025-06": {
         "Без метки": 1
-      },
-      "2026-05": {
-        "Google Ads": 5,
-        "Instagram": 2,
-        "Facebook": 16,
-        "Без метки": 2
-      },
-      "2026-08": {
-        "Google Ads": 6,
-        "Facebook": 29
-      },
-      "2025-10": {
-        "Без метки": 16
       }
     },
     "wons": {
@@ -5316,91 +5320,75 @@
         "TikTok": 2,
         "Google Ads": 1
       },
+      "2025-11": {
+        "Без метки": 4
+      },
+      "2025-07": {
+        "Facebook": 2,
+        "Instagram": 4
+      },
+      "2025-06": {
+        "Facebook": 3,
+        "Без метки": 1,
+        "Instagram": 2
+      },
       "2025-12": {
+        "Instagram": 6,
+        "TikTok": 2,
         "Без метки": 6,
         "Facebook": 16,
-        "TikTok": 2,
-        "Google Ads": 1,
-        "Instagram": 6
+        "Google Ads": 1
+      },
+      "2025-08": {
+        "Facebook": 4,
+        "Другое": 1
       },
       "y2026": {
         "Instagram": 48,
-        "Facebook": 95,
         "Без метки": 46,
-        "Другое": 1,
+        "Facebook": 95,
+        "Google Ads": 1,
         "TikTok": 2,
-        "Google Ads": 1
-      },
-      "2026-01": {
-        "Instagram": 2,
-        "Без метки": 2,
-        "Facebook": 5,
-        "TikTok": 2
-      },
-      "2026-03": {
-        "Instagram": 6,
-        "Без метки": 9,
-        "Facebook": 2
-      },
-      "2025-04": {
-        "Instagram": 1,
-        "Facebook": 1,
-        "Без метки": 2
+        "Другое": 1
       },
       "2026-07": {
+        "Instagram": 5,
         "Facebook": 30,
-        "Без метки": 1,
-        "Instagram": 5
-      },
-      "2026-06": {
-        "Facebook": 18,
-        "Без метки": 10
+        "Без метки": 1
       },
       "2026-05": {
+        "Instagram": 9,
         "Facebook": 6,
-        "Без метки": 4,
-        "Instagram": 9
-      },
-      "2026-08": {
-        "Facebook": 5,
-        "Без метки": 5,
-        "Google Ads": 1
-      },
-      "y2024": {
-        "Instagram": 4,
-        "Без метки": 3,
-        "Facebook": 1
-      },
-      "2024-12": {
-        "Instagram": 1
-      },
-      "2024-03": {
-        "Без метки": 1
+        "Без метки": 4
       },
       "2025-09": {
         "Другое": 2,
         "Facebook": 1
       },
+      "2025-05": {
+        "Без метки": 1
+      },
+      "2026-01": {
+        "Без метки": 2,
+        "Facebook": 5,
+        "Instagram": 2,
+        "TikTok": 2
+      },
+      "2026-03": {
+        "Без метки": 9,
+        "Facebook": 2,
+        "Instagram": 6
+      },
       "2026-02": {
-        "Другое": 1,
         "Instagram": 2,
         "Без метки": 10,
-        "Facebook": 4
+        "Facebook": 4,
+        "Другое": 1
       },
-      "2025-07": {
+      "y2024": {
         "Instagram": 4,
-        "Facebook": 2
-      },
-      "2025-06": {
-        "Instagram": 2,
-        "Facebook": 3,
-        "Без метки": 1
-      },
-      "2025-02": {
-        "Без метки": 1
-      },
-      "2025-11": {
-        "Без метки": 4
+        "Без метки": 3,
+        "Facebook": 1
       },
       "2024-05": {
         "Instagram": 1,
@@ -5409,10 +5397,6 @@
       },
       "2024-08": {
         "Instagram": 1
-      },
-      "2025-08": {
-        "Facebook": 4,
-        "Другое": 1
       },
       "2025-01": {
         "Instagram": 2,
@@ -5428,14 +5412,34 @@
         "Facebook": 1,
         "Без метки": 1
       },
+      "2025-04": {
+        "Facebook": 1,
+        "Без метки": 2,
+        "Instagram": 1
+      },
       "2025-03": {
         "Instagram": 1
       },
       "2024-06": {
         "Instagram": 1
       },
-      "2025-05": {
+      "2025-02": {
         "Без метки": 1
+      },
+      "2026-06": {
+        "Facebook": 18,
+        "Без метки": 10
+      },
+      "2026-08": {
+        "Facebook": 5,
+        "Без метки": 5,
+        "Google Ads": 1
+      },
+      "2024-03": {
+        "Без метки": 1
+      },
+      "2024-12": {
+        "Instagram": 1
       }
     },
     "wons": {
@@ -5467,6 +5471,18 @@
           "budget": 307892.0
         }
       },
+      "y2024": {
+        "Instagram": {
+          "n": 1,
+          "budget": 180000.0
+        }
+      },
+      "2024-12": {
+        "Instagram": {
+          "n": 1,
+          "budget": 180000.0
+        }
+      },
       "y2026": {
         "Instagram": {
           "n": 1,
@@ -5488,18 +5504,6 @@
           "n": 1,
           "budget": 204250.0
         }
-      },
-      "y2024": {
-        "Instagram": {
-          "n": 1,
-          "budget": 180000.0
-        }
-      },
-      "2024-12": {
-        "Instagram": {
-          "n": 1,
-          "budget": 180000.0
-        }
       }
     }
   },
@@ -5509,66 +5513,38 @@
     "periods": {
       "all": {
         "Instagram": 31,
-        "Другое": 3,
         "Facebook": 81,
-        "Без метки": 24
+        "Без метки": 24,
+        "Другое": 3
       },
       "y2025": {
         "Instagram": 3,
-        "Другое": 3,
         "Facebook": 3,
-        "Без метки": 3
+        "Без метки": 3,
+        "Другое": 3
       },
       "2025-05": {
         "Instagram": 1
       },
-      "2025-08": {
-        "Другое": 3,
-        "Facebook": 1
-      },
       "y2026": {
-        "Instagram": 27,
         "Facebook": 78,
-        "Без метки": 21
-      },
-      "2026-04": {
-        "Instagram": 8,
-        "Facebook": 8
-      },
-      "2025-06": {
-        "Facebook": 1,
-        "Без метки": 1
-      },
-      "2025-11": {
-        "Без метки": 1
-      },
-      "2026-02": {
-        "Facebook": 3,
-        "Без метки": 1
-      },
-      "2026-06": {
-        "Instagram": 8,
-        "Facebook": 16,
-        "Без метки": 4
-      },
-      "y2024": {
-        "Instagram": 1
-      },
-      "2024-10": {
-        "Instagram": 1
-      },
-      "2026-05": {
-        "Instagram": 8,
-        "Facebook": 15,
-        "Без метки": 6
+        "Без метки": 21,
+        "Instagram": 27
       },
       "2026-07": {
-        "Instagram": 3,
         "Facebook": 35,
-        "Без метки": 9
+        "Без метки": 9,
+        "Instagram": 3
       },
-      "2025-09": {
-        "Instagram": 2
+      "2026-06": {
+        "Facebook": 16,
+        "Без метки": 4,
+        "Instagram": 8
+      },
+      "2026-05": {
+        "Facebook": 15,
+        "Без метки": 6,
+        "Instagram": 8
       },
       "2025-12": {
         "Facebook": 1,
@@ -5577,6 +5553,34 @@
       "2026-08": {
         "Без метки": 1,
         "Facebook": 1
+      },
+      "2025-08": {
+        "Другое": 3,
+        "Facebook": 1
+      },
+      "2026-02": {
+        "Facebook": 3,
+        "Без метки": 1
+      },
+      "2026-04": {
+        "Facebook": 8,
+        "Instagram": 8
+      },
+      "2025-09": {
+        "Instagram": 2
+      },
+      "y2024": {
+        "Instagram": 1
+      },
+      "2024-10": {
+        "Instagram": 1
+      },
+      "2025-06": {
+        "Facebook": 1,
+        "Без метки": 1
+      },
+      "2025-11": {
+        "Без метки": 1
       }
     },
     "wons": {}
@@ -5608,13 +5612,16 @@
     "total_leads_all": 55,
     "periods": {
       "all": {
+        "Instagram": 1,
         "Без метки": 4,
-        "Facebook": 50,
-        "Instagram": 1
+        "Facebook": 50
       },
       "y2026": {
+        "Instagram": 1,
         "Без метки": 4,
-        "Facebook": 50,
+        "Facebook": 50
+      },
+      "2026-02": {
         "Instagram": 1
       },
       "2026-08": {
@@ -5624,9 +5631,6 @@
       "2026-07": {
         "Facebook": 5,
         "Без метки": 1
-      },
-      "2026-02": {
-        "Instagram": 1
       },
       "2026-09": {
         "Facebook": 6
